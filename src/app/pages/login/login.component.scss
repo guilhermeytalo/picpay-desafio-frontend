@@ -1,0 +1,58 @@
+@import '../../../assets/scss/_mixins.scss';
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    min-height: 100vh;
+
+    .left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 540px;
+        background-color: #F2F2F2;
+
+        .form-login {
+            width: 326px;
+
+            .logo{
+                margin-bottom: 14px;
+            }
+
+            h2 {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 37px;
+            }
+        }
+    }
+
+    .right {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: auto;
+
+        img {
+            max-width: 737px;
+            width: 100%;
+        }
+    }
+}
+
+@include md {
+    .container {
+        .left {
+            width: 100%;
+            padding: 40px;
+        }
+        .right {
+            display: none;
+        }
+    }
+}
