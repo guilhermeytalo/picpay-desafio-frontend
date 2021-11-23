@@ -1,0 +1,27 @@
+@import '../../../assets/scss/_variables.scss';
+@import '../../../assets/scss/_mixins.scss';
+
+main {
+    padding: 65px 48px 48px;
+    background-color: $background-color--default;
+    min-height: 100vh;
+
+    h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 44px;
+        text-align: left;
+    }
+}
+
+@include md {
+    main {
+        padding: 65px 24px 24px;
+
+        .h2 {
+            font-size: 30px;
+        }
+    }
+}
