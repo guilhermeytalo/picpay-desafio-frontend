@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
   selector: 'app-meus-pagamentos',
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MeusPagamentosComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router
+  ) {
+    const userIsLogged = this.authService.userIsLogged;
+
+    if (!userIsLogged) {
+      console.log('não logado')
+      this.router.navigate(['login']);
+    }
+  }
 
   ngOnInit(): void {
   }
