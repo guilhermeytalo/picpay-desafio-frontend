@@ -1,0 +1,15 @@
+<mat-toolbar color="primary" class="header">
+    <h1 class="logo">
+        <img src="../../../assets/img/logo.svg" alt="PayFriends">
+    </h1>
+    <button [matMenuTriggerFor]="menu" class="avatar" aria-label="Example icon-button with menu icon">
+        <img src="../../../assets/img/avatar.png" alt="{{user.name}}">
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>logout</span>
+        </button>
+    </mat-menu>
+</mat-toolbar>

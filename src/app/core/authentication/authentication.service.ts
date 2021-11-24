@@ -46,6 +46,15 @@ export class AuthenticationService {
     return user !== null;
   }
 
+  public getUser(): Account {
+    const sessionUser = sessionStorage.getItem('currentUser');
+    let user = new Account();
+    if (sessionUser) {
+      user = JSON.parse(sessionUser);
+    }
+    return user;
+  }
+
   private storeUser(user: Account): void {
     this.userIsLogged();
     const newUser = {

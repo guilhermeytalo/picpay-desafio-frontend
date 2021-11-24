@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 90px;
+    background-color: #002D69;
+
+    .logo {
+        filter: brightness(0) invert(1);
+        height: 23px;
+    }
+
+    .avatar {
+        padding: 0;
+        border: 0;
+        background-color: transparent;
+        cursor: pointer;
+    }
+}
