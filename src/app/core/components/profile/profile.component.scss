@@ -1,0 +1,26 @@
+.profile-edit > * {
+  background: white;
+  padding: 23px;
+  padding-bottom: 72px;
+  border-radius: 8px;
+  min-width: 40%;
+  margin-bottom: 16px;
+  position: relative;
+  & button {
+    position: absolute;
+    bottom: 23px;
+    right: 23px;
+  }
+}
+.home-button {
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  margin-bottom: -3px;
+  mat-icon {
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 48px;
+  }
+}

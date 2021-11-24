@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { LoginComponent, NotFoundComponent } from '@app/core/components';
+import { ProfileComponent } from './core/components/profile/profile.component';
+import { ShellComponent } from './core/components/shell/shell.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Route[] = [
@@ -12,6 +14,13 @@ const routes: Route[] = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'profile',
+    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
+    component: ShellComponent,
+    children: [{ path: '', component: ProfileComponent }]
   },
   {
     path: 'payment',

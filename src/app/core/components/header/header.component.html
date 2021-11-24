@@ -3,6 +3,9 @@
   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="16px">
     <span *ngIf="userData | async; let user" id="header-logged-user-name">Olá {{user.name}}</span>
     <div class="avatar"></div>
+    <button routerLink="/profile" mat-icon-button id="header-logout-button">
+      <mat-icon>edit</mat-icon>
+    </button>
     <button (click)="logout()" mat-icon-button id="header-logout-button">
       <mat-icon>logout</mat-icon>
     </button>

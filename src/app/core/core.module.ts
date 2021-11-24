@@ -19,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ShellComponent } from './components/shell/shell.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { PaginatorIntlService } from './services/paginator-intl.service';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,7 @@ import { PaginatorIntlService } from './services/paginator-intl.service';
     RouterModule,
     SharedModule
   ],
-  declarations: [LoadingComponent, HeaderComponent, NotFoundComponent, LoginComponent, ShellComponent, SnackbarComponent],
+  declarations: [LoadingComponent, HeaderComponent, NotFoundComponent, LoginComponent, ShellComponent, SnackbarComponent, ProfileComponent],
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntlService }]
 })
 export class CoreModule {}

@@ -1,0 +1,74 @@
+<app-title>
+  <button class="home-button" mat-icon-button routerLink="/payment"><mat-icon>home</mat-icon></button>
+  <div>Perfil</div>
+</app-title>
+<br />
+<div *ngIf="userData | async; let user" fxLayout.md="row" fxLayout.sm="column" fxLayoutAlign="space-evenly" class="profile-edit">
+  <div class="mat-elevation-z1">
+    <h1>Informações</h1>
+    <form [formGroup]="formInfo" autocomplete="off">
+      <p>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input id="profile-email-input" type="email" matInput formControlName="email" />
+          <mat-error *ngIf="formInfo.controls.email.hasError('email') && !formInfo.controls.email.hasError('required')">
+            Insira um email válido
+          </mat-error>
+          <mat-error *ngIf="formInfo.controls.email.hasError('required')">
+            Campo obrigatório
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input id="profile-name-input" type="text" matInput formControlName="name" />
+          <mat-error *ngIf="formInfo.controls.name.hasError('required')">
+            Campo obrigatório
+          </mat-error>
+        </mat-form-field>
+      </p>
+    </form>
+    <button mat-flat-button color="primary" (click)="changeUserInfo()">SALVAR</button>
+  </div>
+  <div class="mat-elevation-z1">
+    <h1>Alterar senha</h1>
+    <form [formGroup]="formPassword" autocomplete="off">
+      <mat-form-field>
+        <mat-label>Senha atual</mat-label>
+        <input #oldPasswordInput id="current-password-input" matInput type="password" formControlName="old" />
+        <span matSuffix class="cursor-pointer" (click)="oldPasswordInput.type = oldPasswordInput.type === 'text'? 'password': 'text'">
+          <mat-icon>{{oldPasswordInput.type === 'text' ? 'visibility_off' :'visibility'}}</mat-icon>
+        </span>
+        <mat-error *ngIf="formPassword.controls.old.hasError('required')">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Nova senha</mat-label>
+        <input #newPasswordInput id="new-password-input" matInput type="password" formControlName="new" />
+        <span matSuffix class="cursor-pointer" (click)="newPasswordInput.type = newPasswordInput.type === 'text'? 'password': 'text'">
+          <mat-icon>{{newPasswordInput.type === 'text' ? 'visibility_off' :'visibility'}}</mat-icon>
+        </span>
+        <mat-error *ngIf="formPassword.controls.new.hasError('required')">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Confirmar nova senha</mat-label>
+        <input matInput id="confirm-password-input" #confirmPasswordInput type="password" formControlName="confirm" />
+        <span
+          matSuffix
+          class="cursor-pointer"
+          (click)="confirmPasswordInput.type = confirmPasswordInput.type === 'text'? 'password': 'text'"
+        >
+          <mat-icon>{{confirmPasswordInput.type === 'text' ? 'visibility_off' :'visibility'}}</mat-icon>
+        </span>
+        <mat-error *ngIf="formPassword.controls.confirm.hasError('required')">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+    </form>
+    <button mat-flat-button color="primary" (click)="changePassword()">ALTERAR SENHA</button>
+  </div>
+</div>

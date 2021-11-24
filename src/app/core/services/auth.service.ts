@@ -55,6 +55,10 @@ export class AuthService {
   }
 
   getUserData = (): Observable<UserAccount> => this.userData.asObservable();
+  updateUserData = (userAccount): void => {
+    this.userData.next(userAccount);
+    sessionStorage.setItem(TOKEN_KEY, btoa(JSON.stringify(userAccount)));
+  };
 
   logout() {
     this.userData.next(null);
