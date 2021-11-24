@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, Subject, Subscriber } from 'rxjs';
-import { catchError, first, tap } from 'rxjs/operators';
+import { Observable, of, Subject } from 'rxjs';
+import { catchError, first } from 'rxjs/operators';
 
 import { Account } from 'src/app/shared/models/account.model';
 import { environment } from '../../../environments/environment';
@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AutheticationService {
+export class AuthenticationService {
 
   public userLogged = new Subject<string>();
   private baseUrl = environment.baseUrl;
@@ -41,7 +41,13 @@ export class AutheticationService {
     this.router.navigate(['login']);
   }
 
+  public userIsLogged(): boolean {
+    const user = sessionStorage.getItem('currentUser');
+    return user !== null;
+  }
+
   private storeUser(user: Account): void {
+    this.userIsLogged();
     const newUser = {
       name: user.name,
       email: user.email

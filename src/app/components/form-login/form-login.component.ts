@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AutheticationService } from 'src/app/core/authentication/authetication.service';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { Account } from 'src/app/shared/models/account.model';
 
 @Component({
@@ -24,7 +24,7 @@ export class FormLoginComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
-    public authService: AutheticationService,
+    public authService: AuthenticationService,
     public router: Router
   ) { }
 
