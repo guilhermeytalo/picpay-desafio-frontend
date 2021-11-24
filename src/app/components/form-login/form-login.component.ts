@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AutheticationService } from 'src/app/core/authentication/authetication.service';
+import { Account } from 'src/app/shared/models/account.model';
 
 @Component({
   selector: 'app-form-login',
@@ -21,13 +24,25 @@ export class FormLoginComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
+    public authService: AutheticationService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
+    this.authService.userLogged.subscribe(res => {
+      res !== 'logged' ? this.error = res : this.router.navigate(['meus-pagamentos']);
+    });
   }
 
   onSubmit(): void {
     if (this.formLogin.valid) {
+
+      const user: Account = {
+        email: this.email.value,
+        password: this.password.value
+      };
+
+      this.authService.login(user);
     }
   }
 
