@@ -13,11 +13,13 @@ export class LoginGuardService {
   ) {}
 
   canLoad(): boolean {
-    if (this.authService.userIsLogged()) {
+    const userIsLogged = this.authService.userIsLogged();
+
+    if (userIsLogged) {
       this.router.navigate(['meus-pagamentos']);
       return false;
-    } else {
-      return true;
     }
+
+    return true;
   }
 }
