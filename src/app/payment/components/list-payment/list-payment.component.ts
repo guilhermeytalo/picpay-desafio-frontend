@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { GetPaymentTaskParams } from '@app/payment/models/get-payment-task-params.model';
+import { PaymentTaskFilter } from '@app/payment/models/payment-task-filter.model';
 import { PaymentTask } from '@app/payment/models/payment-task.model';
 import { PaymentTaskService } from '@app/payment/services/payment-task.service';
 import { of, Subject, timer } from 'rxjs';
@@ -23,6 +24,9 @@ export class ListPaymentComponent implements OnInit, OnDestroy {
     _sort: ['name'],
     _order: 'asc'
   };
+
+  filterPayment: PaymentTaskFilter = {};
+
   updateListSubject: Subject<void> = new Subject();
   destroySubscriber: Subject<void> = new Subject();
   textSearchControl = new FormControl();
@@ -58,7 +62,7 @@ export class ListPaymentComponent implements OnInit, OnDestroy {
   }
 
   getList(): void {
-    this.paymentTaskService.getPaymentTaskList(this.listParams).subscribe(resp => {
+    this.paymentTaskService.getPaymentTaskList({ ...this.listParams, ...this.filterPayment }).subscribe(resp => {
       this.list = resp.list;
       this.listTotal = resp.total;
       if (this.listParams._page === 1) {

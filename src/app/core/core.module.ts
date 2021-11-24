@@ -22,21 +22,7 @@ import { PaginatorIntlService } from './services/paginator-intl.service';
 import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatProgressSpinnerModule,
-    MatIconModule,
-    MatSnackBarModule,
-    OverlayModule,
-    ReactiveFormsModule,
-    FlexLayoutModule,
-    RouterModule,
-    SharedModule
-  ],
+  imports: [MatToolbarModule, MatProgressSpinnerModule, MatSnackBarModule, OverlayModule, RouterModule, SharedModule],
   declarations: [LoadingComponent, HeaderComponent, NotFoundComponent, LoginComponent, ShellComponent, SnackbarComponent, ProfileComponent],
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntlService }]
 })

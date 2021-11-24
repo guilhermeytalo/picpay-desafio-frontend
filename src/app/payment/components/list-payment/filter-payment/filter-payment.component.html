@@ -1,0 +1,94 @@
+<div fxFill *ngIf="showFilter" class="backdrop" (click)="closeFilter()"></div>
+<button mat-flat-button (click)="showFilter = true" class="filter-button"><mat-icon>filter_list</mat-icon>Filtrar</button>
+<div *ngIf="showFilter" class="filter-wrapper mat-elevation-z1">
+  <form [formGroup]="form">
+    <div fxLayout.gt-md="row" fxLayoutGap.lt-lg="column" fxLayoutGap="16px">
+      <div fxLayout="row" fxLayoutGap="16px">
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input id="filter-name-input" matInput formControlName="name_like" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Usuário</mat-label>
+          <input id="filter-username-input" matInput formControlName="username_like" />
+          <span matPrefix>@&nbsp;</span>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start center">
+        <mat-form-field>
+          <mat-label>Título</mat-label>
+          <input id="filter-title-input" matInput formControlName="title_like" />
+        </mat-form-field>
+        <mat-checkbox  id="filter-isPayed-checkbox" formControlName="isPayed" color="primary">
+          Pago
+        </mat-checkbox>
+      </div>
+    </div>
+    <div fxLayout.gt-md="row" fxLayout.lt-lg="column" fxLayoutGap="16px">
+      <div fxLayout="row" fxLayoutGap="16px">
+        <mat-form-field>
+          <mat-label>Data De</mat-label>
+          <input id="filter-date-initial-input" matInput [ngxMatDatetimePicker]="pickerStartDate" formControlName="date_gte" />
+          <mat-datepicker-toggle id="payment-date-toggle" matSuffix [for]="castAny(pickerStartDate)"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker
+            id="payment-date-picker"
+            #pickerStartDate
+            [showSpinners]="true"
+            [showSeconds]="false"
+            [enableMeridian]="false"
+          >
+            <ng-template>
+              <span>OK</span>
+            </ng-template>
+          </ngx-mat-datetime-picker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Data Até</mat-label>
+          <input id="filter-date-final-input" matInput [ngxMatDatetimePicker]="pickerEndDate" formControlName="date_lte" />
+          <mat-datepicker-toggle id="payment-date-toggle" matSuffix [for]="castAny(pickerEndDate)"></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker
+            id="payment-date-picker"
+            #pickerEndDate
+            [showSpinners]="true"
+            [showSeconds]="false"
+            [enableMeridian]="false"
+          >
+            <ng-template>
+              <span>OK</span>
+            </ng-template>
+          </ngx-mat-datetime-picker>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="16px">
+        <mat-form-field>
+          <mat-label>Valor De</mat-label>
+          <input
+            id="filter-value-init-input"
+            prefix="R$ "
+            mask="separator.2"
+            separatorLimit="999999999999"
+            decimalMarker=","
+            matInput
+            formControlName="value_gte"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Valor Até</mat-label>
+          <input
+            id="filter-value-final-input"
+            prefix="R$ "
+            mask="separator.2"
+            separatorLimit="999999999999"
+            decimalMarker=","
+            matInput
+            formControlName="value_lte"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <div fxLayout="row" fxFill="30" fxLayoutAlign="end" fxLayoutGap="16px">
+    <button mat-flat-button (click)="clearFilter()">LIMPAR</button>
+    <button mat-flat-button color="primary" (click)="filterPayment()">FILTRAR</button>
+  </div>
+</div>

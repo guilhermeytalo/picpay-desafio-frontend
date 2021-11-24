@@ -28,11 +28,11 @@
       <div fxLayout="row" fxLayoutGap="42px">
         <mat-form-field>
           <mat-label>Data</mat-label>
-          <input id="payment-date-input" required matInput [ngxMatDatetimePicker]="pickerEndDate" formControlName="date" />
-          <mat-datepicker-toggle id="payment-date-toggle" matSuffix [for]="castAny(pickerEndDate)"></mat-datepicker-toggle>
+          <input id="payment-date-input" required matInput [ngxMatDatetimePicker]="pickerDate" formControlName="date" />
+          <mat-datepicker-toggle id="payment-date-toggle" matSuffix [for]="castAny(pickerDate)"></mat-datepicker-toggle>
           <ngx-mat-datetime-picker
             id="payment-date-picker"
-            #pickerEndDate
+            #pickerDate
             [showSpinners]="true"
             [showSeconds]="false"
             [enableMeridian]="false"

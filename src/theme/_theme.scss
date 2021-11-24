@@ -70,7 +70,7 @@ mat-form-field {
 }
 
 // Mat Checkbox readonly
-.mat-checkbox:read-only {
+.mat-checkbox[readonly] {
   pointer-events: none;
   cursor: default;
 }
