@@ -119,6 +119,15 @@ mat-form-field {
 .mat-form-field-appearance-outline .mat-form-field-prefix {
   top: 0 !important;
 }
+.avatar {
+  width: 45px;
+  height: 45px;
+  background-color: lightgray;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  border-radius: 50%;
+}
 
 .primary-color {
   color: $primary !important;

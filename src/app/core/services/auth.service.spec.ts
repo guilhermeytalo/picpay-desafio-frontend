@@ -79,4 +79,18 @@ describe('AuthService', () => {
     expect((service as any).userData.next).toHaveBeenCalledOnceWith(null);
     expect(sessionStorage.removeItem).toHaveBeenCalledOnceWith('token_key');
   });
+
+  it('updateUserData should call data update', () => {
+    let data = {
+      id: 1,
+      email: 'teste@teste',
+      password: '123',
+      name: 'aaa'
+    };
+    spyOn((service as any).userData, 'next');
+    spyOn(sessionStorage, 'setItem').and.callThrough();
+    service.updateUserData(data);
+    expect(sessionStorage.setItem).toHaveBeenCalledOnceWith('token_key', btoa(JSON.stringify(data)));
+    expect((service as any).userData.next).toHaveBeenCalledOnceWith(data);
+  });
 });

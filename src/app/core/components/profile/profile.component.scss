@@ -6,7 +6,7 @@
   min-width: 40%;
   margin-bottom: 16px;
   position: relative;
-  & button {
+  & > button:last-child {
     position: absolute;
     bottom: 23px;
     right: 23px;
@@ -23,4 +23,8 @@
     line-height: 48px;
     font-size: 48px;
   }
+}
+.avatar {
+  width: 70px;
+  height: 70px;
 }

@@ -1,12 +1,31 @@
 <app-title>
   <button class="home-button" mat-icon-button routerLink="/payment"><mat-icon>home</mat-icon></button>
-  <div>Perfil</div>
+  <div>∙ Perfil</div>
 </app-title>
 <br />
 <div *ngIf="userData | async; let user" fxLayout.md="row" fxLayout.sm="column" fxLayoutAlign="space-evenly" class="profile-edit">
   <div class="mat-elevation-z1">
     <h1>Informações</h1>
     <form [formGroup]="formInfo" autocomplete="off">
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px">
+        <div
+          class="avatar"
+          [style.background]="formInfo.value.photo ? 'url(' + formInfo.value.photo +')' : ''"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+        >
+          <button mat-icon-button id="photo-load-button" *ngIf="!formInfo.value.photo" (click)="searchFile.value = ''; searchFile.click()">
+            <mat-icon>photo_camera</mat-icon>
+          </button>
+        </div>
+        <input hidden accept="image/png, image/jpeg" (change)="inputFile($event)" #searchFile type="file" id="photo-load-file-input" />
+
+        <button mat-icon-button id="photo-load-remove" (click)="removePhoto()" *ngIf="!!formInfo.value.photo">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <br />
+
       <p>
         <mat-form-field>
           <mat-label>Email</mat-label>

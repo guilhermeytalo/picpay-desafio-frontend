@@ -17,7 +17,8 @@ export class ProfileComponent {
 
   formInfo = new FormGroup({
     name: new FormControl(null, [Validators.required]),
-    email: new FormControl(null, [Validators.required])
+    email: new FormControl(null, [Validators.required]),
+    photo: new FormControl(null)
   });
 
   formPassword = new FormGroup({
@@ -68,4 +69,17 @@ export class ProfileComponent {
         .subscribe(() => this.snackbar.showSuccess('Informações atualizadas com sucesso!'));
     }
   }
+
+  uploadFile(files: FileList): void {
+    const fileToSelect = files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(fileToSelect);
+    reader.onload = () => {
+      this.formInfo.controls.photo.setValue(reader.result);
+    };
+  }
+  removePhoto() {
+    this.formInfo.controls.photo.setValue(null);
+  }
+  inputFile = (event: any): void => this.uploadFile(event.target.files);
 }

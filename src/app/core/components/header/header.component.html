@@ -1,8 +1,10 @@
 <mat-toolbar color="accent" fxLayout="row" fxLayoutAlign="space-between center">
   <app-logo color="white"></app-logo>
   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="16px">
-    <span *ngIf="userData | async; let user" id="header-logged-user-name">Olá {{user.name}}</span>
-    <div class="avatar"></div>
+    <ng-container *ngIf="userData | async; let user">
+      <span id="header-logged-user-name">Olá {{user.name}}</span>
+      <div class="avatar" [style.background]="!!user.photo ? 'url(' + user.photo +')' : ''"></div>
+    </ng-container>
     <button routerLink="/profile" mat-icon-button id="header-logout-button">
       <mat-icon>edit</mat-icon>
     </button>
