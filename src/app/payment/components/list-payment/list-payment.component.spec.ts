@@ -17,14 +17,14 @@ describe('ListPaymentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [ListPaymentComponent],
       providers: [
         {
           provide: PaymentTaskService,
           useFactory: () => instance(mockPaymentTaskService)
         }
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
+      ]
     }).compileComponents();
   });
 

@@ -1,4 +1,5 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SnackbarService } from '@app/core/services/snackbar.service';
 import { PaymentTaskService } from '@app/payment/services/payment-task.service';
@@ -19,6 +20,7 @@ describe('TablePaymentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [TablePaymentComponent],
       providers: [
         {

@@ -1,4 +1,4 @@
-import { Injector } from '@angular/core';
+import { Injector, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SharedInjectorInstance } from '@app/shared/shared-injector-instance';
@@ -17,6 +17,7 @@ describe('DialogConfirmationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [DialogConfirmationComponent],
       providers: [
         {

@@ -46,6 +46,8 @@ export class FilterPaymentComponent {
     this.form.patchValue(this.filter);
   }
 
+  castAny = (e: any) => e as any;
+
   private formWithoutNull() {
     let formValue = this.form.value;
     Object.keys(formValue).forEach(k => {
@@ -58,6 +60,4 @@ export class FilterPaymentComponent {
     });
     return formValue;
   }
-
-  castAny = (e: any) => e as any;
 }

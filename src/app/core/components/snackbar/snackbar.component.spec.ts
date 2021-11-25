@@ -11,8 +11,8 @@ describe('SnackbarComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [SnackbarComponent],
       schemas: [NO_ERRORS_SCHEMA],
+      declarations: [SnackbarComponent],
       providers: [
         {
           provide: MAT_SNACK_BAR_DATA,

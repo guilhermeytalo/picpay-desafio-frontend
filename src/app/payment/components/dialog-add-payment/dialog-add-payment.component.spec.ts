@@ -35,6 +35,7 @@ describe('DialogAddPaymentComponent', () => {
   describe('Test Editing a Payment Task', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
+        schemas: [NO_ERRORS_SCHEMA],
         declarations: [DialogAddPaymentComponent],
         providers: [
           {
@@ -53,8 +54,7 @@ describe('DialogAddPaymentComponent', () => {
             provide: SnackbarService,
             useFactory: () => instance(mockSnackbarService)
           }
-        ],
-        schemas: [NO_ERRORS_SCHEMA]
+        ]
       }).compileComponents();
     });
 
@@ -168,6 +168,7 @@ describe('DialogAddPaymentComponent', () => {
   describe('Test Creating a Payment Task', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
+        schemas: [NO_ERRORS_SCHEMA],
         declarations: [DialogAddPaymentComponent],
         providers: [
           {
@@ -186,8 +187,7 @@ describe('DialogAddPaymentComponent', () => {
             provide: SnackbarService,
             useFactory: () => instance(mockSnackbarService)
           }
-        ],
-        schemas: [NO_ERRORS_SCHEMA]
+        ]
       }).compileComponents();
     });
 
