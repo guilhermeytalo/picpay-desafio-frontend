@@ -11,8 +11,10 @@
   </ng-container>
 
   <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header><b>Título</b></th>
-    <td mat-cell *matCellDef="let element; let i = index" id="payment-table-row-{{i}}-title">{{element.title}}</td>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header><b fxHide fxShow.gt-md>Título</b></th>
+    <td mat-cell *matCellDef="let element; let i = index" id="payment-table-row-{{i}}-title">
+      <div fxHide fxShow.gt-md>{{element.title}}</div>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="date">
@@ -39,10 +41,10 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element; let i = index" id="payment-table-row-{{i}}-actions">
-      <button mat-icon-button (click)="editPaymentTask(element)" id="payment-table-row-{{i}}-actions-edit">
+      <button mat-icon-button matTooltip="Editar" (click)="editPaymentTask(element)" id="payment-table-row-{{i}}-actions-edit">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button (click)="deletePaymentTask(element)" id="payment-table-row-{{i}}-actions-delete">
+      <button mat-icon-button matTooltip="Excluir" (click)="deletePaymentTask(element)" id="payment-table-row-{{i}}-actions-delete">
         <mat-icon>highlight_off</mat-icon>
       </button>
     </td>

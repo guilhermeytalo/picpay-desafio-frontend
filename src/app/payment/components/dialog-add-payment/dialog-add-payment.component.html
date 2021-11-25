@@ -2,7 +2,7 @@
   <h1 mat-dialog-title>Adicionar pagamento</h1>
   <div mat-dialog-content>
     <form [formGroup]="form" autocomplete="off" fxLayout="column" fxLayoutGap="16px">
-      <div fxLayout="row" fxLayoutGap="42px">
+      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="42px">
         <mat-form-field>
           <mat-label>Nome</mat-label>
           <input id="payment-name-input" required matInput formControlName="name" />
@@ -19,13 +19,13 @@
           <span matPrefix><b>@</b>&nbsp;</span>
         </mat-form-field>
       </div>
-      <div fxLayout="row" fxLayoutGap="42px">
+      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="42px">
         <mat-form-field>
           <mat-label>Título</mat-label>
           <input matInput formControlName="title" />
         </mat-form-field>
       </div>
-      <div fxLayout="row" fxLayoutGap="42px">
+      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="42px">
         <mat-form-field>
           <mat-label>Data</mat-label>
           <input id="payment-date-input" required matInput [ngxMatDatetimePicker]="pickerDate" formControlName="date" />

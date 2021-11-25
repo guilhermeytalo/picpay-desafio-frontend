@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxMaskModule } from 'ngx-mask';
 import { DialogConfirmationComponent } from './components/dialog-confirmation/dialog-confirmation.component';
 import { LogoComponent } from './components/logo/logo.component';
@@ -43,7 +44,8 @@ import { SharedInjectorInstance } from './shared-injector-instance';
     NgxMatMomentModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    NgxMaskModule
+    NgxMaskModule,
+    MatTooltipModule
   ],
   imports: [
     CommonModule,
@@ -63,6 +65,7 @@ import { SharedInjectorInstance } from './shared-injector-instance';
     NgxMatTimepickerModule,
     NgxMatMomentModule,
     ReactiveFormsModule,
+    MatTooltipModule,
     NgxMaskModule.forRoot()
   ],
 

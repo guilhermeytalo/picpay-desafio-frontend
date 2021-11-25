@@ -19,7 +19,7 @@
           <mat-label>Título</mat-label>
           <input id="filter-title-input" matInput formControlName="title_like" />
         </mat-form-field>
-        <mat-checkbox  id="filter-isPayed-checkbox" formControlName="isPayed" color="primary">
+        <mat-checkbox id="filter-isPayed-checkbox" formControlName="isPayed" color="primary">
           Pago
         </mat-checkbox>
       </div>
@@ -27,7 +27,7 @@
     <div fxLayout.gt-md="row" fxLayout.lt-lg="column" fxLayoutGap="16px">
       <div fxLayout="row" fxLayoutGap="16px">
         <mat-form-field>
-          <mat-label>Data De</mat-label>
+          <mat-label>Data Inicial</mat-label>
           <input id="filter-date-initial-input" matInput [ngxMatDatetimePicker]="pickerStartDate" formControlName="date_gte" />
           <mat-datepicker-toggle id="payment-date-toggle" matSuffix [for]="castAny(pickerStartDate)"></mat-datepicker-toggle>
           <ngx-mat-datetime-picker
@@ -43,7 +43,7 @@
           </ngx-mat-datetime-picker>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Data Até</mat-label>
+          <mat-label>Data Final</mat-label>
           <input id="filter-date-final-input" matInput [ngxMatDatetimePicker]="pickerEndDate" formControlName="date_lte" />
           <mat-datepicker-toggle id="payment-date-toggle" matSuffix [for]="castAny(pickerEndDate)"></mat-datepicker-toggle>
           <ngx-mat-datetime-picker
@@ -61,7 +61,7 @@
       </div>
       <div fxLayout="row" fxLayoutGap="16px">
         <mat-form-field>
-          <mat-label>Valor De</mat-label>
+          <mat-label>Valor</mat-label>
           <input
             id="filter-value-init-input"
             prefix="R$ "

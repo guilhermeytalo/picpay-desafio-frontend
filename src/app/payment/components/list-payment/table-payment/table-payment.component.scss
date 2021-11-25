@@ -37,6 +37,15 @@ table {
       width: 40%;
       text-align: right;
     }
+    @media screen and (max-width: 1279px) {
+      &:nth-child(2) {
+        width: 0;
+      }
+      &:last-child {
+        width: 80px;
+        text-align: right;
+      }
+    }
   }
 }
 .subtitle {
