@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PaymentCreateComponent } from 'src/app/components/payment/payment-create/payment-create.component';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-meus-pagamentos',
@@ -11,17 +14,23 @@ export class MeusPagamentosComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {
     const userIsLogged = this.authService.userIsLogged;
 
     if (!userIsLogged) {
-      console.log('não logado')
       this.router.navigate(['login']);
     }
   }
 
   ngOnInit(): void {
+  }
+
+  openCreatePaymentDialog(): void {
+    const dialogRef = this.dialog.open(PaymentCreateComponent, {
+      width: '772px'
+    });
   }
 
 }

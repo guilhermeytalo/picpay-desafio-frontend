@@ -15,3 +15,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
   background-color: #007DFE;
 }
+
+.mat-dialog-container {
+  max-height: 100vh !important;
+
+  fieldset {
+    min-inline-size: auto !important;
+  }
+}

@@ -1,0 +1,68 @@
+<h3>Adicionar pagamento</h3>
+
+<form [formGroup]="formCreatePayment" (ngSubmit)="onSubmit()">
+    <fieldset>
+
+        <div class="container">
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>Usuário *</mat-label>
+                    <input type="text"
+                        placeholder="Pick one"
+                        aria-label="Number"
+                        matInput
+                        [formControl]="username"
+                        [matAutocomplete]="auto"
+                        (blur)="checkUsername()"
+                    >
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="checkUsername()">
+                        <mat-option *ngFor="let option of filteredOptions" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input name="name" type="text" matInput placeholder="Valor" formControlName="name" class="input" required>
+                    <mat-error *ngIf="value.invalid">Valor é requirido</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>Url da imagem</mat-label>
+                    <input name="image" type="text" matInput placeholder="Url da imagem" formControlName="image" class="input">
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>Valor</mat-label>
+                    <input name="value" type="number" matInput placeholder="Valor" [formControl]="value" class="input" required>
+                    <mat-error *ngIf="value.invalid">Valor é requirido</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>Data</mat-label>
+                    <input name="date" type="date" matInput placeholder="Data" [formControl]="date" class="input" required>
+                    <mat-error *ngIf="date.invalid">Data é requirido</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>Título</mat-label>
+                    <input name="title" type="text" matInput placeholder="Título" [formControl]="title" class="input" required>
+                    <mat-error *ngIf="title.invalid">Titulo é requirido</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+
+
+<div mat-dialog-actions>   
+    <button mat-flat-button (click)="onNoClick()">CANCELAR</button>
+    <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="formCreatePayment.status === 'INVALID'" cdkFocusInitial>SALVAR</button>
+</div>
