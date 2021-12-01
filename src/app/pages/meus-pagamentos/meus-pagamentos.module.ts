@@ -11,11 +11,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+import { PaymentReadComponent } from 'src/app/components/payment/payment-read/payment-read.component';
 
 
 
@@ -24,7 +30,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   declarations: [
     MeusPagamentosComponent,
     HeaderComponent,
-    PaymentCreateComponent
+    PaymentCreateComponent,
+    PaymentReadComponent
   ],
   imports: [
     CommonModule,
@@ -34,11 +41,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     MeusPagamentosRoutingModule,
     MatButtonModule,
-    MatGridListModule,
     MatFormFieldModule,
     MatDialogModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MeusPagamentosModule { }

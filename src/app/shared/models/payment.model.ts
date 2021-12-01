@@ -5,6 +5,7 @@ export class Payment {
     title: string;
     value: number;
     date: string;
+    time?: string;
     image: string;
     isPayed: boolean;
 }

@@ -1689,61 +1689,6 @@
       "date": "2021-01-09T14:00:37Z",
       "image": "https://robohash.org/doloribuslaborequi.png?size=150x150&set=set1",
       "isPayed": false
-    },
-    {
-      "id": 170,
-      "name": "Morganica O'Sheils",
-      "username": "mosheils4p",
-      "title": "Analyst Programmer",
-      "value": 207.4,
-      "date": "2021-05-05T10:22:13Z",
-      "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "name": "nome",
-      "username": "teste",
-      "title": "titulo",
-      "value": 20,
-      "date": "2021-11-30T14:12:21.174Z",
-      "image": "url da imagem",
-      "id": 172
-    },
-    {
-      "name": "rafael gracioli",
-      "username": "rafealgracioli",
-      "title": "programador",
-      "value": 20,
-      "date": "2021-11-30T14:30:56.803Z",
-      "image": "",
-      "id": 173
-    },
-    {
-      "name": "daniel gracioli",
-      "username": "danielgracioli",
-      "title": "administrador",
-      "value": 30,
-      "date": "2021-11-30T14:32:21.996Z",
-      "image": "url da imagem",
-      "id": 174
-    },
-    {
-      "name": "rafael gracioli",
-      "username": "rafaelgracioli",
-      "title": "programador",
-      "value": 20,
-      "date": "2021-11-30T14:32:59.821Z",
-      "image": "url da imagem",
-      "id": 175
-    },
-    {
-      "name": "rafael gracioli",
-      "username": "rafaelgracioli",
-      "title": "programador",
-      "value": 40,
-      "date": "2021-11-30T14:34:26.447Z",
-      "image": "url da imagem",
-      "id": 176
     }
   ],
   "account": [
