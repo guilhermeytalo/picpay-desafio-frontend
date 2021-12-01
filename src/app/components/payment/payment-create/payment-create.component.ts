@@ -88,15 +88,22 @@ export class PaymentCreateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.task.name = this.name.value;
-    this.task.username = this.username.value;
-    this.task.title = this.title.value;
-    this.task.value = this.value.value;
-    this.task.date = new Date().toISOString();
-    this.task.image = this.image.value;
+    const hora = new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
+    const data = new Date(`${this.date.value}T${hora}`).toISOString();
+
+    this.task = {
+      name: this.name.value,
+      username: this.username.value,
+      title: this.title.value,
+      value: this.value.value,
+      date: data,
+      image: this.image.value,
+      isPayed: false,
+    };
 
     this.paymentService.create(this.task).subscribe(res => {
       this.onNoClick();
+      this.paymentService.UpdatedTable.next();
     },
     (err) => {
       console.log(err);

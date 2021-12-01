@@ -4,6 +4,7 @@ import { PaymentCreateComponent } from 'src/app/components/payment/payment-creat
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 import { MatDialog } from '@angular/material/dialog';
+import { PaymentUpdateComponent } from 'src/app/components/payment/payment-update/payment-update.component';
 
 @Component({
   selector: 'app-meus-pagamentos',
@@ -30,6 +31,15 @@ export class MeusPagamentosComponent implements OnInit {
   openCreatePaymentDialog(): void {
     const dialogRef = this.dialog.open(PaymentCreateComponent, {
       width: '772px'
+    });
+  }
+
+  openUpdatePaymentDialog(cod: number): void {
+    const dialogRef = this.dialog.open(PaymentUpdateComponent, {
+      width: '772px',
+      data: {
+        id: cod
+      }
     });
   }
 

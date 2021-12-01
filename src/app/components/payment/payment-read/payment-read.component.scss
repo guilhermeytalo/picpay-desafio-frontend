@@ -1,25 +1,96 @@
-table {
-    width: 100%;
+.mat-elevation-z2 {
+    overflow-x: auto;
+    
+    .row-search {
+        display: flex;
+        justify-content: space-between;
+        min-width: 830px;
+        background-color: white;
+        position: relative;
+    
+        .search {
+            width: 215px;
+            margin: 25px;
 
-    .search {
-        width: 215px;
+            ::ng-deep .mat-form-field-wrapper {
+                padding-bottom: 0 !important;
+
+                .mat-form-field-infix {
+                    border-top-width: 5px;
+                }
+            }
+        }
+
+        .paginator {
+            padding-top: 24px;
+        }
+    }
+    
+    table {
+        width: 100%;
+        min-width: 830px;
+
+        tr:nth-child(even) {background: #F5F8FA}
+        tr:nth-child(odd) {background: #FFF}
+
+        .mat-cell {
+            color: #2D3540;
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+    
+        .mat-column-username, .mat-column-title {
+            width: 20%;
+            min-width: 200px;
+        }
+
+        .mat-column-username {
+            span {
+                display: block;
+                font-size: 12px;
+                color: #69788C;
+            }
+        }
+    
+        .mat-column-date, .mat-column-value {
+            width: 15%;
+        }
+    
+        .mat-column-date {
+            min-width: 160px;
+
+            span {
+                display: block;
+                font-size: 12px;
+                color: #69788C;
+            }
+        }
+    
+        .mat-column-value {
+            min-width: 100px;
+        }
+    
+        .mat-column-isPayed {
+            width: 5%;
+            min-width: 50px;
+        }
+    
+        .mat-column-actions{
+            text-align: right;
+            min-width: 120px;
+        }
     }
 }
 
-.example-loading-shade {
+.loading-shade {
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 56px;
-    right: 0;
+    height: 100%;
+    width: 100vw;
     background: rgba(0, 0, 0, 0.15);
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.example-rate-limit-reached {
-    max-width: 360px;
-    text-align: center;
 }

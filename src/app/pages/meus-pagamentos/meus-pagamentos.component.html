@@ -5,5 +5,7 @@
     <div class="row-btn-add-payment">
         <button (click)="openCreatePaymentDialog()" mat-raised-button color="primary">ADiCIONAR PAGAMENTO</button>
     </div>
-    <app-payment-read></app-payment-read>
+    <app-payment-read
+        (openUpdatePaymentDialog)="openUpdatePaymentDialog($event)"
+    ></app-payment-read>
 </main>

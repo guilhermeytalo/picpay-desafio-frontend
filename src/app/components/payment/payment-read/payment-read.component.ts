@@ -1,11 +1,27 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { catchError, delay, map, startWith, switchMap } from 'rxjs/operators';
+import { catchError, debounce, debounceTime, delay, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 import { Payment } from 'src/app/shared/models/payment.model';
 import { PaymentService } from '../payment.service';
+import { MatTableDataSource } from '@angular/material/table';
+
+export interface Row {
+  id?: number;
+  name: string;
+  username: string;
+  title: string;
+  value: number;
+  formatedValue: string;
+  date: string;
+  formatedDate: string;
+  time?: string;
+  image: string;
+  isPayed: boolean;
+}
+
 
 @Component({
   selector: 'app-payment-read',
@@ -14,18 +30,20 @@ import { PaymentService } from '../payment.service';
 })
 export class PaymentReadComponent implements OnInit, AfterViewInit {
 
-  payments: Payment[];
-  meses: string[] = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-
-  displayedColumns: string[] = ['username', 'title', 'date', 'value', 'isPayed', 'actions'];
-  dataSource: Payment[] = [] ;
+  @Output() openUpdatePaymentDialog: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  payments: Payment[];
+  meses: string[] = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+
+  displayedColumns: string[] = ['username', 'title', 'date', 'value', 'isPayed', 'actions'];
+  dataSource = new MatTableDataSource();
+
   nameFilter = new FormControl('');
   filterValues = {
-    name: ''
+    username: ''
   };
 
 
@@ -35,35 +53,42 @@ export class PaymentReadComponent implements OnInit, AfterViewInit {
 
   constructor(
     private paymentService: PaymentService
-  ) {}
+  ) {
+    this.dataSource.filterPredicate = this.createFilter();
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.paymentService.UpdatedTable.subscribe(() => {
+      this.updateTable();
+    });
+  }
 
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
-
     this.updateTable();
   }
 
   createFilter(): (data: any, filter: string) => boolean {
     const filterFunction = (data, filter): boolean => {
       const searchTerms = JSON.parse(filter);
-      return data.name.toLowerCase().indexOf(searchTerms.name) !== -1;
+      return data.name.toLowerCase().indexOf(searchTerms.name) !== -1
     };
     return filterFunction;
   }
 
   updateTable(): void {
-    merge(this.sort.sortChange, this.paginator.page)
+    merge(this.sort.sortChange, this.paginator.page, this.nameFilter.valueChanges)
     .pipe(
       startWith({}),
+      debounceTime(500),
       switchMap(() => {
         this.isLoadingResults = true;
         return this.paymentService.read(
           this.sort.active,
           this.sort.direction,
           this.paginator.pageIndex,
-          this.paginator.pageSize
+          this.paginator.pageSize,
+          this.nameFilter.value
         ).pipe(catchError(() => of(null)));
       }),
       delay(500),
@@ -80,9 +105,10 @@ export class PaymentReadComponent implements OnInit, AfterViewInit {
         data.body.map(res => {
           const date = new Date(res.date);
           const dataFormatada = `${date.getDate()} ${this.meses[(date.getMonth())]} ${date.getFullYear()}`;
-          const time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-          res.formatDate = dataFormatada;
+          const time = date.toLocaleString('pt-BR', { hour: 'numeric', minute: 'numeric', hour12: true });
+          res.formatedDate = dataFormatada;
           res.time = time;
+          res.formatedValue = res.value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
         });
 
         return data;
@@ -93,8 +119,8 @@ export class PaymentReadComponent implements OnInit, AfterViewInit {
     });
   }
 
-  editProduct(cod: number): void {
-    // this.router.navigate([`editar-produto/${cod}`]);
+  updateTask(id: number): void {
+    this.openUpdatePaymentDialog.emit(id);
   }
 
   deleteProduct(id: number): void {
@@ -103,17 +129,15 @@ export class PaymentReadComponent implements OnInit, AfterViewInit {
     });
   }
 
-  openDialog(id: number, productName: string) {
-    // const dialogRef = this.dialog.open(DialogComponent, {
-    //   width: '300px',
-    //   data: {name: productName}
-    // });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     this.deleteProduct(id);
-    //   }
-    // });
+  toggleIspayed(row: Row): void {
+    this.isLoadingResults = true;
+    row.isPayed = !row.isPayed;
+    delete row.formatedDate;
+    delete row.formatedValue;
+    this.paymentService.update(row).subscribe(() => {
+      this.updateTable();
+      this.isLoadingResults = false;
+    });
   }
 
 }

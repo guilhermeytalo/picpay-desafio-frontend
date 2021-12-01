@@ -1,0 +1,52 @@
+<h3>Alterar pagamento</h3>
+
+<form [formGroup]="formCreatePayment" (ngSubmit)="onSubmit()">
+    <fieldset>
+
+        <div class="container">
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>Usuário</mat-label>
+                    <input name="username" type="text" matInput formControlName="username" class="input">
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input name="name" type="text" matInput placeholder="Valor" formControlName="name" class="input">
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>Valor</mat-label>
+                    <input name="value" type="number" matInput placeholder="Valor" [formControl]="value" class="input" required>
+                    <mat-error *ngIf="value.invalid">Valor é requirido</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>Data</mat-label>
+                    <input name="date" type="date" matInput placeholder="Data" [formControl]="date" class="input" required>
+                    <mat-error *ngIf="date.invalid">Data é requirido</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-form-field appearance="outline">
+                    <mat-label>Título</mat-label>
+                    <input name="title" type="text" matInput placeholder="Título" [formControl]="title" class="input" required>
+                    <mat-error *ngIf="title.invalid">Titulo é requirido</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field">
+                <mat-checkbox formControlName="isPayed">pago</mat-checkbox>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+
+
+<div mat-dialog-actions>   
+    <button mat-flat-button (click)="onNoClick()">CANCELAR</button>
+    <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="formCreatePayment.status === 'INVALID'">SALVAR</button>
+</div>

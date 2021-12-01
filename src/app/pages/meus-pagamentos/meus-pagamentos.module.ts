@@ -22,6 +22,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { PaymentReadComponent } from 'src/app/components/payment/payment-read/payment-read.component';
+import { PaymentUpdateComponent } from 'src/app/components/payment/payment-update/payment-update.component';
 
 
 
@@ -31,7 +32,8 @@ import { PaymentReadComponent } from 'src/app/components/payment/payment-read/pa
     MeusPagamentosComponent,
     HeaderComponent,
     PaymentCreateComponent,
-    PaymentReadComponent
+    PaymentReadComponent,
+    PaymentUpdateComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,51 @@
+// @import '../../../assets/scss/_variables.scss';
+@import '../../../../assets/scss/_mixins.scss';
+
+::ng-deep .mat-dialog-container {
+    padding: 40px;
+
+    h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
+
+    fieldset {
+        margin: 0;
+        padding: 0;
+        border: none;
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+
+            .field {
+                width: 50%;
+                max-width: 100%;
+                padding-right: 15px;
+                padding-left: 15px;
+                padding-bottom: 15px;
+
+                @include sm {
+                    width: 100%;
+                }
+            }
+        }
+    
+        .mat-form-field {
+            width: 100%;
+            height: 54px;
+        }
+    }
+
+    .mat-dialog-actions {
+        justify-content: end;
+    }
+}
