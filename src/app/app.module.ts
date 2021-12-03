@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
 import { NavComponent } from './components/nav/nav.component';
+import { AuthService } from './services/auth/auth.service';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { NavComponent } from './components/nav/nav.component';
   declarations: [	
     AppComponent, HeaderComponent, NavComponent
    ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
