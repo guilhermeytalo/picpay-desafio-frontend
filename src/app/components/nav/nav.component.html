@@ -1,0 +1,30 @@
+<mat-toolbar class="flex justify-between bg-blue">
+    <div class="flex justify-between items-center">
+      <img src="../../../assets/images/logo-white.png" alt="">
+      <a mat-button class="text-white" routerLink="/home">
+        Home
+      </a>
+      <a mat-button class="text-white" routerLink="/payments">
+        Payment
+      </a>
+    </div>
+    <div class="">
+      <a mat-button [matMenuTriggerFor]="menu" class="text-white">
+        <img class="inline-block object-cover w-10 h-10 rounded-full ring-2 ring-white p-0 mr-1"
+          src="https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+          alt="Profile image" />
+        <span class="ml-2 hidden sm:inline">Melfre Diego</span>
+      </a>
+      <mat-menu #menu="matMenu" [overlapTrigger]="false" class="w-40 absolute top-3 right-0" xPosition="before">
+        <a mat-menu-item>
+          <mat-icon>manage_accounts</mat-icon>
+          <span>Profile</span>
+        </a>
+        <a mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+        </a>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+  
