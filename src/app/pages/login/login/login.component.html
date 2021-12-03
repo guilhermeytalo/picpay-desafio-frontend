@@ -1,0 +1,47 @@
+<div class="min-h-screen bg-white flex">
+	<div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 bg-gray w-2/8">
+		<div class="mx-auto w-full max-w-sm">
+			<!-- Logo boas vindas -->
+			<div>
+				<img src="/assets/images/logo-blue.png" alt="Logo PayFriends" class="mb-4">
+				<p class="font-heading mt-6 text-3xl font-extrabold text-black">Bem vindo de volta</p>
+			</div>
+
+			<!-- Form -->
+			<div class="mt-4">
+				<p>
+					Entre com seus dados para logar <b>:)</b>
+				</p>
+				<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+					<!-- E-mail  -->
+					<mat-form-field class="form-field" appearance="outline">
+						<mat-label>E-mail</mat-label>
+						<input matInput placeholder="Ex. example@example.com" formControlName="email" ngModel>
+						<mat-error>Informa e-mail válido.</mat-error>
+					</mat-form-field>
+					<!-- Senha -->
+					<mat-form-field class="form-field" appearance="outline">
+						<mat-label>Senha</mat-label>
+						<input matInput [type]="hide ? 'password' : 'text'" placeholder="*******" formControlName="password"
+							ngModel>
+						<button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+							[attr.aria-pressed]="hide">
+							<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+						</button>
+						<mat-error>Campo obrigatório.</mat-error>
+					</mat-form-field>
+					<!-- Entrar -->
+					<button type="submit" [disabled]="!formLogin.valid" mat-flat-button
+						class="btn-entrar py-6 bg-blue text-white">ENTRAR</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Imagem -->
+	<div class="hidden lg:block relative flex-1 w-6/8">
+		<div class="flex h-screen justify-center items-center">
+			<img class="" src="assets/images/bg-login.png">
+		</div>
+	</div>
+</div>

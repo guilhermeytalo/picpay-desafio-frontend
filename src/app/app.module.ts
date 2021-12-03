@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AuthService } from './services/auth/auth.service';
 import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './pages/login/login/login.component';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule
   ],
   declarations: [	
-    AppComponent, HeaderComponent, NavComponent
+    AppComponent, HeaderComponent, NavComponent, LoginComponent
    ],
   providers: [AuthService],
   bootstrap: [AppComponent]
