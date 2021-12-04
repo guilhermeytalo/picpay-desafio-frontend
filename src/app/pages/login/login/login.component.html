@@ -14,13 +14,13 @@
 				</p>
 				<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
 					<!-- E-mail  -->
-					<mat-form-field class="form-field" appearance="outline">
+					<mat-form-field class="form-field w-full" appearance="outline">
 						<mat-label>E-mail</mat-label>
 						<input matInput placeholder="Ex. example@example.com" formControlName="email" ngModel>
 						<mat-error>Informa e-mail válido.</mat-error>
 					</mat-form-field>
 					<!-- Senha -->
-					<mat-form-field class="form-field" appearance="outline">
+					<mat-form-field class="form-field w-full" appearance="outline">
 						<mat-label>Senha</mat-label>
 						<input matInput [type]="hide ? 'password' : 'text'" placeholder="*******" formControlName="password"
 							ngModel>
@@ -32,7 +32,7 @@
 					</mat-form-field>
 					<!-- Entrar -->
 					<button type="submit" [disabled]="!formLogin.valid" mat-flat-button
-						class="btn-entrar py-6 bg-blue text-white">ENTRAR</button>
+						class="btn-entrar py-6 bg-blue text-white w-full">ENTRAR</button>
 				</form>
 			</div>
 		</div>
