@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,13 +16,13 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [],
   imports: [
-    BrowserAnimationsModule,
-    HttpClientModule,
+    // BrowserAnimationsModule,
+    // HttpClientModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -42,8 +42,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatToolbarModule,
   ],
   exports: [
-    BrowserAnimationsModule,
-    HttpClientModule,
+    // BrowserAnimationsModule,
+    // HttpClientModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
