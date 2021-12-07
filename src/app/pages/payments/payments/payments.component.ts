@@ -1,5 +1,12 @@
+import { PageRequest } from './../../../util/page-request';
+import { ITask } from './../../../models/task/task';
+import { PaymentService } from './../../../services/payment/payment.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { Page } from 'src/app/util/page';
 import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
+import { take } from 'rxjs/operators';
 
 const ELEMENT_DATA: any[] = [
   {id: 1, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
@@ -32,19 +39,62 @@ const ELEMENT_DATA: any[] = [
 })
 export class PaymentsComponent implements OnInit {
 
-  // MatPaginator Inputs
   length = 100;
   pageSize = 10;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageSizeOptions = [5, 10, 25, 100];
 
-  // MatPaginator Output
-  pageEvent: PageEvent;
+  displayedColumns: string[] = ['image', 'name', 'username', 'title', 'value', 'date', 'isPayed', 'actions'];
 
-  displayedColumns: string[] = ['id', 'image', 'name', 'username', 'title', 'value', 'date', 'isPayed', 'actions'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  page: Page<ITask> = new Page([], 0);
+  pageEvent!: PageEvent;
+  sortEvent!: Sort;
+
+
+  tasks: ITask[] = [];
+
+  constructor(
+    private _paymentService: PaymentService,
+  ) { }
 
   ngOnInit(): void {
+    this.listarItens();
   }
+
+  listarItens() {
+    // this.carregando = true;
+    const queryAdicional = new Map();
+    // if (this.formGroupPesquisa.value.nome) {
+    //     queryAdicional.set("nome_like", this.formGroupPesquisa.value.nome);
+    // }
+    this._paymentService
+        .listar(
+            new PageRequest(
+                {
+                    pageNumber: this.pageEvent ? this.pageEvent.pageIndex : 0,
+                    pageSize: this.pageEvent ? this.pageEvent.pageSize : 10,
+                },
+                {
+                    property: this.sortEvent ? this.sortEvent.active : "id",
+                    direction: this.sortEvent ? this.sortEvent.direction : "desc",
+                },
+                queryAdicional
+            )
+        )
+        .pipe(take(1))
+        .subscribe(
+            (page) => {
+                this.page = page;
+                //this.carregando = false;
+            },
+            (error) => {
+                this.page = new Page([], 0);
+                //this.carregando = false;
+                // this.matSnackBar.open("Erro ao listar itens", null, {
+                //     duration: 5000,
+                //     panelClass: "red-snackbar",
+                // });
+            }
+        );
+    }
 
 }
