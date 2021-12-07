@@ -1,11 +1,9 @@
 module.exports = {
   purge: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: false,
   theme: {
     colors: {
-        white: {
-            DEFAULT: 'white'
-          },
+        ...require("tailwindcss/colors"),
         blue:{
             DEFAULT: '#002D69'
         },
