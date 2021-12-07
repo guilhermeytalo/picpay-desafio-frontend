@@ -10,7 +10,7 @@
             <!-- Btn action new -->
             <div class="">
                 <button mat-flat-button class="bg-lightBlue-600 text-white">
-                    <mat-icon class="mat-18">ligature</mat-icon>
+                    <mat-icon class="mr-4">library_add</mat-icon>
                     <span>Adicionar Pagamento</span>
                 </button>
             </div>
@@ -56,7 +56,7 @@
                         <th mat-header-cell *matHeaderCellDef> Image </th>
                         <td mat-cell *matCellDef="let element">
                             <img src="{{element.image}}" alt="{{element.name}}"
-                                class="inline-block object-cover w-10 h-10 rounded-full p-0 mr-1 bg-gray-300">
+                                class="inline-block object-cover w-10 h-10 rounded-full p-0 mr-1 bg-warmGray-300">
                         </td>
                     </ng-container>
 
@@ -99,8 +99,12 @@
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef> Actions </th>
                         <td mat-cell *matCellDef="let element">
-                            <button mat-flat-button>Edit</button>
-                            <button mat-flat-button>Delete</button>
+                            <button mat-flat-button>
+                                <mat-icon class="text-lightBlue-600">edit</mat-icon>
+                            </button>
+                            <button mat-flat-button>
+                                <mat-icon class="text-rose-700">delete_outline</mat-icon>
+                            </button>
                         </td>
                     </ng-container>
 
