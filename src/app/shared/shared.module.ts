@@ -16,6 +16,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatSelectModule} from '@angular/material/select';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -40,6 +42,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatNativeDateModule,
     MatTooltipModule,
     MatToolbarModule,
+    MatSelectModule,
+    CurrencyMaskModule
   ],
   exports: [
     // BrowserAnimationsModule,
@@ -61,6 +65,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatNativeDateModule,
     MatTooltipModule,
     MatToolbarModule,
+    MatSelectModule,
+    CurrencyMaskModule
+    
   ],
 })
 export class SharedModule {}

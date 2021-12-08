@@ -9,7 +9,7 @@
 
             <!-- Btn action new -->
             <div class="">
-                <button mat-flat-button class="bg-lightBlue-600 text-white">
+                <button mat-flat-button class="bg-lightBlue-600 text-white" (click)="openDialogAdd()">
                     <mat-icon class="mr-4">library_add</mat-icon>
                     <span>Adicionar Pagamento</span>
                 </button>
@@ -99,10 +99,10 @@
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef> Actions </th>
                         <td mat-cell *matCellDef="let element">
-                            <button mat-flat-button>
+                            <button mat-flat-button (click)="openDialogEdit()">
                                 <mat-icon class="text-lightBlue-600">edit</mat-icon>
                             </button>
-                            <button mat-flat-button>
+                            <button mat-flat-button (click)="openDialogDelete()">
                                 <mat-icon class="text-rose-700">delete_outline</mat-icon>
                             </button>
                         </td>

@@ -1,3 +1,6 @@
+import { DeletePaymentComponent } from './../delete-payment/delete-payment.component';
+import { EditPaymentComponent } from './../edit-payment/edit-payment.component';
+import { AddPaymentComponent } from './../add-payment/add-payment.component';
 import { PageRequest } from './../../../util/page-request';
 import { ITask } from './../../../models/task/task';
 import { PaymentService } from './../../../services/payment/payment.service';
@@ -7,30 +10,7 @@ import { Page } from 'src/app/util/page';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { take } from 'rxjs/operators';
-
-const ELEMENT_DATA: any[] = [
-  {id: 1, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 2, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 3, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 4, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 5, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 6, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 7, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 8, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 9, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 10, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 11, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 12, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 13, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 14, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 15, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 16, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 17, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 18, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 19, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 20, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-  {id: 21, name: 'Jose Francisco', image: 'https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1', username: '@jose', title: 'Title', value: 2.900, date: '01 jun, 2020', isPayed: true},
-];
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-payments',
@@ -54,6 +34,7 @@ export class PaymentsComponent implements OnInit {
 
   constructor(
     private _paymentService: PaymentService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -95,6 +76,30 @@ export class PaymentsComponent implements OnInit {
                 // });
             }
         );
+    }
+
+    //open dialog add
+    openDialogAdd(){
+      this.dialog.open(AddPaymentComponent, { width: '600px', data: { title: 'Adicionar Pagamento' } })
+        .afterClosed().subscribe(response => {
+          console.log('Fechando modal');
+        })
+    }
+
+     //open dialog edit
+     openDialogEdit(){
+      this.dialog.open(EditPaymentComponent, { width: '600px', data: { title: 'Editando Pagamento' } })
+        .afterClosed().subscribe(response => {
+          console.log('Fechando modal');
+        })
+    }
+
+    //open dialog delete
+    openDialogDelete(){
+      this.dialog.open(DeletePaymentComponent, { width: '400px', data: { title: 'Excluindo Pagamento' } })
+        .afterClosed().subscribe(response => {
+          console.log('Fechando modal');
+        })
     }
 
 }

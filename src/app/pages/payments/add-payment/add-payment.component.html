@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>Adicionar pagamento</h2>
+
+<mat-dialog-content class="">
+    <form class="w-full max-w-lg">
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Nome</mat-label>
+                    <input matInput placeholder="nome">
+                </mat-form-field>
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Usuário</mat-label>
+                    <input matInput placeholder="usuário">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Titulo</mat-label>
+                    <input matInput placeholder="titulo">
+                </mat-form-field>
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Data</mat-label>
+                    <input matInput placeholder="ata">
+                </mat-form-field>
+            </div>
+        </div>
+        
+
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-label>Valor</mat-label>
+                    <input matInput placeholder="valor">
+                </mat-form-field>
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+                <mat-form-field class="w-full"  appearance="outline">
+                    <mat-label>Pago?</mat-label>
+                    <mat-select>
+                      <mat-option value="true">Sim</mat-option>
+                      <mat-option value="false">Não</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-flat-button class="bg-green-600 text-white" [mat-dialog-close]="true">Salvar dados</button>
+    <button mat-flat-button mat-button mat-dialog-close class="text-rose-600">Cancel</button>
+</mat-dialog-actions>
