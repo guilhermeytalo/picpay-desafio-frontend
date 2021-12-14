@@ -5,6 +5,7 @@ import { FormValues } from '../../types';
 import Logo from '../../../../assets/Logo.svg';
 
 import * as S from './styles';
+import ErrorMenssage from '../../../../components/ErrorMenssage';
 
 type LoginFormProps = {
   errors: FieldErrors;
@@ -24,7 +25,7 @@ const LoginForm = ({
       <S.Image src={Logo} alt="Logo com a escrita Pay Friends" />
       <h1>Bem vindo de volta</h1>
 
-      {loginError && <S.Error>{loginError}</S.Error>}
+      {loginError && <ErrorMenssage>{loginError}</ErrorMenssage>}
 
       <Controller
         name="email"
@@ -34,7 +35,7 @@ const LoginForm = ({
           <TextField error={!!errors.email} label="Email" {...field} />
         )}
       />
-      {errors.email && <S.Error>{errors.email.message}</S.Error>}
+      {errors.email && <ErrorMenssage>{errors.email.message}</ErrorMenssage>}
 
       <Controller
         name="password"
@@ -49,7 +50,9 @@ const LoginForm = ({
           />
         )}
       />
-      {errors.password && <S.Error>{errors.password.message}</S.Error>}
+      {errors.password && (
+        <ErrorMenssage>{errors.password.message}</ErrorMenssage>
+      )}
 
       <Button type="submit" variant="contained">
         Entrar

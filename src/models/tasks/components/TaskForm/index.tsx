@@ -5,6 +5,7 @@ import Button from '../../../../components/Button';
 import { TaskData } from '../../types';
 
 import * as S from './styles';
+import ErrorMenssage from '../../../../components/ErrorMenssage';
 
 type TaskFormProps = {
   errors: FieldErrors;
@@ -34,7 +35,7 @@ const TaskForm = ({
               <TextField error={!!errors.user} label="Usuário*" {...field} />
             )}
           />
-          {errors.user && <p>{errors.user.message}</p>}
+          {errors.user && <ErrorMenssage>{errors.user.message}</ErrorMenssage>}
         </S.ContentInput>
 
         <S.ContentInput>
@@ -57,7 +58,9 @@ const TaskForm = ({
             )}
           />
 
-          {errors.value && <p>{errors.value.message}</p>}
+          {errors.value && (
+            <ErrorMenssage>{errors.value.message}</ErrorMenssage>
+          )}
         </S.ContentInput>
       </S.WrapperInput>
 
@@ -72,7 +75,7 @@ const TaskForm = ({
               <TextField label="Data*" type="text" {...field} />
             )}
           />
-          {errors.date && <p>{errors.date.message}</p>}
+          {errors.date && <ErrorMenssage>{errors.date.message}</ErrorMenssage>}
         </S.ContentInput>
 
         <S.ContentInput>
