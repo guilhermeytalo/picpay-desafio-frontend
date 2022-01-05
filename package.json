@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "api": "json-server --watch db.json"
+    "api": "json-server --watch db.json",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
