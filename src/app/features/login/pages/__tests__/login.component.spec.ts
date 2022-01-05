@@ -22,4 +22,17 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should init with password hidden', () => {
+    expect(component.isPasswordVisible).toBeFalsy();
+  });
+
+  it('should change password visibility when click on icon', () => {
+    component.isPasswordVisible = true;
+    component.changePasswordVisibillity();
+    expect(component.isPasswordVisible).toBeFalsy();
+    component.changePasswordVisibillity();
+    expect(component.isPasswordVisible).toBeTruthy();
+  });
+
 });

@@ -1,0 +1,25 @@
+<main class="main">
+    <section class="section section--form">
+        <div class="content">
+            <img class="logo" src="assets/images/login/logo.svg" />
+            <h1 class="title">Bem vindo de volta</h1>
+            <form action="" class="form">
+                <div class="form__input">
+                    <label class="label" for="user">Email</label>
+                    <input id="user" type="text" class="input">
+                </div>
+                <div class="form__input">
+                    <label class="label" for="password">Senha</label>
+                    <input id="password" [type]="isPasswordVisible ? 'text' : 'password'" class="input">
+                    <img class="icon" [src]="isPasswordVisible ? passwordInvisibleIcon : passwordVisibleIcon"
+                        (click)="changePasswordVisibillity()" />
+                </div>
+
+                <button class="form__button">Entrar</button>
+            </form>
+        </div>
+    </section>
+    <section class="section section--illustration">
+        <img src="assets/images/login/illustration.svg" />
+    </section>
+</main>
