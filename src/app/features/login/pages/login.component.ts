@@ -1,24 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthUserRequest } from '../models/login.model';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-
-  isPasswordVisible: Boolean = false;
-
-  passwordVisibleIcon: String = "assets/images/login/icons/visible-password.svg";
-  passwordInvisibleIcon: String = "assets/images/login/icons/invisible-password.svg";
+export class LoginComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
-  changePasswordVisibillity(): void {
-    this.isPasswordVisible = !this.isPasswordVisible;
+  auth(user: AuthUserRequest): void {
+    console.log(user)
   }
 
 }
