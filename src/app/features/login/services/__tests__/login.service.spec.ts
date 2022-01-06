@@ -6,11 +6,20 @@ describe('LoginService', () => {
   let service: LoginService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [LoginService]
+    });
     service = TestBed.inject(LoginService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should auth user', done => {
+    service.auth({ user: 'test', password: 'pass' }).subscribe(result => {
+      expect(result).toBeTruthy();
+      done();
+    })
   });
 });

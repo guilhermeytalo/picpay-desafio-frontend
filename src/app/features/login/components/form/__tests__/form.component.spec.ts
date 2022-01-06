@@ -39,4 +39,10 @@ describe('FormComponent', () => {
     component.changePasswordVisibillity();
     expect(component.isPasswordVisible).toBeTruthy();
   });
+
+  it('should emit a event when login function is called', () => {
+    spyOn(component.authEvent, 'emit');
+    component.login();
+    expect(component.authEvent.emit).toHaveBeenCalled();
+  });
 });

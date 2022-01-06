@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthUserRequest } from '../models/login.model';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +10,21 @@ import { AuthUserRequest } from '../models/login.model';
 })
 export class LoginComponent {
 
-  constructor() { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   auth(user: AuthUserRequest): void {
-    console.log(user)
+    this.loginService.auth(user).subscribe({
+      next: this.handleAuthSuccess.bind(this),
+      error: this.handleAuthError.bind(this)
+    });
+  }
+
+  handleAuthSuccess(data: Boolean): void {
+    this.router.navigate(['/dashboard'])
+  }
+
+  handleAuthError(): void {
+    console.log("Erro ao realizar login")
   }
 
 }
