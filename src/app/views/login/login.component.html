@@ -1,0 +1,56 @@
+<div class="login">
+  <div class="login__form">
+    <div class="login__form-content">
+      <img src='../../assets/login-logo.svg'>
+
+      <p>Bem vindo de volta</p>
+
+      <mat-form-field appearance="outline">
+        <mat-label>
+          Email
+        </mat-label>
+        <input
+          matInput
+          required
+          [(ngModel)]="email"
+        />
+        <mat-error *ngIf="emailControl.invalid">
+          Campo obrigatório.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input
+          matInput
+          [type]="shouldShowPassword ? 'text' : 'password'"
+          name="password"
+          [(ngModel)]="password"
+          required
+        />
+        <mat-icon
+          matSuffix
+          (click)="togglePassword()"
+        >
+          visibility
+        </mat-icon>
+        <mat-error *ngIf="passwordControl.invalid">
+          Campo obrigátório.
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="loginHandler()"
+        [disabled]="!password.length || !email.length"
+      >
+        ENTRAR
+      </button>
+    </div>
+  </div>
+
+  <div class="login__picture">
+    <img src='../../assets/login-side.png'>
+  </div>
+</div>
