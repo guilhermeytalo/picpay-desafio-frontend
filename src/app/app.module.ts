@@ -15,10 +15,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StoreModule } from '@ngrx/store';
 import { FormsModule } from '@angular/forms'
 import { CookieService } from 'ngx-cookie-service';
+import { LoginService } from './services/login.service';
+import { PaymentsComponent } from './views/payment/payments.component';
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent,
+    AppComponent, LoginComponent, PaymentsComponent,
   ],
   imports: [
     NgbModule,
@@ -33,7 +35,7 @@ import { CookieService } from 'ngx-cookie-service';
     MatButtonModule,
     MatSnackBarModule,
   ],
-  providers: [CookieService],
+  providers: [LoginService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

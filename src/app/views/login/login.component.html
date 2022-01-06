@@ -32,7 +32,7 @@
           matSuffix
           (click)="togglePassword()"
         >
-          visibility
+          {{ shouldShowPassword ? 'visibility' : 'visibility_off' }}
         </mat-icon>
         <mat-error *ngIf="passwordControl.invalid">
           Campo obrigátório.

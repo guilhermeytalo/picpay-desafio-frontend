@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from '../../app-routing.module';
@@ -27,15 +27,5 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should return false when credentials are incorrects', async () => {
-    component.password= 'foo';
-    component.email = 'bar';
-    spyOn<any>(component, 'loginErrorHandler').and.callThrough();
-
-    const loginSuccess = await component.loginHandler();
-    expect(loginSuccess).toBeFalsy();
-    expect(component['loginErrorHandler']).toHaveBeenCalled();
   });
 });
