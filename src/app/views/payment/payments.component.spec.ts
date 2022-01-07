@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PaymentsComponent } from './payments.component';
 import { CookieService } from 'ngx-cookie-service';

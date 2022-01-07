@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap');
+
+.payments {
+  $self: &;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #F2F2F2;
+
+  &__nav {
+    width: 100%;
+  }
+
+  &__content {
+    width: 1440px;
+    padding: 65px 48px;
+  }
+
+  &__title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #333333;
+    font-family: Montserrat;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+
+    &-add {
+      width: 230px;
+      height: 36px;
+      margin-top: 15px;
+      font-family: Roboto;
+      align-self: flex-end;
+      letter-spacing: 1.25px;
+      background-color: #007DFE;
+    }
+  }
+
+  &__table {
+    margin-top: 32px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(4, 38, 82, 0.06);
+
+    .mat-header-cell {
+      font-size: 14px;
+      color: #2D3540;
+      font-family: Lato;
+      font-weight: bold;
+      line-height: 17px;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    td, th {
+      width: 25%;
+    }
+
+    #{$self}__filter {
+      display: flex;
+      padding: 16px;
+      font-size: 14px;
+      color: #69788C;
+      font-family: Lato;
+      align-items: center;
+
+      .mat-form-field {
+        font-size: 12px;
+      }
+
+      &-value {
+        height: 32px;
+        width: 215px;
+        padding: 0 8px;
+        border-radius: 6px;
+        box-sizing: border-box;
+        border: 1px solid #CFDCE5;
+      }
+
+      &-box {
+        position: relative;
+
+        .mat-icon {
+          top: 4px;
+          right: 10px;
+          position: absolute;
+        }
+      }
+
+      &-btn {
+        width: 72px;
+        height: 28px;
+        display: flex;
+        cursor: pointer;
+        font-weight: 600;
+        color: #2D3540;
+        margin-left: 10px;
+        border-radius: 6px;
+        align-items: center;
+        justify-content: center;
+        background-color: #E6ECF0;
+
+        &:hover {
+          color: #E6ECF0;
+          background-color: #007DFE;
+        }
+
+        .mat-icon {
+          padding: 0;
+          font-size: 18px;
+          margin: 6px 0 0 0;
+        }
+      }
+    }
+  }
+
+  ::ng-deep {
+    .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+    .mat-checkbox-background {
+      background-color: #007DFE;
+    }
+
+    .mat-cell {
+      border: none;
+      height: 81px;
+    }
+  }
+}
