@@ -1,0 +1,147 @@
+@import "src/assets/styles/fonts.scss";
+@import "src/assets/styles/colors.scss";
+
+.main {
+    position: relative;
+    background: $grey-extralight;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    position: relative;
+    display: block;
+    width: 960px;
+    overflow: auto;
+    margin: 65px auto;
+}
+
+.title {
+    position: relative;
+
+    margin: 0;
+    
+    color: $black;
+    font-family: $montserrat;
+    font-size: 3.6em;
+}
+
+.button {
+    position: relative;
+    float: right;
+
+    height: 36px;
+    width: 230px;
+    margin-top: -16px;
+    
+    background: $blue;
+    border: none;
+    border-radius: 4px;
+    color: $white;
+    cursor: pointer;
+    font-family: $roboto;
+    font-size: 1.4em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 1.25px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.payments {
+    position: relative;
+    float: left;
+
+    width: 100%;
+    margin: 16px 0;
+
+    background: $white;
+    box-shadow: 0px 2px 4px rgba(4, 38, 82, 0.06);
+    border-radius: 8px;
+    color: $grey-dark;
+
+    &__table {
+        display: flex;
+        flex-direction: column;
+    
+        width: 100%;
+
+        tbody, thead {
+            display: flex;
+            flex-direction: column;
+        }
+
+        thead {
+            border-bottom: 2px solid $grey-light;
+
+            tr {
+                height: 50px;
+            }
+        }
+
+        tr {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+
+            height: 80px;
+            padding: 16px;
+
+            &:nth-child(even) {
+                background: #F5F8FA;
+            }
+        }
+
+        td, th {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            &:last-child {
+                align-items: flex-end;
+            }
+        }
+
+        th {
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .title {
+            padding: 0 8px 0 0;
+
+            font-family: $lato;
+            font-size: 1.4em;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 1.7em;
+            letter-spacing: 0px;
+            text-align: left;
+        }
+
+        .text {
+            color: $grey-dark;
+            font-family: $lato;
+            font-size: 1.4em;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.6em;
+            text-align: left;
+
+            &--secondary {
+                font-size: 1.2em;
+                color: $grey-medium;
+            }
+        }
+
+        .sort-icon {
+            width: 9px;
+            height: 12px;
+        }
+
+        .title, .sort-icon, .checkbox  {
+            cursor: pointer;
+        }
+    }
+}

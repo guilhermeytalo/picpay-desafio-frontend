@@ -12,7 +12,7 @@
 			padding: 14px;
 			margin: 16px 0;
 			
-			background: $grey-light;
+			background: $grey-extralight;
 			border-radius: 4px;
 			border: solid 1px $grey;
 			font-family: $roboto;
@@ -23,7 +23,7 @@
 			text-align: left;
 			
 			&:focus, &:focus-visible {
-				outline: $grey-dark auto 1px;
+				outline: $grey-medium auto 1px;
 			}
 
 			&--invalid {
@@ -39,8 +39,8 @@
 			
 			padding: 4px;
 		
-			background-color: $grey-light;
-			color: $grey-dark;
+			background-color: $grey-extralight;
+			color: $grey-medium;
 			font-family: $roboto;
 			font-size: 12px;
 			font-style: normal;

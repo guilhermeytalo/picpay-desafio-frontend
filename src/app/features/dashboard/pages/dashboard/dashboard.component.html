@@ -1,2 +1,42 @@
-<app-header></app-header>
-<p>dashboard works!</p>
+<main class="main">
+    <app-header></app-header>
+    <section class="container">
+        <h1 class="title">Meus pagamentos</h1>
+        <button class="button">Adicionar pagamento</button>
+
+        <section class="payments">
+            <div class="payments__actions"></div>
+            <table class="payments__table">
+                <thead>
+                    <tr>
+                        <th *ngFor="let item of tableHeader" (click)="sortBy(item)">
+                            <span class="title">{{item.title}}</span>
+                            <img src="assets/images/dashboard/icons/sort-{{item.sort}}.svg" class="sort-icon" />
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let payment of currentPage">
+                        <td>
+                            <span class="text">{{payment.name}}</span>
+                            <span class="text text--secondary">@{{payment.username}}</span>
+                        </td>
+                        <td>
+                            <span class="text">{{payment.title}}</span>
+                        </td>
+                        <td>
+                            <span class="text">{{payment.date | date: "d MMM yy"}}</span>
+                            <span class="text text--secondary">{{payment.date | date: "shortTime"}}</span>
+                        </td>
+                        <td>
+                            <span class="text">{{payment.value | currency}}</span>
+                        </td>
+                        <td><input type="checkbox" [(ngModel)]="payment.isPayed" class="checkbox"></td>
+                        <td>actions</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </section>
+</main>
