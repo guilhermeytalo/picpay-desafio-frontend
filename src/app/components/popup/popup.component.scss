@@ -1,0 +1,16 @@
+@import "src/assets/styles/colors.scss";
+
+.popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(45, 53, 64, 0.5);
+    z-index: 3;
+}

@@ -1,0 +1,18 @@
+<img src="assets/images/icons/delete.svg" class="icon" alt="Delete Icon" (click)="show()" />
+
+<app-popup [isVisible]="isVisible">
+    <div class="content">
+        <header class="header">
+            <h3 class="h3">Excluir pagamento</h3>
+        </header>
+        <section class="payment">
+            <p class="text">Usuário: {{payment.name}}</p>
+            <p class="text">Data: {{payment.date | date: "dd/MM/yy"}}</p>
+            <p class="text">Valor: {{payment.value | currency}}</p>
+        </section>
+        <footer class="footer">
+            <button class="button button--secondary" (click)="close()">Cancelar</button>
+            <button class="button" (click)="delete.emit(payment)">Excluir</button>
+        </footer>
+    </div>
+</app-popup>

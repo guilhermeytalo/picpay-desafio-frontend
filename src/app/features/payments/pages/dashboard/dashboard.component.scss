@@ -1,6 +1,6 @@
 @import "src/assets/styles/fonts.scss";
 @import "src/assets/styles/colors.scss";
-@import "src/assets/styles/placeholder.scss";
+@import "src/assets/styles/button.scss";
 
 .main {
     position: relative;
@@ -21,32 +21,17 @@
 
     margin: 0;
     
-    color: $black;
-    font-family: $montserrat;
-    font-size: 3.6em;
+    @extend .h1;
 }
 
 .button {
+    @extend .button;
+
     position: relative;
     float: right;
 
-    height: 36px;
     width: 230px;
     margin-top: -16px;
-    
-    background: $blue;
-    border: none;
-    border-radius: 4px;
-    color: $white;
-    cursor: pointer;
-    font-family: $roboto;
-    font-size: 1.4em;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 16px;
-    letter-spacing: 1.25px;
-    text-align: center;
-    text-transform: uppercase;
 }
 
 .payments {
@@ -71,6 +56,8 @@
             display: flex;
             align-items: center;
             position: relative;
+            justify-self: flex-start;
+            margin-right: auto;
 
             &__input {
                 position: relative;
@@ -100,9 +87,7 @@
         }
 
         .filter {
-            justify-self: flex-start;
-            position: relative;
-            margin-right: auto;
+
         }
 
     }

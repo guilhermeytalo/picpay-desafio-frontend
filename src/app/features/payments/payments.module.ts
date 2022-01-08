@@ -8,10 +8,13 @@ import { DropdownModule } from '@/components/dropdown/dropdown.module';
 import { PaginationModule } from '@/components/pagination/pagination.module';
 import { PaymentsService } from './services/payments.service';
 import { PlaceholderModule } from '@/components/placeholder/placeholder.module';
+import { PopupModule } from '@/components/popup/popup.module';
+import { DeleteComponent } from './components/delete/delete.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    DeleteComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +24,7 @@ import { PlaceholderModule } from '@/components/placeholder/placeholder.module';
     DropdownModule,
     PaginationModule,
     PlaceholderModule,
+    PopupModule
   ],
   providers: [PaymentsService]
 })

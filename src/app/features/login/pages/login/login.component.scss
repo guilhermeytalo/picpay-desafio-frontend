@@ -37,13 +37,10 @@
 }
 
 .title {
+	@extend .h2;
+	
 	margin: 16px 0;
 	
-	font-family: $montserrat;
-	font-size: 3em;
-	font-style: normal;
-	font-weight: 600;
-	letter-spacing: 0em;
 	text-align: left;
 }
 

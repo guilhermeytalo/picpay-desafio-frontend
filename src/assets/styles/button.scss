@@ -1,0 +1,30 @@
+@import "src/assets/styles/colors.scss";
+@import "src/assets/styles/fonts.scss";
+
+.button {    
+    height: 36px;
+    width: 150px;
+
+    background: $blue;
+    border: none;
+    border-radius: 4px;
+    color: $white;
+    cursor: pointer;
+    font-family: $roboto;
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 1.25px;
+    text-align: center;
+    text-transform: uppercase;
+
+    &--secondary {
+        background: $grey;
+        color: $grey-dark;
+    }
+
+    &:disabled {
+        opacity: 0.3;
+    }
+}

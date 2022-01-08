@@ -1,5 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@600&family=Roboto:wght@400;500&display=swap');
+@import 'src/assets/styles/colors';
 
 $montserrat: 'Montserrat', sans-serif;
 $lato: 'Lato', sans-serif;
 $roboto: 'Roboto', sans-serif;
+
+.h {
+    color: $black;
+    font-family: $montserrat;
+	font-weight: 600;
+}
+
+
+.h1 {
+    @extend .h;
+    font-size: 3.6em;
+}
+
+.h2 {
+    @extend .h;
+    font-size: 3em;
+}
+
+.h3 {
+    @extend .h;
+    font-size: 1.8em;
+}

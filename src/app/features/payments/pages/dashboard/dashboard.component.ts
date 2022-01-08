@@ -3,6 +3,7 @@ import { Observable, of, Subscription } from 'rxjs';
 import { Payment, PaymentsDetails, PaymentsHeaderItem, SortDirection } from '@/features/payments/models/payments.model';
 import { PaymentsService } from '@/features/payments/services/payments.service';
 import { map, switchMap, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +26,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   searchPaymentsByNameValue = '';
   searchedPaymentsByNameValue = '';
 
-  constructor(private paymentsService: PaymentsService) { }
+  constructor(private paymentsService: PaymentsService, private router: Router) { }
 
   ngOnInit(): void {
     this.paymentsSubscriptions.push(
@@ -85,7 +86,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   updatePageSize(value: number): void {
     this.currentPageSize = value;
-    this.paymentsCount$ = this.paymentsService.getPaymentsPageCount(this.paymentsService.getAll(), value);
+    this.paymentsCount$ = this.paymentsService.getPaymentsPageCount(this.paymentsService.getAll(), this.currentPageSize);
     this.updatePageNumber(1);
   }
 
@@ -114,7 +115,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         tap((data: Payment[]) => {
           this.paymentsCount$ = this.paymentsService.getPaymentsPageCount(of(data), this.currentPageSize);
           this.searchedPaymentsByNameValue = this.searchPaymentsByNameValue;
-          console.log(data);
         }),
         map((data: Payment[]) => data.slice(paginationStart, paginationEnd))
       )
@@ -123,6 +123,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   contains(payment: Payment): boolean {
     return payment.name.toLowerCase().includes(this.searchPaymentsByNameValue.toLowerCase());
+  }
+
+  changeSearchValue() {
+    if (this.searchedPaymentsByNameValue && this.searchPaymentsByNameValue === '') {
+      this.updatePageNumber(1);
+    }
+  }
+
+  deletePayment(payment: Payment): void {
+    this.paymentsService.delete(payment.id).subscribe({
+      next: (_: any) => {
+        this.payments.splice(this.payments.indexOf(payment), 1);
+      },
+      error: (error: any) => this.router.navigate(['/'])
+    });
   }
 
   ngOnDestroy() {

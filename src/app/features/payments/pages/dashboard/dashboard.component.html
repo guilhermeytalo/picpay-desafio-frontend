@@ -7,11 +7,9 @@
         <section class="payments">
             <div class="payments__actions" *ngIf="paymentsDetails else paymentsActionsPlaceholder">
                 <div class="search">
-                    <input type="text" class="search__input" [(ngModel)]="searchPaymentsByNameValue">
+                    <input type="text" class="search__input" [(ngModel)]="searchPaymentsByNameValue"
+                        (input)="changeSearchValue()" (keyup.enter)="search()">
                     <img src="assets/images/icons/search.svg" alt="Search Icon" class="search__icon" (click)="search()">
-                </div>
-                <div class="filter">
-                    <span>filter</span>
                 </div>
                 <app-dropdown title="Exibir" [options]="paymentsDetails.pageSizeOptions"
                     (update)="updatePageSize($event)">
@@ -29,7 +27,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody *ngIf="payments?.length else paymentsItemsPlaceholder">
+                <tbody *ngIf="(payments?.length || searchedPaymentsByNameValue) else paymentsItemsPlaceholder">
                     <tr *ngFor="let payment of payments">
                         <td>
                             <span class="text">{{payment.name}}</span>
@@ -46,7 +44,9 @@
                             <span class="text">{{payment.value | currency}}</span>
                         </td>
                         <td><input type="checkbox" [(ngModel)]="payment.isPayed" class="checkbox"></td>
-                        <td>actions</td>
+                        <td>
+                            <app-delete [payment]="payment" (delete)="deletePayment($event)"></app-delete>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -62,7 +62,6 @@
     <div *ngIf="false else paymentsItemPlaceholder"></div>
     <div class="border"></div>
 </ng-template>
-
 
 <ng-template #paymentsItemsPlaceholder>
     <div *ngFor="let i of [1,2,3,4,5]">
