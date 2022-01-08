@@ -1,13 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Payment } from '@/features/payments/models/payments.model';
+import { Observable, Subscription } from 'rxjs';
+import { Payment, PaymentsDetails, PaymentsHeaderItem, SortDirection } from '@/features/payments/models/payments.model';
 import { PaymentsService } from '@/features/payments/services/payments.service';
-
-interface TableHeaderItem {
-  title: string;
-  value: string;
-  sort: 'asc' | 'desc';
-}
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,86 +12,66 @@ interface TableHeaderItem {
 export class DashboardComponent implements OnInit, OnDestroy {
 
   payments: Payment[];
-
-  tableHeader: TableHeaderItem[];
-
-  pageSizeOptions: number[];
-  pageNumberOptions: number[];
+  paymentsDetails: PaymentsDetails;
   currentPageSize = 5;
   currentPageNumber = 0;
-  paymentsSubscription: Subscription;
+  paymentsSubscriptions: Subscription[] = [];
+  paymentsObserver = {
+    next: this.handleGetPaymentsSuccess.bind(this),
+    error: this.handleGetPaymentsError.bind(this)
+  };
 
   constructor(private paymentsService: PaymentsService) { }
 
   ngOnInit(): void {
-    this.tableHeader = [
-      {
-        title: 'Usuário',
-        value: 'name',
-        sort: 'desc'
-      },
-      {
-        title: 'Título',
-        value: 'title',
-        sort: 'desc'
-      },
-      {
-        title: 'Data',
-        value: 'date',
-        sort: 'desc'
-      },
-      {
-        title: 'Valor',
-        value: 'value',
-        sort: 'desc'
-      },
-      {
-        title: 'Pago',
-        value: 'isPayed',
-        sort: 'desc'
-      }
-    ];
-
-    this.pageSizeOptions = [5, 10, 15, 25, 50];
-    this.pageNumberOptions = [1, 2, 3, 4, 5];
-
-    this.getPayments(this.currentPageNumber, this.currentPageSize);
+    this.paymentsSubscriptions.push(
+      this.paymentsService.getDetails()
+        .pipe(
+          switchMap((data) => {
+            this.paymentsDetails = data;
+            // this.paymentsDetails = null;
+            return this.getPaymentsObservable(data.pageNumberOptions[0], data.pageSizeOptions[0]);
+          })
+        ).subscribe(this.paymentsObserver)
+    );
   }
 
   getPayments(pageNumber: number, pageSize: number): void {
-    this.paymentsSubscription = this.paymentsService.get(pageNumber, pageSize).subscribe({
-      next: this.handleGetPaymentsSuccess.bind(this),
-      error: this.handleGetPaymentsError.bind(this)
-    });
+    this.unsubscribePaymentsSubscritions();
+    this.paymentsSubscriptions.push(this.getPaymentsObservable(pageNumber, pageSize).subscribe(this.paymentsObserver));
+  }
+
+  getPaymentsObservable(pageNumber: number, pageSize: number): Observable<Payment[]> {
+    return this.paymentsService.get(pageNumber, pageSize);
   }
 
   handleGetPaymentsSuccess(data: Payment[]) {
     this.payments = data;
   }
 
-  handleGetPaymentsError(data: PaymentResponse) {
-    console.log(data);
+  handleGetPaymentsError(error: any) {
+    console.log(error);
   }
 
-  sortBy(item: TableHeaderItem): void {
+  sortBy(item: PaymentsHeaderItem): void {
     const direction = this.getSortDirection(item);
     this.payments.sort((first, second) => this.sort(first, second, item.value, direction));
     this.handleSort(item);
   }
 
-  getSortDirection(item: TableHeaderItem): number {
+  getSortDirection(item: PaymentsHeaderItem): number {
     return this.sortIsAsc(item) ? 1 : -1;
   }
 
-  sort(first, second, value, direction): number {
-    return first[value] > second[value] ? direction : (direction * -1)
+  sort(first: Payment, second: Payment, value: string, direction: number): number {
+    return first[value] > second[value] ? direction : (direction * -1);
   }
 
-  handleSort(item: TableHeaderItem): void {
+  handleSort(item: PaymentsHeaderItem): void {
     item.sort = this.sortIsAsc(item) ? 'desc' : 'asc';
   }
 
-  sortIsAsc(item: TableHeaderItem): boolean {
+  sortIsAsc(item: PaymentsHeaderItem): boolean {
     return item.sort === 'asc';
   }
 
@@ -110,8 +85,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getPayments(this.currentPageNumber, this.currentPageSize);
   }
 
+  unsubscribePaymentsSubscritions(): void {
+    this.paymentsSubscriptions.forEach(_ => _.unsubscribe());
+  }
+
   ngOnDestroy() {
-    this.paymentsSubscription.unsubscribe();
+    this.unsubscribePaymentsSubscritions();
   }
 
 }

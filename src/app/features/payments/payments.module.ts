@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { DropdownModule } from '@/components/dropdown/dropdown.module';
 import { PaginationModule } from '@/components/pagination/pagination.module';
 import { PaymentsService } from './services/payments.service';
+import { PlaceholderModule } from '@/components/placeholder/placeholder.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PaymentsService } from './services/payments.service';
     FormsModule,
     HeaderModule,
     DropdownModule,
-    PaginationModule
+    PaginationModule,
+    PlaceholderModule,
   ],
   providers: [PaymentsService]
 })

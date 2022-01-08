@@ -5,7 +5,7 @@
         <button class="button">Adicionar pagamento</button>
 
         <section class="payments">
-            <div class="payments__actions">
+            <div class="payments__actions" *ngIf="paymentsDetails else paymentsActionsPlaceholder">
                 <div class="search">
                     <input type="text" class="search__input">
                     <img src="assets/images/icons/search.svg" alt="Search Icon" class="search__icon">
@@ -13,21 +13,23 @@
                 <div class="filter">
                     <span>filter</span>
                 </div>
-                <app-dropdown title="Exibir" [options]="pageSizeOptions" (update)="updatePageSize($event)">
+                <app-dropdown title="Exibir" [options]="paymentsDetails.pageSizeOptions"
+                    (update)="updatePageSize($event)">
                 </app-dropdown>
-                <app-pagination [options]="pageNumberOptions" (update)="updatePageNumber($event)"></app-pagination>
+                <app-pagination [options]="paymentsDetails.pageNumberOptions" (update)="updatePageNumber($event)">
+                </app-pagination>
             </div>
             <table class="payments__table">
-                <thead>
+                <thead *ngIf="paymentsDetails">
                     <tr>
-                        <th *ngFor="let item of tableHeader" (click)="sortBy(item)">
+                        <th *ngFor="let item of paymentsDetails.header" (click)="sortBy(item)">
                             <span class="title">{{item.title}}</span>
                             <img src="assets/images/icons/sort-{{item.sort}}.svg" class="sort-icon" />
                         </th>
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody *ngIf="payments?.length else paymentsItemsPlaceholder">
                     <tr *ngFor="let payment of payments">
                         <td>
                             <span class="text">{{payment.name}}</span>
@@ -51,3 +53,29 @@
         </section>
     </section>
 </main>
+
+<ng-template #paymentsActionsPlaceholder>
+    <div class="placeholder">
+        <app-placeholder height="32px"></app-placeholder>
+        <app-placeholder width="300px" height="32px"></app-placeholder>
+    </div>
+    <div *ngIf="false else paymentsItemPlaceholder"></div>
+    <div class="border"></div>
+</ng-template>
+
+
+<ng-template #paymentsItemsPlaceholder>
+    <div *ngFor="let i of [1,2,3,4,5]">
+        <div *ngIf="false else paymentsItemPlaceholder"></div>
+    </div>
+</ng-template>
+
+<ng-template #paymentsItemPlaceholder>
+    <div class="placeholder">
+        <app-placeholder width="120px" height="24px"></app-placeholder>
+        <app-placeholder width="120px" height="24px"></app-placeholder>
+        <app-placeholder width="120px" height="24px"></app-placeholder>
+        <app-placeholder width="120px" height="24px"></app-placeholder>
+        <app-placeholder width="120px" height="24px"></app-placeholder>
+    </div>
+</ng-template>

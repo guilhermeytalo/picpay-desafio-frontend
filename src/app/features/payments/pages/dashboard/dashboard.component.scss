@@ -1,5 +1,6 @@
 @import "src/assets/styles/fonts.scss";
 @import "src/assets/styles/colors.scss";
+@import "src/assets/styles/placeholder.scss";
 
 .main {
     position: relative;
@@ -118,7 +119,7 @@
         }
 
         thead {
-            border-bottom: 2px solid $grey-light;
+            @extend .border;
 
             tr {
                 height: 50px;
@@ -129,24 +130,20 @@
             max-height: 400px;
             overflow: auto;
 
-            /* width */
             &::-webkit-scrollbar {
                 width: 6px;
             }
             
-            /* Track */
             &::-webkit-scrollbar-track {
                 background: $grey;
                 border-radius: 0 0 6px 0;
             }
             
-            /* Handle */
             &::-webkit-scrollbar-thumb {
                 background: $grey-medium;
                 border-radius: 2px 2px 6px 2px;
             }
 
-            /* Handle on hover */
             &::-webkit-scrollbar-thumb:hover {
                 background: $grey-dark;
             }
@@ -216,4 +213,14 @@
             cursor: pointer;
         }
     }
+}
+
+.placeholder {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.border {
+    border-bottom: 2px solid $grey-light;
 }
