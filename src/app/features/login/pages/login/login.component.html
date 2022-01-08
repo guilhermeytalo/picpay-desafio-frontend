@@ -3,6 +3,7 @@
         <div class="content">
             <img class="logo" src="assets/images/login/logo.svg" />
             <h1 class="title">Bem vindo de volta</h1>
+            <p class="message">{{loginMessage}}</p>
             <app-login-form (authEvent)="auth($event)"></app-login-form>
         </div>
     </section>

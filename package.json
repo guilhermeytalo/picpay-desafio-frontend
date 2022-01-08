@@ -10,8 +10,8 @@
     "test-dev": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "api": "json-server --watch db.json",
-    "api-auth": "node server.js",
+    "api": "node server.js",
+    "api-noauth": "json-server --watch db.json",
     "prepare": "husky install"
   },
   "private": true,

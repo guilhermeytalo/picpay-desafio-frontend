@@ -3,6 +3,8 @@ import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from 'src/_config/routes';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './features/auth/services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -10,8 +12,12 @@ import { AppRoutingModule } from 'src/_config/routes';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    HttpClientModule
   ],
-  providers: [{ provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }],
+  providers: [
+    AuthService,
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

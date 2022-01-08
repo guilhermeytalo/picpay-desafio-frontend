@@ -1,6 +1,7 @@
+import { UserAuthRequest } from '@/features/auth/models/user-auth.model';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthUserRequest } from '../../models/login.model';
+
 
 @Component({
   selector: 'app-login-form',
@@ -9,20 +10,20 @@ import { AuthUserRequest } from '../../models/login.model';
 })
 export class FormComponent implements OnInit {
 
-  isPasswordVisible: Boolean = false;
-  passwordVisibleIcon: String = "assets/images/login/icons/visible-password.svg";
-  passwordInvisibleIcon: String = "assets/images/login/icons/invisible-password.svg";
+  isPasswordVisible = false;
+  passwordVisibleIcon = 'assets/images/login/icons/visible-password.svg';
+  passwordInvisibleIcon = 'assets/images/login/icons/invisible-password.svg';
 
   loginForm!: FormGroup;
 
-  @Output() authEvent: EventEmitter<AuthUserRequest> = new EventEmitter();
+  @Output() authEvent: EventEmitter<UserAuthRequest> = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder,) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
     this.loginForm = this.formBuilder.group({
-      user: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -32,15 +33,15 @@ export class FormComponent implements OnInit {
   }
 
   login(): void {
-    this.authEvent.emit(this.loginForm.getRawValue() as AuthUserRequest);
+    this.authEvent.emit(this.loginForm.getRawValue() as UserAuthRequest);
   }
 
-  isInputInvalid(input: string): Boolean {
+  isInputInvalid(input: string): boolean {
     const formInput = this.loginForm.get(input);
     return formInput?.errors && formInput?.touched;
   }
 
-  isFormInvalid(): Boolean {
+  isFormInvalid(): boolean {
     return this.loginForm.invalid;
   }
 

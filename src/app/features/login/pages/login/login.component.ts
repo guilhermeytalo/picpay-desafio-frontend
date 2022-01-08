@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthUserRequest } from '@/features/login/models/login.model';
-import { LoginService } from '@/features/login/services/login.service';
+import { UserAuthRequest } from '@/features/auth/models/user-auth.model';
+import { AuthService } from '@/features/auth/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +9,12 @@ import { LoginService } from '@/features/login/services/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  loginMessage: string;
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
-  auth(user: AuthUserRequest): void {
-    this.loginService.auth(user).subscribe({
+  auth(user: UserAuthRequest): void {
+    this.authService.auth(user).subscribe({
       next: this.handleAuthSuccess.bind(this),
       error: this.handleAuthError.bind(this)
     });
@@ -24,7 +25,7 @@ export class LoginComponent {
   }
 
   handleAuthError(): void {
-    console.log('Erro ao realizar login');
+    this.loginMessage = 'Erro ao realizar login. Revise suas credenciais';
   }
 
 }

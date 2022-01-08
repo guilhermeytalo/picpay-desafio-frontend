@@ -39,7 +39,8 @@ server.post('/auth/login', (req, res) => {
     const { email, password } = req.body;
 
     if (!isAuthenticated({ email, password })) {
-        res.status(status).json({ status: 401, message: 'Incorrect email or password' })
+        const status = 401;
+        res.status(401).json({ status, message: 'Incorrect email or password' })
         return
     }
 
