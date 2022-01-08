@@ -66,6 +66,9 @@ export class DashboardComponent implements OnInit {
 
   tableHeader: TableHeaderItem[];
 
+  pageSizeOptions: string[];
+  currentPageSize = '5';
+
   constructor() { }
 
   ngOnInit(): void {
@@ -95,7 +98,9 @@ export class DashboardComponent implements OnInit {
         value: 'isPayed',
         sort: 'asc'
       }
-    ]
+    ];
+
+    this.pageSizeOptions = [5, 10, 15, 25, 50].map(_ => _ + '');
   }
 
   sortBy(item: TableHeaderItem): void {
@@ -117,7 +122,11 @@ export class DashboardComponent implements OnInit {
   }
 
   sortIsAsc(item: TableHeaderItem): boolean {
-    return item.sort == 'asc';
+    return item.sort === 'asc';
+  }
+
+  log(value: any): void {
+    console.log(value);
   }
 
 }

@@ -13,7 +13,7 @@
                 <div class="filter">
                     <span>filter</span>
                 </div>
-                <app-dropdown title="Exibir"></app-dropdown>
+                <app-dropdown title="Exibir" [options]="pageSizeOptions" (update)="log($event)"></app-dropdown>
                 <div class="pagination">
                     <div class="pagination__icon">
                         <img src="assets/images/icons/prev.svg" alt="Search Icon">
