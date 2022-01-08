@@ -13,7 +13,7 @@ describe('DashboardComponent', () => {
       declarations: [DashboardComponent],
       imports: [
         PaymentsModule,
-        RouterTestingModule
+        RouterTestingModule.withRoutes([])
       ]
     })
       .compileComponents();
