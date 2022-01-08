@@ -125,6 +125,33 @@
             }
         }
 
+        tbody {
+            max-height: 400px;
+            overflow: auto;
+
+            /* width */
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+            
+            /* Track */
+            &::-webkit-scrollbar-track {
+                background: $grey;
+                border-radius: 0 0 6px 0;
+            }
+            
+            /* Handle */
+            &::-webkit-scrollbar-thumb {
+                background: $grey-medium;
+                border-radius: 2px 2px 6px 2px;
+            }
+
+            /* Handle on hover */
+            &::-webkit-scrollbar-thumb:hover {
+                background: $grey-dark;
+            }
+        }
+
         tr {
             align-items: center;
             display: flex;

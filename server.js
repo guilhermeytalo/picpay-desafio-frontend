@@ -50,8 +50,10 @@ server.post('/auth/login', (req, res) => {
 });
 
 server.use(/^(?!\/auth).*$/, (req, res, next) => {
+    console.log(req.headers.authorization);
     if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
-        res.status(status).json({ status: 401, message: 'Bad authorization header' })
+        const status = 401;
+        res.status(status).json({ status, message: 'Bad authorization header' })
         return
     }
 

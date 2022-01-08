@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Payment } from '@/features/payments/models/payments.model';
+import { PaymentsService } from '@/features/payments/services/payments.service';
 
 interface TableHeaderItem {
   title: string;
@@ -11,103 +14,73 @@ interface TableHeaderItem {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
-  currentPage: any = [{
-    "id": 1,
-    "name": "Pennie Dumphries",
-    "username": "pdumphries0",
-    "title": "Dental Hygienist",
-    "value": 19.96,
-    "date": "2020-07-21T05:53:20Z",
-    "image": "https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1",
-    "isPayed": true
-  },
-  {
-    "id": 2,
-    "name": "Foster Orthmann",
-    "username": "forthmann1",
-    "title": "Professor",
-    "value": 207.36,
-    "date": "2021-01-28T14:01:29Z",
-    "image": "https://robohash.org/quasetqui.png?size=150x150&set=set1",
-    "isPayed": true
-  },
-  {
-    "id": 3,
-    "name": "Crissie Summerill",
-    "username": "csummerill2",
-    "title": "VP Product Management",
-    "value": 464.54,
-    "date": "2020-02-09T18:20:32Z",
-    "image": "https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1",
-    "isPayed": false
-  },
-  {
-    "id": 4,
-    "name": "Letitia Crolly",
-    "username": "lcrolly3",
-    "title": "Web Developer I",
-    "value": 183.58,
-    "date": "2021-07-10T20:39:48Z",
-    "image": "https://robohash.org/estveniamet.png?size=150x150&set=set1",
-    "isPayed": false
-  },
-  {
-    "id": 5,
-    "name": "Anthea Pundy",
-    "username": "apundy4",
-    "title": "Software Engineer III",
-    "value": 177.19,
-    "date": "2021-01-01T14:09:51Z",
-    "image": "https://robohash.org/quiaautomnis.png?size=150x150&set=set1",
-    "isPayed": true
-  }];
+  payments: Payment[];
 
   tableHeader: TableHeaderItem[];
 
-  pageSizeOptions: string[];
+  pageSizeOptions: number[];
   pageNumberOptions: number[];
-  currentPageSize = '5';
+  currentPageSize = 5;
+  currentPageNumber = 0;
+  paymentsSubscription: Subscription;
 
-  constructor() { }
+  constructor(private paymentsService: PaymentsService) { }
 
   ngOnInit(): void {
     this.tableHeader = [
       {
         title: 'Usuário',
         value: 'name',
-        sort: 'asc'
+        sort: 'desc'
       },
       {
         title: 'Título',
         value: 'title',
-        sort: 'asc'
+        sort: 'desc'
       },
       {
         title: 'Data',
         value: 'date',
-        sort: 'asc'
+        sort: 'desc'
       },
       {
         title: 'Valor',
         value: 'value',
-        sort: 'asc'
+        sort: 'desc'
       },
       {
         title: 'Pago',
         value: 'isPayed',
-        sort: 'asc'
+        sort: 'desc'
       }
     ];
 
-    this.pageSizeOptions = [5, 10, 15, 25, 50].map(_ => _ + '');
+    this.pageSizeOptions = [5, 10, 15, 25, 50];
     this.pageNumberOptions = [1, 2, 3, 4, 5];
+
+    this.getPayments(this.currentPageNumber, this.currentPageSize);
+  }
+
+  getPayments(pageNumber: number, pageSize: number): void {
+    this.paymentsSubscription = this.paymentsService.get(pageNumber, pageSize).subscribe({
+      next: this.handleGetPaymentsSuccess.bind(this),
+      error: this.handleGetPaymentsError.bind(this)
+    });
+  }
+
+  handleGetPaymentsSuccess(data: Payment[]) {
+    this.payments = data;
+  }
+
+  handleGetPaymentsError(data: PaymentResponse) {
+    console.log(data);
   }
 
   sortBy(item: TableHeaderItem): void {
     const direction = this.getSortDirection(item);
-    this.currentPage.sort((first, second) => this.sort(first, second, item.value, direction));
+    this.payments.sort((first, second) => this.sort(first, second, item.value, direction));
     this.handleSort(item);
   }
 
@@ -127,8 +100,18 @@ export class DashboardComponent implements OnInit {
     return item.sort === 'asc';
   }
 
-  log(value: any): void {
-    console.log(value);
+  updatePageSize(value: number): void {
+    this.currentPageSize = value;
+    this.getPayments(this.currentPageNumber, this.currentPageSize);
+  }
+
+  updatePageNumber(value: number): void {
+    this.currentPageNumber = value;
+    this.getPayments(this.currentPageNumber, this.currentPageSize);
+  }
+
+  ngOnDestroy() {
+    this.paymentsSubscription.unsubscribe();
   }
 
 }

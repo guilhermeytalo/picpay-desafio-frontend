@@ -6,6 +6,7 @@ import { HeaderModule } from '@/components/header/header.module';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from '@/components/dropdown/dropdown.module';
 import { PaginationModule } from '@/components/pagination/pagination.module';
+import { PaymentsService } from './services/payments.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PaginationModule } from '@/components/pagination/pagination.module';
     HeaderModule,
     DropdownModule,
     PaginationModule
-  ]
+  ],
+  providers: [PaymentsService]
 })
 export class PaymentsModule { }

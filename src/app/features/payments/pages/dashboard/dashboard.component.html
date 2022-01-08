@@ -13,8 +13,9 @@
                 <div class="filter">
                     <span>filter</span>
                 </div>
-                <app-dropdown title="Exibir" [options]="pageSizeOptions" (update)="log($event)"></app-dropdown>
-                <app-pagination [options]="pageNumberOptions" (update)="log($event)"></app-pagination>
+                <app-dropdown title="Exibir" [options]="pageSizeOptions" (update)="updatePageSize($event)">
+                </app-dropdown>
+                <app-pagination [options]="pageNumberOptions" (update)="updatePageNumber($event)"></app-pagination>
             </div>
             <table class="payments__table">
                 <thead>
@@ -27,7 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let payment of currentPage">
+                    <tr *ngFor="let payment of payments">
                         <td>
                             <span class="text">{{payment.name}}</span>
                             <span class="text text--secondary">@{{payment.username}}</span>
