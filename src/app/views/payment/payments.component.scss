@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
 
 .payments {
   $self: &;
@@ -57,11 +58,16 @@
     }
 
     table {
+      width: 1344px;
       width: 100%;
     }
 
     td, th {
       width: 25%;
+    }
+
+    #{$self}__search {
+      display: flex;
     }
 
     #{$self}__filter {
@@ -71,6 +77,11 @@
       color: #69788C;
       font-family: Lato;
       align-items: center;
+      justify-content: space-between;
+
+      .mat-paginator {
+        align-self: flex-end;
+      }
 
       .mat-form-field {
         font-size: 12px;
@@ -123,14 +134,44 @@
   }
 
   ::ng-deep {
-    .mat-checkbox-checked.mat-accent .mat-checkbox-background,
-    .mat-checkbox-background {
-      background-color: #007DFE;
-    }
+    .mat {
+      &-checkbox-checked.mat-accent &-checkbox-background,
+      &-checkbox-background {
+        background-color: #007DFE;
+      }
 
-    .mat-cell {
-      border: none;
-      height: 81px;
+      &-cell {
+        border: none;
+        height: 81px;
+      }
+
+      &-table {
+        width: 1344px !important;
+      }
+
+      &-column {
+        &-date, &-payOut, &-value {
+          width: 13% !important;
+        }
+
+        &-user, &-title {
+          width: 18% !important;
+        }
+
+        &-actions {
+          width: 7% !important;
+
+          .mat-icon {
+            cursor: pointer;
+            font-size: 26px;
+            color: #333333;
+
+            &:nth-child(1) {
+              margin-right: 16px;
+            }
+          }
+        }
+      }
     }
   }
 }

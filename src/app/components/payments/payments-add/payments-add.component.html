@@ -1,0 +1,50 @@
+<div class="add-dialog">
+  <span class="add-dialog__title">
+    Adicionar pagamento
+  </span>
+
+  <div class="add-dialog__data">
+    <mat-form-field appearance="outline">
+      <mat-label> Usuário </mat-label>
+      <input matInput required/>
+      <mat-error> Campo obrigatório. </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label> Valor </mat-label>
+      <input matInput required/>
+      <mat-error> Campo obrigatório. </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label> Data </mat-label>
+      <input matInput required/>
+      <mat-error> Campo obrigatório. </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label> Titulo </mat-label>
+      <input matInput required/>
+      <mat-error> Campo obrigatório. </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="add-dialog__actions">
+    <button
+      color="primary"
+      mat-flat-button
+      (click)="onNoClick()"
+      class="add-dialog__actions-cancel"
+    >
+      CANCELAR
+    </button>
+
+    <button
+      color="primary"
+      mat-flat-button
+      class="add-dialog__actions-save"
+    >
+      SALVAR
+    </button>
+  </div>
+</div>

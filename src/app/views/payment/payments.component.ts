@@ -1,10 +1,12 @@
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
-
-import { OnInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table'
+import { CookieService } from 'ngx-cookie-service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { OnInit, Component, ViewChild } from '@angular/core';
+import { PaymentsAddComponent } from '../../components/payments/payments-add/payments-add.component';
+import { PaymentsRemoveComponent } from '../../components/payments/payments-remove/payments-remove.component';
 
 export interface UserData {
   user: string,
@@ -21,7 +23,7 @@ export interface UserData {
 })
 
 export class PaymentsComponent implements OnInit {
-  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'paidOut'];
+  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'paidOut', 'actions'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -32,6 +34,7 @@ export class PaymentsComponent implements OnInit {
 
   constructor(
     private router: Router,
+    public dialog: MatDialog,
     private cookieService: CookieService,
   ) {
     const isLoggedIn = JSON.parse(this.cookieService.get('is_logged_in'));
@@ -40,6 +43,22 @@ export class PaymentsComponent implements OnInit {
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
     this.dataSource = new MatTableDataSource(users);
+  }
+
+  openAddDialog(settings: any = {}): void {
+    const { edit } = settings;
+
+    this.dialog.open(PaymentsAddComponent, {
+      width: '772px',
+      height: '395px',
+    });
+  }
+
+  openRemoveDialog(): void {
+    this.dialog.open(PaymentsRemoveComponent, {
+      width: '405px',
+      height: '325px',
+    });
   }
 
   ngAfterViewInit() {

@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+::ng-deep {
+  .mat-dialog-container {
+    padding: 38px;
+  }
+}
+
+.remove-dialog {
+  height: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  &__title {
+    font-size: 18px;
+    color: #373737;
+    font-weight: bold;
+    line-height: 22px;
+    font-style: normal;
+    margin-bottom: 50px;
+    font-family: Montserrat;
+  }
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+
+    span { 
+      color: black;
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 10px;
+      letter-spacing: 0.15px;
+    }
+  }
+
+  &__actions {
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    justify-content: flex-end;
+
+    &-save,
+    &-cancel {
+      width: 150px;
+      letter-spacing: 1.25px;
+    }
+    
+    &-save {
+      background: #007DFE;
+    }
+    
+    &-cancel {
+      color: #333333;
+      margin-right: 30px;
+      background: #F5F5F5;
+    }
+  }
+}

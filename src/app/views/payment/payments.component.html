@@ -10,27 +10,30 @@
         <span>Meus pagamentos</span>
       </div>
 
-      <button mat-flat-button class="payments__header-add" color="primary">
+      <button (click)="openAddDialog()" mat-flat-button class="payments__header-add" color="primary">
         ADICIONAR PAGAMENTO
       </button>
     </div>
 
     <div class="payments__table">
       <div class="payments__filter">
-        <div class="payments__filter-box">
-          <input class="payments__filter-value" matInput (keyup)="applyFilter($event)" placeholder="Pesquisar por usuário" #input>
-          <mat-icon>search</mat-icon>
-        </div>
+        <span class="payments__search">
+          <div class="payments__filter-box">
+            <input class="payments__filter-value" matInput (keyup)="applyFilter($event)" placeholder="Pesquisar por usuário" #input>
+            <mat-icon>search</mat-icon>
+          </div>
 
-        <div class="payments__filter-btn">
-          <mat-icon>tune</mat-icon>
-          Filtrar
-        </div>
+          <div class="payments__filter-btn">
+            <mat-icon>tune</mat-icon>
+            Filtrar
+          </div>
+        </span>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
       </div>
 
       <div>
         <table mat-table [dataSource]="dataSource" matSort>
-  
           <ng-container matColumnDef="user">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuário </th>
             <td mat-cell *matCellDef="let row"> {{row.user}} </td>
@@ -61,7 +64,15 @@
             </mat-checkbox>
             </td>
           </ng-container>
-  
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-icon (click)="openAddDialog({ edit: true })" class="material-icons-outlined">edit__outline</mat-icon>
+              <mat-icon (click)="openRemoveDialog()">highlight_off</mat-icon>
+            </td>
+          </ng-container>
+
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   
@@ -69,7 +80,6 @@
             <td class="mat-cell" colspan="4">Sem resultados para "{{input.value}}".</td>
           </tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
       </div>
     </div>
   </div>

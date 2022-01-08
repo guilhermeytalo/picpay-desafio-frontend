@@ -1,0 +1,30 @@
+<div class="remove-dialog">
+  <span class="remove-dialog__title">
+    Excluir pagamento
+  </span>
+
+  <div class="remove-dialog__data">
+    <span>Usuário: Kleber Freitas</span>
+    <span>Data: 20/06/2020</span>
+    <span>Valor: R$ 100,00</span>
+  </div>
+
+  <div class="remove-dialog__actions">
+    <button
+      color="primary"
+      mat-flat-button
+      (click)="onNoClick()"
+      class="remove-dialog__actions-cancel"
+    >
+      CANCELAR
+    </button>
+
+    <button
+      color="primary"
+      mat-flat-button
+      class="remove-dialog__actions-save"
+    >
+      SALVAR
+    </button>
+  </div>
+</div>

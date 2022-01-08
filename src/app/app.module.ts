@@ -10,12 +10,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
-
 
 import { StoreModule } from '@ngrx/store';
 import { FormsModule } from '@angular/forms'
@@ -23,6 +22,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoginService } from './services/login.service';
 import { PaymentsComponent } from './views/payment/payments.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { PaymentsAddComponent } from './components/payments/payments-add/payments-add.component';
+import { PaymentsRemoveComponent } from './components/payments/payments-remove/payments-remove.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     LoginComponent,
     NavbarComponent,
     PaymentsComponent,
+    PaymentsAddComponent,
+    PaymentsRemoveComponent,
   ],
   imports: [
     NgbModule,
@@ -42,6 +45,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatIconModule,
     MatTableModule,
     MatInputModule,
+    MatDialogModule,
     MatButtonModule,
     MatSnackBarModule,
     MatCheckboxModule,
