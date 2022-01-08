@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currentPageSize = 5;
   currentPageNumber = 0;
   paymentsSubscriptions: Subscription[] = [];
+  paymentsCount$ = this.paymentsService.getPaymentsPageCount(this.currentPageSize);
   paymentsObserver = {
     next: this.handleGetPaymentsSuccess.bind(this),
     error: this.handleGetPaymentsError.bind(this)
@@ -29,7 +30,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         .pipe(
           switchMap((data) => {
             this.paymentsDetails = data;
-            // this.paymentsDetails = null;
             return this.getPaymentsObservable(data.pageNumberOptions[0], data.pageSizeOptions[0]);
           })
         ).subscribe(this.paymentsObserver)
@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getPayments(pageNumber: number, pageSize: number): void {
+    this.payments = [];
     this.unsubscribePaymentsSubscritions();
     this.paymentsSubscriptions.push(this.getPaymentsObservable(pageNumber, pageSize).subscribe(this.paymentsObserver));
   }
@@ -77,7 +78,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   updatePageSize(value: number): void {
     this.currentPageSize = value;
-    this.getPayments(this.currentPageNumber, this.currentPageSize);
+    this.paymentsCount$ = this.paymentsService.getPaymentsPageCount(value);
+    this.updatePageNumber(1);
   }
 
   updatePageNumber(value: number): void {

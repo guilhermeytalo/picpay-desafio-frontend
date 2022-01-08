@@ -1,10 +1,10 @@
 <div class="pagination">
-    <div class="pagination__icon">
+    <div class="pagination__icon" (click)="prev()">
         <img src="assets/images/icons/prev.svg" alt="Search Icon">
     </div>
-    <span class="page" *ngFor="let option of options" [ngClass]="{'page--active': option === selectedOption}"
+    <span class="page" *ngFor="let option of visibleOptions" [ngClass]="{'page--active': option === selectedOption}"
         (click)="updateSelection(option)">{{option}}</span>
-    <div class="pagination__icon">
+    <div class="pagination__icon" (click)="next()">
         <img src="assets/images/icons/next.svg" alt="Search Icon">
     </div>
 </div>

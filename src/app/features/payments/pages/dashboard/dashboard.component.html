@@ -16,7 +16,7 @@
                 <app-dropdown title="Exibir" [options]="paymentsDetails.pageSizeOptions"
                     (update)="updatePageSize($event)">
                 </app-dropdown>
-                <app-pagination [options]="paymentsDetails.pageNumberOptions" (update)="updatePageNumber($event)">
+                <app-pagination [total]="paymentsCount$ | async" (update)="updatePageNumber($event)">
                 </app-pagination>
             </div>
             <table class="payments__table">
