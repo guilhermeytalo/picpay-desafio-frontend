@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { DashboardRoutingModule } from './dashboard.routes';
+import { PaymentsRoutingModule } from './payments.routes';
 import { HeaderModule } from '@/components/header/header.module';
 import { FormsModule } from '@angular/forms';
+import { DropdownModule } from '@/components/dropdown/dropdown.module';
 
 @NgModule({
   declarations: [
@@ -11,9 +12,10 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule,
+    PaymentsRoutingModule,
     FormsModule,
-    HeaderModule
+    HeaderModule,
+    DropdownModule
   ]
 })
-export class DashboardModule { }
+export class PaymentsModule { }

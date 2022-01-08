@@ -1,0 +1,111 @@
+@import "src/assets/styles/colors";
+@import "src/assets/styles/fonts";
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 16px;
+}
+
+.title {
+    font-family: $lato;
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: 500;
+    text-align: right;
+    margin-right: 16px;
+    color: $grey-dark;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    font-family: $lato;
+    font-weight: 400;
+
+    &:hover .dropdown__options {
+        display: flex;
+    }
+
+    &__options {
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        z-index: 1;
+        
+        min-width: 80px;
+        
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        border: 1px solid $grey-light;
+        box-sizing: border-box;
+        border-radius: 6px;
+
+        .option {
+            color: $grey-dark;
+            padding: 12px 16px;
+            font-size: 1.2em;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            
+            &:hover {
+                background-color: #f1f1f1;
+            }
+        }
+    }
+}
+
+.dropdown__selected-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 80px;
+    height: 32px;
+    padding: 0 8px;
+    
+    font-size: 1.4em;
+    cursor: pointer;
+    border: 1px solid $grey-light;
+    box-sizing: border-box;
+    border-radius: 6px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+// .dropdown {
+//     position: relative;
+//     display: inline-block;
+// }
+
+/* Dropdown Content (Hidden by Default) */
+// .dropdown__options {
+//     flex-direction: column;
+//     display: none;
+//     position: absolute;
+//     z-index: 1;
+    
+//     min-width: 80px;
+    
+//     background-color: #f9f9f9;
+//     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+//     border: 1px solid $grey-light;
+//     box-sizing: border-box;
+//     border-radius: 6px;
+// }
+
+/* Links inside the dropdown */
+// .dropdown__options 
+
+/* Change color of dropdown links on hover */
+
+/* Show the dropdown menu on hover */
+// .dropdown:hover .dropdown__options {
+//   display: flex;
+// }
+
+// /* Change the background color of the dropdown button when the dropdown content is shown */
+// .dropdown:hover .dropdown__selected-option {
+//   background-color: #3e8e41;
+// }

@@ -19,12 +19,12 @@ export class LoginComponent {
     });
   }
 
-  handleAuthSuccess(data: Boolean): void {
-    this.router.navigate(['/dashboard'])
+  handleAuthSuccess(data: boolean): void {
+    this.router.navigate(['/payments']);
   }
 
   handleAuthError(): void {
-    console.log("Erro ao realizar login")
+    console.log('Erro ao realizar login');
   }
 
 }

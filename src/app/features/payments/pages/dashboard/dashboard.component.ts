@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 interface TableHeaderItem {
-  title: string,
-  value: string,
-  sort: 'asc' | 'desc'
+  title: string;
+  value: string;
+  sort: 'asc' | 'desc';
 }
 
 @Component({

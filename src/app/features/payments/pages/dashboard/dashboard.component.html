@@ -5,13 +5,35 @@
         <button class="button">Adicionar pagamento</button>
 
         <section class="payments">
-            <div class="payments__actions"></div>
+            <div class="payments__actions">
+                <div class="search">
+                    <input type="text" class="search__input">
+                    <img src="assets/images/icons/search.svg" alt="Search Icon" class="search__icon">
+                </div>
+                <div class="filter">
+                    <span>filter</span>
+                </div>
+                <app-dropdown title="Exibir"></app-dropdown>
+                <div class="pagination">
+                    <div class="pagination__icon">
+                        <img src="assets/images/icons/prev.svg" alt="Search Icon">
+                    </div>
+                    <span class="page page--active">1</span>
+                    <span class="page">2</span>
+                    <span class="page">3</span>
+                    <span class="page">4</span>
+                    <span class="page">5</span>
+                    <div class="pagination__icon">
+                        <img src="assets/images/icons/next.svg" alt="Search Icon">
+                    </div>
+                </div>
+            </div>
             <table class="payments__table">
                 <thead>
                     <tr>
                         <th *ngFor="let item of tableHeader" (click)="sortBy(item)">
                             <span class="title">{{item.title}}</span>
-                            <img src="assets/images/dashboard/icons/sort-{{item.sort}}.svg" class="sort-icon" />
+                            <img src="assets/images/icons/sort-{{item.sort}}.svg" class="sort-icon" />
                         </th>
                         <th></th>
                     </tr>
