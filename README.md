@@ -75,7 +75,7 @@ Link para mais detalhes: https://github.com/typicode/json-server
 
 ### **Models**:<br />
 
-Tasks - Esta é sua lista com agenda de pagamentos. Aqui você cadastrar, editar e excluir um pagamento.<br />
+Tasks - Esta é sua lista com agenda de pagamentos. Aqui você poderá cadastrar, editar e excluir um pagamento.<br />
 ` { "id": 5, "name": "Anthea Pundy", "username": "apundy4", "title": "Software Engineer III", "value": 177.19, "date": "2021-01-01T14:09:51Z", "image": "https://robohash.org/quiaautomnis.png?size=150x150&set=set1", "isPayed": true },`
 
 Account - você usará este usuário para Login da plataforma<br />
@@ -100,7 +100,7 @@ paginate:<br />
 
 - Iremos avaliar cada feature, conceito, pattern, tudo o que você fizer de adicional. Tudo além do proposta contará pontos!
 
-- Caso você esteja concorrendo a uma vaga de Sênior, testes unitários são necessários no teste. Se você estiver concorrendo a uma vaga de JR ou Pleno, não é obrigatorio, mas é um grande diferencial caso seja aplicado os testes.
+- Caso você esteja concorrendo a uma vaga de Sênior, testes unitários são necessários no teste. Se você estiver concorrendo a uma vaga de JR ou Pleno, não é obrigatório, mas é um grande diferencial caso seja aplicado os testes.
 
 - Faça commits regulares. Eles são melhores do que um commit gigantesco. Gostaríamos de ver commits organizados e padronizados, então capriche neles!
 
