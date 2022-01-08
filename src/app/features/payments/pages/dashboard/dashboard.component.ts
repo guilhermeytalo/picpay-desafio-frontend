@@ -67,6 +67,7 @@ export class DashboardComponent implements OnInit {
   tableHeader: TableHeaderItem[];
 
   pageSizeOptions: string[];
+  pageNumberOptions: number[];
   currentPageSize = '5';
 
   constructor() { }
@@ -101,6 +102,7 @@ export class DashboardComponent implements OnInit {
     ];
 
     this.pageSizeOptions = [5, 10, 15, 25, 50].map(_ => _ + '');
+    this.pageNumberOptions = [1, 2, 3, 4, 5];
   }
 
   sortBy(item: TableHeaderItem): void {

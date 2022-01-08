@@ -63,6 +63,7 @@
     &__actions {
         display: flex;
         justify-content: flex-end;
+        align-items: center;
         padding: 16px;
 
         .search {
@@ -103,40 +104,6 @@
             margin-right: auto;
         }
 
-        .pagination {
-            display: flex;
-            justify-self: flex-end;
-            align-items: center;
-
-            &__icon, .page {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                width: 22px;
-                height: 22px;
-                border-radius: 4px;
-                
-                cursor: pointer;
-
-                &:hover {
-                    background: $grey;
-                }
-            }
-
-            .page {
-                font-family: $lato;
-                font-size: 1.2em;
-                font-style: normal;
-                font-weight: 600;
-                color: $grey-medium;
-
-                &--active {
-                    background: $blue;
-                    color: $white;
-                }
-            }
-        }
     }
 
     &__table {

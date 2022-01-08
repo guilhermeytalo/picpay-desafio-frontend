@@ -21,8 +21,10 @@ export class DropdownComponent implements OnInit {
   }
 
   updateSelection(value: string): void {
-    this.selectedOption = value;
-    this.update.emit(value);
+    if (value !== this.selectedOption) {
+      this.selectedOption = value;
+      this.update.emit(value);
+    }
   }
 
 }

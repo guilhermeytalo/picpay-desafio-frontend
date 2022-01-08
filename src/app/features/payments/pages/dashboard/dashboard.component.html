@@ -14,19 +14,7 @@
                     <span>filter</span>
                 </div>
                 <app-dropdown title="Exibir" [options]="pageSizeOptions" (update)="log($event)"></app-dropdown>
-                <div class="pagination">
-                    <div class="pagination__icon">
-                        <img src="assets/images/icons/prev.svg" alt="Search Icon">
-                    </div>
-                    <span class="page page--active">1</span>
-                    <span class="page">2</span>
-                    <span class="page">3</span>
-                    <span class="page">4</span>
-                    <span class="page">5</span>
-                    <div class="pagination__icon">
-                        <img src="assets/images/icons/next.svg" alt="Search Icon">
-                    </div>
-                </div>
+                <app-pagination [options]="pageNumberOptions" (update)="log($event)"></app-pagination>
             </div>
             <table class="payments__table">
                 <thead>

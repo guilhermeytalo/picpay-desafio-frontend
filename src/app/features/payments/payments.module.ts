@@ -5,6 +5,7 @@ import { PaymentsRoutingModule } from './payments.routes';
 import { HeaderModule } from '@/components/header/header.module';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from '@/components/dropdown/dropdown.module';
+import { PaginationModule } from '@/components/pagination/pagination.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DropdownModule } from '@/components/dropdown/dropdown.module';
     PaymentsRoutingModule,
     FormsModule,
     HeaderModule,
-    DropdownModule
+    DropdownModule,
+    PaginationModule
   ]
 })
 export class PaymentsModule { }
