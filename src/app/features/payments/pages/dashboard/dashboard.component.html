@@ -7,8 +7,8 @@
         <section class="payments">
             <div class="payments__actions" *ngIf="paymentsDetails else paymentsActionsPlaceholder">
                 <div class="search">
-                    <input type="text" class="search__input">
-                    <img src="assets/images/icons/search.svg" alt="Search Icon" class="search__icon">
+                    <input type="text" class="search__input" [(ngModel)]="searchPaymentsByNameValue">
+                    <img src="assets/images/icons/search.svg" alt="Search Icon" class="search__icon" (click)="search()">
                 </div>
                 <div class="filter">
                     <span>filter</span>

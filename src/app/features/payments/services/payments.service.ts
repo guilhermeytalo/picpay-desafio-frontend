@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { delay, filter, map } from 'rxjs/operators';
 import { API_URL } from 'src/_config/constants';
 import { paymentsDetailsMock } from 'src/_mock/payments-details.mock';
 import { Payment, PaymentsDetails } from '../models/payments.model';
@@ -19,7 +19,11 @@ export class PaymentsService {
     return of(paymentsDetailsMock).pipe(delay(1000));
   }
 
-  getPaymentsPageCount(pageSize = 0): Observable<number> {
-    return this.httpClient.get<Payment[]>(`${API_URL}/tasks`).pipe(map((data: Payment[]) => Math.ceil(data.length / pageSize)));
+  getPaymentsPageCount(observable: Observable<Payment[]>, pageSize = 0): Observable<number> {
+    return observable.pipe(map((data: Payment[]) => Math.ceil(data.length / pageSize)));
+  }
+
+  getAll(): Observable<Payment[]> {
+    return this.httpClient.get<Payment[]>(`${API_URL}/tasks`);
   }
 }

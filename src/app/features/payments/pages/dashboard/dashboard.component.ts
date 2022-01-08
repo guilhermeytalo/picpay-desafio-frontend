@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { Payment, PaymentsDetails, PaymentsHeaderItem, SortDirection } from '@/features/payments/models/payments.model';
 import { PaymentsService } from '@/features/payments/services/payments.service';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,11 +16,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currentPageSize = 5;
   currentPageNumber = 0;
   paymentsSubscriptions: Subscription[] = [];
-  paymentsCount$ = this.paymentsService.getPaymentsPageCount(this.currentPageSize);
+  paymentsCount$ = this.paymentsService.getPaymentsPageCount(this.paymentsService.getAll(), this.currentPageSize);
   paymentsObserver = {
     next: this.handleGetPaymentsSuccess.bind(this),
     error: this.handleGetPaymentsError.bind(this)
   };
+
+  searchPaymentsByNameValue = '';
+  searchedPaymentsByNameValue = '';
 
   constructor(private paymentsService: PaymentsService) { }
 
@@ -38,8 +41,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   getPayments(pageNumber: number, pageSize: number): void {
     this.payments = [];
-    this.unsubscribePaymentsSubscritions();
-    this.paymentsSubscriptions.push(this.getPaymentsObservable(pageNumber, pageSize).subscribe(this.paymentsObserver));
+    if (this.searchPaymentsByNameValue === '') {
+      this.unsubscribePaymentsSubscritions();
+      this.paymentsSubscriptions.push(this.getPaymentsObservable(pageNumber, pageSize).subscribe(this.paymentsObserver));
+    } else {
+      this.getPaymentsByName();
+    }
   }
 
   getPaymentsObservable(pageNumber: number, pageSize: number): Observable<Payment[]> {
@@ -78,7 +85,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   updatePageSize(value: number): void {
     this.currentPageSize = value;
-    this.paymentsCount$ = this.paymentsService.getPaymentsPageCount(value);
+    this.paymentsCount$ = this.paymentsService.getPaymentsPageCount(this.paymentsService.getAll(), value);
     this.updatePageNumber(1);
   }
 
@@ -89,6 +96,33 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   unsubscribePaymentsSubscritions(): void {
     this.paymentsSubscriptions.forEach(_ => _.unsubscribe());
+  }
+
+  search() {
+    if (this.searchPaymentsByNameValue !== this.searchedPaymentsByNameValue) {
+      this.updatePageNumber(1);
+    }
+  }
+
+  getPaymentsByName() {
+    const paginationStart = (this.currentPageNumber - 1) * this.currentPageSize;
+    const paginationEnd = ((this.currentPageNumber - 1) * this.currentPageSize) + this.currentPageSize;
+
+    this.paymentsService.getAll()
+      .pipe(
+        map((data: Payment[]) => data.filter(this.contains.bind(this))),
+        tap((data: Payment[]) => {
+          this.paymentsCount$ = this.paymentsService.getPaymentsPageCount(of(data), this.currentPageSize);
+          this.searchedPaymentsByNameValue = this.searchPaymentsByNameValue;
+          console.log(data);
+        }),
+        map((data: Payment[]) => data.slice(paginationStart, paginationEnd))
+      )
+      .subscribe(this.paymentsObserver);
+  }
+
+  contains(payment: Payment): boolean {
+    return payment.name.toLowerCase().includes(this.searchPaymentsByNameValue.toLowerCase());
   }
 
   ngOnDestroy() {
