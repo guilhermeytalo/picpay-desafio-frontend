@@ -3,8 +3,8 @@ import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from 'src/_config/routes';
-import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './features/auth/services/auth.service';
+import { AuthModule } from './features/auth/auth.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +12,7 @@ import { AuthService } from './features/auth/services/auth.service';
   imports: [
     AppRoutingModule,
     BrowserModule,
-    HttpClientModule
+    AuthModule
   ],
   providers: [
     AuthService,

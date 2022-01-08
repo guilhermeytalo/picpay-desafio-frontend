@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { UserAuthRequest } from '@/features/auth/models/user-auth.model';
 import { tap } from 'rxjs/operators';
 import { API_URL, STORAGE_TOKEN_KEY } from 'src/_config/constants';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   auth(userAuth: UserAuthRequest): Observable<HttpResponse<any>> {
     return this.httpClient.post(`${API_URL}/auth/login`, userAuth, { observe: 'response' })
@@ -19,6 +20,11 @@ export class AuthService {
           this.setToken(res.body.access_token);
         })
       );
+  }
+
+  logout(): void {
+    localStorage.removeItem(STORAGE_TOKEN_KEY);
+    this.router.navigate(['/login']);
   }
 
   setToken(token: string): void {

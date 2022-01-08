@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FormComponent } from '../form.component';
+import { FormModule } from '../form.module';
 
 describe('FormComponent', () => {
   let component: FormComponent;

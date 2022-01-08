@@ -1,4 +1,10 @@
 <header class="header">
     <img class="logo" src="assets/images/header/logo.svg" />
-    <img src="assets/images/header/avatar.jpeg" alt="" class="profile">
+    <div class="menu">
+        <img src="assets/images/header/avatar.jpeg" alt="Foto usuário" class="image">
+        <div class="menu__options">
+            <div class="option option--inactive">Meu perfil</div>
+            <div class="option" (click)="logout()">Logout</div>
+        </div>
+    </div>
 </header>
