@@ -17,7 +17,8 @@
   }
 
   &__content {
-    width: 1440px;
+    width: 80%;
+    min-width: 1144px;
     padding: 65px 48px;
   }
 
@@ -145,10 +146,6 @@
         height: 81px;
       }
 
-      &-table {
-        width: 1344px !important;
-      }
-
       &-column {
         &-date, &-payOut, &-value {
           width: 13% !important;
@@ -159,7 +156,9 @@
         }
 
         &-actions {
-          width: 7% !important;
+          width: 8% !important;
+          overflow: visible;
+          min-width: 90px;
 
           .mat-icon {
             cursor: pointer;
