@@ -19,7 +19,7 @@ export class PaymentsService {
     return of(paymentsDetailsMock).pipe(delay(1000));
   }
 
-  getPaymentsPageCount(observable: Observable<Payment[]>, pageSize = 0): Observable<number> {
+  getPaymentsPageCount(observable: Observable<Payment[]>, pageSize = 5): Observable<number> {
     return observable.pipe(map((data: Payment[]) => Math.ceil(data.length / pageSize)));
   }
 

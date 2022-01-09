@@ -1,12 +1,10 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AuthInterceptor } from '../auth.interceptor';
 import { PaymentsService } from '@/features/payments/services/payments.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthModule } from '../../auth.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from '../../services/auth.service';
-import { doesNotReject } from 'assert';
 
 describe('HttpInterceptorService', () => {
   let paymentsService: PaymentsService;
@@ -36,12 +34,11 @@ describe('HttpInterceptorService', () => {
     expect(interceptor).toBeTruthy();
   });
 
-  it('should intercept request', () => {
+  it('should intercept request', waitForAsync(() => {
     spyOn(authService, 'hasToken').and.returnValue(true);
     paymentsService.get().subscribe(res => {
       expect(res).toBeTruthy();
     });
-  });
-
+  }));
 
 });
