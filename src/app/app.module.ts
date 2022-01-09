@@ -14,13 +14,16 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 
 import { StoreModule } from '@ngrx/store';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PaymentsComponent } from './views/payment/payments.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PaymentsAddComponent } from './components/payments/payments-add/payments-add.component';
+
 import { PaymentsRemoveComponent } from './components/payments/payments-remove/payments-remove.component';
 
 import { CookieService } from 'ngx-cookie-service';
@@ -42,6 +45,7 @@ import { FormatterService } from './services/formatter/formatter.service';
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
     // Material Components
@@ -53,6 +57,8 @@ import { FormatterService } from './services/formatter/formatter.service';
     MatSnackBarModule,
     MatCheckboxModule,
     MatPaginatorModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
   ],
   providers: [
     LoginService,
@@ -60,6 +66,7 @@ import { FormatterService } from './services/formatter/formatter.service';
     PaymentsService,
     FormatterService,
     MatPaginatorIntl,
+    MatDatepickerModule,
   ],
   bootstrap: [AppComponent]
 })

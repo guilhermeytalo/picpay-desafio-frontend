@@ -22,5 +22,12 @@ export class FormatterService {
   money(value) {
     return `R$ ${value}`.replace('.', ',')
   }
+
+  numberOnly(event) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    const isNumberOrComma = charCode > 31 && (charCode < 43 || charCode > 57);
+    return !isNumberOrComma
+  }
+
   constructor() { }
 }

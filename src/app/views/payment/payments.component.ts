@@ -53,10 +53,18 @@ export class PaymentsComponent implements OnInit {
 
   openAddDialog(settings: any = {}): void {
     const { edit } = settings;
-    this.dialog.open(PaymentsAddComponent, {
+    const dialogRef = this.dialog.open(PaymentsAddComponent, {
       width: '772px',
       height: '395px',
       data: { isEditing: Boolean(edit) },
+    });
+
+    dialogRef.afterClosed().subscribe(async result => {
+      if (!Boolean(result)) return;
+
+      const newPayment = await this.paymentsService.add(result);
+      this.dataSource.data = [newPayment, ...this.dataSource.data];
+      this.dataSource._updateChangeSubscription();
     });
   }
 
@@ -76,7 +84,6 @@ export class PaymentsComponent implements OnInit {
 
       this.dataSource.data = newData;
       this.dataSource._updateChangeSubscription();
-      this.dataSource.sort = this.sort;
     });
   }
 
