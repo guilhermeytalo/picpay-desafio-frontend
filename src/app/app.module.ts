@@ -19,7 +19,8 @@ import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginato
 import { StoreModule } from '@ngrx/store';
 import { FormsModule } from '@angular/forms'
 import { CookieService } from 'ngx-cookie-service';
-import { LoginService } from './services/login.service';
+import { LoginService } from './services/login/login.service';
+import { PaymentsService } from './services/payments/payments.service';
 import { PaymentsComponent } from './views/payment/payments.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PaymentsAddComponent } from './components/payments/payments-add/payments-add.component';
@@ -54,6 +55,7 @@ import { PaymentsRemoveComponent } from './components/payments/payments-remove/p
   providers: [
     LoginService,
     CookieService,
+    PaymentsService,
     MatPaginatorIntl,
   ],
   bootstrap: [AppComponent]

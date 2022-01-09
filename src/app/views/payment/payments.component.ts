@@ -1,19 +1,22 @@
-import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
-import { CookieService } from 'ngx-cookie-service';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { OnInit, Component, ViewChild } from '@angular/core';
+import { LoginService } from '../../services/login/login.service';
+import { PaymentsService } from '../../services/payments/payments.service';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { PaymentsAddComponent } from '../../components/payments/payments-add/payments-add.component';
 import { PaymentsRemoveComponent } from '../../components/payments/payments-remove/payments-remove.component';
 
-export interface UserData {
-  user: string,
-  title: string,
+export interface PaymentData {
   date: string,
-  value: string,
-  paidOut: boolean,
+  id: number,
+  image: string,
+  isPayed: true,
+  name: string,
+  title: string,
+  username: string,
+  value: number,
 }
 
 @Component({
@@ -23,33 +26,31 @@ export interface UserData {
 })
 
 export class PaymentsComponent implements OnInit {
-  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'paidOut', 'actions'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'actions'];
+  dataSource: MatTableDataSource<PaymentData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    const users = await this.paymentsService.getAll();
+    this.dataSource = new MatTableDataSource(users);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   constructor(
-    private router: Router,
     public dialog: MatDialog,
-    private cookieService: CookieService,
+    private loginService: LoginService,
+    private paymentsService: PaymentsService,
     private _MatPaginatorIntl: MatPaginatorIntl,
   ) {
+    this.loginService.checkLogin();
     this._MatPaginatorIntl.itemsPerPageLabel = 'Itens por página:';
-    const isLoggedIn = JSON.parse(this.cookieService.get('is_logged_in'));
-    !isLoggedIn && this.router.navigate(['/login']);
-
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-    this.dataSource = new MatTableDataSource(users);
   }
 
   openAddDialog(settings: any = {}): void {
     const { edit } = settings;
-    console.log(edit);
     this.dialog.open(PaymentsAddComponent, {
       width: '772px',
       height: '395px',
@@ -64,11 +65,6 @@ export class PaymentsComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -77,14 +73,4 @@ export class PaymentsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
-
-function createNewUser(id: number): UserData {
-  return {
-    user: 'Claudia',
-    title: 'Professor',
-    date: '23 Jun 2020',
-    value: 'R$ 100,00',
-    paidOut: true,
-  };
 }
