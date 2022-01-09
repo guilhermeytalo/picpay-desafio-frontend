@@ -144,6 +144,10 @@
       &-cell {
         border: none;
         height: 81px;
+        font-family: Lato;
+        font-size: 14px;
+        line-height: 17px;
+        color: #2D3540;
       }
 
       &-column {
@@ -151,8 +155,22 @@
           width: 13% !important;
         }
 
-        &-user, &-title {
+        &-name, &-title {
           width: 18% !important;
+        }
+
+        &-date {
+          text-transform: capitalize;
+        }
+
+        &-user, &-date {
+          p {
+            font-family: Lato;
+            font-size: 12px;
+            line-height: 20px;
+            letter-spacing: -0.2px;
+            color: #69788C;
+          }
         }
 
         &-actions {

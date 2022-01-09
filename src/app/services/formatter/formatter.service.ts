@@ -15,6 +15,10 @@ export class FormatterService {
     return moment(date).format('DD/MM/YYYY');
   }
 
+  hourFromDate(date) {
+    return moment(date).format('HH:mm A');
+  }
+
   money(value) {
     return `R$ ${value}`.replace('.', ',')
   }

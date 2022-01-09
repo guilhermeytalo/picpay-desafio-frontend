@@ -36,7 +36,10 @@
         <table mat-table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="user">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuário </th>
-            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            <td mat-cell *matCellDef="let row">
+              {{row.name}}
+              <p>@{{row.username}}</p>
+            </td>
           </ng-container>
   
           <ng-container matColumnDef="title">
@@ -48,6 +51,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
             <td mat-cell *matCellDef="let row">
               {{formatterService.customDate(row.date)}}
+              <p>{{formatterService.hourFromDate(row.date)}}</p>
             </td>
           </ng-container>
   
