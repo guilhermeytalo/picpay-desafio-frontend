@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { CookieService } from 'ngx-cookie-service';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { OnInit, Component, ViewChild } from '@angular/core';
 import { PaymentsAddComponent } from '../../components/payments/payments-add/payments-add.component';
@@ -36,7 +36,9 @@ export class PaymentsComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private cookieService: CookieService,
+    private _MatPaginatorIntl: MatPaginatorIntl,
   ) {
+    this._MatPaginatorIntl.itemsPerPageLabel = 'Itens por página:';
     const isLoggedIn = JSON.parse(this.cookieService.get('is_logged_in'));
     !isLoggedIn && this.router.navigate(['/login']);
 
@@ -47,10 +49,11 @@ export class PaymentsComponent implements OnInit {
 
   openAddDialog(settings: any = {}): void {
     const { edit } = settings;
-
+    console.log(edit);
     this.dialog.open(PaymentsAddComponent, {
       width: '772px',
       height: '395px',
+      data: { isEditing: Boolean(edit) },
     });
   }
 

@@ -14,7 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 
 import { StoreModule } from '@ngrx/store';
 import { FormsModule } from '@angular/forms'
@@ -51,7 +51,11 @@ import { PaymentsRemoveComponent } from './components/payments/payments-remove/p
     MatCheckboxModule,
     MatPaginatorModule,
   ],
-  providers: [LoginService, CookieService],
+  providers: [
+    LoginService,
+    CookieService,
+    MatPaginatorIntl,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

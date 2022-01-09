@@ -42,6 +42,11 @@ export class LoginService {
     });
   }
 
+  public checkLogin() {
+    const isLoggedIn = JSON.parse(this._cookieService.get('is_logged_in'));
+    !isLoggedIn && this._router.navigate(['/login']);
+  }
+
   private checkUserCredentials(data, userLogin) {
     const userFromEmail = data.find(user => userLogin.email === user.email);
 

@@ -19,7 +19,7 @@
       <div class="payments__filter">
         <span class="payments__search">
           <div class="payments__filter-box">
-            <input class="payments__filter-value" matInput (keyup)="applyFilter($event)" placeholder="Pesquisar por usuário" #input>
+            <input class="payments__filter-value"  maxlength="25" matInput (keyup)="applyFilter($event)" placeholder="Pesquisar por usuário" #input>
             <mat-icon>search</mat-icon>
           </div>
 
