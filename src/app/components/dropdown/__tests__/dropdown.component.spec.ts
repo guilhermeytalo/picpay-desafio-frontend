@@ -23,4 +23,13 @@ describe('DropdownComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should update selected value', () => {
+    spyOn(component.update, 'emit');
+    component.selectedOption = '10';
+    component.updateSelection('20');
+    expect(component.selectedOption).toEqual('20');
+    expect(component.update.emit).toHaveBeenCalledWith('20');
+  });
+
 });
