@@ -4,9 +4,15 @@
   </span>
 
   <div class="remove-dialog__data">
-    <span>Usuário: Kleber Freitas</span>
-    <span>Data: 20/06/2020</span>
-    <span>Valor: R$ 100,00</span>
+    <span>
+      Usuário: {{ data.payment.name }}
+    </span>
+    <span>
+      Data: {{ formatterService.defaultDate(data.payment.date) }}
+    </span>
+    <span>
+      Valor: {{ formatterService.money(data.payment.value) }}
+    </span>
   </div>
 
   <div class="remove-dialog__actions">
@@ -22,6 +28,7 @@
     <button
       color="primary"
       mat-flat-button
+      (click)="onSaveClick()"
       class="remove-dialog__actions-save"
     >
       SALVAR

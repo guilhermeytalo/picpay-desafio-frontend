@@ -23,5 +23,15 @@ export class PaymentsService {
     return data;
   }
 
+  async remove(id) {
+    await fetch(`${this._paymentsUrl}/${id}`, { method: 'DELETE' });
+  }
+
+  async getById(id) {
+    const response = await fetch(`${this._paymentsUrl}/?id=${id}`);
+    const data = await response.json();
+    return data.length ? data[0] : undefined;
+  }
+
   constructor() { }
 }
