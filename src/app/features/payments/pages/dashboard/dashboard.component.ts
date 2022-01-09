@@ -19,8 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   paymentsSubscriptions: Subscription[] = [];
   paymentsCount$ = this.paymentsService.getPaymentsPageCount(this.paymentsService.getAll(), this.currentPageSize);
   paymentsObserver = {
-    next: this.handleGetPaymentsSuccess.bind(this),
-    error: this.handleGetPaymentsError.bind(this)
+    next: this.handleGetPaymentsSuccess.bind(this)
   };
 
   searchPaymentsByNameValue = '';
@@ -32,17 +31,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.paymentsSubscriptions.push(
       this.paymentsService.getDetails()
         .pipe(
-          switchMap((data) => {
-            this.paymentsDetails = data;
-            return this.getPaymentsObservable(data.pageNumberOptions[0], data.pageSizeOptions[0]);
-          })
+          tap(this.handleGetPaymentsDetailsSuccess.bind(this)),
+          switchMap(this.getPaymentsObservableFromPaymentsDetails.bind(this))
         ).subscribe(this.paymentsObserver)
     );
   }
 
+  handleGetPaymentsDetailsSuccess(details: PaymentsDetails): void {
+    this.paymentsDetails = details;
+  }
+
   getPayments(pageNumber: number, pageSize: number): void {
     this.payments = [];
-    if (this.searchPaymentsByNameValue === '') {
+
+    if (!this.searchPaymentsByNameValue) {
       this.unsubscribePaymentsSubscritions();
       this.paymentsSubscriptions.push(this.getPaymentsObservable(pageNumber, pageSize).subscribe(this.paymentsObserver));
     } else {
@@ -54,49 +56,44 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return this.paymentsService.get(pageNumber, pageSize);
   }
 
-  handleGetPaymentsSuccess(data: Payment[]) {
-    this.payments = data;
+  getPaymentsObservableFromPaymentsDetails(details: PaymentsDetails): Observable<Payment[]> {
+    return this.getPaymentsObservable(details.pageNumberOptions[0], details.pageSizeOptions[0]);
   }
 
-  handleGetPaymentsError(error: any) {
-    console.log(error);
+  handleGetPaymentsSuccess(payments: Payment[]) {
+    this.payments = payments;
   }
 
   sortBy(item: PaymentsHeaderItem): void {
-    const direction = this.getSortDirection(item);
-    this.payments.sort((first, second) => this.sort(first, second, item.value, direction));
+    this.payments.sort((first: Payment, second: Payment) => this.sort(first, second, item.value, this.getSortDirection(item)));
     this.handleSort(item);
   }
 
   getSortDirection(item: PaymentsHeaderItem): number {
-    return this.sortIsAsc(item) ? 1 : -1;
+    return this.sortIsAsc(item.sort) ? 1 : -1;
   }
 
-  sort(first: Payment, second: Payment, value: string, direction: number): number {
-    return first[value] > second[value] ? direction : (direction * -1);
+  sort(first: Payment, second: Payment, sortBy: string, direction: number): number {
+    return first[sortBy] > second[sortBy] ? direction : (direction * -1);
   }
 
   handleSort(item: PaymentsHeaderItem): void {
-    item.sort = this.sortIsAsc(item) ? 'desc' : 'asc';
+    item.sort = this.sortIsAsc(item.sort) ? 'desc' : 'asc';
   }
 
-  sortIsAsc(item: PaymentsHeaderItem): boolean {
-    return item.sort === 'asc';
+  sortIsAsc(value: SortDirection): boolean {
+    return value === 'asc';
   }
 
-  updatePageSize(value: number): void {
-    this.currentPageSize = value;
+  updatePageSize(pageSize: number): void {
+    this.currentPageSize = pageSize;
     this.paymentsCount$ = this.paymentsService.getPaymentsPageCount(this.paymentsService.getAll(), this.currentPageSize);
     this.updatePageNumber(1);
   }
 
-  updatePageNumber(value: number): void {
-    this.currentPageNumber = value;
+  updatePageNumber(pageNumber: number): void {
+    this.currentPageNumber = pageNumber;
     this.getPayments(this.currentPageNumber, this.currentPageSize);
-  }
-
-  unsubscribePaymentsSubscritions(): void {
-    this.paymentsSubscriptions.forEach(_ => _.unsubscribe());
   }
 
   search() {
@@ -106,56 +103,80 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getPaymentsByName() {
-    const paginationStart = (this.currentPageNumber - 1) * this.currentPageSize;
-    const paginationEnd = ((this.currentPageNumber - 1) * this.currentPageSize) + this.currentPageSize;
-
     this.paymentsService.getAll()
       .pipe(
-        map((data: Payment[]) => data.filter(this.contains.bind(this))),
-        tap((data: Payment[]) => {
-          this.paymentsCount$ = this.paymentsService.getPaymentsPageCount(of(data), this.currentPageSize);
-          this.searchedPaymentsByNameValue = this.searchPaymentsByNameValue;
-        }),
-        map((data: Payment[]) => data.slice(paginationStart, paginationEnd))
+        map(this.filterPaymentsBySearchedName.bind(this)),
+        tap(this.handleGetPaymentsFilteredByName.bind(this)),
+        map(this.paginatePaymentsFilteredByName.bind(this))
       )
       .subscribe(this.paymentsObserver);
   }
 
-  contains(payment: Payment): boolean {
+  filterPaymentsBySearchedName(payments: Payment[]): Payment[] {
+    return payments.filter(this.paymentContainsSearchedValue.bind(this));
+  }
+
+  handleGetPaymentsFilteredByName(filteredPayments: Payment[]): void {
+    this.paymentsCount$ = this.paymentsService.getPaymentsPageCount(of(filteredPayments), this.currentPageSize);
+    this.searchedPaymentsByNameValue = this.searchPaymentsByNameValue;
+  }
+
+  paginatePaymentsFilteredByName(payments: Payment[]): Payment[] {
+    const paginationStart = (this.currentPageNumber - 1) * this.currentPageSize;
+    const paginationEnd = paginationStart + this.currentPageSize;
+
+    return payments.slice(paginationStart, paginationEnd);
+  }
+
+  paymentContainsSearchedValue(payment: Payment): boolean {
     return payment.name.toLowerCase().includes(this.searchPaymentsByNameValue.toLowerCase());
   }
 
   changeSearchValue() {
-    if (this.searchedPaymentsByNameValue && this.searchPaymentsByNameValue === '') {
+    if (this.searchedPaymentsByNameValue && !this.searchPaymentsByNameValue) {
       this.updatePageNumber(1);
     }
   }
 
   deletePayment(payment: Payment): void {
     this.paymentsService.delete(payment.id).subscribe({
-      next: (response: Payment) => {
-        this.payments.splice(this.payments.indexOf(payment), 1);
-      },
-      error: (error: any) => this.router.navigate(['/'])
+      next: this.handleDeletePaymentSuccess.bind(this),
+      error: this.navigateToLogin.bind(this)
     });
+  }
+
+  handleDeletePaymentSuccess(payment: Payment): void {
+    this.payments.splice(this.payments.indexOf(payment), 1);
   }
 
   updatePayment(payment: Payment): void {
     this.paymentsService.update(payment).subscribe({
-      next: (response: Payment) => {
-        this.payments.splice(this.payments.indexOf(this.payments.find(p => p.id === response.id)), 1, response);
-      },
-      error: (error: any) => this.router.navigate(['/'])
+      next: this.handleUpdatePaymentSuccess.bind(this),
+      error: this.navigateToLogin.bind(this)
     });
+  }
+
+  handleUpdatePaymentSuccess(payment: Payment): void {
+    this.payments.splice(this.payments.indexOf(this.payments.find(p => p.id === payment.id)), 1, payment);
   }
 
   createPayment(payment: Payment): void {
     this.paymentsService.create(payment).subscribe({
-      next: (response: Payment) => {
-        this.payments.unshift(response);
-      },
-      error: (error: any) => this.router.navigate(['/'])
+      next: this.handleCreatePaymentSuccess.bind(this),
+      error: this.navigateToLogin.bind(this)
     });
+  }
+
+  handleCreatePaymentSuccess(payment: Payment): void {
+    this.payments.unshift(payment);
+  }
+
+  navigateToLogin(): void {
+    this.router.navigate(['/']);
+  }
+
+  unsubscribePaymentsSubscritions(): void {
+    this.paymentsSubscriptions.forEach(_ => _.unsubscribe());
   }
 
   ngOnDestroy() {
