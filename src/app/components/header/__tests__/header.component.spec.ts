@@ -34,7 +34,9 @@ describe('HeaderComponent', () => {
 
   it('should logout', () => {
     spyOn(service, 'logout').and.callFake(() => true);
+
     component.logout();
+
     expect(service.logout).toHaveBeenCalled();
   });
 });

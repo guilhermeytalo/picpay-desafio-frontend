@@ -1,7 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { async, TestBed, waitForAsync } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { paymentMock } from 'src/_mock/payments.mock';
+import { paymentMock, paymentsMock } from 'src/_mock/payments.mock';
 
 import { PaymentsService } from '../payments.service';
 
@@ -22,6 +22,15 @@ describe('PaymentsService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+
+  it('should get payments page count', waitForAsync(() => {
+    spyOn(httpClient, 'get').and.returnValue(of(paymentsMock));
+
+    service.get();
+
+    expect(httpClient.get).toHaveBeenCalled();
+  }));
 
   it('should get payments page count', waitForAsync(() => {
     service.getPaymentsPageCount(of([paymentMock, paymentMock, paymentMock, paymentMock, paymentMock, paymentMock]), 2)

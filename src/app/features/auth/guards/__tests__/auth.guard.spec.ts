@@ -30,12 +30,14 @@ describe('AuthGuard', () => {
 
   it('should can load', () => {
     spyOn(service, 'hasToken').and.returnValue(true);
+
     expect(guard.canLoad(null, null)).toBeTruthy();
   });
 
   it('should cant load', () => {
     spyOn(router, 'navigate');
     spyOn(service, 'hasToken').and.returnValue(false);
+
     expect(guard.canLoad(null, null)).toBeFalsy();
     expect(router.navigate).toHaveBeenCalledWith(['/login']);
   });

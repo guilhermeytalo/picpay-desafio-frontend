@@ -2,9 +2,18 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AuthInterceptor } from '../auth.interceptor';
 import { PaymentsService } from '@/features/payments/services/payments.service';
-import { AuthModule } from '../../auth.module';
+import { AuthModule } from '@/features/auth/auth.module';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '@/features/auth/services/auth.service';
+import { HttpHandler, HttpRequest, HttpEvent, HttpResponse, HttpEventType, HttpHeaderResponse } from '@angular/common/http';
+import { of } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+const request: HttpRequest<any> = new HttpRequest('GET', '/', { observe: 'response' });
+const handler: HttpHandler = {
+  handle: (_) => of({ headers: _.headers } as HttpHeaderResponse)
+};
+
 
 describe('HttpInterceptorService', () => {
   let paymentsService: PaymentsService;
@@ -35,10 +44,21 @@ describe('HttpInterceptorService', () => {
   });
 
   it('should intercept request', waitForAsync(() => {
+    spyOn(authService, 'hasToken').and.returnValue(false);
+
+    interceptor.intercept(request, handler);
+
+    expect(authService.hasToken).toHaveBeenCalled();
+  }));
+
+  it('should intercept request', waitForAsync(() => {
     spyOn(authService, 'hasToken').and.returnValue(true);
-    paymentsService.get().subscribe(res => {
-      expect(res).toBeTruthy();
-    });
+    spyOn(authService, 'getToken').and.returnValue('test-token');
+
+    interceptor.intercept(request, handler);
+
+    expect(authService.hasToken).toHaveBeenCalled();
+    expect(authService.getToken).toHaveBeenCalled();
   }));
 
 });
