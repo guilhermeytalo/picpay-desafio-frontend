@@ -6,11 +6,11 @@
             <h3 class="h3">Alterar pagamento</h3>
         </header>
         <section class="payment">
-            <input class="input" [(ngModel)]="paymentEdit.name">
-            <input class="input" [(ngModel)]="paymentEdit.value">
-            <input class="input" [ngModel]="paymentEdit.date| date:'yyyy-MM-dd'"
-                (ngModelChange)="paymentEdit.date = $event" type="date">
-            <input class="input" [(ngModel)]="paymentEdit.title">
+            <input class="input" [(ngModel)]="editedPayment.name">
+            <input class="input" [(ngModel)]="editedPayment.value">
+            <input class="input" [ngModel]="editedPayment.date| date:'yyyy-MM-dd'"
+                (ngModelChange)="editedPayment.date = $event" type="date">
+            <input class="input" [(ngModel)]="editedPayment.title">
         </section>
         <footer class="footer">
             <button class="button button--secondary" (click)="close()">Cancelar</button>

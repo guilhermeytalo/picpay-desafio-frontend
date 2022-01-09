@@ -10,7 +10,7 @@ export class EditComponent implements OnInit {
 
   @Input() payment!: Payment;
 
-  paymentEdit: Payment;
+  editedPayment: Payment;
   isVisible = false;
 
   @Output() edit: EventEmitter<Payment> = new EventEmitter();
@@ -18,7 +18,7 @@ export class EditComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.paymentEdit = { ...this.payment } as Payment;
+    this.editedPayment = { ...this.payment } as Payment;
   }
 
   show(): void {
@@ -30,7 +30,7 @@ export class EditComponent implements OnInit {
   }
 
   editPayment(): void {
-    this.edit.emit(this.paymentEdit);
+    this.edit.emit(this.editedPayment);
     this.close();
   }
 
