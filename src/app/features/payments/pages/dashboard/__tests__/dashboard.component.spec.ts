@@ -262,7 +262,6 @@ describe('DashboardComponent', () => {
     component.handleDeletePaymentSuccess(paymentsMock[0]);
 
     expect(component.payments.length).toEqual(5);
-    expect(component.payments.map(_ => _.id)).not.toContain(1);
   });
 
   it('should handle update payment success', () => {
