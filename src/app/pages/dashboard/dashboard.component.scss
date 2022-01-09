@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.dashboard-content {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+}
+
+.title-txt {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    color: #333333;
+    line-height: 44px;
+}
+
+.primary-color {
+    background-color: #007DFE;
+    color: #ffffff;
+}
+
+.position-btn {
+    position: absolute;
+    right: 10%;
+}

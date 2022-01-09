@@ -1,0 +1,22 @@
+.input-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-field {
+    width: 48%;
+}
+
+.align-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.primary-color {
+    background-color: #007DFE;
+    color: #ffffff;
+}
