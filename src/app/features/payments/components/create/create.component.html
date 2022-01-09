@@ -1,0 +1,21 @@
+<button class="button" (click)="show()">Adicionar pagamento</button>
+
+<app-popup [isVisible]="isVisible">
+    <div class="content">
+        <header class="header">
+            <h3 class="h3">Adicionar pagamento</h3>
+        </header>
+        <section class="payment">
+            <input class="input" [(ngModel)]="payment.name" placeholder="Nome" required>
+            <input class="input" [(ngModel)]="payment.username" placeholder="Usuário" required>
+            <input class="input" [(ngModel)]="payment.value" placeholder="Valor" type="number" required>
+            <input class="input" [ngModel]="payment.date| date:'yyyy-MM-dd'" (ngModelChange)="payment.date = $event"
+                type="date" placeholder="Data" required>
+            <input class="input" [(ngModel)]="payment.title" placeholder="Título" required>
+        </section>
+        <footer class="footer">
+            <button class="button button--secondary" (click)="close()">Cancelar</button>
+            <button class="button" (click)="createPayment()" [disabled]="!isFormValid()">Criar pagamento</button>
+        </footer>
+    </div>
+</app-popup>

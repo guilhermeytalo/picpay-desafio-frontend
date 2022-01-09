@@ -1,8 +1,9 @@
 @import "src/assets/styles/colors.scss";
 @import "src/assets/styles/button.scss";
+@import "src/assets/styles/input.scss";
 
 .content {
-    width: 420px;
+    width: 720px;
     padding: 32px;
 
     background: $white;
@@ -32,6 +33,16 @@
 
     .button {
         margin-left: 16px;
+    }
+
+    .payment {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .input {
+        flex: 2 0 40%;
+        margin: 8px;
     }
 }
 

@@ -10,11 +10,15 @@ import { PaymentsService } from './services/payments.service';
 import { PlaceholderModule } from '@/components/placeholder/placeholder.module';
 import { PopupModule } from '@/components/popup/popup.module';
 import { DeleteComponent } from './components/delete/delete.component';
+import { EditComponent } from './components/edit/edit.component';
+import { CreateComponent } from './components/create/create.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    DeleteComponent
+    DeleteComponent,
+    EditComponent,
+    CreateComponent
   ],
   imports: [
     CommonModule,

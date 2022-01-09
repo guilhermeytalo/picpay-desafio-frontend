@@ -24,16 +24,6 @@
     @extend .h1;
 }
 
-.button {
-    @extend .button;
-
-    position: relative;
-    float: right;
-
-    width: 230px;
-    margin-top: -16px;
-}
-
 .payments {
     position: relative;
     float: left;
@@ -85,11 +75,6 @@
                 right: 8px;
             }
         }
-
-        .filter {
-
-        }
-
     }
 
     &__table {
@@ -153,7 +138,8 @@
             flex-direction: column;
 
             &:last-child {
-                align-items: flex-end;
+                justify-content: flex-end;
+                flex-direction: row;
             }
         }
 

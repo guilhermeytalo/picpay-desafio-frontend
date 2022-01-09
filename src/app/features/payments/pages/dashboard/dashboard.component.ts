@@ -133,8 +133,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   deletePayment(payment: Payment): void {
     this.paymentsService.delete(payment.id).subscribe({
-      next: (_: any) => {
+      next: (response: Payment) => {
         this.payments.splice(this.payments.indexOf(payment), 1);
+      },
+      error: (error: any) => this.router.navigate(['/'])
+    });
+  }
+
+  updatePayment(payment: Payment): void {
+    this.paymentsService.update(payment).subscribe({
+      next: (response: Payment) => {
+        this.payments.splice(this.payments.indexOf(this.payments.find(p => p.id === response.id)), 1, response);
+      },
+      error: (error: any) => this.router.navigate(['/'])
+    });
+  }
+
+  createPayment(payment: Payment): void {
+    this.paymentsService.create(payment).subscribe({
+      next: (response: Payment) => {
+        this.payments.unshift(response);
       },
       error: (error: any) => this.router.navigate(['/'])
     });

@@ -1,10 +1,13 @@
-export interface Payment {
-    id: number;
+export interface CreatePayment {
     name: string;
     username: string;
     title: string;
     value: number;
     date: string;
+}
+
+export interface Payment extends CreatePayment {
+    id: number;
     image: string;
     isPayed: boolean;
 }

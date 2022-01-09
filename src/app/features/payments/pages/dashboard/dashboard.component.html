@@ -2,7 +2,7 @@
     <app-header></app-header>
     <section class="container">
         <h1 class="title">Meus pagamentos</h1>
-        <button class="button">Adicionar pagamento</button>
+        <app-create (create)="createPayment($event)"></app-create>
 
         <section class="payments">
             <div class="payments__actions" *ngIf="paymentsDetails else paymentsActionsPlaceholder">
@@ -30,7 +30,7 @@
                 <tbody *ngIf="(payments?.length || searchedPaymentsByNameValue) else paymentsItemsPlaceholder">
                     <tr *ngFor="let payment of payments">
                         <td>
-                            <span class="text">{{payment.name}}</span>
+                            <span class="text">{{payment.name}} - {{payment.id}}</span>
                             <span class="text text--secondary">@{{payment.username}}</span>
                         </td>
                         <td>
@@ -45,6 +45,7 @@
                         </td>
                         <td><input type="checkbox" [(ngModel)]="payment.isPayed" class="checkbox"></td>
                         <td>
+                            <app-edit [payment]="payment" (edit)="updatePayment($event)"></app-edit>
                             <app-delete [payment]="payment" (delete)="deletePayment($event)"></app-delete>
                         </td>
                     </tr>

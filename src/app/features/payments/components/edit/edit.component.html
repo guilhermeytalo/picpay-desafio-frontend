@@ -1,0 +1,20 @@
+<img src="assets/images/icons/edit.svg" class="icon" alt="Delete Icon" (click)="show()" />
+
+<app-popup [isVisible]="isVisible">
+    <div class="content">
+        <header class="header">
+            <h3 class="h3">Alterar pagamento</h3>
+        </header>
+        <section class="payment">
+            <input class="input" [(ngModel)]="paymentEdit.name">
+            <input class="input" [(ngModel)]="paymentEdit.value">
+            <input class="input" [ngModel]="paymentEdit.date| date:'yyyy-MM-dd'"
+                (ngModelChange)="paymentEdit.date = $event" type="date">
+            <input class="input" [(ngModel)]="paymentEdit.title">
+        </section>
+        <footer class="footer">
+            <button class="button button--secondary" (click)="close()">Cancelar</button>
+            <button class="button" (click)="editPayment()">Editar</button>
+        </footer>
+    </div>
+</app-popup>
