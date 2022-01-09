@@ -8,13 +8,7 @@ import { CreatePayment, Payment } from '../../models/payments.model';
 })
 export class CreateComponent implements OnInit {
 
-  payment = {
-    name: '',
-    username: '',
-    date: '',
-    value: 0,
-    title: ''
-  } as CreatePayment;
+  payment: CreatePayment;
 
   isVisible = false;
 
@@ -23,6 +17,7 @@ export class CreateComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.payment = this.getInitialCreatePayment();
   }
 
   show(): void {
@@ -30,13 +25,23 @@ export class CreateComponent implements OnInit {
   }
 
   close(): void {
-    this.payment = {} as Payment;
+    this.payment = this.getInitialCreatePayment();
     this.isVisible = false;
   }
 
   createPayment(): void {
     this.create.emit(this.payment as Payment);
     this.close();
+  }
+
+  getInitialCreatePayment(): CreatePayment {
+    return {
+      name: '',
+      username: '',
+      date: '',
+      value: 0,
+      title: ''
+    } as CreatePayment;
   }
 
   isFormValid(): boolean {
