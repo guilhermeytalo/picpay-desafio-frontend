@@ -13,13 +13,11 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
-  auth(userAuth: UserAuthRequest): Observable<HttpResponse<any>> {
-    return this.httpClient.post(`${API_URL}/auth/login`, userAuth, { observe: 'response' })
-      .pipe(
-        tap(res => {
-          this.setToken(res.body.access_token);
-        })
-      );
+  auth(userAuth: UserAuthRequest): Observable<any> {
+    return this.httpClient.post(`${API_URL}/auth/login`, userAuth)
+      .pipe(tap(res => {
+        this.setToken(res.body.access_token);
+      }));
   }
 
   logout(): void {
