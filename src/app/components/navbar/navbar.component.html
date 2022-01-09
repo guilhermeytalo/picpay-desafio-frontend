@@ -1,0 +1,28 @@
+<div>
+    <mat-toolbar class="nav-theme">
+        <div class="nav-content">
+            <img  src="../../../assets/images/white-logo.png"/>
+            <div class="profile-dropdown">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <img src="../../../assets/images/profile.png"/>
+                    <mat-icon>expand_more</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" [overlapTrigger]="false">
+                    <button mat-menu-item (click)="goToDashboard()">
+                        <mat-icon>dashboard</mat-icon>
+                        <span>Dashboard</span>
+                    </button>
+                    <button mat-menu-item (click)="goToProfile()">
+                        <mat-icon>account_circle</mat-icon>
+                        <span>Profile</span>
+                    </button>
+                    <mat-divider></mat-divider>
+                    <button mat-menu-item (click)="logout()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+    </mat-toolbar>
+</div>
