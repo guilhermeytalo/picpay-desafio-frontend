@@ -20,7 +20,7 @@ export class LoginComponent {
     });
   }
 
-  handleAuthSuccess(data: boolean): void {
+  handleAuthSuccess(): void {
     this.router.navigate(['/payments']);
   }
 
