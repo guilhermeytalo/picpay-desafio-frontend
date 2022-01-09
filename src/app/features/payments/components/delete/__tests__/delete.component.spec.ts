@@ -26,4 +26,17 @@ describe('DeleteComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should show popup', () => {
+    component.isVisible = false;
+    component.show();
+    expect(component.isVisible).toBeTruthy();
+  });
+
+  it('should hide popup', () => {
+    component.isVisible = true;
+    component.close();
+    expect(component.isVisible).toBeFalsy();
+  });
+
 });
