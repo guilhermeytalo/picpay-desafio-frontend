@@ -1,0 +1,12 @@
+<section>
+  <p class="dialog-title">Excluir pagamento</p>
+  <div mat-dialog-content class="dialog-content">
+    <p class="content-txt">Usuário: {{ data.task.name }}</p>
+    <p class="content-txt">Data: {{ data.task.date }}</p>
+    <p class="content-txt">Valor: R${{ data.task.value }}</p>
+  </div>
+  <div mat-dialog-actions class="align-right">
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>CANCELAR</button>
+    <button mat-button class="primary-color" (click)="deleteTask()">EXCLUIR</button>
+  </div>
+</section>

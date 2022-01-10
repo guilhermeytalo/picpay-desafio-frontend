@@ -16,10 +16,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { TableComponent } from './components/table/table.component';
 import { AddModalComponent } from './components/modal/add-modal/add-modal.component';
 import { TaskComponent } from './components/forms/task/task.component';
+import { CustomTableCellComponent } from './components/custom-table-cell/custom-table-cell.component';
+import { DeleteModalComponent } from './components/modal/delete-modal/delete-modal.component';
+import { EditModalComponent } from './components/modal/edit-modal/edit-modal.component';
 
 @NgModule({
   declarations: [	
-    AppComponent, DashboardComponent, ProfileComponent, LoginComponent, NavbarComponent, TableComponent, AddModalComponent, TaskComponent,
+    AppComponent, DashboardComponent, ProfileComponent, LoginComponent, NavbarComponent, TableComponent, AddModalComponent, TaskComponent, CustomTableCellComponent, DeleteModalComponent, EditModalComponent,
    ],
   imports: [
     AppRoutingModule,

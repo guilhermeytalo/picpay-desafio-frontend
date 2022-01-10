@@ -11,6 +11,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -28,7 +32,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     MatSelectModule,
     MatNativeDateModule,
-    MatInputModule 
+    MatInputModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatCheckboxModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -43,7 +51,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     MatSelectModule,
     MatNativeDateModule,
-    MatInputModule 
+    MatInputModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatCheckboxModule
   ]    
 })
 

@@ -1,0 +1,9 @@
+<div class="cell">
+    <div *ngIf="imageUrl && imageUrl !== ''"class="image-content">
+        <img class="img-small img-profile" [src]="imageUrl"/>
+    </div>
+    <div class="text-content">
+        <p class="title-txt">{{title}}</p>
+        <p class="subtitle-txt">{{subtitle}}</p>
+    </div>
+</div>
