@@ -30,6 +30,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoginService } from './services/login/login.service';
 import { PaymentsService } from './services/payments/payments.service';
 import { FormatterService } from './services/formatter/formatter.service';
+import { TableHeaderComponent } from './components/payments/table-header/table-header.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FormatterService } from './services/formatter/formatter.service';
     PaymentsComponent,
     PaymentsAddComponent,
     PaymentsRemoveComponent,
+    TableHeaderComponent,
   ],
   imports: [
     NgbModule,

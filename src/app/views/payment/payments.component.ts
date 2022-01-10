@@ -27,10 +27,15 @@ export interface PaymentData {
 })
 
 export class PaymentsComponent implements OnInit {
-  displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'actions'];
+  displayedColumns: string[] = ['name', 'title', 'date', 'value', 'isPayed', 'actions'];
+  orderByColumns = { name: 0, title: 0, date: 0, value: 0, isPayed: 0 };
   dataSource: MatTableDataSource<PaymentData>;
   paginatorLength = 0;
+
   currentPage = 0;
+  currentSort = 'id';
+  currentOrder = 'asc';
+  currentQuery = '';
 
   private _openDialogSize = { width: '772px', height: '395px' };
   private _removeDialogSize = { width: '405px', height: '325px' };
@@ -57,22 +62,47 @@ export class PaymentsComponent implements OnInit {
     private _MatPaginatorIntl: MatPaginatorIntl,
   ) {
     this.loginService.checkLogin();
-    this._MatPaginatorIntl.itemsPerPageLabel = 'Itens por página:';
+    this._MatPaginatorIntl.itemsPerPageLabel = 'Exibir:';
   }
 
-  async paginate({ index, limit = 5 }){
-    const currentPage = index + 1;
-    
+  async paginate(settings: any = {}) {
+    const {
+      limit = 5,
+      index = this.currentPage + 1,
+      order = this.currentOrder,
+      sort = this.currentSort,
+      query = this.currentQuery,
+    } = settings;
+
     const payments = await this.paymentsService.getPayments({
-      page: currentPage,
+      page: index,
       limit: limit,
-      query: '',
-      sort: 'id',
-      order: 'asc'
+      query,
+      sort,
+      order,
     });
 
     this.paginatorLength = Number(payments.total);
     this.dataSource = new MatTableDataSource(payments.data);
+  }
+
+  changeOrder(column) {
+    const currentOrder = this.orderByColumns[column];
+    const newOrder = currentOrder === 1
+      ? -1
+      : currentOrder + 1;
+
+    Object.keys(this.orderByColumns).forEach(columnName => {
+      this.orderByColumns[columnName] = columnName === column
+        ? newOrder
+        : 0;
+    })
+
+    const orderBy = { '-1': 'desc', '1': 'asc', '0': '' }[newOrder];
+
+    this.currentSort = column;
+    this.currentOrder = orderBy;
+    this.paginate();
   }
 
   openAddDialog(settings: any = {}): void {
@@ -116,12 +146,8 @@ export class PaymentsComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    this.currentQuery = (event.target as HTMLInputElement).value;
+    this.paginate();
   }
 
   updateTableData(newData) {
@@ -131,16 +157,16 @@ export class PaymentsComponent implements OnInit {
 
   async removeDataTable(paymentToRemove) {
     await this.paymentsService.remove(paymentToRemove.id);
-    this.paginate({ index: this.currentPage });
+    this.paginate();
   }
 
   async addDataTable(payment) {
     await this.paymentsService.add(payment);
-    this.paginate({ index: this.currentPage });
+    this.paginate();
   }
 
   async editDataTable(payment) {
     await this.paymentsService.update(payment);
-    this.paginate({ index: this.currentPage });
+    this.paginate();
   }
 }
