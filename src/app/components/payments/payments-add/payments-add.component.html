@@ -20,11 +20,11 @@
           formControlName="value"
           (keypress)="formatterService.numberOnly($event)"
           [(ngModel)]="currentPayment.value"
-          >
+        >
           <mat-error> Campo obrigatório. </mat-error>
         </mat-form-field>
         
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" (click)="picker.open()">
           <mat-label> Data </mat-label>
           <input
             #date

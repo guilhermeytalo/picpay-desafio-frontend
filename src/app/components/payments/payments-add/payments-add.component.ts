@@ -15,7 +15,7 @@ export class PaymentsAddComponent implements OnInit {
 
   ownerForm;
   maskedInputController;
-  dateMask = [/[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/];
+  dateMask = [/[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, '/', /[0-9]/, /[0-9]/, /[0-9]/, /[0-9]/];
 
   public dialogTitle = 'Adicionar pagamento';
   public currentPayment = {
@@ -28,14 +28,14 @@ export class PaymentsAddComponent implements OnInit {
   constructor(
     public formatterService: FormatterService,
     public dialogRef: MatDialogRef<PaymentsAddComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { isEditing: boolean }
+    @Inject(MAT_DIALOG_DATA) public data: { isEditing: boolean, payment: any }
   ) {
     if (data.isEditing) this.configureEdit();
   }
 
   ngOnInit() {
     this.ownerForm = new FormGroup({
-      date: new FormControl(new Date(), [Validators.required]),
+      date: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       value: new FormControl('', [Validators.required, Validators.maxLength(100)]),
       title: new FormControl('', [Validators.required, Validators.maxLength(100)]),
@@ -56,7 +56,8 @@ export class PaymentsAddComponent implements OnInit {
   }
 
   configureEdit(): void {
-    this.dialogTitle = 'Editar pagamento'
+    this.dialogTitle = 'Editar pagamento';
+    this.currentPayment = { ...this.data.payment };
   }
 
   ngAfterViewInit(): void {

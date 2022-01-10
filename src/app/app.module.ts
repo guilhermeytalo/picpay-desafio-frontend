@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 
 import { StoreModule } from '@ngrx/store';
@@ -67,6 +67,7 @@ import { FormatterService } from './services/formatter/formatter.service';
     FormatterService,
     MatPaginatorIntl,
     MatDatepickerModule,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent]
 })

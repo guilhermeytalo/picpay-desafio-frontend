@@ -16,6 +16,9 @@ export interface PaymentData {
 })
 export class PaymentsService {
   private _paymentsUrl = 'http://localhost:3000/tasks';
+  private _headers = {
+    "Content-type": "application/json; charset=UTF-8"
+  };
 
   async getAll() {
     const response = await fetch(this._paymentsUrl);
@@ -30,15 +33,25 @@ export class PaymentsService {
   async add(payment) {
     const response = await fetch(this._paymentsUrl, {
       method: 'POST',
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      },
+      headers: this._headers,
       body: JSON.stringify({ ...payment }),
     });
 
     const data = await response.json();
     return data;
   }
+
+  async update(payment) {
+    const response = await fetch(`${this._paymentsUrl}/${payment.id}`, {
+      method: 'PUT',
+      headers: this._headers,
+      body: JSON.stringify({ ...payment }),
+    });
+
+    const data = await response.json();
+    return data;
+  }
+
 
   async getById(id) {
     const response = await fetch(`${this._paymentsUrl}/?id=${id}`);
