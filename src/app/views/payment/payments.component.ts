@@ -29,6 +29,8 @@ export interface PaymentData {
 export class PaymentsComponent implements OnInit {
   displayedColumns: string[] = ['user', 'title', 'date', 'value', 'isPayed', 'actions'];
   dataSource: MatTableDataSource<PaymentData>;
+  paginatorLength = 0;
+  currentPage = 0;
 
   private _openDialogSize = { width: '772px', height: '395px' };
   private _removeDialogSize = { width: '405px', height: '325px' };
@@ -36,11 +38,15 @@ export class PaymentsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  ngAfterViewInit() {
+    this.paginator.page.subscribe(res => {
+      this.paginate({ index: res.pageIndex, limit: res.pageSize });
+      this.currentPage = res.pageIndex;
+    });
+  }
+
   async ngOnInit() {
-    const payments = await this.paymentsService.getAll();
-    this.dataSource = new MatTableDataSource(payments);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.paginate({ index: 0 });
   }
 
   constructor(
@@ -52,6 +58,21 @@ export class PaymentsComponent implements OnInit {
   ) {
     this.loginService.checkLogin();
     this._MatPaginatorIntl.itemsPerPageLabel = 'Itens por página:';
+  }
+
+  async paginate({ index, limit = 5 }){
+    const currentPage = index + 1;
+    
+    const payments = await this.paymentsService.getPayments({
+      page: currentPage,
+      limit: limit,
+      query: '',
+      sort: 'id',
+      order: 'asc'
+    });
+
+    this.paginatorLength = Number(payments.total);
+    this.dataSource = new MatTableDataSource(payments.data);
   }
 
   openAddDialog(settings: any = {}): void {
@@ -80,7 +101,7 @@ export class PaymentsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (!result) return;
+      if (!Boolean(result)) return;
       this.removeDataTable(result);
     });
   }
@@ -108,23 +129,18 @@ export class PaymentsComponent implements OnInit {
     this.dataSource._updateChangeSubscription();
   }
 
-  removeDataTable(paymentToRemove) {
-    const newData = this.dataSource.data
-      .filter(payment => payment.id !== paymentToRemove.id);
-      this.updateTableData(newData);
+  async removeDataTable(paymentToRemove) {
+    await this.paymentsService.remove(paymentToRemove.id);
+    this.paginate({ index: this.currentPage });
   }
 
   async addDataTable(payment) {
-    const newPayment = await this.paymentsService.add(payment);
-    this.updateTableData([newPayment, ...this.dataSource.data]);
+    await this.paymentsService.add(payment);
+    this.paginate({ index: this.currentPage });
   }
 
   async editDataTable(payment) {
-    const paymentIndex = this.dataSource.data
-      .findIndex(paymentRef => payment.id === paymentRef.id);
-
     await this.paymentsService.update(payment);
-    this.dataSource.data[paymentIndex] = payment;
-    this.updateTableData(this.dataSource.data);
+    this.paginate({ index: this.currentPage });
   }
 }

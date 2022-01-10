@@ -58,6 +58,17 @@
       line-height: 17px;
     }
 
+    &-arrows {
+      cursor: pointer;
+      display: inline-flex;
+      flex-direction: column;
+
+      .mat-icon {
+        height: 7px;
+        font-size: 16px;
+      }
+    }
+
     table {
       width: 1344px;
       width: 100%;

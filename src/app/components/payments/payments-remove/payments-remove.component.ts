@@ -25,14 +25,6 @@ export class PaymentsRemoveComponent implements OnInit {
   }
 
   onSaveClick() {
-    const id = Number(this.data.payment.id);
-    let wasActionCommited = true;
-
-    try {
-      this.paymentsService.remove(id);
-    } catch (err) {
-      wasActionCommited = false;
-    }
-    this.dialogRef.close(wasActionCommited);
+    this.dialogRef.close(this.data.payment);
   }
 }

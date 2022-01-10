@@ -52,6 +52,29 @@ export class PaymentsService {
     return data;
   }
 
+  async getPayments(settings) {
+    const { page, limit, query, sort, order } = settings;
+
+    const params = new URLSearchParams({
+      _page: page,
+      _limit: limit,
+      _sort: sort,
+      _order: order,
+      q: query,
+    }); 
+
+    const response = await fetch(`${this._paymentsUrl}/?${params}`, {
+      headers: this._headers,
+    });
+
+    const data = await response.json();
+
+    return {
+      data,
+      total: response.headers.get('X-Total-Count'),
+    }
+  }
+
 
   async getById(id) {
     const response = await fetch(`${this._paymentsUrl}/?id=${id}`);
