@@ -56,7 +56,7 @@ export class PaymentsService {
     const { page, limit, query, sort, order } = settings;
 
     const params = new URLSearchParams({
-      _page: page,
+      _page: page + 1,
       _limit: limit,
       _sort: sort,
       _order: order,

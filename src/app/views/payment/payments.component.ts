@@ -30,12 +30,15 @@ export class PaymentsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'title', 'date', 'value', 'isPayed', 'actions'];
   orderByColumns = { name: 0, title: 0, date: 0, value: 0, isPayed: 0 };
   dataSource: MatTableDataSource<PaymentData>;
-  paginatorLength = 0;
 
-  currentPage = 0;
-  currentSort = 'id';
-  currentOrder = 'asc';
-  currentQuery = '';
+  public pageSettings = { 
+    length: 0,
+    page: 0, 
+    sort: 'id',
+    order: 'asc',
+    query: '',
+    limit: 5,
+  };
 
   private _openDialogSize = { width: '772px', height: '395px' };
   private _removeDialogSize = { width: '405px', height: '325px' };
@@ -45,13 +48,14 @@ export class PaymentsComponent implements OnInit {
 
   ngAfterViewInit() {
     this.paginator.page.subscribe(res => {
+      this.pageSettings.page = res.pageIndex;
+      this.pageSettings.limit = res.pageSize;
       this.paginate({ index: res.pageIndex, limit: res.pageSize });
-      this.currentPage = res.pageIndex;
     });
   }
 
   async ngOnInit() {
-    this.paginate({ index: 0 });
+    this.paginate();
   }
 
   constructor(
@@ -67,22 +71,18 @@ export class PaymentsComponent implements OnInit {
 
   async paginate(settings: any = {}) {
     const {
-      limit = 5,
-      index = this.currentPage + 1,
-      order = this.currentOrder,
-      sort = this.currentSort,
-      query = this.currentQuery,
+      sort = this.pageSettings.sort,
+      page = this.pageSettings.page,
+      limit = this.pageSettings.limit,
+      query = this.pageSettings.query,
+      order = this.pageSettings.order,
     } = settings;
 
-    const payments = await this.paymentsService.getPayments({
-      page: index,
-      limit: limit,
-      query,
-      sort,
-      order,
-    });
 
-    this.paginatorLength = Number(payments.total);
+    const pageParams = { page, limit, query, sort, order };
+    const payments = await this.paymentsService.getPayments(pageParams);
+
+    this.pageSettings.length = Number(payments.total);
     this.dataSource = new MatTableDataSource(payments.data);
   }
 
@@ -100,8 +100,8 @@ export class PaymentsComponent implements OnInit {
 
     const orderBy = { '-1': 'desc', '1': 'asc', '0': '' }[newOrder];
 
-    this.currentSort = column;
-    this.currentOrder = orderBy;
+    this.pageSettings.sort = column;
+    this.pageSettings.order = orderBy;
     this.paginate();
   }
 
@@ -146,7 +146,7 @@ export class PaymentsComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    this.currentQuery = (event.target as HTMLInputElement).value;
+    this.pageSettings.query = (event.target as HTMLInputElement).value;
     this.paginate();
   }
 

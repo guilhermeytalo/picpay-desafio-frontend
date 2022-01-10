@@ -30,8 +30,8 @@
         </span>
 
         <mat-paginator
-          [pageSize]="5"
-          [length]="paginatorLength"
+          [length]="pageSettings.length"
+          [pageSize]="pageSettings.limit"
           [showFirstLastButtons]="true"
           [pageSizeOptions]="[5, 10, 25, 100]"
         >
