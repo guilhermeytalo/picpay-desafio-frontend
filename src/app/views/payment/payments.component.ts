@@ -85,6 +85,15 @@ export class PaymentsComponent implements OnInit {
     });
   }
 
+  changeValue($event, { payment }) {
+    const paymentIndex = this.dataSource.data
+      .findIndex(paymentRef => payment.id === paymentRef.id);
+
+    const newPayment = this.dataSource.data[paymentIndex];
+    newPayment.isPayed = $event.checked;
+    this.editDataTable(newPayment);
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
