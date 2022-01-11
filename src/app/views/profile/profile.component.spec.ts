@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { ProfileComponent } from './profile.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -8,7 +9,9 @@ describe('ProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ]
+      providers: [MatSnackBarModule],
+      declarations: [ProfileComponent],
+      imports: [RouterTestingModule, MatSnackBarModule]
     })
     .compileComponents();
   });
