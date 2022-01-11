@@ -12,10 +12,11 @@
         <input
           matInput
           required
+          [pattern]="emailPattern"
           [(ngModel)]="email"
         />
         <mat-error *ngIf="emailControl.invalid">
-          Campo obrigatório.
+          Informe um email válido.
         </mat-error>
       </mat-form-field>
 

@@ -13,8 +13,9 @@ export class LoginComponent implements OnInit {
   public password = '';
   public shouldShowPassword = false;
 
-  emailControl = new FormControl('', [Validators.required, Validators.email]);
-  passwordControl = new FormControl('', [Validators.required, Validators.email]);
+  emailControl = new FormControl('', [Validators.required]);
+  passwordControl = new FormControl('', [Validators.required]);
+  emailPattern = '[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}';
 
   ngOnInit(): void {
     this.loginService.checkLogin();

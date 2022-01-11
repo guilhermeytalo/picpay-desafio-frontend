@@ -17,9 +17,21 @@ export class LoginService {
     private _feedbackService: FeedbackService,
   ) {}
 
+  async fetchUsers() {
+    try {
+      const response = await fetch(this._loginRequestUrl);
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      this._feedbackService.showMessage('Erro ao conectar com o servidor.');
+      return undefined;
+    }
+  }
+
   async login(userLogin) {
-    const response = await fetch(this._loginRequestUrl);
-    const data = await response.json();
+    const data = await this.fetchUsers();
+
+    if (!Boolean(data)) return;
 
     const wasLoginSuccess = this.checkUserCredentials(data, userLogin);
 
