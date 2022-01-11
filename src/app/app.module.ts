@@ -8,6 +8,7 @@ import { LoginComponent } from './views/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -18,6 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
+
 
 
 import { StoreModule } from '@ngrx/store';
@@ -37,6 +39,7 @@ import { FormatterService } from './services/formatter/formatter.service';
 import { TableHeaderComponent } from './components/payments/table-header/table-header.component';
 import { TableFilterComponent } from './components/payments/table-filter/table-filter.component';
 import { FilterDialogComponent } from './components/payments/filter-dialog/filter-dialog.component';
+import { ProfileComponent } from './views/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,7 @@ import { FilterDialogComponent } from './components/payments/filter-dialog/filte
     TableHeaderComponent,
     TableFilterComponent,
     FilterDialogComponent,
+    ProfileComponent,
   ],
   imports: [
     NgbModule,
@@ -61,6 +65,7 @@ import { FilterDialogComponent } from './components/payments/filter-dialog/filte
     StoreModule.forRoot({}),
     // Material Components
     MatIconModule,
+    MatCardModule,
     MatTableModule,
     MatInputModule,
     MatDialogModule,

@@ -4,6 +4,8 @@
     src="../../assets/logo-nav.svg"
   />
   <mat-select>
+    <mat-option (click)="goTo('/payments')" value="two">Pagamentos</mat-option>
+    <mat-option (click)="goTo('/profile')" value="two">Perfil</mat-option>
     <mat-option (click)="logout()" value="two">Sair</mat-option>
   </mat-select>
   <img

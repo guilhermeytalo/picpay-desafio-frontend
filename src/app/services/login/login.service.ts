@@ -49,12 +49,12 @@ export class LoginService {
     this._feedbackService.showMessage('Credenciais incorretas.');
   }
 
-  public checkLogin() {
+  public checkLogin(currentPage = '/payments') {
     const sessionId = this._cookieService.get('user-session-id');
     const isLoggedIn = Boolean(sessionId);
 
     !isLoggedIn && this._router.navigate(['/login']);
-    isLoggedIn && this._router.navigate(['/payments']);
+    isLoggedIn && this._router.navigate([currentPage]);
   }
 
   private checkUserCredentials(data, userLogin) {
