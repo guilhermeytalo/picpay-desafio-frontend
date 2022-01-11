@@ -51,12 +51,13 @@
     width: 100%;
     display: flex;
     position: absolute;
-    justify-content: space-around;
+    justify-content: flex-end;
 
     &-save,
     &-reset,
     &-cancel {
       width: 100px;
+      margin-left: 10px;
       letter-spacing: 1.25px;
     }
 

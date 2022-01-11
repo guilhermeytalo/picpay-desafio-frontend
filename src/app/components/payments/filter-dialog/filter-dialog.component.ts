@@ -35,17 +35,6 @@ export class FilterDialogComponent implements OnInit {
     return Boolean(startFilter) ? startFilter : {};
   }
 
-  onNoClick(): void {
-    const endDate = moment(this.filterObj.endDate).format("YYYY-MM-DD");
-    const startDate = moment(this.filterObj.startDate).format("YYYY-MM-DD");
-
-    this.dialogRef.close({ filterStatus: true, filterObj: {
-      ...this.filterObj,
-        endDate,
-        startDate,
-    }});
-  }
-
   onSaveClick(): void {
     const endDate = moment(this.filterObj.endDate).format("YYYY-MM-DD");
     const startDate = moment(this.filterObj.startDate).format("YYYY-MM-DD");
