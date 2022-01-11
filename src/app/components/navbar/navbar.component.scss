@@ -9,6 +9,21 @@
     width: 137px;
   }
 
+  ::ng-deep {
+    .mat-select, .mat-select-trigger {
+      position: absolute;
+      right: 15px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+    }
+
+    .mat-select-min-line,
+    .mat-select-arrow {
+      display: none;
+    }
+  }
+
   &__avatar {
     width: 45px;
     height: 45px;
