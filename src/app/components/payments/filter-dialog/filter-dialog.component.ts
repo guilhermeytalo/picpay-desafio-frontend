@@ -11,11 +11,11 @@ import * as moment from 'moment';
 export class FilterDialogComponent implements OnInit {
 
   public filterObj = {
-    startDate: '1970-01-01',
+    isPayed: '',
     minValue: 0,
     maxValue: 1000,
+    startDate: '1970-01-01',
     endDate: moment().format("YYYY-MM-DD"),
-    isPayed: '',
   };
 
   constructor(
@@ -45,11 +45,11 @@ export class FilterDialogComponent implements OnInit {
 
   onResetClick(): void {
     this.filterObj = {
+      isPayed: '',
       endDate: '',
+      startDate: '',
       minValue: 0,
       maxValue: 2000,
-      startDate: '',
-      isPayed: '',
     }
 
     this.dialogRef.close({ filterStatus: false, filterObj: {} });
@@ -65,7 +65,7 @@ export class FilterDialogComponent implements OnInit {
     floor: 0,
     ceil: 2000,
     translate: (value: number): string => {
-      return 'R$' + value;
+      return `R$ ${value}`;
     }
   }
 }

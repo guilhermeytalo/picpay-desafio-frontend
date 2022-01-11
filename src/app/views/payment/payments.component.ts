@@ -89,8 +89,7 @@ export class PaymentsComponent implements OnInit {
   setFilter(filter) {
     const { filterObj, filterStatus } = filter;
     const { startDate, endDate, isPayed, minValue, maxValue } = filterObj;
-    console.log(filterObj, filterStatus);
-    
+
     this.filterStatus = filterStatus;
 
     if (!filterStatus) {

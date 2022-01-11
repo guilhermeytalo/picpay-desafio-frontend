@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FilterDialogComponent } from '../filter-dialog/filter-dialog.component';
 
 @Component({
@@ -12,6 +12,10 @@ export class TableFilterComponent implements OnInit {
   constructor(public dialog: MatDialog,) { }
 
   filterStatus = false;
+  emptyfilter = {
+    filterStatus: this.filterStatus,
+    filterObj: {},
+  };
 
   @Output() filterEvent = new EventEmitter<any>();
 
@@ -32,6 +36,12 @@ export class TableFilterComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(filter => {
+      if (!Boolean(filter)) {
+        this.filterStatus = false;
+        this.filterEvent.emit(this.emptyfilter);
+        return;
+      }
+
       this.filterStatus = filter.filterStatus;
       this.filterEvent.emit(filter);
     });
