@@ -30,7 +30,7 @@
                 <tbody *ngIf="(payments?.length || searchedPaymentsByNameValue) else paymentsItemsPlaceholder">
                     <tr *ngFor="let payment of payments">
                         <td>
-                            <span class="text">{{payment.name}} - {{payment.id}}</span>
+                            <span class="text">{{payment.name}}</span>
                             <span class="text text--secondary">@{{payment.username}}</span>
                         </td>
                         <td>

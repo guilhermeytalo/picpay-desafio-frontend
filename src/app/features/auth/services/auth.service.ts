@@ -16,7 +16,7 @@ export class AuthService {
   auth(userAuth: UserAuthRequest): Observable<any> {
     return this.httpClient.post(`${API_URL}/auth/login`, userAuth)
       .pipe(tap(res => {
-        this.setToken(res.body.access_token);
+        this.setToken(res.access_token);
       }));
   }
 
