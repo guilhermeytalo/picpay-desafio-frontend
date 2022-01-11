@@ -19,6 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
 
 
@@ -76,6 +77,7 @@ import { ProfileComponent } from './views/profile/profile.component';
     MatPaginatorModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatMomentDateModule,
   ],
   providers: [
     LoginService,
@@ -85,7 +87,8 @@ import { ProfileComponent } from './views/profile/profile.component';
     FormatterService,
     MatPaginatorIntl,
     MatDatepickerModule,
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true }}
   ],
   bootstrap: [AppComponent]
 })

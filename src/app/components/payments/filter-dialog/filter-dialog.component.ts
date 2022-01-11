@@ -15,7 +15,7 @@ export class FilterDialogComponent implements OnInit {
     isPayed: '',
     minValue: 0,
     maxValue: 1000,
-    startDate: '1970-01-01',
+    startDate: '2000-01-01',
     endDate: moment().format("YYYY-MM-DD"),
   };
 
