@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { OnInit, Component, ViewChild } from '@angular/core';
 import { LoginService } from '../../services/login/login.service';
+import { FeedbackService } from '../../services/feedback/feedback.service';
 import { PaymentsService } from '../../services/payments/payments.service';
 import { FormatterService } from '../../services/formatter/formatter.service';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
@@ -64,6 +65,7 @@ export class PaymentsComponent implements OnInit {
     private loginService: LoginService,
     private paymentsService: PaymentsService,
     public formatterService: FormatterService,
+    private _feedbackService: FeedbackService,
     private _MatPaginatorIntl: MatPaginatorIntl,
   ) {
     this.loginService.checkLogin();
@@ -181,17 +183,26 @@ export class PaymentsComponent implements OnInit {
   }
 
   async removeDataTable(paymentToRemove) {
-    await this.paymentsService.remove(paymentToRemove.id);
-    this.paginate();
+    try {
+      await this.paymentsService.remove(paymentToRemove.id);
+      this._feedbackService.showMessage('Item removido com sucesso.');
+      this.paginate();
+    } catch (err) {}
   }
 
   async addDataTable(payment) {
-    await this.paymentsService.add(payment);
-    this.paginate();
+    try {
+      await this.paymentsService.add(payment);
+      this._feedbackService.showMessage('Item adicionado com sucesso.');
+      this.paginate();
+    } catch (err) {}
   }
 
   async editDataTable(payment) {
-    await this.paymentsService.update(payment);
-    this.paginate();
+    try {
+      await this.paymentsService.update(payment);
+      this._feedbackService.showMessage('Item atualizado com sucesso.');
+      this.paginate();
+    } catch (err) {}
   }
 }

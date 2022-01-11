@@ -32,6 +32,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { LoginService } from './services/login/login.service';
 import { PaymentsService } from './services/payments/payments.service';
+import { FeedbackService } from './services/feedback/feedback.service';
 import { FormatterService } from './services/formatter/formatter.service';
 import { TableHeaderComponent } from './components/payments/table-header/table-header.component';
 import { TableFilterComponent } from './components/payments/table-filter/table-filter.component';
@@ -74,6 +75,7 @@ import { FilterDialogComponent } from './components/payments/filter-dialog/filte
   providers: [
     LoginService,
     CookieService,
+    FeedbackService,
     PaymentsService,
     FormatterService,
     MatPaginatorIntl,

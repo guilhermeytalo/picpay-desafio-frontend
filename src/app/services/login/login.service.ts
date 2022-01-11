@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Md5 } from 'ts-md5/dist/md5';
+import { FeedbackService } from '../feedback/feedback.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class LoginService {
 
   constructor(
     private _router: Router,
-    private _snackBar: MatSnackBar,
     private _cookieService: CookieService,
+    private _feedbackService: FeedbackService,
   ) {}
 
   async login(userLogin) {
@@ -46,9 +46,7 @@ export class LoginService {
   }
 
   public loginErrorHandler() {
-    this._snackBar.open('Credenciais incorretas.', 'ocultar', {
-      duration: 2500,
-    });
+    this._feedbackService.showMessage('Credenciais incorretas.');
   }
 
   public checkLogin() {
