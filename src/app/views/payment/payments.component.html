@@ -23,13 +23,10 @@
             <mat-icon>search</mat-icon>
           </div>
 
-          <div class="payments__filter-btn">
-            <mat-icon>tune</mat-icon>
-            Filtrar
-          </div>
+          <table-filter (filterEvent)="setFilter($event)"></table-filter>
         </span>
-
         <mat-paginator
+          *ngIf="!filterStatus"
           [length]="pageSettings.length"
           [pageSize]="pageSettings.limit"
           [showFirstLastButtons]="true"

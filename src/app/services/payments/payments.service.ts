@@ -52,16 +52,18 @@ export class PaymentsService {
     return data;
   }
 
-  async getPayments(settings) {
+  async getPayments(settings, customQuery: any | object = false) {
     const { page, limit, query, sort, order } = settings;
 
-    const params = new URLSearchParams({
+    const defaultParams = new URLSearchParams({
       _page: page + 1,
       _limit: limit,
       _sort: sort,
       _order: order,
       q: query,
-    }); 
+    });
+
+    const params = customQuery ? new URLSearchParams(customQuery) : defaultParams;
 
     const response = await fetch(`${this._paymentsUrl}/?${params}`, {
       headers: this._headers,

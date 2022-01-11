@@ -1,0 +1,41 @@
+.table-filter {
+  display: flex;
+  align-items: center;
+
+  &__reset {
+    margin-left: 35px;
+    cursor: pointer;
+    color: #007DFE;
+    text-decoration: underline;
+  }
+
+  &__button {
+    width: 72px;
+    height: 28px;
+    display: flex;
+    cursor: pointer;
+    font-weight: 600;
+    color: #2D3540;
+    margin-left: 10px;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    background-color: #E6ECF0;
+    
+    &:hover {
+      color: #E6ECF0;
+      background-color: #007DFE;
+    }
+    
+    .mat-icon {
+      padding: 0;
+      font-size: 18px;
+      margin: 6px 0 0 0;
+    }
+
+    &--active{
+      color: #E6ECF0;
+      background-color: #007DFE;
+    }
+  }
+}

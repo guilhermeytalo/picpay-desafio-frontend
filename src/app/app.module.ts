@@ -11,12 +11,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
+
 
 import { StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -27,10 +29,13 @@ import { PaymentsAddComponent } from './components/payments/payments-add/payment
 import { PaymentsRemoveComponent } from './components/payments/payments-remove/payments-remove.component';
 
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { LoginService } from './services/login/login.service';
 import { PaymentsService } from './services/payments/payments.service';
 import { FormatterService } from './services/formatter/formatter.service';
 import { TableHeaderComponent } from './components/payments/table-header/table-header.component';
+import { TableFilterComponent } from './components/payments/table-filter/table-filter.component';
+import { FilterDialogComponent } from './components/payments/filter-dialog/filter-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,11 +46,14 @@ import { TableHeaderComponent } from './components/payments/table-header/table-h
     PaymentsAddComponent,
     PaymentsRemoveComponent,
     TableHeaderComponent,
+    TableFilterComponent,
+    FilterDialogComponent,
   ],
   imports: [
     NgbModule,
     FormsModule,
     BrowserModule,
+    NgxSliderModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -55,6 +63,7 @@ import { TableHeaderComponent } from './components/payments/table-header/table-h
     MatTableModule,
     MatInputModule,
     MatDialogModule,
+    MatSelectModule,
     MatButtonModule,
     MatSnackBarModule,
     MatCheckboxModule,

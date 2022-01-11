@@ -1,0 +1,90 @@
+<div class="filter-dialog">
+  <span class="filter-dialog__title">
+    Filtrar por...
+  </span>
+
+  <div class="filter-dialog__filter">
+    <span class="filter-dialog__subtitle">
+      Status do Pagamento
+    </span>
+
+    <div class="filter-dialog__filter-paid">
+      <mat-form-field appearance="outline">
+        <mat-label>Status do Pagamento</mat-label>
+        <mat-select [(ngModel)]="filterObj.isPayed">
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <span class="filter-dialog__subtitle">
+      Intervalo de valor
+    </span>
+
+    <div class="filter-dialog__filter-value">
+      <ngx-slider [(value)]="filterObj.minValue" [(highValue)]="filterObj.maxValue" [options]="options"></ngx-slider>
+    </div>
+
+    <span class="filter-dialog__subtitle">
+      Intervalo de datas
+    </span>
+
+    <div class="filter-dialog__filter-date">
+      <mat-form-field appearance="outline" (click)="startPicker.open()">
+        <mat-label> Data Inicial </mat-label>
+        <input
+          #date
+          matInput
+          [(ngModel)]="filterObj.startDate"
+          [matDatepicker]="startPicker"
+        >
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" (click)="endPicker.open()">
+        <mat-label> Data Final </mat-label>
+        <input
+          #date
+          matInput
+          [(ngModel)]="filterObj.endDate"
+          [matDatepicker]="endPicker"
+        >
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="filter-dialog__actions">
+    <button
+      color="primary"
+      mat-flat-button
+      (click)="onNoClick()"
+      class="filter-dialog__actions-cancel"
+    >
+      CANCELAR
+    </button>
+
+    <button
+      color="primary"
+      mat-flat-button
+      (click)="onResetClick()"
+      class="filter-dialog__actions-reset"
+    >
+      LIMPAR
+    </button>
+
+    <button
+      color="primary"
+      mat-flat-button
+      (click)="onSaveClick()"
+      class="filter-dialog__actions-save"
+    >
+      SALVAR
+    </button>
+  </div>
+</div>
+

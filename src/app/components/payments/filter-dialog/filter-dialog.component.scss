@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.filter-dialog {
+  height: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  font-family: Montserrat;
+
+  &__title {
+    font-size: 18px;
+    color: #373737;
+    font-weight: bold;
+    line-height: 22px;
+    font-style: normal;
+    margin-bottom: 35px;
+  }
+
+  &__subtitle {
+    padding-top: 10px;
+    color: #69788C;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__filter {
+    height: calc(100% - 150px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    &-paid {
+      .mat-form-field {
+        width: 100%;
+      }
+    }
+
+    &-date {
+      display: flex;
+      justify-content: space-around;
+
+      .mat-form-field {
+        width: 45%;
+      }
+    }
+  }
+
+  &__actions {
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+
+    &-save,
+    &-reset,
+    &-cancel {
+      width: 100px;
+      letter-spacing: 1.25px;
+    }
+
+    &-save {
+      background: #007DFE;
+    }
+
+    &-cancel {
+      color: #333333;
+      margin-right: 30px;
+      background: #F5F5F5;
+    }
+
+    &-reset {
+      background: #7cbcf0;
+    }
+  }
+}
+
+::ng-deep {
+  .ngx-slider-pointer {
+    transform: scale(0.7);
+  }
+
+  .ngx-slider-span {
+    font-size: 14px !important;
+  }
+
+  .ngx-slider .ngx-slider-pointer, .ngx-slider .ngx-slider-selection {
+    background-color: #007DFE !important;
+  }
+
+  .ngx-slider-active:after {
+    background-color: #007DFE !important;
+  }
+}
+

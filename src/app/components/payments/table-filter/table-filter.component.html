@@ -1,0 +1,15 @@
+<div class="table-filter">
+  <div (click)="openFilterDialog()" [ngClass]="getButtonClass()">
+    <mat-icon>tune</mat-icon>
+    Filtrar
+  </div>
+  
+  <div
+    *ngIf="filterStatus"
+    (click)="resetFilter()"
+    class="table-filter__reset"
+  >
+    Limpar Filtros
+  </div>
+</div>
+

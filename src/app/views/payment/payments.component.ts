@@ -19,7 +19,6 @@ export interface PaymentData {
   username: string,
   value: number,
 }
-
 @Component({
   selector: 'app-payment',
   templateUrl: './payments.component.html',
@@ -40,7 +39,8 @@ export class PaymentsComponent implements OnInit {
     limit: 5,
   };
 
-  private _openDialogSize = { width: '772px', height: '395px' };
+  public filterStatus = false;
+  private _addDialogSize = { width: '772px', height: '395px' };
   private _removeDialogSize = { width: '405px', height: '325px' };
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -76,17 +76,42 @@ export class PaymentsComponent implements OnInit {
       limit = this.pageSettings.limit,
       query = this.pageSettings.query,
       order = this.pageSettings.order,
+      customQuery = false,
     } = settings;
 
-
     const pageParams = { page, limit, query, sort, order };
-    const payments = await this.paymentsService.getPayments(pageParams);
+    const payments = await this.paymentsService.getPayments(pageParams, customQuery);
 
     this.pageSettings.length = Number(payments.total);
     this.dataSource = new MatTableDataSource(payments.data);
   }
 
+  setFilter(filter) {
+    const { filterObj, filterStatus } = filter;
+    const { startDate, endDate, isPayed, minValue, maxValue } = filterObj;
+    console.log(filterObj, filterStatus);
+    
+    this.filterStatus = filterStatus;
+
+    if (!filterStatus) {
+      this.paginate();
+      return;
+    }
+
+    const customQuery = { 
+      date_lte: endDate,
+      date_gte: startDate,
+      value_gte: minValue,
+      value_lte: maxValue,
+      isPayed_like: String(isPayed),
+    }
+
+    this.paginate({ customQuery });
+  }
+
   changeOrder(column) {
+    if (this.filterStatus) return;
+
     const currentOrder = this.orderByColumns[column];
     const newOrder = currentOrder === 1
       ? -1
@@ -111,7 +136,7 @@ export class PaymentsComponent implements OnInit {
 
     const dialogRef = this.dialog.open(PaymentsAddComponent, {
       data,
-      ...this._openDialogSize,
+      ...this._addDialogSize,
     });
 
     dialogRef.afterClosed().subscribe(async result => {
