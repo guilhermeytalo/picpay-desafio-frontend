@@ -84,7 +84,7 @@ export class PaymentsComponent implements OnInit {
 
     const pageParams = { page, limit, query, sort, order };
     const payments = await this.paymentsService.getPayments(pageParams, customQuery);
-    
+
     this.customQuery = customQuery;
     this.pageSettings.length = Number(payments.total);
     this.dataSource = new MatTableDataSource(payments.data);

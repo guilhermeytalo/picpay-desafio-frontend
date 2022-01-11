@@ -23,6 +23,7 @@ export class PaymentsAddComponent implements OnInit {
     name: '',
     title: '',
     value: '',
+    image: 'https://www.ecp.org.br/wp-content/uploads/2017/12/default-avatar-1-300x300.png',
   };
 
   constructor(
