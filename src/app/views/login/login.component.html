@@ -1,54 +1,59 @@
 <div class="login">
   <div class="login__form">
-    <div class="login__form-content">
-      <img src='../../assets/login-logo.svg'>
+    <form [formGroup]="loginForm" novalidate>
+      <div class="login__form-content">
+        <img src='../../assets/login-logo.svg'>
 
-      <p>Bem vindo de volta</p>
+        <p>Bem vindo de volta</p>
 
-      <mat-form-field appearance="outline">
-        <mat-label>
-          Email
-        </mat-label>
-        <input
-          matInput
-          required
-          [pattern]="emailPattern"
-          [(ngModel)]="email"
-        />
-        <mat-error *ngIf="emailControl.invalid">
-          Informe um email válido.
-        </mat-error>
-      </mat-form-field>
+        
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Email
+            </mat-label>
+            <input
+              matInput
+              required
+              formControlName="email"
+              [pattern]="emailPattern"
+              [(ngModel)]="email"
+            />
+            <mat-error>
+              Informe um email válido.
+            </mat-error>
+          </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Senha</mat-label>
-        <input
-          matInput
-          [type]="shouldShowPassword ? 'text' : 'password'"
-          name="password"
-          [(ngModel)]="password"
-          required
-        />
-        <mat-icon
-          matSuffix
-          (click)="togglePassword()"
-        >
-          {{ shouldShowPassword ? 'visibility' : 'visibility_off' }}
-        </mat-icon>
-        <mat-error *ngIf="passwordControl.invalid">
-          Campo obrigátório.
-        </mat-error>
-      </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input
+              matInput
+              name="password"
+              [type]="shouldShowPassword ? 'text' : 'password'"
+              formControlName="password"
+              [(ngModel)]="password"
+              required
+            />
+            <mat-icon
+              matSuffix
+              (click)="togglePassword()"
+            >
+              {{ shouldShowPassword ? 'visibility' : 'visibility_off' }}
+            </mat-icon>
+            <mat-error>
+              Campo obrigátório.
+            </mat-error>
+          </mat-form-field>
 
-      <button
-        mat-flat-button
-        color="primary"
-        (click)="loginHandler()"
-        [disabled]="!password.length || !email.length"
-      >
-        ENTRAR
-      </button>
-    </div>
+          <button
+            mat-flat-button
+            color="primary"
+            [disabled]="!loginForm.valid"
+            (click)="loginHandler()"
+          >
+            ENTRAR
+          </button>
+      </div>
+    </form>
   </div>
 
   <div class="login__picture">
