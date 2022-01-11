@@ -90,7 +90,7 @@ export class PaymentsComponent implements OnInit {
     this.dataSource = new MatTableDataSource(payments.data);
   }
 
-  setFilter(filter) {
+  async setFilter(filter) {
     const { filterObj, filterStatus } = filter;
     const { startDate, endDate, isPayed, minValue, maxValue } = filterObj;
 
@@ -110,7 +110,8 @@ export class PaymentsComponent implements OnInit {
       isPayed_like: String(isPayed),
     }
 
-    this.paginate({ customQuery });
+    await this.paginate({ customQuery });
+    this.paginator.firstPage();
   }
 
   changeOrder(column) {
