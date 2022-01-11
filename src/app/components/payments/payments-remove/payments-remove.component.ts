@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PaymentsService } from '../../../services/payments/payments.service';
 import { FormatterService } from '../../../services/formatter/formatter.service';
 
 @Component({
@@ -10,15 +9,28 @@ import { FormatterService } from '../../../services/formatter/formatter.service'
   styleUrls: ['./payments-remove.component.scss']
 })
 export class PaymentsRemoveComponent implements OnInit {
-
   constructor(
     public dialogRef: MatDialogRef<PaymentsRemoveComponent>,
-    private paymentsService: PaymentsService,
     public formatterService: FormatterService,
     @Inject(MAT_DIALOG_DATA) public data: { payment }
   ) {}
 
   ngOnInit(): void {}
+
+  get name() {
+    const { payment } = this.data;
+    return Boolean(payment) ? payment.name : '';
+  }
+
+  get date() {
+    const { payment } = this.data;
+    return Boolean(payment) ? payment.date : '';
+  }
+
+  get value() {
+    const { payment } = this.data;
+    return Boolean(payment) ? payment.value : '';
+  }
 
   onNoClick(): void {
     this.dialogRef.close(false);

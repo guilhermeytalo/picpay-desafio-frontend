@@ -5,13 +5,13 @@
 
   <div class="remove-dialog__data">
     <span>
-      Usuário: {{ data.payment.name }}
+      Usuário: {{ name }}
     </span>
     <span>
-      Data: {{ formatterService.defaultDate(data.payment.date) }}
+      Data: {{ formatterService.defaultDate(date) }}
     </span>
     <span>
-      Valor: {{ formatterService.money(data.payment.value) }}
+      Valor: {{ formatterService.money(value) }}
     </span>
   </div>
 
