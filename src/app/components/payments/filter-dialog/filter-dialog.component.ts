@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider'
 import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import * as moment from 'moment';
 
 @Component({
@@ -20,13 +21,29 @@ export class FilterDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<FilterDialogComponent>,
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: { startFilter }
+  ) {}
 
   ngOnInit(): void {
+    if (Object.keys(this.startFilter).length) {
+      this.filterObj = this.startFilter
+    }
+  }
+
+  get startFilter() {
+    const { startFilter } = this.data;
+    return Boolean(startFilter) ? startFilter : {};
   }
 
   onNoClick(): void {
-    this.dialogRef.close({ filterStatus: false, filterObj: {} });
+    const endDate = moment(this.filterObj.endDate).format("YYYY-MM-DD");
+    const startDate = moment(this.filterObj.startDate).format("YYYY-MM-DD");
+
+    this.dialogRef.close({ filterStatus: true, filterObj: {
+      ...this.filterObj,
+        endDate,
+        startDate,
+    }});
   }
 
   onSaveClick(): void {

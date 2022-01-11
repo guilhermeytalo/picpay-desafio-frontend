@@ -9,13 +9,17 @@ import { FilterDialogComponent } from '../filter-dialog/filter-dialog.component'
 })
 export class TableFilterComponent implements OnInit {
   private _filterDialogSize = { width: '490px', height: '650px' };
-  constructor(public dialog: MatDialog,) { }
+  constructor(
+    public dialog: MatDialog,
+  ) { }
 
   filterStatus = false;
   emptyfilter = {
     filterStatus: this.filterStatus,
     filterObj: {},
   };
+
+  startFilter = {}
 
   @Output() filterEvent = new EventEmitter<any>();
 
@@ -33,6 +37,9 @@ export class TableFilterComponent implements OnInit {
   async openFilterDialog(): Promise<void> {
     const dialogRef = this.dialog.open(FilterDialogComponent, {
       ...this._filterDialogSize,
+      data: {
+        startFilter: this.startFilter,
+      }
     });
 
     dialogRef.afterClosed().subscribe(filter => {
@@ -42,6 +49,7 @@ export class TableFilterComponent implements OnInit {
         return;
       }
 
+      this.startFilter = filter.filterObj;
       this.filterStatus = filter.filterStatus;
       this.filterEvent.emit(filter);
     });
