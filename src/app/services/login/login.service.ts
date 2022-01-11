@@ -10,7 +10,6 @@ import { Md5 } from 'ts-md5/dist/md5';
 
 export class LoginService {
   private _loginRequestUrl = 'http://localhost:3000/account';
-  private _user: any = {};
 
   constructor(
     private _router: Router,
@@ -29,7 +28,6 @@ export class LoginService {
       return;
     };
 
-    this._user = userLogin;
     const sessionId = this.hasher(`${userLogin.email}${userLogin.password}`);
     this._cookieService.set('user-session-id', String(sessionId));
 
