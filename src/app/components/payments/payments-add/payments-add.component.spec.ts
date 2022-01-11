@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PaymentsAddComponent } from './payments-add.component';
-import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 describe('PaymentsAddComponent', () => {
   let component: PaymentsAddComponent;
@@ -9,8 +10,8 @@ describe('PaymentsAddComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatDialogModule],
-      declarations: [ PaymentsAddComponent ],
-      providers: [{provide : MatDialogRef, useValue : {}}]
+      declarations: [ PaymentsAddComponent, ],
+      providers: [{provide : MatDialogRef, useValue : {}}, {provide : MAT_DIALOG_DATA, useValue: {}}]
     })
     .compileComponents();
   });

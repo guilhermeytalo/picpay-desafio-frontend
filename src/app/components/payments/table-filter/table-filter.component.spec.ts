@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TableFilterComponent } from './table-filter.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 describe('TableFilterComponent', () => {
   let component: TableFilterComponent;
@@ -8,7 +8,8 @@ describe('TableFilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableFilterComponent ]
+      declarations: [ TableFilterComponent ],
+      imports: [MatDialogModule]
     })
     .compileComponents();
   });

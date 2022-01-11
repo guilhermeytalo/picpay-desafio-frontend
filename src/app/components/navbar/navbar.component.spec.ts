@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AppRoutingModule } from '../../app-routing.module'
 import { NavbarComponent } from './navbar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -8,7 +9,8 @@ describe('NavbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ]
+      declarations: [ NavbarComponent ],
+      imports: [AppRoutingModule, MatSnackBarModule],
     })
     .compileComponents();
   });

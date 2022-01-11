@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { FilterDialogComponent } from './filter-dialog.component';
+import { MatDialogRef } from '@angular/material/dialog';
 
 describe('FilterDialogComponent', () => {
   let component: FilterDialogComponent;
@@ -8,7 +9,9 @@ describe('FilterDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FilterDialogComponent ]
+      declarations: [ FilterDialogComponent ],
+      imports: [ MatDialogModule],
+      providers: [{provide : MatDialogRef, useValue : {}} ]
     })
     .compileComponents();
   });

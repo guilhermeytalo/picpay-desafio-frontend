@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PaymentsRemoveComponent } from './payments-remove.component';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 describe('PaymentsRemoveComponent', () => {
   let component: PaymentsRemoveComponent;
@@ -10,7 +11,7 @@ describe('PaymentsRemoveComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ PaymentsRemoveComponent ],
       imports: [MatDialogModule],
-      providers: [{provide : MatDialogRef, useValue : {}}]
+      providers: [{provide : MatDialogRef, useValue : {}}, {provide : MAT_DIALOG_DATA, useValue: {}}]
     })
     .compileComponents();
   });
