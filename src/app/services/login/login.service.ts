@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class LoginService {
   private _loginRequestUrl = 'http://localhost:3000/account';
+  private _user: any = {};
 
   constructor(
     private _router: Router,
@@ -19,20 +21,29 @@ export class LoginService {
   async login(userLogin) {
     const response = await fetch(this._loginRequestUrl);
     const data = await response.json();
+
     const wasLoginSuccess = this.checkUserCredentials(data, userLogin);
-    this._cookieService.set('is_logged_in', JSON.stringify(wasLoginSuccess));
-    
+
     if (!wasLoginSuccess) {
       this.loginErrorHandler();
       return;
     };
 
+    this._user = userLogin;
+    const sessionId = this.hasher(`${userLogin.email}${userLogin.password}`);
+    this._cookieService.set('user-session-id', String(sessionId));
+
     this._router.navigate(['/payments']);
     return wasLoginSuccess;
   }
 
+  hasher(value) {
+    const md5 = new Md5();
+    return md5.appendStr(value).end();
+  }
+
   async logout() {
-    this._cookieService.set('is_logged_in', 'false');
+    this._cookieService.delete('user-session-id');
     this._router.navigate(['/login']);
   }
 
@@ -43,8 +54,11 @@ export class LoginService {
   }
 
   public checkLogin() {
-    const isLoggedIn = JSON.parse(this._cookieService.get('is_logged_in'));
+    const sessionId = this._cookieService.get('user-session-id');
+    const isLoggedIn = Boolean(sessionId);
+
     !isLoggedIn && this._router.navigate(['/login']);
+    isLoggedIn && this._router.navigate(['/payments']);
   }
 
   private checkUserCredentials(data, userLogin) {

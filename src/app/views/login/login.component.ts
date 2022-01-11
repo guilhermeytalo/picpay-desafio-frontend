@@ -9,14 +9,16 @@ import { LoginService } from '../../services/login/login.service';
 })
 
 export class LoginComponent implements OnInit {
-  public email = 'usuario@gmail.com';
-  public password = 'usuario';
+  public email = '';
+  public password = '';
   public shouldShowPassword = false;
 
   emailControl = new FormControl('', [Validators.required, Validators.email]);
   passwordControl = new FormControl('', [Validators.required, Validators.email]);
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loginService.checkLogin();
+  }
 
   togglePassword(): void {
     this.shouldShowPassword = !this.shouldShowPassword;
