@@ -26,7 +26,6 @@
           <table-filter (filterEvent)="setFilter($event)"></table-filter>
         </span>
         <mat-paginator
-          [hidden]="filterStatus"
           [length]="pageSettings.length"
           [pageSize]="pageSettings.limit"
           [showFirstLastButtons]="true"

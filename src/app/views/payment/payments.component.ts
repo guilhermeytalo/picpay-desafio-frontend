@@ -40,6 +40,7 @@ export class PaymentsComponent implements OnInit {
   };
 
   public filterStatus = false;
+  public customQuery = false;
   private _addDialogSize = { width: '772px', height: '395px' };
   private _removeDialogSize = { width: '405px', height: '325px' };
 
@@ -76,12 +77,13 @@ export class PaymentsComponent implements OnInit {
       limit = this.pageSettings.limit,
       query = this.pageSettings.query,
       order = this.pageSettings.order,
-      customQuery = false,
+      customQuery = this.customQuery,
     } = settings;
 
     const pageParams = { page, limit, query, sort, order };
     const payments = await this.paymentsService.getPayments(pageParams, customQuery);
-
+    
+    this.customQuery = customQuery;
     this.pageSettings.length = Number(payments.total);
     this.dataSource = new MatTableDataSource(payments.data);
   }
@@ -93,6 +95,7 @@ export class PaymentsComponent implements OnInit {
     this.filterStatus = filterStatus;
 
     if (!filterStatus) {
+      this.customQuery = false;
       this.paginate();
       return;
     }
@@ -109,8 +112,6 @@ export class PaymentsComponent implements OnInit {
   }
 
   changeOrder(column) {
-    if (this.filterStatus) return;
-
     const currentOrder = this.orderByColumns[column];
     const newOrder = currentOrder === 1
       ? -1

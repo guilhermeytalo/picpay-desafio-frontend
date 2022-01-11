@@ -65,7 +65,7 @@ export class PaymentsService {
 
     const params = customQuery ? new URLSearchParams(customQuery) : defaultParams;
 
-    const response = await fetch(`${this._paymentsUrl}/?${params}`, {
+    const response = await fetch(`${this._paymentsUrl}/?${defaultParams}&${new URLSearchParams(customQuery)}`, {
       headers: this._headers,
     });
 
