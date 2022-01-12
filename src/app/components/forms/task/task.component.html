@@ -34,7 +34,7 @@
             </div>
             <div mat-dialog-actions class="align-right">
                 <button mat-button [mat-dialog-close]="" cdkFocusInitial>CANCELAR</button>
-                <button mat-button class="primary-color" type="submit">ADICIONAR</button>
+                <button mat-button class="primary-color" type="submit">{{formType === 'edit' ? 'EDITAR' : 'ADICIONAR'}}</button>
             </div>
         </form>
     </div>

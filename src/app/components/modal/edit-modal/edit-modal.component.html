@@ -1,3 +1,6 @@
 <section>
-    {{data.task.name}}
-</section>
+    <p class="dialog-title">Editar pagamento</p>
+    <div mat-dialog-content class="dialog-content">
+      <app-task [task]="data.task" [formType]="'edit'" [dialogRef]="dialogRef"></app-task>
+    </div>
+  </section>
