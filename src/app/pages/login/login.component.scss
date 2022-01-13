@@ -1,10 +1,9 @@
 @import "../../../assets/style/size-variables";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-form {
+.login-container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
 }
 
 #login-form {
@@ -14,13 +13,12 @@ form {
     padding: 0 40px;
 }
 
-#image{
-    width:70vw; 
-    height: 100vh;
+.flex-start {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: center;
+    height: 100vh;
 }
 
 .title-txt {
@@ -33,38 +31,11 @@ form {
     margin-top: $size18px;
 }
 
-.flex-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+#image{
+    width:70vw; 
     height: 100vh;
-}
-
-.flex-start {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    height: 100vh;
-}
-
-.form-field {
-    width: 100%;
-}
-
-form {
-    width: 100%;
-}
-
-.primary-color {
-    background-color: #007DFE;
-    color: #ffffff;
-}
-
-.login-container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    
+    justify-content: center;
 }

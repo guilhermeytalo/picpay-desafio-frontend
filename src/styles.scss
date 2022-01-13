@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@500&display=swap');
+
+
 * {
   box-sizing: border-box;
 }
@@ -11,3 +14,9 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.primary-color {
+  background-color: #007DFE;
+  color: #ffffff;
+}

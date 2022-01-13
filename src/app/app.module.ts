@@ -19,10 +19,11 @@ import { TaskComponent } from './components/forms/task/task.component';
 import { CustomTableCellComponent } from './components/custom-table-cell/custom-table-cell.component';
 import { DeleteModalComponent } from './components/modal/delete-modal/delete-modal.component';
 import { EditModalComponent } from './components/modal/edit-modal/edit-modal.component';
+import { LoginFormComponent } from './components/forms/login-form/login-form.component';
 
 @NgModule({
   declarations: [	
-    AppComponent, DashboardComponent, ProfileComponent, LoginComponent, NavbarComponent, TableComponent, AddModalComponent, TaskComponent, CustomTableCellComponent, DeleteModalComponent, EditModalComponent,
+    AppComponent, DashboardComponent, ProfileComponent, LoginComponent, NavbarComponent, TableComponent, AddModalComponent, TaskComponent, CustomTableCellComponent, DeleteModalComponent, EditModalComponent, LoginFormComponent,
    ],
   imports: [
     AppRoutingModule,

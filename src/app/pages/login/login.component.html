@@ -3,35 +3,10 @@
         <div class="flex-start">
             <img src="../../assets/images/logo.png">
             <p class="title-txt mg-18">Bem vindo de volta</p>
-            <form [formGroup]="form" *ngIf="!isLoggedIn" name="form" (submit)="onSubmit()" #f="ngForm"
-                novalidate>
-                <mat-form-field class="form-field" appearance="outline">
-                    <mat-label>E-mail</mat-label>
-                    <input matInput formControlName="email" required>
-                    <mat-error *ngIf="form.controls.email.touched && form.controls.email.invalid">
-                        <span *ngIf="form.controls.email.errors.required">Esse é um campo obrigatório.</span>
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="form-field" appearance="fill">
-                    <mat-label>Enter your password</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                </mat-form-field>
-                <div class="form-field">
-                    <button mat-button class="form-field primary-color" type="submit">
-                        Entrar
-                    </button>
-                    <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
-                        Erro ao fazer login: {{ errorMessage }}
-                    </div>
-                </div>
-            </form>
+            <app-login-form></app-login-form>
         </div>
     </div>
-    <div id="image" class="col-8">
+    <div id="image">
         <img src="../assets/images/man.png">
     </div>
 </div>
