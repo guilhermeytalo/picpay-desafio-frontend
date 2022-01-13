@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { AddModalComponent } from '../../components/modal/add-modal/add-modal.component';
@@ -8,11 +8,8 @@ import { AddModalComponent } from '../../components/modal/add-modal/add-modal.co
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
-  constructor(public dialog: MatDialog) { }
-
-  ngOnInit(): void {
-  }
+export class DashboardComponent {
+  constructor(public dialog: MatDialog) {}
 
   openAddDialog(): void {
     const dialogRef = this.dialog.open(AddModalComponent, {

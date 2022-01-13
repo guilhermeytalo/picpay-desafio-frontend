@@ -16,10 +16,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [ 
+    FormsModule,
     ReactiveFormsModule,
     MatButtonModule, 
     MatIconModule, 
@@ -39,6 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCheckboxModule
   ],
   exports: [
+    FormsModule,
     ReactiveFormsModule,
     MatButtonModule, 
     MatIconModule, 

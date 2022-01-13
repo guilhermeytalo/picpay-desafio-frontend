@@ -1,0 +1,70 @@
+@import "../../../assets/style/size-variables";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#login-form {
+    background-color: #F2F2F2;
+    height: 100vh;
+    width: 33vw;
+    padding: 0 40px;
+}
+
+#image{
+    width:70vw; 
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-txt {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    color: #333333;
+} 
+
+.mg-18 {
+    margin-top: $size18px;
+}
+
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.flex-start {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100vh;
+}
+
+.form-field {
+    width: 100%;
+}
+
+form {
+    width: 100%;
+}
+
+.primary-color {
+    background-color: #007DFE;
+    color: #ffffff;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
