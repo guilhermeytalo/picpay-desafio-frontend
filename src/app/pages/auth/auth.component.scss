@@ -1,0 +1,30 @@
+.content {
+  width: 100vw;
+  height: 100vh;
+
+  & .columns {
+    width: 100vw;
+    height: 100vh;
+
+    &.first {
+      background-color: #f2f2f2;
+      padding: 10%;
+    }
+
+    &.second {
+      background-color: white;
+    }
+  }
+}
+
+.form-input {
+  width: 326px;
+  height: 54px;
+  margin-top: 30px;
+}
+
+.btn-primary {
+    margin-top: 30px;
+    width: 326px;
+    display: block;
+}
