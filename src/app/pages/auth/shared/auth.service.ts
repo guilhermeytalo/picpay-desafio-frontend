@@ -10,7 +10,7 @@ import { tap } from "rxjs/operators";
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  getAccount(): Observable<any> {
-    return this.http.get(`http://localhost:3000/account`);
+  getAccount(): Observable<Auth> {
+    return this.http.get<Auth>(`http://localhost:3000/account`);
   }
 }

@@ -10,23 +10,30 @@
 
       <h3>Bem vindo de volta!</h3>
 
-      <form>
+      <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
         <div fxLayout="row" fxLayoutAlign="center center">
           <mat-form-field class="form-input" appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" />
+            <input type="email" matInput placeholder="Email" formControlName="email" />
           </mat-form-field>
         </div>
+        
         <div fxLayout="row">
           <mat-form-field class="form-input" appearance="outline">
             <mat-label>Senha</mat-label>
-            <input matInput placeholder="Senha" />
+            <input matInput placeholder="Senha"  [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
           </mat-form-field>
+
+        </div>
+        <div fxLayout="row">
+          <button type="submit" class="btn-primary" mat-button color="primary">
+            ENTRAR
+          </button>
         </div>
       </form>
-      <div fxLayout="row">
-        <button class="btn-primary" mat-button color="primary">ENTRAR</button>
-      </div>
     </div>
 
     <div
