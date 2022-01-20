@@ -11,8 +11,10 @@ import { HttpClientModule } from "@angular/common/http";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { LoginComponent } from './components/form/login/login.component';
+import { HomeComponent } from './pages/home/home/home.component';
 @NgModule({
-  declarations: [AppComponent, AuthComponent],
+  declarations: [AppComponent, AuthComponent, LoginComponent, HomeComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
