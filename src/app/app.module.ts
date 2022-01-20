@@ -13,8 +13,9 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { LoginComponent } from './components/form/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 @NgModule({
-  declarations: [AppComponent, AuthComponent, LoginComponent, HomeComponent],
+  declarations: [AppComponent, AuthComponent, LoginComponent, HomeComponent, NavBarComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
