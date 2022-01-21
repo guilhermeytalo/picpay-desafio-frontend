@@ -20,7 +20,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
 }
 
 @NgModule({
-  exports: [ TranslocoModule ],
+  exports: [TranslocoModule],
   providers: [
     {
       provide: TRANSLOCO_CONFIG,
@@ -28,7 +28,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
         availableLangs: ['pt', 'en'],
         defaultLang: 'pt',
         reRenderOnLangChange: true,
-        prodMode: environment.production,
+        prodMode: environment.production
       })
     },
     { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader }
