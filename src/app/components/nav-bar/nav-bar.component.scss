@@ -1,10 +1,13 @@
+@import "../../share/style/colors.scss";
+
 .spacer {
   flex: 1 1 auto;
 }
 
 .color {
-    background-color: #002D69;
+    background-color: $blue;
 }
+
 .circle {
   border-radius: 50%;
   width: 45px;
