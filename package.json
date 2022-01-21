@@ -8,8 +8,8 @@
     "test": "ng test",
     "e2e": "ng e2e",
     "api": "json-server --watch db.json",
-    "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,html,css,scss}' --quiet --fix",
-    "format": "npx prettier 'src/**/*.{ts,html,scss}' --write"
+    "lint": "npx eslint \"**/*.{ts,html, scss}\" --quiet --fix",
+    "format": "npx prettier \"**/*.{ts,html, scss}\" --write"
   },
   "private": true,
   "dependencies": {
