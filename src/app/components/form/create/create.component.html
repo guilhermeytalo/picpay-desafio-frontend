@@ -1,0 +1,63 @@
+<h1 mat-dialog-title *ngIf="!isEdit">Adicionar Pagamento</h1>
+<h1 mat-dialog-title *ngIf="isEdit">Editar Pagamento</h1>
+
+<form [formGroup]="taskForm" (ngSubmit)="createTask()">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-form-field class="form-input" appearance="outline" fxFlex="45">
+      <input
+        matInput
+        type="text"
+        placeholder="Usuário"
+        formControlName="name"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-input" appearance="outline" fxFlex="45">
+      <input matInput placeholder="Valor" formControlName="value" required />
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-form-field class="form-input" appearance="outline" fxFlex="45">
+      <input
+        matInput
+        type="date"
+        placeholder="Data"
+        formControlName="date"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-input" appearance="outline" fxFlex="45">
+      <input
+        matInput
+        type="text"
+        placeholder="Título"
+        formControlName="title"
+      />
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
+    <button
+      mat-raised-button
+      [mat-dialog-close]="false"
+      fxFlex="20"
+      class="btn-light-gray"
+    >
+      Cancelar
+    </button>
+    <button
+      mat-raised-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+      fxFlex="20"
+      type="submit"
+      [disabled]="taskForm.invalid"
+      class="btn-light-blue"
+    >
+      Confirmar
+    </button>
+  </div>
+</form>
