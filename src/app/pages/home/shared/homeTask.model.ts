@@ -4,7 +4,7 @@ export interface HomeTask {
   username: string;
   title: string;
   value: string;
-  date: Date;
+  date: string;
   image: string;
   isPayed: boolean;
 }
