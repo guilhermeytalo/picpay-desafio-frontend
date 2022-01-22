@@ -2,7 +2,7 @@ import { AppRoutingModule } from "./app.routing";
 import { MaterialModule } from "./material.module";
 import { AuthComponent } from "./pages/auth/auth.component";
 import { BrowserModule } from "@angular/platform-browser";
-import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from "@angular/core";
+import {  NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -15,7 +15,10 @@ import { HomeComponent } from "./pages/home/home.component";
 import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
 import { TableComponent } from "./components/table/table.component";
 import { MatPaginatorIntl } from "@angular/material/paginator";
-import { MatPaginatorIntlPtBr } from "./components/table/paginator/paginator-ptbr";
+import { MatPaginatorIntlPtBr } from "./share/utils/paginator/paginator-ptbr";
+import { DialogComponent } from "./components/dialog-confirm/dialog.component";
+import { CreateComponent } from './components/form/create/create.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +27,8 @@ import { MatPaginatorIntlPtBr } from "./components/table/paginator/paginator-ptb
     HomeComponent,
     NavBarComponent,
     TableComponent,
+    DialogComponent,
+    CreateComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -41,6 +46,7 @@ import { MatPaginatorIntlPtBr } from "./components/table/paginator/paginator-ptb
       useClass: MatPaginatorIntlPtBr,
     },
   ],
+  entryComponents: [DialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
