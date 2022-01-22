@@ -7,13 +7,13 @@ let authenticationService: AuthenticationService;
 let httpService: jasmine.SpyObj<IHttpClient>;
 
 describe('AuthenticationService', () => {
-  const httpClientPostSpy = jasmine.createSpyObj('IHttpClient', ['get']);
+  const httpClient = jasmine.createSpyObj('IHttpClient', ['get']);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         AuthenticationService,
-        { provide: IHttpClient, useValue: httpClientPostSpy }
+        { provide: IHttpClient, useValue: httpClient }
       ]
     });
     authenticationService = TestBed.inject(AuthenticationService);
