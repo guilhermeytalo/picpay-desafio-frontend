@@ -1,14 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: '<router-outlet></router-outlet>'
 })
-export class AppComponent implements OnInit {
-  title: string;
-
-  ngOnInit() {
-    this.title = 'Desafio Picpay Front-end';
-  }
-}
+export class AppComponent {}
