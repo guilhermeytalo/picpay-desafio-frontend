@@ -30,6 +30,9 @@
       ],
       "@domain/*": [
         "app/domain/*"
+      ],
+      "@presentation/*": [
+        "app/presentation/*"
       ]
     },
   },
