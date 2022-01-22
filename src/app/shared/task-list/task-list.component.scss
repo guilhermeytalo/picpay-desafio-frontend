@@ -34,7 +34,7 @@ $color-form-highlight: #eeeeee;
         display: flex;
         width: 100%;
         background: #000;
-        padding: ($half-spacing-unit * 1.5) 0;
+        padding: ($half-spacing-unit * 2) 0;
 
         .filter__link {
           color: white;
@@ -45,11 +45,11 @@ $color-form-highlight: #eeeeee;
           padding-right: $base-spacing-unit;
 
           &::after {
-            content: "";
+            content: "⮟";
             position: absolute;
             right: -($half-spacing-unit * 1.5);
             color: white;
-            font-size: $half-spacing-unit;
+            font-size: ($half-spacing-unit * 0.8);
             top: 50%;
             transform: translateY(-50%);
           }
@@ -81,7 +81,12 @@ $color-form-highlight: #eeeeee;
         .td_item {
           flex: 1 1 20%;
           text-align: center;
-          padding: 0 0.5rem
+          padding: 0 0.5rem;
+
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem
+
         }
       }
     }

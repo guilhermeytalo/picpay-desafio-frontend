@@ -14,15 +14,15 @@
       </tr>
 
       <ng-template ngFor let-task [ngForOf]="getAllTasks">
-        <tr class="table-row">
-          <td class="td_item">{{ task.name }}</td>
+        <tr class="table-row" *ngIf="task.name">
+          <td class="td_item">{{ task.name }}<span>@{{ task.username }}</span></td>
           <td class="td_item">{{ task.title }}</td>
           <td class="td_item">{{ task.date }}</td>
           <td class="td_item">{{ task.value }}</td>
           <td class="td_item">{{ task.isPayed }}</td>
           <td class="td_item">
-            Editar
-            <!-- <a [routerLink]="['details', pokemon.status.id]" class="pokemon" *ngIf="pokemon.status"> -->
+            <a [routerLink]="['details', task.id]" *ngIf="task">Editar</a>
+            <a [routerLink]="['details', task.id]" *ngIf="task">Excluir</a>
           </td>
         </tr>
       </ng-template>
