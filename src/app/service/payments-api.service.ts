@@ -14,7 +14,7 @@ export class PaymentsApiService {
 
   constructor(private http: HttpClient) {}
 
-  get getTaskList(): Observable<any> {
+  get getPaymentsList(): Observable<any> {
     return this.http.get<any>(this.url).pipe(tap((payments) => payments));
   }
 }

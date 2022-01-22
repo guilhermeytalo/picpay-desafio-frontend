@@ -11,7 +11,7 @@
       <th class="th_item"></th>
     </tr>
 
-    <ng-template ngFor let-payment [ngForOf]="getAllPayments">
+    <ng-template ngFor let-payment [ngForOf]="shownPayments">
       <tr class="table-row" *ngIf="payment.name">
         <td class="td_item">{{ payment.name }}<span>@{{ payment.username }}</span></td>
         <td class="td_item">{{ payment.title }}</td>

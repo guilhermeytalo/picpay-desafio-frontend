@@ -7,17 +7,17 @@ import { PaymentsApiService } from "src/app/service/payments-api.service";
   styleUrls: ["./payments-list.component.scss"],
 })
 export class PaymentsListComponent implements OnInit {
-  private setAllTasks: any;
-  public getAllPayments: any;
+  private allPayments: any;
+  public shownPayments: any;
   public apiError: boolean = false;
 
   constructor(private paymentsApiService: PaymentsApiService) {}
 
   ngOnInit(): void {
-    this.paymentsApiService.getTaskList.subscribe(
-      (tasks) => {
-        this.setAllTasks = tasks;
-        this.getAllPayments = this.setAllTasks;
+    this.paymentsApiService.getPaymentsList.subscribe(
+      (payments) => {
+        this.allPayments = payments;
+        this.shownPayments = this.allPayments;
       },
       (error) => {
         this.apiError = true;
@@ -26,14 +26,10 @@ export class PaymentsListComponent implements OnInit {
   }
 
   public getSearch(value: string) {
-    console.log("✅ ~ value", value);
-    console.log("✅ ~ setAllTasks", this.setAllTasks);
-
-    const filter = this.setAllTasks.filter((task: any) => {
-      return !task.name.indexOf(value.toLowerCase());
+    const filter = this.allPayments.filter((payment: any) => {
+      return !payment.name.indexOf(value);
     });
-    console.log("✅ ~ filter", filter);
 
-    this.getAllPayments = filter;
+    this.shownPayments = filter;
   }
 }
