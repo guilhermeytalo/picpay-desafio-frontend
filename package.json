@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~12.1.4",
     "@angular/router": "~12.1.4",
     "angular": "^1.8.0",
+    "json-server": "^0.17.0",
     "rxjs": "~6.6.7",
     "sass": "^1.49.0",
     "tslib": "^2.0.0",

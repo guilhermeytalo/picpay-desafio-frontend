@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 
 @Component({
   selector: "task-search",
@@ -6,7 +6,13 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./task-search.component.scss"],
 })
 export class TaskSearchComponent implements OnInit {
+  @Output() public emmitSearch: EventEmitter<string> = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  public search(value: string) {
+    this.emmitSearch.emit(value);
+  }
 }

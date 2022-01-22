@@ -1,44 +1,42 @@
 <!-- Search -->
-<task-search></task-search>
-<!-- <poke-search (emmitSearch)="getSearch($event)"></poke-search> -->
+<task-search (emmitSearch)="getSearch($event)"></task-search>
 
-<section class="listagem">
-  <!-- <ng-template ngFor let-pokemon [ngForOf]="getAllPokemons"> -->
-    <a>
-      <section class="pokemon__status">
-        <h2>
-          <!-- {{ pokemon.name }} -->
-        </h2>
+  <section class="listagem">
+    <table class="task-table">
 
-        <ul>
-          <!-- <li *ngFor="let value of pokemon.status.types">
-            {{value.type.name}}
-          </li> -->
-        </ul>
-      </section>
+      <tr class="table-header">
+        <th class="th_item"><a id="name" class="filter__link" href="#">Usuário</a></th>
+        <th class="th_item"><a id="wins" class="filter__link filter__link--number" href="#">Título</a></th>
+        <th class="th_item"><a id="draws" class="filter__link filter__link--number" href="#">Data</a></th>
+        <th class="th_item"><a id="losses" class="filter__link filter__link--number" href="#">Valor</a></th>
+        <th class="th_item"><a id="total" class="filter__link filter__link--number" href="#">Pago</a></th>
+        <th class="th_item"></th>
+      </tr>
 
-      <section class="pokemon__image">
-        <!-- <img
-          [src]="pokemon.status.sprites.other.dream_world.front_default"
-          [alt]="pokemon.name"
-        > -->
+      <ng-template ngFor let-task [ngForOf]="getAllTasks">
+        <tr class="table-row">
+          <td class="td_item">{{ task.name }}</td>
+          <td class="td_item">{{ task.title }}</td>
+          <td class="td_item">{{ task.date }}</td>
+          <td class="td_item">{{ task.value }}</td>
+          <td class="td_item">{{ task.isPayed }}</td>
+          <td class="td_item">
+            Editar
+            <!-- <a [routerLink]="['details', pokemon.status.id]" class="pokemon" *ngIf="pokemon.status"> -->
+          </td>
+        </tr>
+      </ng-template>
+    </table>
 
-      </section>
-    </a>
-    <!-- <a [routerLink]="['details', pokemon.status.id]" class="pokemon" *ngIf="pokemon.status"> -->
+  <!--  -->
 
-    <!-- </a> -->
-  <!-- </ng-template> -->
-</section>
+  <!-- </a> -->
 
-<!-- <img
-  src="assets/error.png"
-  alt="Deu erro na mostragem do pokemon"
-  width="100%"
-  *ngIf="apiError"
-> -->
-<img
-  src="assets/error.png"
-  alt="Deu erro na mostragem do pokemon"
-  width="100%"
->
+  </section>
+
+  <img
+    src="assets/error.png"
+    alt="Erro de pesquisa"
+    width="100%"
+    *ngIf="apiError"
+  >
