@@ -5,17 +5,22 @@ import {
   TranslocoLoader,
   TRANSLOCO_CONFIG,
   translocoConfig,
-  TranslocoModule
+  TranslocoModule,
+  getBrowserLang
 } from '@ngneat/transloco';
 import { Injectable, NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TranslocoHttpLoader implements TranslocoLoader {
-  constructor(private http: HttpClient) {}
+  private langCurrent: string;
+
+  constructor(private http: HttpClient) {
+    this.langCurrent = getBrowserLang();
+  }
 
   getTranslation(lang: string) {
-    return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
+    return this.http.get<Translation>(`/assets/i18n/${this.langCurrent}.json`);
   }
 }
 
