@@ -13,23 +13,30 @@
 
     <ng-template ngFor let-payment [ngForOf]="shownPayments">
       <tr class="table-row" *ngIf="payment.name">
-        <td class="td_item">{{ payment.name }}<span>@{{ payment.username }}</span></td>
+        <td class="td_item">
+          {{ payment.name }}<span>@{{ payment.username }}</span>
+        </td>
         <td class="td_item">{{ payment.title }}</td>
         <td class="td_item">{{ payment.date }}</td>
         <td class="td_item">{{ payment.value }}</td>
         <td class="td_item">{{ payment.isPayed }}</td>
         <td class="td_item">
-          <a [routerLink]="['details', payment.id]" *ngIf="payment">Editar</a>
-          <a [routerLink]="['details', payment.id]" *ngIf="payment">Excluir</a>
+          <button (click)="modal.toggle()">Editar</button>
+          <button (click)="modal.toggle()">Excluir</button>
+          <!-- <a [routerLink]="['details', payment.id]" *ngIf="payment">Editar</a> -->
         </td>
       </tr>
     </ng-template>
   </table>
+
+  <add-payment-modal #modal>
+    <h1>Lorem, ipsum dolor.</h1>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum dicta non alias distinctio, aliquid aperiam ipsum provident quae nihil voluptatibus veniam
+      fuga similique facilis consequatur reiciendis recusandae. Velit magni distinctio corporis eaque ad itaque ex impedit accusamus. Debitis pariatur cum quam
+      rerum reprehenderit quod iure, in explicabo facere vero nemo?
+    </p>
+  </add-payment-modal>
 </section>
 
-<img
-  src="assets/error.png"
-  alt="Erro de pesquisa"
-  width="100%"
-  *ngIf="apiError"
->
+<img src="assets/error.png" alt="Erro de pesquisa" width="100%" *ngIf="apiError" />
