@@ -1,6 +1,9 @@
 <ng-container *ngIf="mostrar">
   <div class="modal">
     <ng-content></ng-content>
+
+    <button class="btn-primario">Cancelar</button>
+    <button class="btn-secundario">Salvar</button>
   </div>
   <div (click)="toggle()" class="overlay"></div>
 </ng-container>

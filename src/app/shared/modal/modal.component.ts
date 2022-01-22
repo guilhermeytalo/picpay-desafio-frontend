@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: "add-payment-modal",
-  templateUrl: "./add-payment-modal.component.html",
-  styleUrls: ["./add-payment-modal.component.scss"],
+  selector: "modal",
+  templateUrl: "./modal.component.html",
+  styleUrls: ["./modal.component.scss"],
 })
-export class AddPaymentModalComponent {
+export class ModalComponent {
   constructor() {}
 
   public mostrar: boolean = false;
