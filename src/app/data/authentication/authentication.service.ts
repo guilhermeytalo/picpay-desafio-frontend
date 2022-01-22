@@ -5,12 +5,12 @@ import {
   IAuthentication
 } from '@domain/usecases/authentication';
 import { Observable } from 'rxjs';
-import { IHttpClient } from '../protocols/http-post-client';
+import { IHttpClient } from '../protocols/http-client';
 
 @Injectable()
 export class AuthenticationService implements IAuthentication {
   constructor(private readonly http: IHttpClient) {}
   auth(params: AuthenticationParams): Observable<AccountModel[]> {
-    return this.http.post(`url`, params);
+    return this.http.get(`url`, params);
   }
 }
