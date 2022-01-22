@@ -1,23 +1,23 @@
 import { Component, OnInit } from "@angular/core";
-import { TaskApiService } from "src/app/service/task-api.service";
+import { PaymentsApiService } from "src/app/service/payments-api.service";
 
 @Component({
-  selector: "task-list",
-  templateUrl: "./task-list.component.html",
-  styleUrls: ["./task-list.component.scss"],
+  selector: "payments-list",
+  templateUrl: "./payments-list.component.html",
+  styleUrls: ["./payments-list.component.scss"],
 })
-export class TaskListComponent implements OnInit {
+export class PaymentsListComponent implements OnInit {
   private setAllTasks: any;
-  public getAllTasks: any;
+  public getAllPayments: any;
   public apiError: boolean = false;
 
-  constructor(private taskApiService: TaskApiService) {}
+  constructor(private paymentsApiService: PaymentsApiService) {}
 
   ngOnInit(): void {
-    this.taskApiService.getTaskList.subscribe(
+    this.paymentsApiService.getTaskList.subscribe(
       (tasks) => {
         this.setAllTasks = tasks;
-        this.getAllTasks = this.setAllTasks;
+        this.getAllPayments = this.setAllTasks;
       },
       (error) => {
         this.apiError = true;
@@ -34,6 +34,6 @@ export class TaskListComponent implements OnInit {
     });
     console.log("✅ ~ filter", filter);
 
-    this.getAllTasks = filter;
+    this.getAllPayments = filter;
   }
 }

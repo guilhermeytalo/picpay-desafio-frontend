@@ -4,12 +4,12 @@ import { RouterModule } from "@angular/router";
 
 //Components
 import { HeaderComponent } from "./header/main-header.component";
-import { TaskListComponent } from "./task-list/task-list.component";
-import { TaskSearchComponent } from "./task-search/task-search.component";
+import { PaymentsListComponent } from "./payments-list/payments-list.component";
+import { SearchComponent } from "./search/search.component";
 
 @NgModule({
-  declarations: [HeaderComponent, TaskSearchComponent, TaskListComponent],
-  exports: [HeaderComponent, TaskSearchComponent, TaskListComponent],
+  declarations: [HeaderComponent, SearchComponent, PaymentsListComponent],
+  exports: [HeaderComponent, SearchComponent, PaymentsListComponent],
   imports: [CommonModule, RouterModule],
 })
 export class SharedModule {}

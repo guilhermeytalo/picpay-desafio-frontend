@@ -1,0 +1,35 @@
+<search (emmitSearch)="getSearch($event)"></search>
+
+<section class="listagem">
+  <table class="payments">
+    <tr class="table-header">
+      <th class="th_item"><a id="name" class="filter__link" href="#">Usuário</a></th>
+      <th class="th_item"><a id="wins" class="filter__link filter__link--number" href="#">Título</a></th>
+      <th class="th_item"><a id="draws" class="filter__link filter__link--number" href="#">Data</a></th>
+      <th class="th_item"><a id="losses" class="filter__link filter__link--number" href="#">Valor</a></th>
+      <th class="th_item"><a id="total" class="filter__link filter__link--number" href="#">Pago</a></th>
+      <th class="th_item"></th>
+    </tr>
+
+    <ng-template ngFor let-payment [ngForOf]="getAllPayments">
+      <tr class="table-row" *ngIf="payment.name">
+        <td class="td_item">{{ payment.name }}<span>@{{ payment.username }}</span></td>
+        <td class="td_item">{{ payment.title }}</td>
+        <td class="td_item">{{ payment.date }}</td>
+        <td class="td_item">{{ payment.value }}</td>
+        <td class="td_item">{{ payment.isPayed }}</td>
+        <td class="td_item">
+          <a [routerLink]="['details', payment.id]" *ngIf="payment">Editar</a>
+          <a [routerLink]="['details', payment.id]" *ngIf="payment">Excluir</a>
+        </td>
+      </tr>
+    </ng-template>
+  </table>
+</section>
+
+<img
+  src="assets/error.png"
+  alt="Erro de pesquisa"
+  width="100%"
+  *ngIf="apiError"
+>
