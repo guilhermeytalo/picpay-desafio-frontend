@@ -7,7 +7,7 @@ let authenticationService: AuthenticationService;
 let httpService: jasmine.SpyObj<IHttpClient>;
 
 describe('AuthenticationService', () => {
-  const httpClientPostSpy = jasmine.createSpyObj('IHttpClient', ['post']);
+  const httpClientPostSpy = jasmine.createSpyObj('IHttpClient', ['get']);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,12 +22,12 @@ describe('AuthenticationService', () => {
   it('should create service', () => {
     expect(authenticationService).toBeTruthy();
   });
-  it('Should request auth with body', () => {
+  it('Should request auth', () => {
     const body: AuthenticationParams = {
       email: faker.internet.email(),
       password: faker.internet.password()
     };
     authenticationService.auth(body);
-    expect(httpService.post).toHaveBeenCalled();
+    expect(httpService.get).toHaveBeenCalled();
   });
 });
