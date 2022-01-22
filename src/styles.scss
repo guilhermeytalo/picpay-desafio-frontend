@@ -1,3 +1,5 @@
+@import "../src/app/share/style/colors.scss";
+
 * {
   box-sizing: border-box;
 }
@@ -9,5 +11,23 @@ body {
   padding: 0;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.btn {
+  &-light-blue {
+    background-color: $light-blue;
+    color: $white;
+  }
+
+  &-light-gray {
+    background-color: $light-gray;
+    color: $black;
+  }
+}
