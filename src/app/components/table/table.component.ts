@@ -1,5 +1,11 @@
 import { HomeTask } from "./../../pages/home/shared/homeTask.model";
-import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort, Sort } from "@angular/material/sort";
@@ -9,6 +15,7 @@ import { Page, PageRequest } from "../../share/utils/paginator/paginator";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "../dialog-confirm/dialog.component";
 import { CreateComponent } from "../form/create/create.component";
+import { Observable, Subscription } from "rxjs";
 
 @Component({
   selector: "app-table",
@@ -33,6 +40,9 @@ export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  private eventsSubscription: Subscription;
+  @Input() events: Observable<void>;
+
   formGroupSearch: FormGroup;
 
   constructor(
@@ -40,7 +50,9 @@ export class TableComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialog: MatDialog
   ) {}
+
   ngOnInit(): void {
+    this.eventsSubscription = this.events.subscribe(() => this.listTasks());
     this.formGroupSearch = this.formBuilder.group({
       search: [null],
     });
@@ -132,4 +144,10 @@ export class TableComponent implements OnInit {
       },
     });
   }
+
+  
+  ngOnDestroy() {
+    this.eventsSubscription.unsubscribe();
+  }
+
 }

@@ -16,7 +16,7 @@ import { map } from "rxjs/operators";
 export class TasksService {
   constructor(private http: HttpClient) {}
 
-  getTasks(queryBuilder: QueryBuilder): Observable<Page<HomeTask>> {
+  getTasks(queryBuilder?: QueryBuilder): Observable<Page<HomeTask>> {
     return this.http
       .get<HomeTask[]>(`${API}/tasks?${queryBuilder.buildQueryString()}`, {
         observe: "response",
