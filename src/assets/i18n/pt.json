@@ -1,5 +1,7 @@
 {
   "login": "Login",
+  "pay": "Pay",
+  "friend": "Friends",
   "title": "Seja bem vindo de volta",
   "form": {
     "label": {
