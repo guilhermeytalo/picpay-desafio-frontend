@@ -1,11 +1,13 @@
 .btn {
   height: 4rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 3rem;
 
   border-radius: 0.4rem;
   text-transform: uppercase;
   text-decoration: none;
+
   font-size: 1.4rem;
+  letter-spacing: 1.25px;
 
   &_cancel {
     background: var(--btn-cancel);

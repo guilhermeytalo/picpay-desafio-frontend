@@ -1,33 +1,17 @@
 :host {
-  form.search {
-    display: flex;
+  form {
     justify-content: space-between;
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    input {
+      width: 25rem;
+      height: 3.5rem;
+    }
 
-      div.input-block {
-        position: relative;
-
-        input {
-          width: 25rem;
-          height: 3.5rem;
-          font-size: 1.6rem;
-          color: var(--secondary-text);
-
-          padding: 15px 15px;
-          background: transparent;
-        }
-
-        .search-icon {
-          position: absolute;
-          top: 1.2rem;
-          right: 1rem;
-          cursor: pointer;
-        }
-      }
+    .search-icon {
+      position: absolute;
+      top: 1.2rem;
+      right: 1rem;
+      cursor: pointer;
     }
   }
 }

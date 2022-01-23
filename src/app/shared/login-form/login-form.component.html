@@ -1,24 +1,10 @@
-<script>
-  let btn = document.querySelector(".password-eye")
-  btn.addEventListener("click", function () {
-    console.log("clique")
-    let input = document.querySelector("#password")
-
-    if (input.getAttribute("type") === "password") {
-      input.setAttribute("type", "text")
-    } else {
-      input.setAttribute("type", "password")
-    }
-  })
-</script>
-
 <form (ngSubmit)="onSubmit()" #form="ngForm">
   <img class="img-logo" src="assets/logo.svg" alt="logo" width="100%" />
 
-  <h1 class="text-center">Bem vindo de volta</h1>
+  <h1>Bem vindo de volta</h1>
 
-  <div class="form-group">
-    <div class="input-block">
+  <div class="form-group__flex-columm">
+    <div class="input-relative-container">
       <input
         class="form-control"
         type="email"
@@ -31,7 +17,7 @@
       <span class="placeholder"> Email </span>
     </div>
 
-    <div class="input-block">
+    <div class="input-relative-container">
       <input
         class="form-control"
         type="password"

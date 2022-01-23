@@ -1,15 +1,12 @@
 <form class="search">
-  <div class="form-group">
-    <div class="input-block">
+  <div class="form-group__flex-columm">
+    <div class="input-relative-container">
       <input
-        class="form-control"
         #input
         (keyup)="search(input.value)"
+        class="form-control"
         type="text"
-        name="search"
-        id="search"
         placeholder="Pesquisar por usuário"
-        required
       />
 
       <div class="search-icon">
@@ -17,6 +14,4 @@
       </div>
     </div>
   </div>
-
-  <div class="input-block"></div>
 </form>
