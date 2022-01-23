@@ -5,21 +5,21 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    padding: 20rem 0;
+    padding: 2rem 0;
 
     .payments {
       width: 100%;
       position: relative;
       background: var(--branco);
-      margin-bottom: 10rem;
-      padding: 20rem;
-      border-radius: 10rem;
+      margin-bottom: 1rem;
+      padding: 2rem;
+      border-radius: 1rem;
       text-decoration: none;
       color: var(--primary-color);
 
       td,
       th {
-        font-size: 12rem;
+        font-size: 1.2rem;
         width: 100%;
       }
 
@@ -27,7 +27,7 @@
         display: flex;
         width: 100%;
         background: #000;
-        padding: (12rem * 2) 0;
+        padding: 1.2rem 0;
 
         .filter__link {
           color: white;
@@ -40,9 +40,9 @@
           &::after {
             content: "⮟";
             position: absolute;
-            right: -12rem;
+            right: -1.2rem;
             color: white;
-            font-size: 12rem;
+            font-size: 1.2rem;
             top: 50%;
             transform: translateY(-50%);
           }

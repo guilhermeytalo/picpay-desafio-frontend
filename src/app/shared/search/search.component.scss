@@ -3,23 +3,15 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-
-		padding: 15rem 20rem;
-		background-color: rgba(255, 255, 255, 0.2);
-
-		border-radius: 10rem;
+		padding: 1.5rem 2rem;
+		border-radius: 1rem;
 
 		input {
 			width: 95%;
-			background: none;
 			border: none;
-
-			font-size: 18rem;
-
-			color: var(--branco);
+			font-size: 1.8rem;
 
 			&::placeholder {
-				color: var(--branco);
 			}
 		}
 	}
