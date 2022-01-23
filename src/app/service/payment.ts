@@ -1,5 +1,5 @@
 export class Payment {
-  id: string
+  id: number
   name: string
   title: string
   value: number

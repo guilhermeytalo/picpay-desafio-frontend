@@ -15,12 +15,10 @@ export class PaymentsApiService {
   constructor(private http: HttpClient) {}
 
   getAllPayments(page: number): Observable<any> {
-    return this.http.get<any>(`${this.url}/tasks/?_page=${page}&_limit=10`).pipe(tap(payments => payments))
+    return this.http.get<any>(`${this.url}/tasks/?_page=${page}&_limit=200`).pipe(tap(payments => payments))
   }
 
   savePayment(payment: Payment) {
-    console.log("✅ ~ payment", payment)
-
     const paymentBody = {
       name: payment.name,
       title: payment.title,

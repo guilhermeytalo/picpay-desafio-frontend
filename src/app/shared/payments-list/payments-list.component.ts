@@ -13,13 +13,8 @@ export class PaymentsListComponent implements OnInit {
   public apiError: boolean = false
   public modalTitle = "Adicionar pagamento"
   public page: number = 0
-  public payment: Payment = new Payment()
-  public paymentModal = {
-    user: "",
-    value: "",
-    date: "",
-    title: "",
-  }
+
+  payment: Payment = new Payment()
 
   constructor(private router: Router, private paymentsApiService: PaymentsApiService) {}
 
@@ -53,7 +48,7 @@ export class PaymentsListComponent implements OnInit {
 
   onSubmit() {
     this.paymentsApiService.savePayment(this.payment).subscribe(payment => {
-      console.log(payment)
+      this.payment = payment
       this.router.navigate([""])
     })
   }
