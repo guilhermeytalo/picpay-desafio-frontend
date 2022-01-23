@@ -1,11 +1,11 @@
 <ng-container *ngIf="mostrar">
   <div class="modal">
-    <div class="modal-header">{{ title }}</div>
+
 
     <div class="modal-body">
-        <ng-content></ng-content>
-        <button (click)="toggle()" class="btn btn-cancel">Cancelar</button>
+      <ng-content></ng-content>
     </div>
   </div>
+  
   <div (click)="toggle()" class="overlay"></div>
 </ng-container>

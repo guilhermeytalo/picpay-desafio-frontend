@@ -19,6 +19,8 @@ export class PaymentsApiService {
   }
 
   savePayment(payment: Payment) {
+    console.log("✅ ~ payment", payment)
+
     const paymentBody = {
       name: payment.name,
       title: payment.title,
@@ -27,10 +29,8 @@ export class PaymentsApiService {
     }
 
     if (payment.id) {
-      // Edição de pagamento
       return this.http.put<Payment>(`${this.url}/tasks/${payment.id}`, paymentBody)
     } else {
-      // Adição de Novo pagamento
       return this.http.post<Payment>(`${this.url}/tasks`, paymentBody)
     }
   }

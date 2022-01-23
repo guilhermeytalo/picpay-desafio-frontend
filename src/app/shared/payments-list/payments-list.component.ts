@@ -11,17 +11,15 @@ export class PaymentsListComponent implements OnInit {
   private allPayments: any
   public shownPayments: any
   public apiError: boolean = false
-
-  paymentModal = {
+  public modalTitle = "Adicionar pagamento"
+  public page: number = 0
+  public payment: Payment = new Payment()
+  public paymentModal = {
     user: "",
     value: "",
     date: "",
-    title: ""
-  };
-
-
-  payment: Payment = new Payment()
-  page: number = 0
+    title: "",
+  }
 
   constructor(private router: Router, private paymentsApiService: PaymentsApiService) {}
 
@@ -35,13 +33,6 @@ export class PaymentsListComponent implements OnInit {
         this.apiError = true
       }
     )
-  }
-
-  public addNewPayment() {
-    this.paymentsApiService.savePayment(this.payment).subscribe(payment => {
-      console.log(payment)
-      this.router.navigate([""])
-    })
   }
 
   public editPayment(id: number) {
@@ -58,5 +49,12 @@ export class PaymentsListComponent implements OnInit {
     })
 
     this.shownPayments = filter
+  }
+
+  onSubmit() {
+    this.paymentsApiService.savePayment(this.payment).subscribe(payment => {
+      console.log(payment)
+      this.router.navigate([""])
+    })
   }
 }
