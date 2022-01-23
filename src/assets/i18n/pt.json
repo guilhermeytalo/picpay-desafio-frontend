@@ -1,7 +1,7 @@
 {
   "login": "Login",
   "pay": "Pay",
-  "friend": "Friends",
+  "friends": "Friends",
   "title": "Seja bem vindo de volta",
   "form": {
     "label": {
@@ -17,5 +17,8 @@
     "button": {
       "text": "ENTRAR"
     }
+  },
+  "message": {
+    "error": "Usuário não encontrado"
   }
 }
