@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Routes } from '@shared/helpers/router-helper';
 import { AccountModel } from '@domain/models/account.model';
 import {
   AuthenticationParams,
@@ -11,6 +12,6 @@ import { IHttpClient } from '../protocols/http-client';
 export class AuthenticationService implements IAuthentication {
   constructor(private readonly http: IHttpClient) {}
   auth(params: AuthenticationParams): Observable<AccountModel[]> {
-    return this.http.get(`url`, params);
+    return this.http.get(Routes.getUser, params);
   }
 }

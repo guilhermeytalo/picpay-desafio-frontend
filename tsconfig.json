@@ -33,6 +33,9 @@
       ],
       "@presentation/*": [
         "app/presentation/*"
+      ],
+      "@shared/*": [
+        "app/shared/*"
       ]
     },
   },
