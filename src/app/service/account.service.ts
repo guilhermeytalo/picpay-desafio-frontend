@@ -13,10 +13,4 @@ export class AccountService {
       resolve(true);
     });
   }
-
-  createAccount(account: any) {
-    return new Promise((resolve) => {
-      resolve(true);
-    });
-  }
 }

@@ -1,4 +1,5 @@
-<search (emmitSearch)="getSearch($event)"></search>
+<search (emmitSearch)="searchPayments($event)"></search>
+
 <button (click)="addPaymentModal.toggle()">Adicionar Pagamento</button>
 
 <section class="listagem">
@@ -46,11 +47,17 @@
   </modal>
 
   <modal #addPaymentModal>
-    <h1>Adicionar Pagamento</h1>
-    <input type="text" placeholder="Usuário" />
-    <input type="text" placeholder="Data" />
-    <input type="text" placeholder="Valor" />
-    <input type="text" placeholder="Título" />
+    <section class="add-payment-modal-content">
+      <div class="form-group">
+        <input class="form-control" type="text" name="user" id="user" placeholder="Usuário*" required />
+        <input class="form-control" type="text" name="value" id="value" placeholder="Valor*" required />
+      </div>
+
+      <div class="form-group">
+        <input class="form-control" type="text" name="date" id="date" placeholder="Data*" required />
+        <input class="form-control" type="text" name="title" id="title" placeholder="Título*" required />
+      </div>
+    </section>
   </modal>
 </section>
 

@@ -1,9 +1,18 @@
 <ng-container *ngIf="mostrar">
   <div class="modal">
-    <ng-content></ng-content>
+    <div class="modal-header">{{ title }}</div>
 
-    <button class="btn-primario">Cancelar</button>
-    <button class="btn-secundario">Salvar</button>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit()" #form="ngForm">
+        <ng-content></ng-content>
+
+        <footer class="modal-footer">
+          <button (click)="toggle()" class="btn btn-cancel">Cancelar</button>
+          <button class="btn btn-submit" type="submit" [disabled]="form.form.invalid">Salvar</button>
+        </footer>
+      </form>
+    </div>
   </div>
+
   <div (click)="toggle()" class="overlay"></div>
 </ng-container>
