@@ -20,6 +20,15 @@ let fixture: ComponentFixture<LoginComponent>;
 let iauthentication: jasmine.SpyObj<IAuthentication>;
 let snackBar: jasmine.SpyObj<ISnackBar>;
 
+const checkButtonIfEnabled = () => {
+  const submitEl = fixture.debugElement;
+  expect(submitEl.nativeElement.querySelector('button').disabled).toBeFalsy();
+};
+const checkButtonIfDisabled = () => {
+  const submitEl = fixture.debugElement;
+  expect(submitEl.nativeElement.querySelector('button').disabled).toBeTruthy();
+};
+
 describe('LoginComponent', () => {
   iauthentication = jasmine.createSpyObj('IAuthentication', ['auth']);
   snackBar = jasmine.createSpyObj('SnackBarService', ['openSnackBar']);
@@ -48,9 +57,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
 
     const submitEl = fixture.debugElement;
-    expect(
-      submitEl.nativeElement.querySelector('button').disabled
-    ).toBeTruthy();
+    checkButtonIfDisabled();
   });
 
   it('should hidden spinner when init component', () => {
@@ -63,25 +70,21 @@ describe('LoginComponent', () => {
     component.form.controls.email.setValue(faker.internet.email());
     component.form.controls.password.setValue(faker.internet.password());
     fixture.detectChanges();
-    expect(submitEl.nativeElement.querySelector('button').disabled).toBeFalsy();
+    checkButtonIfEnabled();
   });
 
   it('should continue disabled button if populate email', () => {
     const submitEl = fixture.debugElement;
     component.form.controls.email.setValue(faker.internet.email());
     fixture.detectChanges();
-    expect(
-      submitEl.nativeElement.querySelector('button').disabled
-    ).toBeTruthy();
+    checkButtonIfDisabled();
   });
 
   it('should continue disabled button if populate password', () => {
     const submitEl = fixture.debugElement;
     component.form.controls.password.setValue(faker.internet.password());
     fixture.detectChanges();
-    expect(
-      submitEl.nativeElement.querySelector('button').disabled
-    ).toBeTruthy();
+    checkButtonIfDisabled();
   });
 
   it('should request auth with success', fakeAsync(() => {
