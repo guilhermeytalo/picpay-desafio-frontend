@@ -1,5 +1,45 @@
-.authentication {
-  width: 500px;
-  margin: 0 auto;
-  margin-top: 100px;
+:host {
+  .container {
+    height: 100vh;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    background-color: #f2f2f2;
+  }
+
+  @keyframes apperFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .authentication {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: appearFromLeft 1s;
+  }
+
+  .img-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 80%;
+    }
+  }
 }

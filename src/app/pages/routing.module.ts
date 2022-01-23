@@ -1,14 +1,14 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { AuthGuard } from "../shared/auth/auth.guard";
+import { NgModule } from "@angular/core"
+import { RouterModule, Routes } from "@angular/router"
+import { AuthGuard } from "../shared/auth/auth.guard"
 
 // Components
-import { LoginFormComponent } from "../shared/login-form/login-form.component";
-import { PaymentsListComponent } from "../shared/payments-list/payments-list.component";
+import { LoginFormComponent } from "../shared/login-form/login-form.component"
+import { PaymentsListComponent } from "../shared/payments-list/payments-list.component"
 
 // Pages
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { LoginComponent } from "./login/login.component";
+import { DashboardComponent } from "./dashboard/dashboard.component"
+import { LoginComponent } from "./login/login.component"
 
 const routes: Routes = [
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
     ],
   },
   { path: "**", redirectTo: "" },
-];
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

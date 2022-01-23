@@ -1,0 +1,99 @@
+form {
+  max-width: 340px;
+  margin-top: 1rem;
+
+  img.img-logo {
+    justify-self: flex-end;
+    width: 40%;
+  }
+
+  h1 {
+    margin-bottom: 2.4rem;
+    font-size: 3rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    div.input-block {
+      position: relative;
+
+      input {
+        font-weight: 500;
+        font-size: 1.6rem;
+        color: #495055;
+
+        padding: 15px 15px;
+        background: transparent;
+
+        &:focus {
+          color: #284b63;
+          border-color: #284b63;
+        }
+
+        &:valid + span.placeholder,
+        &:focus + span.placeholder {
+          transform: scale(0.8) translateY(-3rem);
+          background: #f2f2f2;
+          padding: 0 0.5rem;
+        }
+      }
+
+      .password-eye {
+        position: absolute;
+        top: 1.8rem;
+        right: 1rem;
+        cursor: pointer;
+      }
+
+      span.placeholder {
+        position: absolute;
+        margin: 1.8rem 0;
+        color: #616161;
+
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+        top: 0;
+        left: 17px;
+
+        transition: all 0.2s;
+        transform-origin: 0% 0%;
+        background: none;
+        pointer-events: none;
+      }
+    }
+
+    .form-control {
+      height: 54px;
+      width: 326px;
+      border-radius: 3.5px;
+      border: 1px solid #dadada;
+      padding: 1.5rem;
+    }
+  }
+
+  a {
+    color: #f4ede8;
+    display: block;
+    margin-top: 24px;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #ff9000;
+    }
+  }
+}
+
+// &:focus:invalid {
+//   background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg") no-repeat 95% 50%;
+//   background-size: 12px;
+// }
+
+// &:required:focus:valid {
+//   background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg") no-repeat 95% 50%;
+//   background-size: 12px;
+// }

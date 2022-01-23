@@ -1,13 +1,54 @@
-<h2 class="text-center">Entrar</h2>
+<script>
+  let btn = document.querySelector(".password-eye")
+  btn.addEventListener("click", function () {
+    console.log("clique")
+    let input = document.querySelector("#password")
+
+    if (input.getAttribute("type") === "password") {
+      input.setAttribute("type", "text")
+    } else {
+      input.setAttribute("type", "password")
+    }
+  })
+</script>
 
 <form (ngSubmit)="onSubmit()" #form="ngForm">
+  <img class="img-logo" src="assets/logo.svg" alt="logo" width="100%" />
+
+  <h1 class="text-center">Bem vindo de volta</h1>
+
   <div class="form-group">
-    <label>E-mail</label>
-    <input class="form-control" type="email" name="email" id="email" [(ngModel)]="login.email" required />
+    <div class="input-block">
+      <input
+        class="form-control"
+        type="email"
+        name="email"
+        id="email"
+        [(ngModel)]="login.email"
+        placeholder=""
+        required
+      />
+      <span class="placeholder"> Email </span>
+    </div>
+
+    <div class="input-block">
+      <input
+        class="form-control"
+        type="password"
+        name="password"
+        id="password"
+        [(ngModel)]="login.password"
+        placeholder=""
+        required
+      />
+
+      <span class="placeholder"> Senha </span>
+
+      <div class="password-eye">
+        <img src="assets/icons/eye.svg" alt="password eye" width="70%" />
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label>Senha</label>
-    <input class="form-control" type="password" name="password" id="password" [(ngModel)]="login.password" required />
-  </div>
-  <button type="submit" class="btn__submit btn-block" [disabled]="form.form.invalid">Entrar</button>
+
+  <button type="submit" class="btn btn_submit" [disabled]="form.form.invalid">Entrar</button>
 </form>
