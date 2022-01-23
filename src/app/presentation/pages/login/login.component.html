@@ -7,16 +7,22 @@
     <div class="l-content__area__form__inputs">
       <div class="l-content__area__form__inputs__content">
         <div class="l-content__area__form__inputs__content__title">
-          <h3><span transloco="pay"></span> <span transloco="friends"></span></h3>
+          <h3>
+            <span transloco="pay"></span> <span transloco="friends"></span>
+          </h3>
           <h2 transloco="title"></h2>
         </div>
         <div class="l-content__area__form__inputs__content__align__items">
           <form
+            [formGroup]="this.form"
+            (submit)="this.auth()"
             class="l-content__area__form__inputs__content__align__items__column"
           >
             <mat-form-field appearance="outline">
               <mat-label transloco="form.label.email"></mat-label>
               <input
+              type="email"
+              formControlName="email"
                 matInput
                 [placeholder]="'form.input.placeholder.email' | transloco"
               />
@@ -24,15 +30,22 @@
             <mat-form-field appearance="outline">
               <mat-label transloco="form.label.password"></mat-label>
               <input
+              type="password"
+              formControlName="password"
                 matInput
                 [placeholder]="'form.input.placeholder.password' | transloco"
               />
             </mat-form-field>
             <button
+              [disabled]="this.form.invalid"
               mat-raised-button
               color="primary"
-              transloco="form.button.text"
-            ></button>
+            >
+              {{ 'form.button.text' | transloco }}
+              <mat-icon *ngIf="this.loading"
+                ><mat-spinner color="primary" diameter="20"> </mat-spinner
+              ></mat-icon>
+            </button>
           </form>
         </div>
       </div>
