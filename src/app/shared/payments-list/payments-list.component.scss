@@ -96,4 +96,23 @@
       }
     }
   }
+
+  .add-payment-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .form-group {
+      display: flex;
+      gap: 2rem;
+
+      .form-control {
+        height: 54px;
+        width: 326px;
+        border-radius: 3.5px;
+        border: 1px solid #dadada;
+        padding: 1.5rem;
+      }
+    }
+  }
 }

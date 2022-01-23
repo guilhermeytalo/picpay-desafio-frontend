@@ -9,6 +9,47 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 11;
+
+  .modal-header {
+    display: flex;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+    font-size: 1.2rem;
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .modal-footer {
+    display: flex;
+    gap: 1rem;
+    justify-content: end;
+    margin-top: 2rem;
+
+    .btn {
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      text-transform: uppercase;
+      border-radius: 4px;
+      width: 12rem;
+    }
+
+    .btn-cancel {
+      background: #f5f5f5;
+    }
+
+    .btn-submit {
+      background: #007dfe;
+      color: #f5f5f5;
+    }
+  }
 }
 
 .overlay {
