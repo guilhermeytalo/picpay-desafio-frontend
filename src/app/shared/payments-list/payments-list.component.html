@@ -47,17 +47,25 @@
   </modal>
 
   <modal #addPaymentModal>
-    <section class="add-payment-modal-content">
-      <div class="form-group">
-        <input class="form-control" type="text" name="user" id="user" placeholder="Usuário*" required />
-        <input class="form-control" type="text" name="value" id="value" placeholder="Valor*" required />
-      </div>
+    <form (ngSubmit)="addNewPayment()" #addPaymentForm="ngForm">
 
-      <div class="form-group">
-        <input class="form-control" type="text" name="date" id="date" placeholder="Data*" required />
-        <input class="form-control" type="text" name="title" id="title" placeholder="Título*" required />
-      </div>
-    </section>
+      <section class="modal-content">
+        <div class="form-group">
+          <input class="form-control" type="text" name="user" id="user" placeholder="Usuário*" [(ngModel)]="paymentModal.user" required />
+          <input class="form-control" type="text" name="value" id="value" placeholder="Valor*" [(ngModel)]="paymentModal.value" required />
+        </div>
+
+        <div class="form-group">
+          <input class="form-control" type="text" name="date" id="date" placeholder="Data*" [(ngModel)]="paymentModal.date" required />
+          <input class="form-control" type="text" name="title" id="title" placeholder="Título*"[(ngModel)]="paymentModal.title" required />
+        </div>
+      </section>
+
+      <footer class="modal-footer">
+        <button class="btn btn-submit" type="submit" [disabled]="addPaymentForm.form.invalid">Salvar</button>
+      </footer>
+    </form>
+    
   </modal>
 </section>
 

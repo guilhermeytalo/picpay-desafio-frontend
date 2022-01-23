@@ -12,6 +12,14 @@ export class PaymentsListComponent implements OnInit {
   public shownPayments: any
   public apiError: boolean = false
 
+  paymentModal = {
+    user: "",
+    value: "",
+    date: "",
+    title: ""
+  };
+
+
   payment: Payment = new Payment()
   page: number = 0
 
