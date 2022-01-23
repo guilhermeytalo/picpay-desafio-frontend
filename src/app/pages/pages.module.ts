@@ -9,11 +9,11 @@ import { RoutingModule } from "./routing.module";
 import { SharedModule } from "../shared/shared.module";
 
 // Pages
-import { Dashboard } from "./dashboard/dashboard.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
 import { LoginComponent } from "./login/login.component";
 
 @NgModule({
-  declarations: [Dashboard, LoginComponent],
+  declarations: [DashboardComponent, LoginComponent],
   imports: [CommonModule, RoutingModule, SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class PagesModule {}

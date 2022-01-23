@@ -7,13 +7,13 @@ import { LoginFormComponent } from "../shared/login-form/login-form.component";
 import { PaymentsListComponent } from "../shared/payments-list/payments-list.component";
 
 // Pages
-import { Dashboard } from "./dashboard/dashboard.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
 import { LoginComponent } from "./login/login.component";
 
 const routes: Routes = [
   {
     path: "",
-    component: Dashboard,
+    component: DashboardComponent,
     children: [{ path: "", component: PaymentsListComponent }],
     canActivate: [AuthGuard],
   },
