@@ -1,7 +1,8 @@
 :root {
 	--branco: #fff;
 	--cinza: #efefef;
+  --blue: #007dfe;
 
-	--primary-color: #262835;
-	--secondary-color: #ff5473;
+  --btn-cancel: var(--cinza);
+  --btn-submit: var(--blue);
 }
