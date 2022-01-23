@@ -1,1 +1,19 @@
-{}
+{
+  "login": "Login",
+  "title": "Welcome back",
+  "form": {
+    "label": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "input": {
+      "placeholder": {
+        "email": "Type your e-mail",
+        "password": "Type your password"
+      }
+    },
+    "button": {
+      "text": "SIGN IN"
+    }
+  }
+}

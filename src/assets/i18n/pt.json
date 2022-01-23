@@ -1,1 +1,19 @@
-{}
+{
+  "login": "Login",
+  "title": "Seja bem vindo de volta",
+  "form": {
+    "label": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "input": {
+      "placeholder": {
+        "email": "Digite seu email",
+        "password": "Digite a senha"
+      }
+    },
+    "button": {
+      "text": "ENTRAR"
+    }
+  }
+}
