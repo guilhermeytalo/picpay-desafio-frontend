@@ -3,6 +3,7 @@ import { AuthenticationParams } from '@domain/usecases/authentication';
 import { IHttpClient } from '../protocols/http-client';
 import { AuthenticationService } from './authentication.service';
 import faker from 'faker';
+import { of } from 'rxjs';
 let authenticationService: AuthenticationService;
 let httpService: jasmine.SpyObj<IHttpClient>;
 
@@ -27,6 +28,7 @@ describe('AuthenticationService', () => {
       email: faker.internet.email(),
       password: faker.internet.password()
     };
+    httpService.get.and.returnValue(of());
     authenticationService.auth(body);
     expect(httpService.get).toHaveBeenCalled();
   });
