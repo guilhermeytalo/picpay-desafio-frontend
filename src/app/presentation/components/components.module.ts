@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ISnackBar } from '@app/shared/class/isnackbar';
+import { ISnackBar } from '@shared/interfaces/isnackbar';
 import AngularMaterialModule from './angular-material/angular-material.module';
 import { SnackBarService } from './toast/snackbar';
 
