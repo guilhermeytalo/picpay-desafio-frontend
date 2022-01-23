@@ -5,6 +5,6 @@ export type AuthenticationParams = {
   email: string;
   password: string;
 };
-export interface IAuthentication {
-  auth(params: AuthenticationParams): Observable<AccountModel[]>;
+export abstract class IAuthentication {
+  abstract auth(params: AuthenticationParams): Observable<AccountModel[]>;
 }
