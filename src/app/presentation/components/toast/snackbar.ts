@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ISnackBar } from '@app/shared/class/isnackbar';
+import { ISnackBar } from '@app/shared/interfaces/isnackbar';
 import { translate } from '@ngneat/transloco';
 
 @Injectable({ providedIn: 'root' })
