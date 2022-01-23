@@ -21,8 +21,9 @@
             <mat-form-field appearance="outline">
               <mat-label transloco="form.label.email"></mat-label>
               <input
-              type="email"
-              formControlName="email"
+                type="email"
+                autocomplete="new-password"
+                formControlName="email"
                 matInput
                 [placeholder]="'form.input.placeholder.email' | transloco"
               />
@@ -30,8 +31,9 @@
             <mat-form-field appearance="outline">
               <mat-label transloco="form.label.password"></mat-label>
               <input
-              type="password"
-              formControlName="password"
+                type="password"
+                autocomplete="new-password"
+                formControlName="password"
                 matInput
                 [placeholder]="'form.input.placeholder.password' | transloco"
               />
