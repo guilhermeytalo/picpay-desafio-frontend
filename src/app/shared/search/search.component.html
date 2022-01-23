@@ -1,6 +1,22 @@
-<form>
-  <input type="text" 
-  #input (keyup)="search(input.value)"
-  placeholder="Pesquisar por usuário">
-  <img src="assets/icons/search.svg" alt="Buscar Tarefa">
+<form class="search">
+  <div class="form-group">
+    <div class="input-block">
+      <input
+        class="form-control"
+        #input
+        (keyup)="search(input.value)"
+        type="text"
+        name="search"
+        id="search"
+        placeholder="Pesquisar por usuário"
+        required
+      />
+
+      <div class="search-icon">
+        <img src="assets/icons/search.svg" alt="Buscar Tarefa" />
+      </div>
+    </div>
+  </div>
+
+  <div class="input-block"></div>
 </form>

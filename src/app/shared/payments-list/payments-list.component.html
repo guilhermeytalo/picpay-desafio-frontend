@@ -1,15 +1,54 @@
-<search (emmitSearch)="searchPayments($event)"></search>
-
-<button (click)="addPaymentModal.toggle()">Adicionar Pagamento</button>
-
 <section class="listagem">
-  <table class="payments">
+  <h1>Meus pagamentos</h1>
+
+  <div class="add-payment-button-container">
+    <button class="btn btn_submit" (click)="addPaymentModal.toggle()">Adicionar Pagamento</button>
+  </div>
+
+  <div class="table-header-container">
+    <div class="search-container">
+      <search (emmitSearch)="searchPayments($event)"></search>
+
+      <button class="filter">
+        <img src="assets/icons/filter.svg" alt="FilterIcon" width="100%" />
+        Filtrar
+      </button>
+    </div>
+
+    <div class="pagination-container">
+      <label for="quantity">Exibir</label>
+      <select name="quantity" id="quantity">
+        <option value="5" selected>5</option>
+        <option value="15">15</option>
+        <option value="25">25</option>
+      </select>
+
+      <div class="pages-number">Pagination</div>
+    </div>
+  </div>
+
+  <table class="payments-table-container">
     <tr class="table-header">
-      <th class="th_item"><a id="name" class="filter__link" href="#">Usuário</a></th>
-      <th class="th_item"><a id="wins" class="filter__link filter__link--number" href="#">Título</a></th>
-      <th class="th_item"><a id="draws" class="filter__link filter__link--number" href="#">Data</a></th>
-      <th class="th_item"><a id="losses" class="filter__link filter__link--number" href="#">Valor</a></th>
-      <th class="th_item"><a id="total" class="filter__link filter__link--number" href="#">Pago</a></th>
+      <th class="th_item">
+        <a id="name" class="header_sort" href="#">Usuário</a>
+      </th>
+
+      <th class="th_item">
+        <a class="header_sort" href="#">Título</a>
+      </th>
+
+      <th class="th_item">
+        <a class="header_sort" href="#">Data</a>
+      </th>
+
+      <th class="th_item">
+        <a class="header_sort" href="#">Valor</a>
+      </th>
+
+      <th class="th_item">
+        <a class="header_sort" href="#">Pago</a>
+      </th>
+
       <th class="th_item"></th>
     </tr>
 
@@ -33,27 +72,26 @@
         </td>
 
         <td class="td_item">
-          <button (click)="deletePaymentModal.toggle()">Excluir</button>
+          <button (click)="deletePaymentModal.toggle()">
+            <img src="assets/icons/delete.svg" alt="delete" width="10%" />
+          </button>
         </td>
       </tr>
     </ng-template>
+
+    <div class="image-error" *ngIf="apiError">
+      <h1>Ops... Tente novamente</h1>
+      <img src="assets/search-error.png" alt="Erro de pesquisa" width="30%" />
+    </div>
   </table>
 </section>
 
 <modal #addPaymentModal>
-
   <div class="modal-header">{{ modalTitle }}</div>
 
   <form (ngSubmit)="onSubmit()" #addPaymentForm="ngForm">
     <div class="form-group">
-      <input
-        class="form-control"
-        type="text"
-        name="name"
-        placeholder="Usuário*"
-        [(ngModel)]="payment.name"
-        required
-      />
+      <input class="form-control" type="text" name="name" placeholder="Usuário*" [(ngModel)]="payment.name" required />
       <input
         class="form-control"
         type="text"
@@ -99,5 +137,3 @@
   <p>Data</p>
   <p>valor</p>
 </modal>
-
-<img src="assets/error.png" alt="Erro de pesquisa" width="100%" *ngIf="apiError" />

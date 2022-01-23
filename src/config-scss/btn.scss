@@ -1,17 +1,22 @@
 .btn {
-  width: 12rem;
+  height: 4rem;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
+
+  border-radius: 0.4rem;
   text-transform: uppercase;
   text-decoration: none;
+  font-size: 1.4rem;
 
   &_cancel {
     background: var(--btn-cancel);
   }
 
   &_submit {
-    color: var(--branco);
+    color: var(--white);
     background: var(--btn-submit);
   }
-}
 
+  &_filter {
+    background: var(--btn-cancel);
+  }
+}
