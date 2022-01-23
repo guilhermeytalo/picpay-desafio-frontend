@@ -7,6 +7,8 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { RouterModule } from '@angular/router';
 import { appRoutingModule } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataModule } from './data/data.module';
+import { InfraModule } from './infra/infra.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -15,7 +17,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TranslocoRootModule,
     RouterModule,
     appRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DataModule,
+    InfraModule
   ],
   providers: [],
   bootstrap: [AppComponent]
