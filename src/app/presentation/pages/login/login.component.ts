@@ -1,7 +1,7 @@
 import { Component, SkipSelf } from '@angular/core';
 import { IAuthentication } from '@app/domain/usecases/authentication';
-import { ISnackBar } from '@app/shared/class/isnackbar';
 import { CredentialModel } from '@app/shared/forms-model/credential.model';
+import { ISnackBar } from '@app/shared/interfaces/isnackbar';
 import { FormHelper } from '@shared/helpers/form.helper';
 
 @Component({
