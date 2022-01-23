@@ -1,3 +1,5 @@
+@import "~assets/scss/styles.scss";
+
 .l-content {
     height: 89%;
     display: flex;
@@ -6,7 +8,7 @@
         height: 100%;
         width: 40%;
         display: grid;
-        background-color: #f2f2f2;
+        background-color: $background-color-area-form;
         &__inputs {
             width: 100%;
             align-self: center;
@@ -17,10 +19,10 @@
                     h3 {
                         span {
                             &:nth-child(1) {
-                                color: #0a2d5f;
+                                color: $color-subtitle-primary;
                             }
                             &:nth-child(2) {
-                                color: #7098c0;
+                                color: $color-subtitle-secondary;
                             }
                         }
                     }
