@@ -12,7 +12,7 @@ import { LoginComponent } from './login.component';
 import faker from 'faker';
 import { AccountModel } from '@app/domain/models/account.model';
 import { of } from 'rxjs';
-import { ISnackBar } from '@app/shared/class/isnackbar';
+import { ISnackBar } from '@app/shared/interfaces/isnackbar';
 
 let component: LoginComponent;
 let fixture: ComponentFixture<LoginComponent>;
