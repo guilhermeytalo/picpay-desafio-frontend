@@ -29,6 +29,17 @@ const checkButtonIfDisabled = () => {
   expect(submitEl.nativeElement.querySelector('button').disabled).toBeTruthy();
 };
 
+const populateInputEmail = () => {
+  component.form.controls.email.setValue(faker.internet.email());
+};
+const populateInputPassword = () => {
+  component.form.controls.password.setValue(faker.internet.password());
+};
+const populateInputsEmailAndPassword = () => {
+  populateInputEmail();
+  populateInputPassword();
+};
+
 describe('LoginComponent', () => {
   iauthentication = jasmine.createSpyObj('IAuthentication', ['auth']);
   snackBar = jasmine.createSpyObj('SnackBarService', ['openSnackBar']);
@@ -55,8 +66,6 @@ describe('LoginComponent', () => {
   });
   it('should init component with button disabled', () => {
     fixture.detectChanges();
-
-    const submitEl = fixture.debugElement;
     checkButtonIfDisabled();
   });
 
@@ -66,23 +75,19 @@ describe('LoginComponent', () => {
   });
 
   it('should hability button when populate inputs form requireds', () => {
-    const submitEl = fixture.debugElement;
-    component.form.controls.email.setValue(faker.internet.email());
-    component.form.controls.password.setValue(faker.internet.password());
+    populateInputsEmailAndPassword();
     fixture.detectChanges();
     checkButtonIfEnabled();
   });
 
   it('should continue disabled button if populate email', () => {
-    const submitEl = fixture.debugElement;
-    component.form.controls.email.setValue(faker.internet.email());
+    populateInputEmail();
     fixture.detectChanges();
     checkButtonIfDisabled();
   });
 
   it('should continue disabled button if populate password', () => {
-    const submitEl = fixture.debugElement;
-    component.form.controls.password.setValue(faker.internet.password());
+    populateInputPassword();
     fixture.detectChanges();
     checkButtonIfDisabled();
   });
