@@ -1,0 +1,44 @@
+.l-content {
+    height: 89%;
+    display: flex;
+    flex-direction: row;
+    &__area__form {
+        height: 100%;
+        width: 40%;
+        display: grid;
+        background-color: #f2f2f2;
+        &__inputs {
+            width: 100%;
+            align-self: center;
+
+            &__content {
+                margin: 60px;
+                &__title {
+                    h3 {
+                        span {
+                            &:nth-child(1) {
+                                color: #0a2d5f;
+                            }
+                            &:nth-child(2) {
+                                color: #7098c0;
+                            }
+                        }
+                    }
+                }
+                &__align__items {
+                    &__column {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+    }
+    &__img {
+        width: 100%;
+        img {
+            width: 100%;
+            height: 80%;
+        }
+    }
+}

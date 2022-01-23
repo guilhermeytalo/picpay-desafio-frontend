@@ -1,1 +1,44 @@
-LOGIN
+<mat-toolbar>
+  <span transloco="login"></span>
+</mat-toolbar>
+
+<div class="l-content">
+  <div class="l-content__area__form">
+    <div class="l-content__area__form__inputs">
+      <div class="l-content__area__form__inputs__content">
+        <div class="l-content__area__form__inputs__content__title">
+          <h3><span>Pay</span> <span>Friends</span></h3>
+          <h2 transloco="title"></h2>
+        </div>
+        <div class="l-content__area__form__inputs__content__align__items">
+          <form
+            class="l-content__area__form__inputs__content__align__items__column"
+          >
+            <mat-form-field appearance="outline">
+              <mat-label transloco="form.label.email"></mat-label>
+              <input
+                matInput
+                [placeholder]="'form.input.placeholder.email' | transloco"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label transloco="form.label.password"></mat-label>
+              <input
+                matInput
+                [placeholder]="'form.input.placeholder.password' | transloco"
+              />
+            </mat-form-field>
+            <button
+              mat-raised-button
+              color="primary"
+              transloco="form.button.text"
+            ></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="l-content__img">
+    <img srcset="assets/img/img-login.svg" />
+  </div>
+</div>
