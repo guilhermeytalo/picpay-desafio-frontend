@@ -10,7 +10,7 @@
         formControlName="search"
       />
     </mat-form-field>
-    <button mat-raised-button class="btn-light-blue" >Pesquisar</button>
+    <button mat-raised-button class="btn-light-blue">Pesquisar</button>
     <button mat-raised-button class="btn-light-gray" (click)="clearSearch()">
       Limpar
     </button>
@@ -35,54 +35,67 @@
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuário</th>
       <td mat-cell *matCellDef="let row">
-        <p>{{ row.name }}</p>
-        <p>{{ row.username }}</p>
+        <p class="desc">{{ row.name }}</p>
+        <p class="sub-desc">@{{ row.username }}</p>
       </td>
     </ng-container>
 
     <!-- title Column -->
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Título</th>
-      <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+      <td mat-cell *matCellDef="let row">
+        <p class="desc">{{ row.title }}</p>
+      </td>
     </ng-container>
 
     <!-- date Column -->
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
-      <td mat-cell *matCellDef="let row">{{ row.date | date: "dd/MM/yyyy"}}</td>
+      <td mat-cell *matCellDef="let row">
+        <p class="desc">{{ row.date | date: "d MMM y" }}</p>
+        <p class="sub-desc">{{ row.date | date: "h:mm a" }}</p>
+      </td>
     </ng-container>
 
     <!-- value Column -->
     <ng-container matColumnDef="value">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
-      <td mat-cell *matCellDef="let row">{{ row.value | currency: "BRL" }}</td>
+      <td mat-cell *matCellDef="let row">
+        <p>
+          {{ row.value | currency: "BRL" }}
+        </p>
+      </td>
     </ng-container>
 
     <!-- isPayed Column -->
     <ng-container matColumnDef="isPayed">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Pago</th>
       <td mat-cell *matCellDef="let row">
-        <mat-checkbox color="primary" #c [checked]="row.isPayed" (click)="updateIsPayed(row, c.checked)"></mat-checkbox>
+        <mat-checkbox
+          color="primary"
+          #c
+          [checked]="row.isPayed"
+          (click)="updateIsPayed(row, c.checked)"
+        ></mat-checkbox>
       </td>
     </ng-container>
 
     <ng-container matColumnDef=" ">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let row">
-          <div fxFex fxLayoutAlign="end">
-              <button mat-button (click)="openEditTask(row)">
-                  <img src="../../../assets/table/edit.svg">
-              </button>
-              <button mat-button (click)="delete(row)">
-                <img src="../../../assets/table/delete.svg">
-              </button>
-          </div>
+        <div fxFex fxLayoutAlign="end">
+          <button mat-button (click)="openEditTask(row)">
+            <img src="../../../assets/table/edit.svg" />
+          </button>
+          <button mat-button (click)="delete(row)">
+            <img src="../../../assets/table/delete.svg" />
+          </button>
+        </div>
       </td>
-  </ng-container>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-
   </table>
 
   <div *ngIf="page.totalElements === 0">Nenhum registro encontrado</div>

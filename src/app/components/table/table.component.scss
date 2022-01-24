@@ -1,3 +1,5 @@
+@import "../../../app/share/style/colors.scss";
+
 table {
   width: 100%;
 }
@@ -8,3 +10,17 @@ table {
 }
 
 
+.desc {
+  color: $gray;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 0px;
+}
+
+.sub-desc {
+  color: $secondary;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 0px;
+  
+}
