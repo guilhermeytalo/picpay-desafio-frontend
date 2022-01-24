@@ -1,8 +1,9 @@
-import { Profile } from './shared/profile.model';
+import { Profile } from "./shared/profile.model";
 import { UserComponent } from "./../../components/form/user/user.component";
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { ProfileService } from './shared/profile.service';
+import { ProfileService } from "./shared/profile.service";
+import { SnackBarService } from "src/app/components/snack-bar/snack-bar.service";
 
 @Component({
   selector: "app-profile",
@@ -12,7 +13,7 @@ import { ProfileService } from './shared/profile.service';
 export class ProfileComponent implements OnInit {
   profile: Profile = JSON.parse(localStorage.getItem("user"));
 
-  constructor(private profileService: ProfileService, private dialog: MatDialog) {}
+  constructor(private snackBar: SnackBarService, private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -22,11 +23,11 @@ export class ProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe({
-      next: res => {
+      next: (res) => {
         if (res) {
-
+          this.snackBar.openSnackBar("USUÁRIO ALTERADO COM SUCESSO", "X");
         }
-      }
-    })
+      },
+    });
   }
 }
