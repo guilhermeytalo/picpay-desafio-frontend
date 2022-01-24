@@ -17,6 +17,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorEnum } from '@app/shared/helpers/errors-key.enum';
 import ErrorResponseHelper from '@app/shared/helpers/error-response.helper';
 import { Router } from '@angular/router';
+import { ILocalStorage } from '@app/infra/cache/interfaces/ilocalstorage';
 
 let component: LoginComponent;
 let fixture: ComponentFixture<LoginComponent>;
@@ -24,6 +25,7 @@ let fixture: ComponentFixture<LoginComponent>;
 let iauthentication: jasmine.SpyObj<IAuthentication>;
 let snackBar: jasmine.SpyObj<ISnackBar>;
 let router: jasmine.SpyObj<Router>;
+let localStorage: jasmine.SpyObj<ILocalStorage>;
 
 const checkButtonIfEnabled = () => {
   const submitEl = fixture.debugElement;
@@ -49,6 +51,7 @@ describe('LoginComponent', () => {
   iauthentication = jasmine.createSpyObj('IAuthentication', ['auth']);
   snackBar = jasmine.createSpyObj('SnackBarService', ['openSnackBar']);
   router = jasmine.createSpyObj('Router', ['navigate']);
+  localStorage = jasmine.createSpyObj('ILocalStorage', ['set']);
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TranslocoTestingModule],
@@ -56,7 +59,8 @@ describe('LoginComponent', () => {
       providers: [
         { provide: IAuthentication, useValue: iauthentication },
         { provide: ISnackBar, useValue: snackBar },
-        { provide: Router, useValue: router }
+        { provide: Router, useValue: router },
+        { provide: ILocalStorage, useValue: localStorage }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     });
