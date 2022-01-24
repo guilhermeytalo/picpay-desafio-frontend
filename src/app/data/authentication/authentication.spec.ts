@@ -4,9 +4,24 @@ import { IHttpClient } from '../protocols/http-client';
 import { AuthenticationService } from './authentication.service';
 import faker from 'faker';
 import { of } from 'rxjs';
+import { AccountModel } from '@app/domain/models/account.model';
 let authenticationService: AuthenticationService;
 let httpService: jasmine.SpyObj<IHttpClient>;
 
+const createParams = (): AuthenticationParams => {
+  return {
+    email: faker.internet.email(),
+    password: faker.internet.password()
+  };
+};
+const createObjResponseAccount = (): AccountModel => {
+  return {
+    id: faker.datatype.number(10),
+    name: faker.internet.userName(),
+    email: faker.internet.email(),
+    password: faker.internet.password()
+  };
+};
 describe('AuthenticationService', () => {
   const httpClient = jasmine.createSpyObj('IHttpClient', ['get']);
 
@@ -29,6 +44,14 @@ describe('AuthenticationService', () => {
       password: faker.internet.password()
     };
     httpService.get.and.returnValue(of());
+    authenticationService.auth(body);
+    expect(httpService.get).toHaveBeenCalled();
+  });
+
+  it('Should request auth with error', () => {
+    const body: AuthenticationParams = createParams();
+    const ret: AccountModel = createObjResponseAccount();
+    httpService.get.and.returnValue(of(ret));
     authenticationService.auth(body);
     expect(httpService.get).toHaveBeenCalled();
   });

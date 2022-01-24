@@ -11,8 +11,11 @@ import { TranslocoTestingModule } from '@ngneat/transloco';
 import { LoginComponent } from './login.component';
 import faker from 'faker';
 import { AccountModel } from '@app/domain/models/account.model';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { ISnackBar } from '@app/shared/interfaces/isnackbar';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorEnum } from '@app/shared/helpers/errors-key.enum';
+import ErrorResponseHelper from '@app/shared/helpers/error-response.helper';
 
 let component: LoginComponent;
 let fixture: ComponentFixture<LoginComponent>;
@@ -107,8 +110,9 @@ describe('LoginComponent', () => {
   }));
 
   it('should request auth with error', fakeAsync(() => {
-    iauthentication.auth.and.returnValue(of(undefined));
-    snackBar.openSnackBar.and.returnValue();
+    const errorResponse = new ErrorResponseHelper(ErrorEnum.userNotFound, 404);
+    iauthentication.auth.and.returnValue(throwError(errorResponse));
+    snackBar.openSnackBar.and.callThrough();
 
     component.auth();
     tick();
