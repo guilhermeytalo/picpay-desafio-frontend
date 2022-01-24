@@ -4,6 +4,15 @@
   flex: 1 1 auto;
 }
 
+.logout {
+  color: $white;
+  padding: 10px;
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 10px;
+  cursor: pointer;
+}
+
 .color {
     background-color: $blue;
 }
@@ -15,6 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   img {
     border-radius: 50%;

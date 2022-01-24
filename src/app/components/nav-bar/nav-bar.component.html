@@ -1,11 +1,13 @@
 <mat-toolbar class="color">
-  <button mat-icon-button class="example-icon">
+  <button mat-icon-button [routerLink]="['/home']">
     <img src="../../../assets/nav/logo.svg" />
   </button>
   <span class="spacer"></span>
+  <span class="logout" (click)="logout()"> LOGOUT </span>
   <div class="circle">
     <img
       [src]="avatarUrl"
+      [routerLink]="['/profile']"
     />
   </div>
 </mat-toolbar>
