@@ -1,0 +1,81 @@
+<h1 mat-dialog-title>Editar usuário</h1>
+
+<form [formGroup]="userForm" (ngSubmit)="editProfile()">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-form-field class="form-input" appearance="outline" fxFlex="45">
+      <input
+        matInput
+        type="text"
+        placeholder="Usuário"
+        formControlName="name"
+        required
+      />
+      <mat-error>Por favor preencha o campo Usuário</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="form-input" appearance="outline" fxFlex="45">
+      <input matInput type="email" placeholder="email" formControlName="email" required />
+      <mat-error>Por favor preencha o campo Email</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-form-field class="form-input" appearance="outline" fxFlex="45">
+      <input
+        matInput
+        type="password"
+        placeholder="Senha"
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+        required
+      />
+      <button mat-icon-button matSuffix (click)="hide = !hide">
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error>Por favor escolha uma senha</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-input" appearance="outline" fxFlex="45">
+        <input
+          matInput
+          type="password"
+          placeholder="Confirme a senha"
+          [type]="hide ? 'password' : 'text'"
+          formControlName="passwordConfirm"
+          required
+        />
+        <button mat-icon-button matSuffix (click)="hide = !hide">
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        <mat-error>Por favor confirme a senha</mat-error>
+      </mat-form-field>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
+    <button
+      mat-raised-button
+      [mat-dialog-close]="false"
+      fxFlex="20"
+      class="btn-light-gray"
+    >
+      Cancelar
+    </button>
+    <button
+      mat-raised-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+      fxFlex="20"
+      type="submit"
+      [disabled]="userForm.invalid || userForm.get('password').value != userForm.get('passwordConfirm').value"
+      class="btn-light-blue"
+    >
+      Confirmar
+    </button>
+  </div>
+
+  <div *ngIf="userForm.get('password').value != userForm.get('passwordConfirm').value"> 
+      <mat-error>Senhas estão diferentes</mat-error>
+  </div>
+</form>

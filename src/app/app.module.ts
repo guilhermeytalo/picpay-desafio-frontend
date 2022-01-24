@@ -21,6 +21,7 @@ import { CreateComponent } from "./components/form/create/create.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { SpinnerComponent } from "./components/spinner/spinner.component";
 import { HttpRequestInterceptor } from "./core/interceptors/http-request.interceptor";
+import { UserComponent } from './components/form/user/user.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { HttpRequestInterceptor } from "./core/interceptors/http-request.interce
     CreateComponent,
     ProfileComponent,
     SpinnerComponent,
+    UserComponent,
   ],
   imports: [
     AppRoutingModule,

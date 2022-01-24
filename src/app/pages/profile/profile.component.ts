@@ -1,6 +1,8 @@
-import { AuthService } from "./../auth/shared/auth.service";
+import { Profile } from './shared/profile.model';
+import { UserComponent } from "./../../components/form/user/user.component";
 import { Component, OnInit } from "@angular/core";
-import { Auth } from "../auth/shared/auth.model";
+import { MatDialog } from "@angular/material/dialog";
+import { ProfileService } from './shared/profile.service';
 
 @Component({
   selector: "app-profile",
@@ -8,10 +10,23 @@ import { Auth } from "../auth/shared/auth.model";
   styleUrls: ["./profile.component.scss"],
 })
 export class ProfileComponent implements OnInit {
-  profile: Auth = JSON.parse(localStorage.getItem("user"));
+  profile: Profile = JSON.parse(localStorage.getItem("user"));
 
-  constructor(private autoService: AuthService) {}
+  constructor(private profileService: ProfileService, private dialog: MatDialog) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  editUser() {
+    let dialogRef = this.dialog.open(UserComponent, {
+      width: "50%",
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: res => {
+        if (res) {
+
+        }
+      }
+    })
   }
 }

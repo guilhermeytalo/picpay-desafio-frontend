@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(["home"]);
       localStorage.setItem(
         "user",
-        JSON.stringify({ name: auth.name, email: auth.email })
+        JSON.stringify({ name: auth.name, email: auth.email, id: auth.id })
       );
     } else {
       this.snackBar.openSnackBar("USUÁRIO OU SENHA INCORRETO", "X");
