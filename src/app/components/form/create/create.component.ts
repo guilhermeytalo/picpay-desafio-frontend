@@ -4,7 +4,7 @@ import { Validators } from "@angular/forms";
 import { Component, Inject, LOCALE_ID, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { DatePipe, formatDate } from "@angular/common";
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: "app-create",
@@ -48,16 +48,21 @@ export class CreateComponent implements OnInit {
 
   createTask() {
     if (!this.isEdit) {
+      this.taskForm.value.date = new Date(
+        this.taskForm.value.date
+      ).toISOString();
       this.tasksService.createTask(this.taskForm.value).subscribe({
         next: (res) => {
-          console.log(res);
+          console.log(res, " RESPOSTA CREATE");
         },
         error: (err) => {
           console.log(err);
         },
       });
     } else if (this.isEdit) {
-      console.log(this.data.id);
+      this.taskForm.value.date = new Date(
+        this.taskForm.value.date
+      ).toISOString();
       this.tasksService
         .updateTask(this.data.id, this.taskForm.value)
         .subscribe({
