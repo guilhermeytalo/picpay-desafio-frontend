@@ -4,6 +4,7 @@ import { Auth } from "./../../../pages/auth/shared/auth.model";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
+import { SnackBarService } from "../../snack-bar/snack-bar.service";
 
 @Component({
   selector: "app-login",
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private snackBar: SnackBarService
   ) {}
 
   ngOnInit(): void {
@@ -45,13 +47,12 @@ export class LoginComponent implements OnInit {
     ) {
       console.log("IGUAL");
       this.router.navigate(["home"]);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ name: auth.name, email: auth.email })
+      );
     } else {
-      console.log("NAO IGUAL");
-
-      console.log(auth.email, "EMAIL AUTH");
-      console.log(auth.password, "SENHA AUTH");
-      console.log(this.authForm.value.email, "EMAIL FORM");
-      console.log(this.authForm.value.password, "SENHA FORM");
+      this.snackBar.openSnackBar("USUÁRIO OU SENHA INCORRETO", "X");
     }
   }
 }
