@@ -12,7 +12,7 @@ const routes: Routes = [
       )
   },
   {
-    path: 'tasks',
+    path: 'payments',
     pathMatch: 'full',
 
     loadChildren: () =>
