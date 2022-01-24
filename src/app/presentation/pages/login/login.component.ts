@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, SkipSelf } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountModel } from '@app/domain/models/account.model';
 import { IAuthentication } from '@app/domain/usecases/authentication';
 import { CredentialModel } from '@app/shared/forms-model/credential.model';
@@ -17,7 +18,8 @@ export class LoginComponent extends FormHelper {
   private _loading = false;
   constructor(
     @SkipSelf() private readonly authenticationService: IAuthentication,
-    @SkipSelf() private readonly snackBar: ISnackBar
+    @SkipSelf() private readonly snackBar: ISnackBar,
+    @SkipSelf() private readonly router: Router
   ) {
     super(new CredentialModel());
   }
@@ -33,7 +35,7 @@ export class LoginComponent extends FormHelper {
       )
       .subscribe({
         next: (user: AccountModel) => {
-          console.log(user);
+          this.router.navigate(['payments']);
         },
         error: (helpError: ErrorResponseHelper) => {
           const { message } = helpError.error.error;
