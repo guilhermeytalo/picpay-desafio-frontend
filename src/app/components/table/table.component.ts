@@ -115,7 +115,6 @@ export class TableComponent implements OnInit {
             error: () => {},
           });
         } else {
-          console.log("NAO DELETADO");
           this.snackBarService.openSnackBar("ERRO AO DELETAR", "X");
         }
       },
@@ -126,7 +125,6 @@ export class TableComponent implements OnInit {
   }
 
   openEditTask(task: HomeTask) {
-    console.log(task, "TASK");
     const dialogRef = this.dialog.open(CreateComponent, {
       data: task,
       width: "50%",

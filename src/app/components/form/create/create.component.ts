@@ -53,7 +53,6 @@ export class CreateComponent implements OnInit {
       ).toISOString();
       this.tasksService.createTask(this.taskForm.value).subscribe({
         next: (res) => {
-          console.log(res, " RESPOSTA CREATE");
         },
         error: (err) => {
           console.log(err);
@@ -67,7 +66,6 @@ export class CreateComponent implements OnInit {
         .updateTask(this.data.id, this.taskForm.value)
         .subscribe({
           next: (res) => {
-            console.log(res, "ALTERADO");
           },
         });
     }
