@@ -39,7 +39,7 @@
               />
             </mat-form-field>
             <button
-              [disabled]="this.form.invalid"
+              [disabled]="this.form.invalid  || this.loading"
               mat-raised-button
               color="primary"
             >
