@@ -16,12 +16,14 @@ import { ISnackBar } from '@app/shared/interfaces/isnackbar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorEnum } from '@app/shared/helpers/errors-key.enum';
 import ErrorResponseHelper from '@app/shared/helpers/error-response.helper';
+import { Router } from '@angular/router';
 
 let component: LoginComponent;
 let fixture: ComponentFixture<LoginComponent>;
 
 let iauthentication: jasmine.SpyObj<IAuthentication>;
 let snackBar: jasmine.SpyObj<ISnackBar>;
+let router: jasmine.SpyObj<Router>;
 
 const checkButtonIfEnabled = () => {
   const submitEl = fixture.debugElement;
@@ -46,13 +48,15 @@ const populateInputsEmailAndPassword = () => {
 describe('LoginComponent', () => {
   iauthentication = jasmine.createSpyObj('IAuthentication', ['auth']);
   snackBar = jasmine.createSpyObj('SnackBarService', ['openSnackBar']);
+  router = jasmine.createSpyObj('Router', ['navigate']);
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TranslocoTestingModule],
       declarations: [LoginComponent],
       providers: [
         { provide: IAuthentication, useValue: iauthentication },
-        { provide: ISnackBar, useValue: snackBar }
+        { provide: ISnackBar, useValue: snackBar },
+        { provide: Router, useValue: router }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     });
@@ -101,11 +105,14 @@ describe('LoginComponent', () => {
       email: faker.internet.email(),
       name: faker.internet.userName()
     };
+    router.navigate.and.callThrough();
     iauthentication.auth.and.returnValue(of(accountModel));
 
     component.auth();
     tick();
     expect(iauthentication.auth).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalled();
+
     expect(component.loading).toBeFalsy();
   }));
 
