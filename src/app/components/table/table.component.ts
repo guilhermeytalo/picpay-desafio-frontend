@@ -1,10 +1,5 @@
 import { HomeTask } from "./../../pages/home/shared/homeTask.model";
-import {
-  Component,
-  Input,
-  OnInit,
-  ViewChild,
-} from "@angular/core";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { MatSort, Sort } from "@angular/material/sort";
@@ -109,10 +104,10 @@ export class TableComponent implements OnInit {
               this.listTasks();
               this.snackBarService.openSnackBar("DELETADO COM SUCESSO", "X");
             },
-            error: () => {},
+            error: () => {
+              this.snackBarService.openSnackBar("ERRO AO DELETAR", "X");
+            },
           });
-        } else {
-          this.snackBarService.openSnackBar("ERRO AO DELETAR", "X");
         }
       },
       error: (error) => {
