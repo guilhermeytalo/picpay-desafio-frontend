@@ -1,40 +1,31 @@
-<form (ngSubmit)="onSubmit()" #form="ngForm">
+<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
   <img class="img-logo" src="assets/logo.svg" alt="logo" width="100%" />
 
   <h1>Bem vindo de volta</h1>
 
   <div class="form-group__flex-columm">
     <div class="input-relative-container">
-      <input
-        class="form-control"
-        type="email"
-        name="email"
-        id="email"
-        [(ngModel)]="login.email"
-        placeholder=""
-        required
-      />
+      <input class="form-control" type="email" formControlName="email" id="email" required />
       <span class="placeholder"> Email </span>
+      <app-error-msg [control]="loginForm.get('email')" label="Email"></app-error-msg>
     </div>
 
     <div class="input-relative-container">
-      <input
-        class="form-control"
-        type="password"
-        name="password"
-        id="password"
-        [(ngModel)]="login.password"
-        placeholder=""
-        required
-      />
-
-      <span class="placeholder"> Senha </span>
-
+      <input class="form-control" type="password" formControlName="password" id="password" required />
       <div class="password-eye">
         <img src="assets/icons/eye.svg" alt="password eye" width="70%" />
       </div>
+      <span class="placeholder"> Senha </span>
+      <app-error-msg [control]="loginForm.get('password')" label="Senha"></app-error-msg>
     </div>
   </div>
 
-  <button type="submit" class="btn btn_submit" [disabled]="form.form.invalid">Entrar</button>
+  <button [disabled]="loading" type="submit" class="btn btn_submit">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Entrar
+  </button>
+
+  <button [disabled]="loading" type="text" class="btn btn_cancel">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    <a routerLink="/register" class="btn btn-link">Cadastrar</a>
+  </button>
 </form>

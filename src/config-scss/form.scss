@@ -10,6 +10,11 @@ form {
 
     padding: 15px 15px;
     background: transparent;
+
+    &::placeholder {
+      color: #a5a5a5;
+      font-size: 1.4rem;
+    }
   }
 
   label {

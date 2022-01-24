@@ -1,7 +1,4 @@
 import { Component, OnInit } from "@angular/core"
-import { Router } from "@angular/router"
-import { PaymentsApiService } from "../../service/payments-api.service"
-import { Payment } from "../../service/payment"
 import { trigger, style, animate, transition } from "@angular/animations"
 
 @Component({
