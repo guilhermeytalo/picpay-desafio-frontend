@@ -16,6 +16,9 @@ import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "../dialog-confirm/dialog.component";
 import { CreateComponent } from "../form/create/create.component";
 import { Observable, Subscription } from "rxjs";
+import { SnackBarService } from "../snack-bar/snack-bar.service";
+
+
 
 @Component({
   selector: "app-table",
@@ -48,7 +51,8 @@ export class TableComponent implements OnInit {
   constructor(
     private taskService: TasksService,
     private formBuilder: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBarService: SnackBarService
   ) {}
 
   ngOnInit(): void {
@@ -87,7 +91,6 @@ export class TableComponent implements OnInit {
       .pipe(take(1))
       .subscribe(
         (page) => {
-          console.log(page, "PAGE");
           this.page = page;
         },
         (error) => {
@@ -107,12 +110,13 @@ export class TableComponent implements OnInit {
           this.taskService.deleteTask(task).subscribe({
             next: (res) => {
               this.listTasks();
-              console.log(res, "DELETADO");
+              this.snackBarService.openSnackBar("DELETADO COM SUCESSO", "X");
             },
             error: () => {},
           });
         } else {
           console.log("NAO DELETADO");
+          this.snackBarService.openSnackBar("ERRO AO DELETAR", "X");
         }
       },
       error: (error) => {
@@ -130,6 +134,7 @@ export class TableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe({
       next: (res) => {
+        this.snackBarService.openSnackBar("EDITADO COM SUCESSO", "X");
         if (res) this.listTasks();
       },
     });
@@ -141,13 +146,12 @@ export class TableComponent implements OnInit {
     this.taskService.updateTask(task.id, newTask).subscribe({
       next: (res) => {
         if (res) this.listTasks();
+        this.snackBarService.openSnackBar("PAGAMENTO ALTERADO", "X");
       },
     });
   }
 
-  
   ngOnDestroy() {
     this.eventsSubscription.unsubscribe();
   }
-
 }
