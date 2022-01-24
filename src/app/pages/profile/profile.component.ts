@@ -2,7 +2,6 @@ import { Profile } from "./shared/profile.model";
 import { UserComponent } from "./../../components/form/user/user.component";
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { ProfileService } from "./shared/profile.service";
 import { SnackBarService } from "src/app/components/snack-bar/snack-bar.service";
 
 @Component({

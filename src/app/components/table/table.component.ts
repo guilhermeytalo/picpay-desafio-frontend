@@ -1,6 +1,5 @@
 import { HomeTask } from "./../../pages/home/shared/homeTask.model";
 import {
-  AfterViewInit,
   Component,
   Input,
   OnInit,
