@@ -19,6 +19,7 @@
     }
   },
   "message": {
-    "error": "Usuário não encontrado"
+    "user_not_found": "Usuário não encontrado",
+    "api_not_found": "Serviço offline"
   }
 }
