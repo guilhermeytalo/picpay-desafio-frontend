@@ -21,5 +21,8 @@
   "message": {
     "user_not_found": "User not found",
     "api_not_found": "Service offline"
+  },
+  "payments": {
+    "title": "Pay Friends"
   }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tasks',
-  templateUrl: 'payments.component.html'
+  templateUrl: 'payments.component.html',
+  styleUrls: ['payments.component.scss']
 })
 export class PaymentsComponent implements OnInit {
   constructor() {}
