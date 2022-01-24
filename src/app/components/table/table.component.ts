@@ -18,8 +18,6 @@ import { CreateComponent } from "../form/create/create.component";
 import { Observable, Subscription } from "rxjs";
 import { SnackBarService } from "../snack-bar/snack-bar.service";
 
-
-
 @Component({
   selector: "app-table",
   templateUrl: "./table.component.html",
@@ -132,8 +130,10 @@ export class TableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe({
       next: (res) => {
-        this.snackBarService.openSnackBar("EDITADO COM SUCESSO", "X");
-        if (res) this.listTasks();
+        if (res) {
+          this.listTasks();
+          this.snackBarService.openSnackBar("EDITADO COM SUCESSO", "X");
+        }
       },
     });
   }

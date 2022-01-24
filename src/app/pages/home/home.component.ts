@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { CreateComponent } from "src/app/components/form/create/create.component";
 import { TasksService } from "./shared/tasks.service";
+import { SnackBarService } from "src/app/components/snack-bar/snack-bar.service";
 
 @Component({
   selector: "app-home",
@@ -11,11 +12,7 @@ import { TasksService } from "./shared/tasks.service";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private dialog: MatDialog,
-    private tasksService: TasksService
-  ) {}
+  constructor(private dialog: MatDialog, private snackBar: SnackBarService) {}
 
   eventsSubject: Subject<void> = new Subject<void>();
 
@@ -29,6 +26,7 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe({
       next: (res) => {
         if (res) {
+          this.snackBar.openSnackBar("REGISTRO CRIADO COM SUCESSO", "X");
           this.eventsSubject.next();
         }
       },

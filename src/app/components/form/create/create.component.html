@@ -11,10 +11,13 @@
         formControlName="name"
         required
       />
+      <mat-error>Por favor preencha o campo Usuário</mat-error>
     </mat-form-field>
 
+
     <mat-form-field class="form-input" appearance="outline" fxFlex="45">
-      <input matInput placeholder="Valor" formControlName="value" required />
+      <input matInput type="number" placeholder="Valor" formControlName="value" required />
+      <mat-error>Por favor preencha o campo Valor</mat-error>
     </mat-form-field>
   </div>
 
@@ -27,6 +30,7 @@
         formControlName="date"
         required
       />
+      <mat-error>Por favor escolha uma data</mat-error>
     </mat-form-field>
 
     <mat-form-field class="form-input" appearance="outline" fxFlex="45">
@@ -42,7 +46,7 @@
   <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="20px">
     <button
       mat-raised-button
-      [mat-dialog-close]="true"
+      [mat-dialog-close]="false"
       fxFlex="20"
       class="btn-light-gray"
     >

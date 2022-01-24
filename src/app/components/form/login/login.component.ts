@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("OI");
     this.authService.getAccount().subscribe({
       next: (res) => {
         this.authLogin(res[0]);
@@ -45,7 +44,6 @@ export class LoginComponent implements OnInit {
       this.authForm.value.email === auth.email &&
       this.authForm.value.password === auth.password
     ) {
-      console.log("IGUAL");
       this.router.navigate(["home"]);
       localStorage.setItem(
         "user",
