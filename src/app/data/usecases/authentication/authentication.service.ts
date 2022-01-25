@@ -6,7 +6,7 @@ import {
   IAuthentication
 } from '@domain/usecases/authentication';
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import ErrorResponseHelper from '@app/shared/helpers/error-response.helper';
 import { ErrorEnum } from '@app/shared/helpers/errors-key.enum';
 import { IHttpClient } from '@app/data/protocols/http-client';
@@ -15,20 +15,18 @@ import { IHttpClient } from '@app/data/protocols/http-client';
 export class AuthenticationService implements IAuthentication {
   constructor(private readonly http: IHttpClient) {}
   auth(params: AuthenticationParams): Observable<AccountModel> {
-    return this.http
-      .get<AccountModel[], AuthenticationParams>(Routes.getUser, params)
-      .pipe(
-        map((users) => {
-          const findUser = users.find(
-            (user) =>
-              user.email === params.email && user.password === params.password
-          );
-          if (findUser) {
-            return findUser;
-          } else {
-            throw new ErrorResponseHelper(ErrorEnum.userNotFound, 404);
-          }
-        })
-      );
+    return this.http.get<AccountModel[]>(Routes.getUser).pipe(
+      map((users) => {
+        const findUser = users.body.find(
+          (user) =>
+            user.email === params.email && user.password === params.password
+        );
+        if (findUser) {
+          return findUser;
+        } else {
+          throw new ErrorResponseHelper(ErrorEnum.userNotFound, 404);
+        }
+      })
+    );
   }
 }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class HttpClientService implements IHttpClient {
   constructor(private readonly http: HttpClient) {}
-  get<T, R>(url: string, params?: R): Observable<T> {
-    return this.http.get<T>(url, params);
+  get<T>(url: string, params): Observable<any> {
+    return this.http.get(url, params);
   }
 }

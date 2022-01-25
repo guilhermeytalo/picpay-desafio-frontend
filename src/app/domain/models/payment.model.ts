@@ -1,4 +1,4 @@
-export type Payment = {
+export type PaymentModel = {
   id: number;
   name: string;
   username: string;
