@@ -4,11 +4,11 @@
     .mat-toolbar.mat-primary {
         background: $color-background-toolbar;
     }
+
     display: flex;
     flex-direction: column;
     background-color: $background-color-area-form;
     height: 100%;
-
     &__table {
         display: flex;
         flex-direction: column;
@@ -17,17 +17,22 @@
             flex-direction: row;
             justify-content: space-between;
             width: 90%;
-            margin: 3%;
+            margin-top: 4%;
+            margin-left: 5%;
         }
         &__area {
-            margin: 3%;
+            display: grid;
             align-self: center;
             width: 90%;
-            height: 50%;
+            height: 60%;
 
             background: $color-white;
             border-radius: 8px;
-
+            .mat-progress-spinner {
+                margin-top: 50px;
+                margin-left: 50%;
+                margin-top: -90px;
+            }
             &__actions {
                 padding: 15px 15px 0;
                 display: flex;
@@ -54,6 +59,14 @@
                     .mat-row:nth-child(odd) {
                         background-color: $color-white;
                     }
+                    .color-checkboxs {
+                        :not(.mat-checkbox-checked) {
+                            .mat-checkbox-frame {
+                                background-color: #007dfe;
+                                border: none;
+                            }
+                        }
+                    }
                 }
 
                 th.mat-sort-header-sorted {
@@ -63,7 +76,6 @@
         }
     }
 }
-
 .mat-form-field-appearance-outline .mat-form-field-infix {
     padding: 15px;
 }

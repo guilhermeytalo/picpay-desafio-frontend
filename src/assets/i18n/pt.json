@@ -36,6 +36,9 @@
         "value": "Valor",
         "payed": "Pago"
       }
+    },
+    "message": {
+      "empty_data": "Nenhum dado correspondente ao filtro"
     }
   }
 }

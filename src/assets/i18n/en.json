@@ -35,6 +35,9 @@
         "date": "Date",
         "value": "Value",
         "payed": "Payed"
+      },
+      "message": {
+        "empty_data": "No data matching the filter"
       }
     }
   }

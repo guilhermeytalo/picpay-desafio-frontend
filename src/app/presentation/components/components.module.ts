@@ -11,9 +11,8 @@ import { SortTableComponent } from './sort-table/sort-table.component';
 import { SnackBarService } from './toast/snackbar';
 
 @NgModule({
-  imports: [TranslocoModule, AngularMaterialModule],
+  imports: [FormsModule, TranslocoModule, AngularMaterialModule],
   exports: [
-    FormsModule,
     AngularMaterialModule,
     SortTableComponent,
     ActionsTableComponent,

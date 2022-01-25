@@ -1,6 +1,7 @@
 <div class="f-table">
   <mat-form-field appearance="outline">
     <input
+      [(ngModel)]="this.text"
       type="text"
       autocomplete="new-password"
       matInput
@@ -9,7 +10,11 @@
     <mat-icon class="icon-search" matSuffix>search</mat-icon>
   </mat-form-field>
 
-  <button mat-raised-button class="f-table__btn-filter">
+  <button
+    (click)="this.onClick()"
+    mat-raised-button
+    class="f-table__btn-filter"
+  >
     <img src="assets/img/filter.svg" />
     {{ 'form.button.filter' | transloco }}
   </button>
