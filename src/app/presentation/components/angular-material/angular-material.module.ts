@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   exports: [
     MatButtonModule,
@@ -16,7 +17,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatIconModule,
     MatSnackBarModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule
   ]
 })
 export default class AngularMaterialModule {}
