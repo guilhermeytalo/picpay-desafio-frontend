@@ -22,7 +22,6 @@ export class LoginFormComponent extends BaseFormComponent implements OnInit {
   ) {
     super()
 
-    // redirect to home if already logged in
     if (this.accountService.currentUserValue) {
       this.router.navigate(["/"])
     }
@@ -44,10 +43,14 @@ export class LoginFormComponent extends BaseFormComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          // this.router.navigate(["/"])
+          this.alertService.success("Autenticado com sucesso!")
+          setTimeout(() => {
+            this.alertService.clear()
+          }, 5000)
+          this.router.navigate(["/"])
         },
         error => {
-          this.alertService.error(error)
+          this.alertService.error("Erro desconhecido")
           this.loading = false
         }
       )

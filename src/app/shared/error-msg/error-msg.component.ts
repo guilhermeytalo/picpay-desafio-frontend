@@ -11,6 +11,9 @@ export class ErrorMsgComponent implements OnInit {
   @Input() control: FormControl
   @Input() label: string
 
+  @Input() msgErro: string
+  @Input() mostrarErro: boolean
+
   constructor() {}
 
   ngOnInit() {}

@@ -9,7 +9,6 @@ import { SearchComponent } from "./search/search.component"
 import { ModalComponent } from "./modal/modal.component"
 import { LoginFormComponent } from "./login-form/login-form.component"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
-import { AlertComponent } from "./alert/alert.component"
 import { ErrorMsgComponent } from "./error-msg/error-msg.component"
 @NgModule({
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
@@ -19,7 +18,6 @@ import { ErrorMsgComponent } from "./error-msg/error-msg.component"
     PaymentsListComponent,
     ModalComponent,
     LoginFormComponent,
-    AlertComponent,
     ErrorMsgComponent,
   ],
   exports: [HeaderComponent, SearchComponent, PaymentsListComponent, ModalComponent],

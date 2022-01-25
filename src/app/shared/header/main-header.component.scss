@@ -10,4 +10,28 @@
 
     background-color: var(--navy-blue);
   }
+
+  .avatar-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    img {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    a {
+      color: var(--light-blue);
+      padding: 2rem;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: all 200ms;
+
+      &:hover {
+        filter: opacity(0.6);
+      }
+    }
+  }
 }

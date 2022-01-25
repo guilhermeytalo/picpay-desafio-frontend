@@ -17,7 +17,10 @@ export abstract class BaseFormComponent implements OnInit {
     if (this.loginForm.valid) {
       this.submit()
     } else {
-      this.alertService.error("loginForm invalido")
+      this.alertService.error("Credenciais inválidas")
+      setTimeout(() => {
+        this.alertService.clear()
+      }, 5000)
       this.verificaValidacoesForm(this.loginForm)
     }
   }

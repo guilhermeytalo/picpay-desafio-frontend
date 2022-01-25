@@ -13,12 +13,13 @@ import { JwtInterceptor } from "./helpers/jwt.interceptor"
 /* Importando a configuração de algumas linguagens */
 import { registerLocaleData } from "@angular/common"
 import localePT from "@angular/common/locales/pt"
+import { ToastComponent } from "./shared/alert/alert.component"
 
 registerLocaleData(localePT)
 
 @NgModule({
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, PagesModule, HttpClientModule],
-  declarations: [AppComponent],
+  declarations: [AppComponent, ToastComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
