@@ -4,7 +4,7 @@ import { AuthenticationService } from './authentication.service';
 import faker from 'faker';
 import { of } from 'rxjs';
 import { AccountModel } from '@domain/models/account.model';
-import { IHttpClient } from '@data/protocols/http-client';
+import { IHttpClient } from '@app/data/protocols/http-client';
 let authenticationService: AuthenticationService;
 let httpService: jasmine.SpyObj<IHttpClient>;
 
@@ -50,7 +50,7 @@ describe('AuthenticationService', () => {
 
   it('Should request auth with error', () => {
     const body: AuthenticationParams = createParams();
-    const ret: AccountModel = createObjResponseAccount();
+    const ret: any = createObjResponseAccount();
     httpService.get.and.returnValue(of(ret));
     authenticationService.auth(body);
     expect(httpService.get).toHaveBeenCalled();

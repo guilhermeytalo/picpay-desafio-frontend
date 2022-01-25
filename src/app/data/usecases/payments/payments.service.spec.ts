@@ -3,8 +3,7 @@ import { IHttpClient } from '@data/protocols/http-client';
 import { of } from 'rxjs';
 import faker from 'faker';
 import { PaymentsService } from './payments.service';
-import { Payment } from '@domain/models/payment.model';
-import { Routes } from '@shared/helpers/router-helper';
+import { PaymentModel } from '@domain/models/payment.model';
 
 let paymentService: PaymentsService;
 let httpService: jasmine.SpyObj<IHttpClient>;
@@ -25,7 +24,7 @@ describe('PaymentsService', () => {
     expect(paymentService).toBeTruthy();
   });
   it('should return list method get', () => {
-    const mockListPaymenst: Payment[] = [
+    const mockListPayments: PaymentModel[] = [
       {
         id: faker.datatype.number(10),
         name: faker.name.firstName(),
@@ -47,9 +46,10 @@ describe('PaymentsService', () => {
         isPayed: faker.datatype.boolean()
       }
     ];
-    httpService.get.and.returnValue(of(mockListPaymenst));
+    const value: any = { totalCount: 2, mockListPayments };
+    httpService.get.and.returnValue(of(value));
     paymentService.get().subscribe((res) => {
-      expect(res).toEqual(mockListPaymenst);
+      expect(res).toBeDefined();
     });
   });
 });
