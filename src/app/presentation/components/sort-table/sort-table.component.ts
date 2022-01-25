@@ -11,7 +11,6 @@ export class SortTableComponent {
 
   public get classSort(): string {
     if (this.orderBy !== this.column && this.column !== '') {
-      console.log(this.direction);
       return 'unfold_more';
     } else if (this.orderBy === this.column && this.direction === 'DESC') {
       return 'arrow_downward';
