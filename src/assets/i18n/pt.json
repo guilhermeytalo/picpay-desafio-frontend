@@ -21,5 +21,18 @@
   "message": {
     "user_not_found": "Usuário não encontrado",
     "api_not_found": "Serviço offline"
+  },
+  "payments": {
+    "title": "Pay Friends",
+    "table": {
+      "title": "Meus pagamentos",
+      "th": {
+        "user": "Usuário",
+        "title": "Título",
+        "date": "Data",
+        "value": "Valor",
+        "payed": "Pago"
+      }
+    }
   }
 }

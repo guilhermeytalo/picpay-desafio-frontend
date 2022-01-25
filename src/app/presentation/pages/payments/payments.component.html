@@ -4,16 +4,15 @@
   </mat-toolbar>
   <div class="p_content__table">
     <div class="p-content__table__title">
-      <h1>Meus pagamentos</h1>
+      <h1 transloco="payments.table.title"></h1>
     </div>
     <div class="p-content__table__area">
       <div class="p-content__table__area__mat-table">
         <table mat-table [dataSource]="dataSource">
-          <!-- Position Column -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>
               <div class="custom">
-                <span>Usuário</span>
+                <span transloco="payments.table.th.user"></span>
 
                 <app-sort-table
                   (click)="sortTable('id')"
@@ -27,11 +26,10 @@
             <td mat-cell *matCellDef="let element">{{ element.name }}</td>
           </ng-container>
 
-          <!-- Name Column -->
           <ng-container matColumnDef="title">
             <th mat-header-cell *matHeaderCellDef>
               <div class="custom">
-                <span>Título</span>
+                <span transloco="payments.table.th.title"></span>
 
                 <app-sort-table
                   (click)="sortTable('titulo')"
@@ -45,11 +43,10 @@
             <td mat-cell *matCellDef="let element">{{ element.title }}</td>
           </ng-container>
 
-          <!-- Weight Column -->
           <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef>
               <div class="custom">
-                <span>Data</span>
+                <span transloco="payments.table.th.date"></span>
 
                 <app-sort-table
                   (click)="sortTable('data')"
@@ -63,11 +60,10 @@
             <td mat-cell *matCellDef="let element">{{ element.date }}</td>
           </ng-container>
 
-          <!-- Symbol Column -->
           <ng-container matColumnDef="value">
             <th mat-header-cell *matHeaderCellDef>
               <div class="custom">
-                <span>Valor</span>
+                <span transloco="payments.table.th.value"></span>
 
                 <app-sort-table
                   (click)="sortTable('valor')"
@@ -83,12 +79,10 @@
             </td>
           </ng-container>
 
-          <!-- Symbol Column -->
           <ng-container matColumnDef="isPayed">
             <th mat-header-cell *matHeaderCellDef>
               <div class="custom">
-                <span>Pago</span>
-
+                <span transloco="payments.table.th.payed"></span>
                 <app-sort-table
                   (click)="sortTable('isPayed')"
                   column="isPayed"
@@ -99,7 +93,6 @@
               </div>
             </th>
             <td mat-cell *matCellDef="let element">
-              <!-- [checked]="element.id === checked" -->
               <mat-checkbox
                 [checked]="element.id === checked.id"
                 color="primary"

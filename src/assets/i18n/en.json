@@ -23,6 +23,16 @@
     "api_not_found": "Service offline"
   },
   "payments": {
-    "title": "Pay Friends"
+    "title": "Pay Friends",
+    "table": {
+      "title": "My Payments",
+      "th": {
+        "user": "User",
+        "title": "Title",
+        "date": "Date",
+        "value": "Value",
+        "payed": "Payed"
+      }
+    }
   }
 }
