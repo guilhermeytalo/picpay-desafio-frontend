@@ -22,6 +22,9 @@
       "@app/*": [
         "app/*"
       ],
+      "@data/*": [
+        "app/data/*"
+      ],
       "@infra/*": [
         "app/infra/*"
       ],
