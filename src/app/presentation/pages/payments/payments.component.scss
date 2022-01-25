@@ -6,7 +6,7 @@
 .p-content {
     display: flex;
     flex-direction: column;
-    background-color: #f2f2f2;
+    background-color: $background-color-area-form;
     height: 100%;
 
     &__table {
@@ -21,8 +21,7 @@
             width: 90%;
             height: 50%;
 
-            background: #ffffff;
-            box-shadow: 0px 2px 4px rgba(4, 38, 82, 0.06);
+            background: $color-white;
             border-radius: 8px;
             &__mat-table {
                 overflow: auto;
@@ -30,7 +29,7 @@
                     th {
                         font-weight: bold;
                         font-size: 15px;
-                        color: black;
+                        color: $color-black;
                         .custom {
                             display: flex;
                             flex-direction: row;
@@ -47,7 +46,7 @@
                 }
 
                 th.mat-sort-header-sorted {
-                    color: black;
+                    color: $color-black;
                 }
             }
         }
