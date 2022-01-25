@@ -11,6 +11,7 @@ import { paymentsRoutingModule } from './payments.routing';
     TranslocoModule,
     ComponentsModule,
     RouterModule,
+    ComponentsModule,
     paymentsRoutingModule
   ],
   exports: [],

@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { ISnackBar } from '@shared/interfaces/isnackbar';
 import AngularMaterialModule from './angular-material/angular-material.module';
+import { SortTableComponent } from './sort-table/sort-table.component';
 import { SnackBarService } from './toast/snackbar';
 
 @NgModule({
-  imports: [],
-  exports: [AngularMaterialModule],
-  declarations: [],
+  imports: [AngularMaterialModule],
+  exports: [AngularMaterialModule, SortTableComponent],
+  declarations: [SortTableComponent],
   providers: [
     {
       provide: ISnackBar,
