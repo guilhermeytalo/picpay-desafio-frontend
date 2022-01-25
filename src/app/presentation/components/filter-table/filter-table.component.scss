@@ -2,10 +2,10 @@
 .f-table {
     &__btn-filter {
         margin-left: 20px;
-        background: #e6ecf0;
+        background: $color-button-filter;
         height: 40px;
     }
     .icon-search {
-        color: #69788c;
+        color: $color-icon-search;
     }
 }

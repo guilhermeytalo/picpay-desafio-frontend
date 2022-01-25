@@ -1,9 +1,9 @@
 @import "~assets/scss/styles.scss";
-.mat-toolbar.mat-primary {
-    background: $color-background-toolbar;
-}
 
 .p-content {
+    .mat-toolbar.mat-primary {
+        background: $color-background-toolbar;
+    }
     display: flex;
     flex-direction: column;
     background-color: $background-color-area-form;
