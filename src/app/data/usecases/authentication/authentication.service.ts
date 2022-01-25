@@ -5,11 +5,11 @@ import {
   AuthenticationParams,
   IAuthentication
 } from '@domain/usecases/authentication';
-import { Observable, of, throwError } from 'rxjs';
-import { IHttpClient } from '../protocols/http-client';
+import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import ErrorResponseHelper from '@app/shared/helpers/error-response.helper';
 import { ErrorEnum } from '@app/shared/helpers/errors-key.enum';
+import { IHttpClient } from '@app/data/protocols/http-client';
 
 @Injectable()
 export class AuthenticationService implements IAuthentication {

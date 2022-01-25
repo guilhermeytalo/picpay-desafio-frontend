@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthenticationParams } from '@domain/usecases/authentication';
-import { IHttpClient } from '../protocols/http-client';
 import { AuthenticationService } from './authentication.service';
 import faker from 'faker';
 import { of } from 'rxjs';
 import { AccountModel } from '@app/domain/models/account.model';
+import { IHttpClient } from '@app/data/protocols/http-client';
 let authenticationService: AuthenticationService;
 let httpService: jasmine.SpyObj<IHttpClient>;
 
