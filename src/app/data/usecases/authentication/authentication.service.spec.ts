@@ -3,8 +3,8 @@ import { AuthenticationParams } from '@domain/usecases/authentication';
 import { AuthenticationService } from './authentication.service';
 import faker from 'faker';
 import { of } from 'rxjs';
-import { AccountModel } from '@app/domain/models/account.model';
-import { IHttpClient } from '@app/data/protocols/http-client';
+import { AccountModel } from '@domain/models/account.model';
+import { IHttpClient } from '@data/protocols/http-client';
 let authenticationService: AuthenticationService;
 let httpService: jasmine.SpyObj<IHttpClient>;
 
