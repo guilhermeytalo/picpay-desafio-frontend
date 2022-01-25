@@ -1,0 +1,16 @@
+<div class="f-table">
+  <mat-form-field appearance="outline">
+    <input
+      type="text"
+      autocomplete="new-password"
+      matInput
+      [placeholder]="'form.input.placeholder.search_user' | transloco"
+    />
+    <mat-icon class="icon-search" matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <button mat-raised-button class="f-table__btn-filter">
+    <img src="assets/img/filter.svg" />
+    {{ 'form.button.filter' | transloco }}
+  </button>
+</div>

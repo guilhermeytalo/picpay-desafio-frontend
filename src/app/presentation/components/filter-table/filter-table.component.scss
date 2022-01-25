@@ -1,0 +1,11 @@
+@import "~assets/scss/styles.scss";
+.f-table {
+    &__btn-filter {
+        margin-left: 20px;
+        background: #e6ecf0;
+        height: 40px;
+    }
+    .icon-search {
+        color: #69788c;
+    }
+}

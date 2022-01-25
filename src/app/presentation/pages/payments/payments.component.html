@@ -9,28 +9,9 @@
     <div class="p-content__table__area">
       <div class="p-content__table__area__actions">
         <div>
-          <mat-form-field appearance="outline" panelClass="example-class">
-            <input
-              type="text"
-              autocomplete="new-password"
-              matInput
-              [placeholder]="'form.input.placeholder.search_user' | transloco"
-            />
-            <mat-icon class="icon-search" matSuffix>search</mat-icon>
-          </mat-form-field>
-
-          <button mat-raised-button class="bnt-filter">
-            <img src="assets/img/filter.svg" />
-            {{ 'form.button.filter' | transloco }}
-          </button>
+          <app-filter-table></app-filter-table>
         </div>
-        <mat-paginator
-          [length]="100"
-          [pageSize]="10"
-          [pageSizeOptions]="[5, 10, 25, 100]"
-          aria-label="Select page"
-        >
-        </mat-paginator>
+        <app-pagination></app-pagination>
       </div>
       <div class="p-content__table__area__mat-table">
         <table mat-table [dataSource]="dataSource">
