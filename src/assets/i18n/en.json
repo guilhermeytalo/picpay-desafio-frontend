@@ -17,7 +17,8 @@
     },
     "button": {
       "text": "SIGN IN",
-      "filter": "filter"
+      "filter": "filter",
+      "add_payment": "ADD PAYMENT"
     }
   },
   "message": {

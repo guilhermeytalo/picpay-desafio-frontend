@@ -17,8 +17,8 @@
     },
     "button": {
       "text": "ENTRAR",
-      "filter": "filtrar"
-
+      "filter": "filtrar",
+      "add_payment": "ADICIONAR PAGAMENTO"
     }
   },
   "message": {

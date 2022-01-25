@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslocoModule } from '@ngneat/transloco';
 import { ISnackBar } from '@shared/interfaces/isnackbar';
 import { ActionsTableComponent } from './actions-table/actions-table.component';
+import { AddPaymentButtonComponent } from './add-payment/add-payment.component';
 import AngularMaterialModule from './angular-material/angular-material.module';
 import { FilterTableComponent } from './filter-table/filter-table.component';
 import { PaginationComponent } from './pagination/pagination.component';
@@ -17,13 +18,15 @@ import { SnackBarService } from './toast/snackbar';
     SortTableComponent,
     ActionsTableComponent,
     FilterTableComponent,
-    PaginationComponent
+    PaginationComponent,
+    AddPaymentButtonComponent
   ],
   declarations: [
     SortTableComponent,
     ActionsTableComponent,
     FilterTableComponent,
-    PaginationComponent
+    PaginationComponent,
+    AddPaymentButtonComponent
   ],
   providers: [
     {
