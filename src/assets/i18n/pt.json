@@ -11,11 +11,14 @@
     "input": {
       "placeholder": {
         "email": "Digite seu email",
-        "password": "Digite a senha"
+        "password": "Digite a senha",
+        "search_user": "Pesquisar usuário"
       }
     },
     "button": {
-      "text": "ENTRAR"
+      "text": "ENTRAR",
+      "filter": "filtrar"
+
     }
   },
   "message": {

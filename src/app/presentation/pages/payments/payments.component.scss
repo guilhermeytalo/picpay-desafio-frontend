@@ -23,6 +23,18 @@
 
             background: $color-white;
             border-radius: 8px;
+
+            &__actions {
+                padding: 15px 15px 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                .bnt-filter {
+                    margin-left: 10px;
+                    background: #e6ecf0;
+                    height: 40px;
+                }
+            }
             &__mat-table {
                 overflow: auto;
                 table {
@@ -51,4 +63,15 @@
             }
         }
     }
+}
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 15px;
+}
+.mat-form-field-infix {
+    padding: 0;
+    border-top: 0;
+}
+.icon-search {
+    color: #69788c;
 }

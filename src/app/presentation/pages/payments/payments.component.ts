@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-payments',
   templateUrl: 'payments.component.html',
-  styleUrls: ['payments.component.scss']
+  styleUrls: ['payments.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PaymentsComponent {
   public checked = { check: false, id: 0 };

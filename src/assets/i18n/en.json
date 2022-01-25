@@ -11,11 +11,13 @@
     "input": {
       "placeholder": {
         "email": "Type your e-mail",
-        "password": "Type your password"
+        "password": "Type your password",
+        "search_user": "Search per user"
       }
     },
     "button": {
-      "text": "SIGN IN"
+      "text": "SIGN IN",
+      "filter": "filter"
     }
   },
   "message": {
