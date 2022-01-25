@@ -12,10 +12,6 @@ export class PaginationComponent {
     new EventEmitter<MatPaginatorInterface>();
 
   public pagEvent(event: MatPaginatorInterface) {
-    console.log(event);
-    // this.pagination._page = event.pageIndex;
-    // this.pagination._limit = event.pageSize;
-
     this.page.emit(event);
   }
 }

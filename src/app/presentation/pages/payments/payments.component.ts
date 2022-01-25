@@ -42,7 +42,6 @@ export class PaymentsComponent implements OnInit {
 
   public getPayments() {
     this._loading = true;
-    console.log(this.prepareRequest());
     this.paymentService
       .get(this.prepareRequest())
       .pipe(
@@ -53,7 +52,6 @@ export class PaymentsComponent implements OnInit {
       .subscribe((list: { totalCount: number; user: PaymentModel[] }) => {
         this.dataSource = new MatTableDataSource(list.user);
         this.totalCount = list.totalCount;
-        console.log(list);
       });
   }
 
@@ -90,7 +88,6 @@ export class PaymentsComponent implements OnInit {
       _order: this.direction,
       ...(this.filterName === undefined ? '' : this.filterName)
     };
-    console.log(obj);
     return new URLSearchParams(obj)
       .toString()
       .replace(/%3A/g, ':')
