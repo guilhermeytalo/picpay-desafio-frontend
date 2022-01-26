@@ -3,6 +3,7 @@
   "pay": "Pay",
   "friends": "Friends",
   "title": "Welcome back",
+  "logout": "log out",
   "form": {
     "label": {
       "email": "Email",

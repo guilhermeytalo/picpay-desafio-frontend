@@ -2,6 +2,8 @@
 
 .p-content {
     .mat-toolbar.mat-primary {
+        display: flex;
+        justify-content: space-between;
         background: $color-background-toolbar;
     }
 

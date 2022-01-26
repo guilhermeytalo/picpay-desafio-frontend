@@ -11,6 +11,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   exports: [
     MatButtonModule,
@@ -24,7 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCheckboxModule,
     MatSelectModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ]
 })
 export default class AngularMaterialModule {}

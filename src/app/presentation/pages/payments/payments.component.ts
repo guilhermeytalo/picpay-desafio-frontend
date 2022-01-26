@@ -1,4 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Optional,
+  SkipSelf,
+  ViewEncapsulation
+} from '@angular/core';
+import { Router } from '@angular/router';
+import { ILocalStorage } from '@app/infra/cache/interfaces/ilocalstorage';
 
 @Component({
   selector: 'app-payments',
@@ -6,4 +13,14 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['payments.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class PaymentsComponent {}
+export class PaymentsComponent {
+  constructor(
+    @SkipSelf() @Optional() private readonly storageService: ILocalStorage,
+    @SkipSelf() @Optional() private router: Router
+  ) {}
+
+  removeItem(): void {
+    this.storageService.deleteToken();
+    this.router.navigate(['']);
+  }
+}

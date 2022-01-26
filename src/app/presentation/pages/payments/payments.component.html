@@ -1,6 +1,16 @@
 <div class="p-content">
   <mat-toolbar color="primary">
+    <!-- <div class="p-content__mat-toolbar"> -->
     <h1 transloco="payments.title"></h1>
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button
+        mat-menu-item
+        transloco="logout"
+        (click)="this.removeItem()"
+      ></button>
+    </mat-menu>
+    <!-- </div> -->
   </mat-toolbar>
   <div class="p-content__table">
     <div class="p-content__table__title">
