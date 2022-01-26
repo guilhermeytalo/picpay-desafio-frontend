@@ -20,7 +20,7 @@ export class LoginFormComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    public alertService: ToastService
+    public toastService: ToastService
   ) {
     if (this.authService.currentUserValue) {
       this.router.navigate(["/"])
@@ -36,7 +36,7 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.alertService.clear()
+      this.toastService.clear()
       this.loading = true
 
       this.authService
@@ -44,15 +44,15 @@ export class LoginFormComponent implements OnInit {
         .pipe(first())
         .subscribe(
           () => {
-            this.alertService.success("Autenticado com sucesso!")
+            this.toastService.success("Autenticado com sucesso!")
             setTimeout(() => {
-              this.alertService.clear()
+              this.toastService.clear()
               this.router.navigate(["/"])
               this.loading = false
             }, 2000)
           },
           error => {
-            this.alertService.error(error)
+            this.toastService.error(error)
             this.loading = false
           }
         )

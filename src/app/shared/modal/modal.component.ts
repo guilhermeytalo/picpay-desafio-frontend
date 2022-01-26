@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, Inject, OnInit } from "@angular/core"
 import { trigger, style, animate, transition } from "@angular/animations"
+import { Payment } from "src/app/models/payment"
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog"
 
 @Component({
   selector: "modal",
@@ -18,11 +20,21 @@ import { trigger, style, animate, transition } from "@angular/animations"
   ],
 })
 export class ModalComponent implements OnInit {
-  public mostrar: boolean = false
+  payment!: Payment
+  isEditModal!: boolean
 
-  ngOnInit() {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: Payment,
+    public dialogRef: MatDialogRef<ModalComponent>
+  ) {}
 
-  public toggle() {
-    this.mostrar = !this.mostrar
+  ngOnInit(): void {
+    if (this.data.name !== null) this.isEditModal = true
+    else this.isEditModal = false
+  }
+
+  onCancel(): void {
+    this.dialogRef.close()
   }
 }

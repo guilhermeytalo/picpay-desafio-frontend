@@ -4,5 +4,3 @@ export const JWT_TOKEN = "jwt@123456789456123"
 
 export const REGISTERED_USERS = "payfriends@registered-users"
 export const HEADER_AUTH = "Authorization"
-
-export const BASE_URL = "http://localhost:3000"

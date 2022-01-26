@@ -2,12 +2,13 @@
   <h1>Meus pagamentos</h1>
 
   <div class="add-payment-button-container">
-    <button class="btn btn_submit" (click)="addPaymentModal.toggle()">Adicionar Pagamento</button>
+    <button class="btn btn_submit" (click)="openDialog(null)">Adicionar Pagamento</button>
   </div>
 
   <div class="table-header-container">
     <div class="search-container">
-      <search (emmitSearch)="searchPayments($event)"></search>
+      <search></search>
+      <!-- <search (emmitSearch)="searchPayments($event)"></search> -->
 
       <button class="filter">
         <img src="assets/icons/filter.svg" alt="FilterIcon" width="100%" />
@@ -17,8 +18,8 @@
 
     <div class="pagination-container">
       <label for="quantity">Exibir</label>
-      <form [formGroup]="selectForm">
-        <select id="quantity" formControlName="selectControl">
+      <form>
+        <select id="quantity">
           <option *ngFor="let items of itemsPerPageCombo" [value]="items">{{ items }}</option>
         </select>
       </form>
@@ -61,7 +62,7 @@
     <ng-template
       ngFor
       let-payment
-      [ngForOf]="shownPayments | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
+      [ngForOf]="payments | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
     >
       <tr class="table-row" *ngIf="payment.name">
         <td class="td_item">
@@ -85,11 +86,11 @@
         </td>
 
         <td class="td_item action-buttons">
-          <button (click)="editPaymentModal.toggle()">
+          <button (click)="openDialog(payment)">
             <img src="assets/icons/edit.svg" alt="edit" width="75%" />
           </button>
 
-          <button (click)="deletePaymentModal.toggle()">
+          <button (click)="deleteElement(payment.id)">
             <img src="assets/icons/delete.svg" alt="delete" width="75%" />
           </button>
         </td>
@@ -102,123 +103,3 @@
     </div>
   </table>
 </section>
-
-<modal #addPaymentModal>
-  <div class="modal-header">
-    <h1>{{ modalTitle }}</h1>
-  </div>
-
-  <form class="add-payment-modal-form" (ngSubmit)="onSubmit()" #addPaymentForm="ngForm">
-    <div class="form-group">
-      <input class="form-control" type="text" name="name" placeholder="Usuário*" [(ngModel)]="payment.name" required />
-      <input
-        class="form-control"
-        type="text"
-        name="value"
-        id="value"
-        placeholder="Valor*"
-        [(ngModel)]="payment.value"
-        required
-      />
-    </div>
-
-    <div class="form-group">
-      <input
-        class="form-control"
-        type="text"
-        name="date"
-        id="date"
-        placeholder="Data*"
-        [(ngModel)]="payment.date"
-        required
-      />
-      <input
-        class="form-control"
-        type="text"
-        name="title"
-        id="title"
-        placeholder="Título*"
-        [(ngModel)]="payment.title"
-        required
-      />
-    </div>
-
-    <footer class="modal-footer">
-      <button class="btn btn_cancel" (click)="addPaymentModal.toggle()">Cancelar</button>
-      <button class="btn btn_submit" type="submit">Salvar</button>
-    </footer>
-  </form>
-</modal>
-
-<modal #editPaymentModal>
-  <div class="modal-header">
-    <h1>{{ modalTitle }}</h1>
-  </div>
-
-  <form class="add-payment-modal-form" #editPaymentModal="ngForm">
-    <div class="form-group">
-      <input class="form-control" type="text" name="name" placeholder="Usuário*" [(ngModel)]="payment.name" required />
-      <input
-        class="form-control"
-        type="text"
-        name="value"
-        id="value"
-        placeholder="Valor*"
-        [(ngModel)]="payment.value"
-        required
-      />
-    </div>
-
-    <div class="form-group">
-      <input
-        class="form-control"
-        type="text"
-        name="date"
-        id="date"
-        placeholder="Data*"
-        [(ngModel)]="payment.date"
-        required
-      />
-      <input
-        class="form-control"
-        type="text"
-        name="title"
-        id="title"
-        placeholder="Título*"
-        [(ngModel)]="payment.title"
-        required
-      />
-    </div>
-
-    <footer class="modal-footer">
-      <button class="btn btn_cancel" (click)="addPaymentModal.toggle()">Cancelar</button>
-      <button class="btn btn_submit" type="submit">Salvar</button>
-    </footer>
-  </form>
-</modal>
-
-<modal #deletePaymentModal>
-  <h1>Excluir pagamento</h1>
-
-  <form class="delete-payment-modal-form" #deletePaymentModal="ngForm">
-    <div class="form-group">
-      <label>Usuário</label>
-      <input class="form-control" type="text" name="name" [(ngModel)]="payment.name" />
-    </div>
-
-    <div class="form-group">
-      <label>Valor</label>
-      <input class="form-control" type="text" name="value" [(ngModel)]="payment.value" />
-    </div>
-
-    <div class="form-group">
-      <label>Data</label>
-      <input class="form-control" type="text" name="date" [(ngModel)]="payment.date" />
-    </div>
-
-    <footer class="modal-footer">
-      <button class="btn btn_cancel" (click)="deletePaymentModal.toggle()">Cancelar</button>
-      <button class="btn btn_submit" type="submit">Salvar</button>
-    </footer>
-  </form>
-</modal>

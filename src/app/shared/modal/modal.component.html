@@ -1,4 +1,4 @@
-<ng-container *ngIf="mostrar">
+<!-- <ng-container *ngIf="mostrar">
   <div class="modal" @modal>
     <div class="modal-body">
       <ng-content></ng-content>
@@ -6,4 +6,46 @@
   </div>
 
   <div (click)="toggle()" @overlay class="overlay"></div>
-</ng-container>
+</ng-container> -->
+
+<h1 *ngIf="!isEditModal" mat-dialog-title>Adicionar Pagamento</h1>
+<h1 *ngIf="isEditModal" mat-dialog-title>Editar Pagamento</h1>
+
+<div mat-dialog-content>
+  <section>
+    <div class="form-group">
+      <label>Nome de Usuário</label>
+      <mat-form-field>
+        <input class="form-control" matInput [(ngModel)]="data.name" required />
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label>Username</label>
+      <mat-form-field>
+        <input class="form-control" matInput [(ngModel)]="data.username" required />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <section>
+    <div class="form-group">
+      <label>Título</label>
+      <mat-form-field>
+        <input class="form-control" matInput [(ngModel)]="data.title" required />
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <label>Valor</label>
+      <mat-form-field>
+        <input class="form-control" matInput [(ngModel)]="data.value" required />
+      </mat-form-field>
+    </div>
+  </section>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button *ngIf="!isEditModal" [mat-dialog-close]="data" cdkFocusInitial>Create</button>
+  <button mat-button *ngIf="isEditModal" [mat-dialog-close]="data" cdkFocusInitial>Edit</button>
+</div>

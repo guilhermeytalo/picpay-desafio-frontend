@@ -17,10 +17,10 @@ export class ToastComponent implements OnInit, OnDestroy {
   private subscription: Subscription
   message: any
 
-  constructor(private alertService: ToastService) {}
+  constructor(private toastService: ToastService) {}
 
   ngOnInit() {
-    this.subscription = this.alertService.getAlert().subscribe(message => {
+    this.subscription = this.toastService.getAlert().subscribe(message => {
       switch (message && message.type) {
         case "success":
           message.cssClass = "toast alert alert-success"

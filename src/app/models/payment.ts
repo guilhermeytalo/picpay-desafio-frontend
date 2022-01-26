@@ -1,7 +1,9 @@
 export class Payment {
   id: number
   name: string
+  username: string
   title: string
   value: number
-  date: string
+  data?: string | null
+  isPayed?: boolean | null
 }
