@@ -14,7 +14,7 @@ export class PaymentsApiService {
   constructor(private http: HttpClient) {}
 
   getAllPayments(page: number): Observable<any> {
-    return this.http.get<any>(`${BASE_URL}/tasks/?_page=${page}&_limit=200`).pipe(tap(payments => payments))
+    return this.http.get<any>(`${BASE_URL}/tasks/?_page=${page}&_limit=99`).pipe(tap(payments => payments))
   }
 
   savePayment(payment: Payment) {

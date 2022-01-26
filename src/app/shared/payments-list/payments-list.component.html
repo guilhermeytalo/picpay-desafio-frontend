@@ -17,13 +17,19 @@
 
     <div class="pagination-container">
       <label for="quantity">Exibir</label>
-      <select name="quantity" id="quantity">
-        <option value="5" selected>5</option>
-        <option value="15">15</option>
-        <option value="25">25</option>
-      </select>
+      <form [formGroup]="selectForm">
+        <select id="quantity" formControlName="selectControl">
+          <option *ngFor="let items of itemsPerPageCombo" [value]="items">{{ items }}</option>
+        </select>
+      </form>
 
-      <div class="pages-number">Pagination</div>
+      <div class="pages-number">
+        <pagination-controls
+          (pageChange)="currentPage = $event"
+          previousLabel="Anterior"
+          nextLabel="Próxima"
+        ></pagination-controls>
+      </div>
     </div>
   </div>
 
@@ -52,7 +58,11 @@
       <th class="th_item"></th>
     </tr>
 
-    <ng-template ngFor let-payment [ngForOf]="shownPayments">
+    <ng-template
+      ngFor
+      let-payment
+      [ngForOf]="shownPayments | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
+    >
       <tr class="table-row" *ngIf="payment.name">
         <td class="td_item">
           {{ payment.name }}<span>@{{ payment.username }}</span>

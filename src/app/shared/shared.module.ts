@@ -15,8 +15,9 @@ import { LoginFormComponent } from "./login-form/login-form.component"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { ErrorMsgComponent } from "./error-msg/error-msg.component"
 import { fakeBackendProvider } from "../helpers/fake-backend"
+import { NgxPaginationModule } from "ngx-pagination"
 @NgModule({
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgxPaginationModule],
   declarations: [
     HeaderComponent,
     SearchComponent,

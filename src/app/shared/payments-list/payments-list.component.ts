@@ -2,24 +2,28 @@ import { Component, OnInit } from "@angular/core"
 import { PaymentsApiService } from "../../service/payments-api.service"
 import { Payment } from "../../models/payment"
 import { Router } from "@angular/router"
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms"
 @Component({
   selector: "payments-list",
   templateUrl: "./payments-list.component.html",
   styleUrls: ["./payments-list.component.scss"],
 })
 export class PaymentsListComponent implements OnInit {
-  private allPayments: any
-  public shownPayments: any
+  public allPayments: any
+  public shownPayments: []
   public apiError: boolean = false
   public modalTitle = "Adicionar pagamento"
-  public page: number = 0
+  public payment: Payment = new Payment()
+  public currentPage: number = 1
+  public itemsPerPage: number = 10
+  public itemsPerPageCombo = [10, 15, 20]
 
-  payment: Payment = new Payment()
+  constructor(private router: Router, private paymentsApiService: PaymentsApiService, private fb: FormBuilder) {}
 
-  constructor(private router: Router, private paymentsApiService: PaymentsApiService) {}
+  selectForm: FormGroup
 
   ngOnInit(): void {
-    this.paymentsApiService.getAllPayments(this.page).subscribe(
+    this.paymentsApiService.getAllPayments(0).subscribe(
       payments => {
         this.allPayments = payments
         this.shownPayments = this.allPayments
@@ -28,6 +32,10 @@ export class PaymentsListComponent implements OnInit {
         this.apiError = true
       }
     )
+
+    this.selectForm = new FormGroup({
+      selectControl: new FormControl(),
+    })
   }
 
   public editPayment(id: number) {

@@ -53,7 +53,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 1rem;
+        gap: 2rem;
 
         label {
           font-size: 1.2rem;
@@ -70,10 +70,23 @@
 
           padding: 15px 15px;
           background: transparent;
+
+          [selected] {
+            color: red;
+          }
         }
 
         .pages-number {
-          margin-left: 3rem;
+          ::ng-deep {
+            .ngx-pagination {
+              font-size: 1.6rem;
+              margin-bottom: 0;
+
+              .ng-star-inserted {
+                margin-left: 0.3rem;
+              }
+            }
+          }
         }
       }
     }
