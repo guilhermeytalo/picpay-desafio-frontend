@@ -2,7 +2,7 @@ import { Router } from "@angular/router"
 import { AuthService } from "../../service/auth.service"
 import { ToastService } from "../../service/toast.service"
 import { Component, OnInit } from "@angular/core"
-import { FormBuilder, Validators } from "@angular/forms"
+import { FormArray, FormBuilder, Validators } from "@angular/forms"
 import { first } from "rxjs/operators"
 import { FormGroup } from "@angular/forms"
 import { verificaValidacoesForm } from "src/app/helpers/form-validations"
@@ -29,7 +29,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.required]],
       password: [null, [Validators.required]],
     })
   }

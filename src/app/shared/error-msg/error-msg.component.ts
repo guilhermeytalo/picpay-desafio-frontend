@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core"
 import { FormControl } from "@angular/forms"
-import { FormErrorMessages } from "../../helpers/form-error-messages"
+import { FormErrorMessages } from "../../helpers/form-validations"
 
 @Component({
   selector: "app-error-msg",

@@ -80,6 +80,15 @@ main {
   margin: 0 auto;
 }
 
+.loading-spinner {
+  width: 100%;
+  min-height: 50rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .custom-modalbox {
   mat-dialog-container {
     min-width: 80rem;

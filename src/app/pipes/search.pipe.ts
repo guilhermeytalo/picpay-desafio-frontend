@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from "@angular/core"
 @Pipe({
   name: "searchPipe",
 })
-export class SearchComponent implements PipeTransform {
+export class SearchPipe implements PipeTransform {
   transform(value: Array<any>, search: string): any {
     if (search) {
       search = search.toUpperCase()

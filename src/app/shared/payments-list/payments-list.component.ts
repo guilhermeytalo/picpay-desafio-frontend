@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core"
 import { PaymentsApiService } from "../../service/payments.service"
 import { Payment } from "../../models/payment"
 import { FormGroup } from "@angular/forms"
 import { ToastService } from "src/app/service/toast.service"
 import { MatDialog } from "@angular/material/dialog"
 import { ModalComponent } from "../modal/modal.component"
+import { fromEvent } from "rxjs"
+import { debounceTime } from "rxjs/operators"
 @Component({
   selector: "payments-list",
   templateUrl: "./payments-list.component.html",
@@ -21,7 +23,12 @@ export class PaymentsListComponent implements OnInit {
   public itemsPerPageCombo = [10, 15, 20]
 
   public apiError: boolean = false
+  public loading: boolean = false
+
+  // search
   search: string = ""
+
+  @ViewChild("campoBusca") campoBusca: ElementRef<HTMLInputElement>
 
   constructor(
     private paymentsApiService: PaymentsApiService,
@@ -35,14 +42,27 @@ export class PaymentsListComponent implements OnInit {
     this.getAllPayments()
   }
 
+  ngAfterViewInit() {
+    fromEvent(this.campoBusca.nativeElement, "keyup")
+      .pipe(debounceTime(500))
+      .subscribe((e: Event) => {
+        const target = e.target as HTMLInputElement
+        this.search = target.value
+      })
+  }
+
   getAllPayments() {
+    this.loading = true
+
     this.paymentsApiService.getPayments().subscribe(
       (payments: Payment[]) => {
         this.payments = payments
+        this.loading = false
       },
       error => {
         this.toastService.error(error)
         this.apiError = true
+        this.loading = false
       }
     )
   }
@@ -76,26 +96,34 @@ export class PaymentsListComponent implements OnInit {
       const isEditPayment = this.payments.map((p: Payment) => p.id).includes(result.id)
 
       if (isEditPayment) {
+        this.loading = true
+
         this.paymentsApiService.editElement(result).subscribe(
           (data: Payment) => {
             const index = this.payments.findIndex((p: Payment) => p.id === data.id)
             this.payments[index] = data
             this.toastService.success("Edição de pagamento feita com sucesso!")
             this.getAllPayments()
+            this.loading = false
           },
           () => {
             this.toastService.error("Erro ao editar pagamento")
+            this.loading = false
           }
         )
       } else {
+        this.loading = true
+
         this.paymentsApiService.createPayment(result).subscribe(
           (data: Payment) => {
             this.payments.push(data)
             this.toastService.success("Novo pagamento registrado com sucesso!")
             this.getAllPayments()
+            this.loading = false
           },
           () => {
             this.toastService.error("Erro ao registrar novo pagamento")
+            this.loading = false
           }
         )
       }
@@ -103,14 +131,18 @@ export class PaymentsListComponent implements OnInit {
   }
 
   deleteElement(id: number): void {
+    this.loading = true
+
     this.paymentsApiService.deletePayment(id).subscribe(
       () => {
         this.payments = this.payments.filter(p => p.id !== id)
         this.toastService.success("Pagamento excluído com sucesso!")
         this.getAllPayments()
+        this.loading = false
       },
       () => {
         this.toastService.error("Erro ao excluir pagamento")
+        this.loading = false
       }
     )
   }

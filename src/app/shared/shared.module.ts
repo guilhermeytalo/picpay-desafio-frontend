@@ -20,7 +20,7 @@ import { JwtInterceptor } from "../helpers/jwt.interceptor"
 //Components
 import { HeaderComponent } from "./header/main-header.component"
 import { PaymentsListComponent } from "./payments-list/payments-list.component"
-import { SearchComponent } from "./search/search.component"
+import { SearchPipe } from "../pipes/search.pipe"
 import { LoginFormComponent } from "./login-form/login-form.component"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { ErrorMsgComponent } from "./error-msg/error-msg.component"
@@ -45,13 +45,13 @@ import { NgxPaginationModule } from "ngx-pagination"
   ],
   declarations: [
     HeaderComponent,
-    SearchComponent,
+    SearchPipe,
     PaymentsListComponent,
     ModalComponent,
     LoginFormComponent,
     ErrorMsgComponent,
   ],
-  exports: [HeaderComponent, SearchComponent, PaymentsListComponent, ModalComponent],
+  exports: [HeaderComponent, PaymentsListComponent, ModalComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

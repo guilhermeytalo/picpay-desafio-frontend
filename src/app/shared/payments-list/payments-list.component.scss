@@ -47,6 +47,41 @@
           font-weight: 600;
           font-size: 1.2rem;
         }
+
+        form {
+          justify-content: space-between;
+
+          input {
+            width: 25rem;
+            height: 3.5rem;
+            padding-left: 1rem;
+          }
+
+          input[type="search"] {
+            border: 1px solid gray;
+            padding: 0.2em 0.4em;
+            border-radius: 0.2em;
+
+            &:placeholder-shown + .search-icon {
+              visibility: visible;
+            }
+
+            &::-webkit-search-cancel-button {
+              visibility: hidden;
+            }
+          }
+
+          .search-icon {
+            visibility: hidden;
+          }
+
+          .search-icon {
+            position: absolute;
+            top: 1.2rem;
+            right: 1rem;
+            cursor: pointer;
+          }
+        }
       }
 
       .pagination-container {

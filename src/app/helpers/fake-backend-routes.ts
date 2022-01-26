@@ -8,7 +8,7 @@ export function authenticate(body) {
 
   const registeredUser = users.find(x => x.email === email && x.password === password)
 
-  if (!registeredUser) return error("Usuário não cadastrado")
+  if (!registeredUser) return error("Email ou senha incorretos")
 
   return ok({
     id: registeredUser.id,

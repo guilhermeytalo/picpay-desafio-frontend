@@ -7,9 +7,17 @@
 
   <div class="table-header-container">
     <div class="search-container">
-      <!-- <search (emmitSearch)="searchPayments($event)"></search> -->
+      <form class="search">
+        <div class="form-group__flex-columm">
+          <div class="input-relative-container">
+            <input type="search" class="form-control" placeholder="Buscar por nome" #campoBusca />
 
-      <input type="search" placeholder="busca..." (keyup)="search = $event.target.value" />
+            <div class="search-icon">
+              <img src="assets/icons/search.svg" alt="Buscar Tarefa" />
+            </div>
+          </div>
+        </div>
+      </form>
 
       <button class="filter">
         <img src="assets/icons/filter.svg" alt="FilterIcon" width="100%" />
@@ -54,6 +62,7 @@
     </tr>
 
     <ng-template
+      *ngIf="!loading"
       ngFor
       let-payment
       [ngForOf]="payments | searchPipe: search | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
@@ -90,6 +99,10 @@
         </td>
       </tr>
     </ng-template>
+
+    <div *ngIf="loading" class="loading-spinner">
+      <img src="assets/spining.svg" alt="loading" />
+    </div>
 
     <div class="image-error" *ngIf="apiError">
       <h1>Ops... Tente novamente</h1>
