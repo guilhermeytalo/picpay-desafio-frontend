@@ -16,8 +16,8 @@ export class AuthenticationService implements IAuthentication {
   constructor(private readonly http: IHttpClient) {}
   auth(params: AuthenticationParams): Observable<AccountModel> {
     return this.http.get<AccountModel[]>(Routes.getUser).pipe(
-      map((users) => {
-        const findUser = users.body.find(
+      map((users: any) => {
+        const findUser = users.find(
           (user) =>
             user.email === params.email && user.password === params.password
         );

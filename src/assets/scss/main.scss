@@ -27,6 +27,12 @@ body {
     h1 {
         font-family: $primary-font;
     }
+    h2 {
+        font-family: $primary-font;
+    }
+    span {
+        font-family: $primary-font;
+    }
 
     .snack-error {
         background-color: $color-error;
