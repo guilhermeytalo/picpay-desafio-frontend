@@ -1,4 +1,4 @@
-<h2 mat-dialog-title transloco="payments.modal.add_payment"></h2>
+<h2 mat-dialog-title>{{ this.title }}</h2>
 <div mat-dialog-content>
   <div>
     <form [formGroup]="this.form">
@@ -7,7 +7,7 @@
           <input
             type="text"
             autocomplete="new-password"
-            formControlName="username"
+            formControlName="name"
             matInput
             [placeholder]="
               'payments.modal.form.placeholder.username' | transloco
@@ -28,7 +28,6 @@
         <mat-form-field appearance="outline">
           <input
             type="date"
-            autocomplete="new-password"
             formControlName="date"
             matInput
             [placeholder]="'payments.modal.form.placeholder.date' | transloco"
@@ -57,7 +56,7 @@
   <button
     type="submit"
     [disabled]="this.form.invalid || this.loading"
-    (click)="this.onSave()"
+    (click)="this.request()"
     mat-raised-button
     color="primary"
     transloco="payments.modal.form.button.save"

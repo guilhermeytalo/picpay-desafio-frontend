@@ -45,6 +45,8 @@
     },
     "modal": {
       "add_payment": "Add payment",
+      "edit_payment": "Edit payment",
+
       "form": {
         "placeholder": {
           "username": "User",
@@ -52,7 +54,7 @@
           "date": "Date",
           "title": "Title"
         },
-        "button" : {
+        "button": {
           "cancel": "CANCEL",
           "save": "SAVE"
         }

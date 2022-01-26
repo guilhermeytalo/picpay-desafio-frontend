@@ -120,7 +120,7 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
-            <app-actions-table></app-actions-table>
+            <app-actions-table [payment]="element"></app-actions-table>
           </td>
         </ng-container>
         <tr

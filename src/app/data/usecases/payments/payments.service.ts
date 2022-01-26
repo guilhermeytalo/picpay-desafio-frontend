@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IHttpClient } from '@app/data/protocols/http-client';
 import { PaymentsPostParams } from '@app/domain/models/payment-params.model';
@@ -10,17 +11,20 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class PaymentsService implements IPayment {
   constructor(private readonly http: IHttpClient) {}
+  editPayment(id: number, params: PaymentsPostParams): Observable<void> {
+    return this.http.put(Routes.paymentPerId(id), params);
+  }
 
   addPayment(params: PaymentsPostParams): Observable<void> {
-    return this.http.post(Routes.addPayment, params);
+    return this.http.post(Routes.payment, params);
   }
 
   get(
     params?: string
   ): Observable<{ totalCount: number; user: PaymentModel[] }> {
-    let url = `${Routes.getTasks}`;
+    let url = `${Routes.payment}`;
     if (params) {
-      url = `${Routes.getTasks}?${params}`;
+      url = `${Routes.payment}?${params}`;
     }
     return this.http
       .get<PaymentModel[]>(url, {

@@ -42,6 +42,8 @@
     },
     "modal": {
       "add_payment": "Adicionar pagamento",
+      "edit_payment": "Editar pagamento",
+
       "form": {
         "placeholder": {
           "username": "Usuário",

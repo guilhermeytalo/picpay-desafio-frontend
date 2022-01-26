@@ -8,4 +8,8 @@ export abstract class IPayment {
   ): Observable<{ totalCount: number; user: PaymentModel[] }>;
 
   abstract addPayment(params: PaymentsPostParams): Observable<void>;
+  abstract editPayment(
+    id: number,
+    params: PaymentsPostParams
+  ): Observable<void>;
 }

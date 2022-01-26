@@ -11,7 +11,7 @@ let paymentService: PaymentsService;
 let httpService: jasmine.SpyObj<IHttpClient>;
 
 describe('PaymentsService', () => {
-  httpService = jasmine.createSpyObj('IHttpClient', ['get', 'post']);
+  httpService = jasmine.createSpyObj('IHttpClient', ['get', 'post', 'put']);
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -61,10 +61,19 @@ describe('PaymentsService', () => {
       username: faker.internet.userName(),
       value: faker.datatype.float({ min: 10, max: 100, precision: 0.1 })
     };
-    httpService.post
-      .withArgs(Routes.addPayment, mockParams)
-      .and.returnValue(of());
+    httpService.post.withArgs(Routes.payment, mockParams).and.returnValue(of());
     paymentService.addPayment(mockParams);
     expect(httpService.post).toHaveBeenCalled();
+  });
+  it('should request put with body', () => {
+    const mockParams: PaymentsPostParams = {
+      data: '2020-07-21T05:53:20Z',
+      title: faker.name.jobType(),
+      username: faker.internet.userName(),
+      value: faker.datatype.float({ min: 10, max: 100, precision: 0.1 })
+    };
+    httpService.post.withArgs(Routes.payment, mockParams).and.returnValue(of());
+    paymentService.addPayment(mockParams);
+    expect(httpService.put).toHaveBeenCalled();
   });
 });

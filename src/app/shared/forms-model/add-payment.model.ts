@@ -13,7 +13,8 @@ export class AddPaymentModel implements ModelInterface {
 
   getValidationRules() {
     return {
-      username: [Validators.required],
+      name: [Validators.required],
+      username: [],
       value: [Validators.required],
       date: [Validators.required],
       title: [Validators.required]

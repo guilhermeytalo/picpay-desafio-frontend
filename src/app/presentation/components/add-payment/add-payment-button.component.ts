@@ -13,6 +13,6 @@ export class AddPaymentButtonComponent implements OnInit {
   ngOnInit() {}
 
   openDialog() {
-    this.dialog.open(AddPaymentModalComponent);
+    this.dialog.open(AddPaymentModalComponent, { autoFocus: false });
   }
 }
