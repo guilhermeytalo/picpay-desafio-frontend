@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-
+import { PagamentosService } from 'src/app/shared/service/pagamentos.service';
 
 @Component({
   selector: 'app-listar-pagamentos',
@@ -15,9 +15,10 @@ export class ListarPagamentosComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor() { }
+  constructor(private pagamentosServivce: PagamentosService) { }
 
   ngOnInit(): void {
+    this.pagamentosServivce.listarPagamentos().subscribe(resp=>console.log(resp.headers.get('Link')), error=> console.log(error))
   }
 
   ngAfterViewInit() {
