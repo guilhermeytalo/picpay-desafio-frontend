@@ -5,6 +5,8 @@ import { Component, OnInit } from "@angular/core"
 import { FormBuilder, Validators } from "@angular/forms"
 import { first } from "rxjs/operators"
 import { BaseFormComponent } from "../base-form/base-form.component"
+import { UserService } from "src/app/service/user.service"
+import { User } from "src/app/models/user"
 
 @Component({
   selector: "login-form",
@@ -13,12 +15,14 @@ import { BaseFormComponent } from "../base-form/base-form.component"
 })
 export class LoginFormComponent extends BaseFormComponent implements OnInit {
   loading = false
+  users = []
 
   constructor(
     private router: Router,
     private accountService: AccountService,
     private formBuilder: FormBuilder,
-    public alertService: AlertService
+    public alertService: AlertService,
+    private userService: UserService
   ) {
     super()
 
@@ -38,11 +42,19 @@ export class LoginFormComponent extends BaseFormComponent implements OnInit {
     this.alertService.clear()
     this.loading = true
 
+    this.userService
+      .getAll()
+      .pipe(first())
+      .subscribe(users => {
+        localStorage.setItem("users", JSON.stringify(users))
+        this.users = users
+      })
+
     this.accountService
       .login(this.loginForm.value)
       .pipe(first())
       .subscribe(
-        data => {
+        () => {
           this.alertService.success("Autenticado com sucesso!")
           setTimeout(() => {
             this.alertService.clear()
@@ -50,7 +62,8 @@ export class LoginFormComponent extends BaseFormComponent implements OnInit {
           this.router.navigate(["/"])
         },
         error => {
-          this.alertService.error("Erro desconhecido")
+          console.log("vcaiu aqui")
+          this.alertService.error(error)
           this.loading = false
         }
       )

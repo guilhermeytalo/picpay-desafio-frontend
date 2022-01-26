@@ -1710,51 +1710,6 @@
       "name": "usuario",
       "email": "usuario@gmail.com",
       "password": "usuario"
-    },
-    {
-      "email": "adriana@gmail.com",
-      "password": "dsfsd",
-      "id": 1
-    },
-    {
-      "email": "adriana@gmail.com",
-      "password": "asdasd",
-      "id": 2
-    },
-    {
-      "email": "adriana@gmail.com",
-      "password": "asdasda",
-      "id": 3
-    },
-    {
-      "email": "adriana@gmail.com",
-      "password": "asdasda",
-      "id": 4
-    },
-    {
-      "email": "adriana@gmail.com",
-      "password": "asdasda",
-      "id": 5
-    },
-    {
-      "email": "adriana@gmail.com",
-      "password": "123456",
-      "id": 6
-    },
-    {
-      "email": "asdas@gmail.com",
-      "password": "asdasda",
-      "id": 7
-    },
-    {
-      "email": "adriana@gmail.com",
-      "password": "asdasdasd",
-      "id": 8
-    },
-    {
-      "email": "adriana@gmail.com",
-      "password": "asdasda",
-      "id": 9
     }
   ]
 }

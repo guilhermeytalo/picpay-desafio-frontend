@@ -9,7 +9,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<User[]>(`${this.url}/users`)
+    return this.http.get<User[]>(`${this.url}/account`)
   }
 
   register(user: User) {
