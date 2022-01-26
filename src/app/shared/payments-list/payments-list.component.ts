@@ -20,8 +20,8 @@ export class PaymentsListComponent implements OnInit {
   public itemsPerPage: number = 10
   public itemsPerPageCombo = [10, 15, 20]
 
-  // error control
   public apiError: boolean = false
+  search: string = ""
 
   constructor(
     private paymentsApiService: PaymentsApiService,
@@ -32,6 +32,10 @@ export class PaymentsListComponent implements OnInit {
   selectForm: FormGroup
 
   ngOnInit(): void {
+    this.getAllPayments()
+  }
+
+  getAllPayments() {
     this.paymentsApiService.getPayments().subscribe(
       (payments: Payment[]) => {
         this.payments = payments
@@ -64,10 +68,10 @@ export class PaymentsListComponent implements OnInit {
       panelClass: "custom-modalbox",
     })
 
-    dialogRef.afterClosed().subscribe(result => this.handleAfterClosed(result))
+    dialogRef.afterClosed().subscribe(result => this.closeDialog(result))
   }
 
-  handleAfterClosed(result: Payment) {
+  closeDialog(result: Payment) {
     if (result !== undefined) {
       const isEditPayment = this.payments.map((p: Payment) => p.id).includes(result.id)
 
@@ -77,6 +81,7 @@ export class PaymentsListComponent implements OnInit {
             const index = this.payments.findIndex((p: Payment) => p.id === data.id)
             this.payments[index] = data
             this.toastService.success("Edição de pagamento feita com sucesso!")
+            this.getAllPayments()
           },
           () => {
             this.toastService.error("Erro ao editar pagamento")
@@ -87,6 +92,7 @@ export class PaymentsListComponent implements OnInit {
           (data: Payment) => {
             this.payments.push(data)
             this.toastService.success("Novo pagamento registrado com sucesso!")
+            this.getAllPayments()
           },
           () => {
             this.toastService.error("Erro ao registrar novo pagamento")
@@ -97,14 +103,15 @@ export class PaymentsListComponent implements OnInit {
   }
 
   deleteElement(id: number): void {
-    this.paymentsApiService.deletePayment(id).subscribe(() => {
-      this.payments = this.payments.filter(p => p.id !== id)
-    })
+    this.paymentsApiService.deletePayment(id).subscribe(
+      () => {
+        this.payments = this.payments.filter(p => p.id !== id)
+        this.toastService.success("Pagamento excluído com sucesso!")
+        this.getAllPayments()
+      },
+      () => {
+        this.toastService.error("Erro ao excluir pagamento")
+      }
+    )
   }
-
-  // public searchPayments(value: string) {
-  //   const filter = this.payments.filter((payment: any) => {
-  //     return !payment.name.indexOf(value)
-  //   })
-  // }
 }

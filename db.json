@@ -1,22 +1,12 @@
 {
   "tasks": [
     {
-      "id": 2,
-      "name": "Foster Orthmann",
-      "username": "forthmann1123",
-      "title": "Professor",
-      "date": "2022-01-26T21:30:54.796Z",
-      "value": 207.36
-    },
-    {
       "id": 3,
-      "name": "Crissie Summerill",
+      "name": "Crissie Summerill123",
       "username": "csummerill2",
       "title": "VP Product Management",
-      "value": 464.54,
-      "date": "2020-02-09T18:20:32Z",
-      "image": "https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1",
-      "isPayed": false
+      "date": "2022-01-26T21:46:27.765Z",
+      "value": 464.54
     },
     {
       "id": 4,
@@ -1459,16 +1449,6 @@
       "isPayed": false
     },
     {
-      "id": 148,
-      "name": "Analise Vedenisov",
-      "username": "avedenisov43",
-      "title": "Director of Sales",
-      "value": 110.94,
-      "date": "2021-07-07T00:54:51Z",
-      "image": "https://robohash.org/voluptatumpossimusaut.png?size=150x150&set=set1",
-      "isPayed": false
-    },
-    {
       "id": 149,
       "name": "Cheri Binnall",
       "username": "cbinnall44",
@@ -1687,14 +1667,6 @@
       "date": "2021-05-05T10:22:13Z",
       "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
       "isPayed": true
-    },
-    {
-      "name": "Adriana",
-      "title": "123456",
-      "date": "2022-01-26T21:27:38.072Z",
-      "value": "123456",
-      "username": "123456",
-      "id": 171
     }
   ],
   "account": [

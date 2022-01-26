@@ -1,18 +1,17 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Pipe, PipeTransform } from "@angular/core"
 
-@Component({
-  selector: "search",
-  templateUrl: "./search.component.html",
-  styleUrls: ["./search.component.scss"],
+@Pipe({
+  name: "searchPipe",
 })
-export class SearchComponent implements OnInit {
-  @Output() public emmitSearch: EventEmitter<string> = new EventEmitter();
+export class SearchComponent implements PipeTransform {
+  transform(value: Array<any>, search: string): any {
+    if (search) {
+      search = search.toUpperCase()
+      return value.filter(a => a.name.toUpperCase().indexOf(search) >= 0)
+    } else {
+      return value
+    }
+  }
 
   constructor() {}
-
-  ngOnInit(): void {}
-
-  public search(value: string) {
-    this.emmitSearch.emit(value);
-  }
 }

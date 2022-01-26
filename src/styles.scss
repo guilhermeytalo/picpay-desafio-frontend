@@ -82,7 +82,7 @@ main {
 
 .custom-modalbox {
   mat-dialog-container {
-    min-width: 70rem;
+    min-width: 80rem;
     padding: 3rem;
 
     display: flex;
@@ -92,6 +92,8 @@ main {
     background: var(--white);
     border-radius: 8px;
     box-shadow: 0 2px 8px #333;
+
+    overflow: hidden;
 
     .mat-dialog-content {
       width: 100%;

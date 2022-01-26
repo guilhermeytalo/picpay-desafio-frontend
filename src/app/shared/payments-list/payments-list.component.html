@@ -7,8 +7,9 @@
 
   <div class="table-header-container">
     <div class="search-container">
-      <search></search>
       <!-- <search (emmitSearch)="searchPayments($event)"></search> -->
+
+      <input type="search" placeholder="busca..." (keyup)="search = $event.target.value" />
 
       <button class="filter">
         <img src="assets/icons/filter.svg" alt="FilterIcon" width="100%" />
@@ -55,7 +56,7 @@
     <ng-template
       ngFor
       let-payment
-      [ngForOf]="payments | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
+      [ngForOf]="payments | searchPipe: search | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
     >
       <tr class="table-row" *ngIf="payment.name">
         <td class="td_item">
