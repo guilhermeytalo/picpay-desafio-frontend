@@ -1,7 +1,9 @@
 import { ok, error, unauthorized, isLoggedIn, idFromUrl } from "./http-responses"
-import { AUTH_USER } from "../constants/global"
+import { REGISTERED_USERS } from "../constants/global"
 
-export function authenticate(users, body) {
+let users = JSON.parse(localStorage.getItem(REGISTERED_USERS)) || []
+
+export function authenticate(body) {
   const { email, password } = body
 
   const registeredUser = users.find(x => x.email === email && x.password === password)
@@ -15,7 +17,7 @@ export function authenticate(users, body) {
   })
 }
 
-export function register(users, body) {
+export function register(body) {
   const user = body
 
   if (users.find(x => x.username === user.username)) {
@@ -24,20 +26,20 @@ export function register(users, body) {
 
   user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1
   users.push(user)
-  localStorage.setItem(AUTH_USER, JSON.stringify(users))
+  localStorage.setItem(REGISTERED_USERS, JSON.stringify(users))
 
   return ok()
 }
 
-export function getUsers(users, headers) {
+export function getUsers(headers) {
   if (!isLoggedIn(headers)) return unauthorized()
   return ok(users)
 }
 
-export function deleteUser(users, headers, url) {
+export function deleteUser(headers, url) {
   if (!isLoggedIn(headers)) return unauthorized()
 
   users = users.filter(x => x.id !== idFromUrl(url))
-  localStorage.setItem(AUTH_USER, JSON.stringify(users))
+  localStorage.setItem(REGISTERED_USERS, JSON.stringify(users))
   return ok()
 }

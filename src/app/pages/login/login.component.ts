@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core"
 import { first } from "rxjs/operators"
 import { User } from "src/app/models/user"
-import { AccountService } from "src/app/service/account.service"
+import { AuthService } from "src/app/service/auth.service"
 import { UserService } from "src/app/service/user.service"
 import { REGISTERED_USERS } from "src/app/constants/global"
 
@@ -12,10 +12,10 @@ import { REGISTERED_USERS } from "src/app/constants/global"
 })
 export class LoginComponent implements OnInit {
   currentUser: User
-  users = []
+  registeredUsers = []
 
-  constructor(private accountService: AccountService, private userService: UserService) {
-    this.currentUser = this.accountService.currentUserValue
+  constructor(private authService: AuthService, private userService: UserService) {
+    this.currentUser = this.authService.currentUserValue
   }
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(users => {
         localStorage.setItem(REGISTERED_USERS, JSON.stringify(users))
-        this.users = users
+        this.registeredUsers = users
       })
   }
 }

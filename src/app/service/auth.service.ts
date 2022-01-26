@@ -4,16 +4,16 @@ import { BehaviorSubject, Observable } from "rxjs"
 import { map } from "rxjs/operators"
 import { User } from "../models/user"
 import { AlertService } from "./alert.service"
-import { AUTH_TOKEN, KEY_TOKEN, BASE_URL, CURRENT_USER } from "src/app/constants/global"
+import { AUTH_TOKEN, KEY_TOKEN, BASE_URL, AUTH_USER } from "src/app/constants/global"
 @Injectable({
   providedIn: "root",
 })
-export class AccountService {
+export class AuthService {
   private currentUserSubject: BehaviorSubject<User>
   public currentUser: Observable<User>
 
   constructor(private http: HttpClient, public alertService: AlertService) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem(CURRENT_USER)))
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem(AUTH_USER)))
     this.currentUser = this.currentUserSubject.asObservable()
   }
 
@@ -24,8 +24,8 @@ export class AccountService {
   login({ email, password }) {
     return this.http.post<any>(`${BASE_URL}/users/authenticate`, { email, password }).pipe(
       map(user => {
-        const token = KEY_TOKEN
-        window.localStorage.setItem(AUTH_TOKEN, token)
+        window.localStorage.setItem(AUTH_USER, user)
+        window.localStorage.setItem(AUTH_TOKEN, KEY_TOKEN)
         this.currentUserSubject.next(user)
         return user
       })
@@ -33,7 +33,8 @@ export class AccountService {
   }
 
   logout() {
-    localStorage.removeItem(CURRENT_USER)
+    localStorage.removeItem(AUTH_USER)
+    localStorage.removeItem(AUTH_TOKEN)
     this.currentUserSubject.next(null)
   }
 }

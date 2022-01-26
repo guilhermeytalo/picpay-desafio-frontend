@@ -2,10 +2,7 @@
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from "@angular/common/http"
 import { Observable, of } from "rxjs"
 import { delay, mergeMap, materialize, dematerialize } from "rxjs/operators"
-import { authenticate, register, getUsers, deleteUser } from "../helpers/backend-routes"
-import { REGISTERED_USERS } from "../constants/global"
-
-let users = JSON.parse(localStorage.getItem(REGISTERED_USERS)) || []
+import { authenticate, register, getUsers, deleteUser } from "./fake-backend-routes"
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -17,13 +14,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     function handleRoute() {
       switch (true) {
         case url.endsWith("/users/authenticate") && method === "POST":
-          return authenticate(users, body)
+          return authenticate(body)
         case url.endsWith("/users/register") && method === "POST":
-          return register(users, body)
+          return register(body)
         case url.endsWith("/users") && method === "GET":
-          return getUsers(users, headers)
+          return getUsers(headers)
         case url.match(/\/users\/\d+$/) && method === "DELETE":
-          return deleteUser(users, headers, url)
+          return deleteUser(headers, url)
         default:
           return next.handle(request)
       }

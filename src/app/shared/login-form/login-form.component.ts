@@ -1,5 +1,5 @@
 import { Router } from "@angular/router"
-import { AccountService } from "../../service/account.service"
+import { AuthService } from "../../service/auth.service"
 import { AlertService } from "../../service/alert.service"
 import { Component, OnInit } from "@angular/core"
 import { FormBuilder, Validators } from "@angular/forms"
@@ -18,11 +18,11 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private accountService: AccountService,
+    private authService: AuthService,
     private formBuilder: FormBuilder,
     public alertService: AlertService
   ) {
-    if (this.accountService.currentUserValue) {
+    if (this.authService.currentUserValue) {
       this.router.navigate(["/"])
     }
   }
@@ -39,7 +39,7 @@ export class LoginFormComponent implements OnInit {
       this.alertService.clear()
       this.loading = true
 
-      this.accountService
+      this.authService
         .login(this.loginForm.value)
         .pipe(first())
         .subscribe(
