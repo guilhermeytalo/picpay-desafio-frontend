@@ -41,7 +41,7 @@
       }
     },
     "message": {
-      "success": "Paymend added with success"
+      "success": "Payment added with success"
     },
     "modal": {
       "add_payment": "Add payment",
