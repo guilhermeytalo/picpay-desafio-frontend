@@ -31,5 +31,30 @@ export abstract class IHttpClient {
       withCredentials?: boolean;
     }
   ): Observable<HttpResponse<T>>;
-  // abstract get<T, R>(url: string, params?: R): Observable<T>;
+
+  abstract post(
+    url: string,
+    body: any | null,
+    options?: {
+      headers?:
+        | HttpHeaders
+        | {
+            [header: string]: string | string[];
+          };
+      context?: HttpContext;
+      observe?: 'body';
+      params?:
+        | HttpParams
+        | {
+            [param: string]:
+              | string
+              | number
+              | boolean
+              | ReadonlyArray<string | number | boolean>;
+          };
+      reportProgress?: boolean;
+      responseType?: 'json';
+      withCredentials?: boolean;
+    }
+  ): Observable<void>;
 }
