@@ -11,7 +11,7 @@ export class PaginationComponent {
   @Output() page: EventEmitter<MatPaginatorInterface> =
     new EventEmitter<MatPaginatorInterface>();
 
-  public pagEvent(event: MatPaginatorInterface) {
+  public pagEvent(event: MatPaginatorInterface): void {
     this.page.emit(event);
   }
 }

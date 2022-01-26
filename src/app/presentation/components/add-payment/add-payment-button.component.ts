@@ -7,12 +7,10 @@ import { AddPaymentModalComponent } from '../modals/add-payment/add-payment-moda
   templateUrl: 'add-payment-button.component.html',
   styleUrls: ['add-payment-button.component.scss']
 })
-export class AddPaymentButtonComponent implements OnInit {
+export class AddPaymentButtonComponent {
   constructor(@SkipSelf() private readonly dialog: MatDialog) {}
 
-  ngOnInit() {}
-
-  openDialog() {
+  openDialog(): void {
     this.dialog.open(AddPaymentModalComponent, { autoFocus: false });
   }
 }

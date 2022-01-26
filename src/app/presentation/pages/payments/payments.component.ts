@@ -16,7 +16,7 @@ import { ILocalStorage } from '@app/infra/cache/interfaces/ilocalstorage';
 export class PaymentsComponent {
   constructor(
     @SkipSelf() @Optional() private readonly storageService: ILocalStorage,
-    @SkipSelf() @Optional() private router: Router
+    @SkipSelf() @Optional() private readonly router: Router
   ) {}
 
   removeItem(): void {

@@ -5,7 +5,7 @@ import { translate } from '@ngneat/transloco';
 
 @Injectable({ providedIn: 'root' })
 export class SnackBarService implements ISnackBar {
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(private readonly _snackBar: MatSnackBar) {}
 
   openSnackBar(message: string, type: 'error' | 'success' | 'info'): void {
     this._snackBar.open(translate(message), 'X', {

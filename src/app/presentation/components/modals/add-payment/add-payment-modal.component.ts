@@ -28,18 +28,18 @@ export class AddPaymentModalComponent
     super(new AddPaymentModel());
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form.patchValue(this.payment);
     this.mappingData();
   }
-  public request() {
+  public request(): void {
     if (!this.payment) {
       this.onSave();
     } else {
       this.onEdit();
     }
   }
-  public onSave() {
+  public onSave(): void {
     this._loading = true;
     this.form.controls.username.setValue('username');
     this.form.controls.image.setValue(
@@ -59,7 +59,7 @@ export class AddPaymentModalComponent
       });
   }
 
-  public onEdit() {
+  public onEdit(): void {
     this._loading = true;
     this.paymentsService
       .editPayment(this.payment.id, this.form.value)
@@ -77,7 +77,7 @@ export class AddPaymentModalComponent
   ngOnDestroy(): void {
     this.payment = undefined;
   }
-  private mappingData() {
+  private mappingData(): void {
     if (this.payment) {
       const d = new Date(this.payment.date);
       const datestring =
@@ -89,11 +89,11 @@ export class AddPaymentModalComponent
       this.form.controls.date.setValue(datestring);
     }
   }
-  get loading() {
+  get loading(): boolean {
     return this._loading;
   }
 
-  get title() {
+  get title(): string {
     if (!this.payment) {
       return translate('payments.modal.add_payment');
     }

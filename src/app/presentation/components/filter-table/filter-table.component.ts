@@ -13,7 +13,7 @@ export class FilterTableComponent {
   }>();
   public text: NgModel;
 
-  onClick() {
+  onClick(): void {
     this.name.emit({ name_like: this.text });
   }
 }
