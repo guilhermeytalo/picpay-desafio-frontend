@@ -54,7 +54,6 @@ export class TablePaymentsComponent implements OnInit {
         })
       )
       .subscribe((list: { totalCount: number; user: PaymentModel[] }) => {
-        console.log(list);
         this.dataSource = new MatTableDataSource(list.user);
         this.totalCount = list.totalCount;
       });
