@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IHttpClient } from '@app/data/protocols/http-client';
 import { PaymentsPostParams } from '@app/domain/models/payment-params.model';
@@ -10,7 +9,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class PaymentsService implements IPayment {
-  constructor(private readonly http: IHttpClient, private ihttp: HttpClient) {}
+  constructor(private readonly http: IHttpClient) {}
 
   get(
     params?: string
@@ -40,6 +39,6 @@ export class PaymentsService implements IPayment {
     return this.http.put(Routes.paymentPerId(id), params);
   }
   deletePayment(id: number): Observable<void> {
-    return this.ihttp.delete<void>(Routes.paymentPerId(id));
+    return this.http.delete<void>(Routes.paymentPerId(id));
   }
 }

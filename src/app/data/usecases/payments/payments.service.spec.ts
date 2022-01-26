@@ -11,7 +11,12 @@ let paymentService: PaymentsService;
 let httpService: jasmine.SpyObj<IHttpClient>;
 
 describe('PaymentsService', () => {
-  httpService = jasmine.createSpyObj('IHttpClient', ['get', 'post', 'put']);
+  httpService = jasmine.createSpyObj('IHttpClient', [
+    'get',
+    'post',
+    'put',
+    'delete'
+  ]);
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -72,8 +77,16 @@ describe('PaymentsService', () => {
       username: faker.internet.userName(),
       value: faker.datatype.float({ min: 10, max: 100, precision: 0.1 })
     };
-    httpService.post.withArgs(Routes.payment, mockParams).and.returnValue(of());
-    paymentService.addPayment(mockParams);
+    httpService.put
+      .withArgs(Routes.paymentPerId(1), mockParams)
+      .and.returnValue(of());
+    paymentService.editPayment(1, mockParams);
     expect(httpService.put).toHaveBeenCalled();
+  });
+
+  it('should request delete with id', () => {
+    httpService.delete.withArgs(Routes.paymentPerId(1)).and.returnValue(of());
+    paymentService.deletePayment(1);
+    expect(httpService.delete).toHaveBeenCalled();
   });
 });
