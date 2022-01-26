@@ -71,7 +71,7 @@
               </app-sort-table>
             </div>
           </th>
-          <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.date | date: 'dd/MM/yyyy' }}</td>
         </ng-container>
 
         <ng-container matColumnDef="value">
