@@ -39,6 +39,21 @@
     },
     "message": {
       "empty_data": "Nenhum dado correspondente ao filtro"
+    },
+    "modal": {
+      "add_payment": "Adicionar pagamento",
+      "form": {
+        "placeholder": {
+          "username": "Usuário",
+          "value": "Valor",
+          "date": "Data",
+          "title": "Título"
+        },
+        "button": {
+          "cancel": "CANCELAR",
+          "save": "SALVAR"
+        }
+      }
     }
   }
 }

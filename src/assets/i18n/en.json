@@ -39,6 +39,24 @@
       "message": {
         "empty_data": "No data matching the filter"
       }
+    },
+    "message": {
+      "success": "Paymend added with success"
+    },
+    "modal": {
+      "add_payment": "Add payment",
+      "form": {
+        "placeholder": {
+          "username": "User",
+          "value": "Value",
+          "date": "Date",
+          "title": "Title"
+        },
+        "button" : {
+          "cancel": "CANCEL",
+          "save": "SAVE"
+        }
+      }
     }
   }
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit, SkipSelf } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { NotificationService } from '@app/shared/services/notification.service';
 import { PaymentModel } from '@domain/models/payment.model';
 import { IPayment } from '@domain/usecases/payments';
 import { MatPaginatorInterface } from '@shared/interfaces/mat-pagination-event.interface';
-import { finalize } from 'rxjs/operators';
+import { filter, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-table-payments',
@@ -34,10 +35,14 @@ export class TablePaymentsComponent implements OnInit {
   public pagination = { _page: this.currentPage, _limit: 10 };
   private _loading = true;
 
-  constructor(@SkipSelf() private readonly paymentService: IPayment) {}
+  constructor(
+    @SkipSelf() private readonly paymentService: IPayment,
+    @SkipSelf() private notification: NotificationService
+  ) {}
 
   ngOnInit() {
     this.getPayments();
+    this.awaitNotification();
   }
   public getPayments() {
     this._loading = true;
@@ -88,6 +93,11 @@ export class TablePaymentsComponent implements OnInit {
       .replace(/%2C/g, ',');
   }
 
+  private awaitNotification() {
+    this.notification.observerNotification
+      .pipe(filter((x) => x === true))
+      .subscribe((_) => this.getPayments());
+  }
   get loading() {
     return this._loading;
   }

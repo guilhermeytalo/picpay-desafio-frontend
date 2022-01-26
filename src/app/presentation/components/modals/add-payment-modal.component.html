@@ -1,0 +1,65 @@
+<h2 mat-dialog-title transloco="payments.modal.add_payment"></h2>
+<div mat-dialog-content>
+  <div>
+    <form [formGroup]="this.form">
+      <div class="mat-form-field--inline">
+        <mat-form-field appearance="outline">
+          <input
+            type="text"
+            autocomplete="new-password"
+            formControlName="username"
+            matInput
+            [placeholder]="
+              'payments.modal.form.placeholder.username' | transloco
+            "
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input
+            type="text"
+            autocomplete="new-password"
+            formControlName="value"
+            matInput
+            [placeholder]="'payments.modal.form.placeholder.value' | transloco"
+          />
+        </mat-form-field>
+      </div>
+      <div class="mat-form-field--inline">
+        <mat-form-field appearance="outline">
+          <input
+            type="date"
+            autocomplete="new-password"
+            formControlName="date"
+            matInput
+            [placeholder]="'payments.modal.form.placeholder.date' | transloco"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input
+            type="text"
+            autocomplete="new-password"
+            formControlName="title"
+            matInput
+            [placeholder]="'payments.modal.form.placeholder.title' | transloco"
+          />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button
+    mat-button
+    mat-dialog-close
+    transloco="payments.modal.form.button.cancel"
+  ></button>
+  <button
+    type="submit"
+    [disabled]="this.form.invalid || this.loading"
+    (click)="this.onSave()"
+    mat-raised-button
+    color="primary"
+    transloco="payments.modal.form.button.save"
+  ></button>
+</div>
