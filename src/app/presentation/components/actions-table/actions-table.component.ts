@@ -4,7 +4,7 @@ import { PaymentModel } from '@app/domain/models/payment.model';
 import { AddPaymentModel } from '@app/shared/forms-model/add-payment.model';
 import { FormHelper } from '@app/shared/helpers/form.helper';
 import { NotificationService } from '@app/shared/services/notification.service';
-import { AddPaymentModalComponent } from '../modals/add-payment-modal.component';
+import { AddPaymentModalComponent } from '../modals/add-payment/add-payment-modal.component';
 
 @Component({
   selector: 'app-actions-table',
@@ -21,9 +21,10 @@ export class ActionsTableComponent extends FormHelper implements OnInit {
 
   ngOnInit() {}
 
-  editPayment() {
+  public editPayment() {
     this.dialog.open(AddPaymentModalComponent, {
       autoFocus: false
     }).componentInstance.payment = this.payment;
   }
+  public deletePayment() {}
 }

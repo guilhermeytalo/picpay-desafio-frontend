@@ -8,7 +8,7 @@ import { ActionsTableComponent } from './actions-table/actions-table.component';
 import { AddPaymentButtonComponent } from './add-payment/add-payment-button.component';
 import AngularMaterialModule from './angular-material/angular-material.module';
 import { FilterTableComponent } from './filter-table/filter-table.component';
-import { AddPaymentModalComponent } from './modals/add-payment-modal.component';
+import { AddPaymentModalComponent } from './modals/add-payment/add-payment-modal.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SortTableComponent } from './sort-table/sort-table.component';
 import { TablePaymentsComponent } from './table-payments/table-payments.component';
