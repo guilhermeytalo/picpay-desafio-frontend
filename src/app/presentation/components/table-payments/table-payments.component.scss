@@ -1,12 +1,11 @@
 @import "~assets/scss/styles.scss";
 
 .table-area {
-    margin: 90px;
-    display: grid;
-    align-self: center;
-    width: 90%;
-    height: 60%;
+    display: flex;
+    flex-direction: column;
+    max-height: 30rem;
 
+    width: 90%;
     background: $color-white;
     border-radius: 8px;
     .mat-progress-spinner {

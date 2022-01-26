@@ -12,13 +12,15 @@
     &__table {
         display: flex;
         flex-direction: column;
+        align-self: center;
+        width: 90%;
+        margin-left: 90px;
         &__title {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             width: 90%;
             margin-top: 4%;
-            margin-left: 5%;
         }
     }
 }

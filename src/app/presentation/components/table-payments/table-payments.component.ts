@@ -31,7 +31,7 @@ export class TablePaymentsComponent implements OnInit {
 
   public filter: any;
   public filterName: any;
-  public pagination = { _page: this.currentPage, _limit: 5 };
+  public pagination = { _page: this.currentPage, _limit: 10 };
   private _loading = true;
 
   constructor(@SkipSelf() private readonly paymentService: IPayment) {}

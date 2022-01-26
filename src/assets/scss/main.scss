@@ -32,7 +32,5 @@ body {
         background-color: $color-error;
         color: $color-white;
     }
-    :not(.material-icons-loaded) .mat-icon:not([fontSet]) {
-        display: none;
-    }
+
 }
