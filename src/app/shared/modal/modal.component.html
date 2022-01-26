@@ -1,51 +1,56 @@
-<!-- <ng-container *ngIf="mostrar">
-  <div class="modal" @modal>
-    <div class="modal-body">
-      <ng-content></ng-content>
-    </div>
-  </div>
-
-  <div (click)="toggle()" @overlay class="overlay"></div>
-</ng-container> -->
-
 <h1 *ngIf="!isEditModal" mat-dialog-title>Adicionar Pagamento</h1>
 <h1 *ngIf="isEditModal" mat-dialog-title>Editar Pagamento</h1>
 
 <div mat-dialog-content>
-  <section>
-    <div class="form-group">
-      <label>Nome de Usuário</label>
-      <mat-form-field>
-        <input class="form-control" matInput [(ngModel)]="data.name" required />
-      </mat-form-field>
-    </div>
+  <form [formGroup]="paymentsFormModal">
+    <section>
+      <div class="form-group">
+        <mat-form-field>
+          <input class="form-control" matInput [(ngModel)]="data.name" formControlName="name" required />
 
-    <div class="form-group">
-      <label>Username</label>
-      <mat-form-field>
-        <input class="form-control" matInput [(ngModel)]="data.username" required />
-      </mat-form-field>
-    </div>
-  </section>
+          <span class="placeholder">Nome de Usuário</span>
+          <app-error-msg [control]="paymentsFormModal.get('name')" label="name"></app-error-msg>
+        </mat-form-field>
+      </div>
 
-  <section>
-    <div class="form-group">
-      <label>Título</label>
-      <mat-form-field>
-        <input class="form-control" matInput [(ngModel)]="data.title" required />
-      </mat-form-field>
-    </div>
+      <div class="form-group">
+        <mat-form-field>
+          <input class="form-control" matInput [(ngModel)]="data.username" formControlName="username" required />
 
-    <div class="form-group">
-      <label>Valor</label>
-      <mat-form-field>
-        <input class="form-control" matInput [(ngModel)]="data.value" required />
-      </mat-form-field>
-    </div>
-  </section>
+          <span class="placeholder">Username</span>
+          <app-error-msg [control]="paymentsFormModal.get('username')" label="username"></app-error-msg>
+        </mat-form-field>
+      </div>
+    </section>
+
+    <section>
+      <div class="form-group">
+        <mat-form-field>
+          <input class="form-control" matInput [(ngModel)]="data.title" formControlName="title" required />
+
+          <span class="placeholder">Título</span>
+          <app-error-msg [control]="paymentsFormModal.get('title')" label="title"></app-error-msg>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input class="form-control" matInput [(ngModel)]="data.value" formControlName="value" required />
+
+          <span class="placeholder">Valor</span>
+          <app-error-msg [control]="paymentsFormModal.get('value')" label="value"></app-error-msg>
+        </mat-form-field>
+      </div>
+    </section>
+  </form>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button *ngIf="!isEditModal" [mat-dialog-close]="data" cdkFocusInitial>Create</button>
-  <button mat-button *ngIf="isEditModal" [mat-dialog-close]="data" cdkFocusInitial>Edit</button>
+
+<div mat-dialog-actions class="modal-footer">
+  <button class="btn btn_cancel" mat-button (click)="onCancel()">Cancelar</button>
+  <button class="btn btn_submit" mat-button *ngIf="!isEditModal" [mat-dialog-close]="data" cdkFocusInitial>
+    Registrar
+  </button>
+  <button class="btn btn_submit" mat-button *ngIf="isEditModal" [mat-dialog-close]="data" cdkFocusInitial>
+    Editar
+  </button>
 </div>

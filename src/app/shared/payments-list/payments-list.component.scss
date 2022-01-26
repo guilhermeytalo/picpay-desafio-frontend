@@ -70,16 +70,12 @@
 
           padding: 15px 15px;
           background: transparent;
-
-          [selected] {
-            color: red;
-          }
         }
 
         .pages-number {
           ::ng-deep {
             .ngx-pagination {
-              font-size: 1.6rem;
+              font-size: 1.4rem;
               margin-bottom: 0;
 
               .ng-star-inserted {

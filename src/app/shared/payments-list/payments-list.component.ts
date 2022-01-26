@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core"
-import { PaymentsApiService } from "../../service/payments-api.service"
+import { PaymentsApiService } from "../../service/payments.service"
 import { Payment } from "../../models/payment"
 import { FormGroup } from "@angular/forms"
 import { ToastService } from "src/app/service/toast.service"
@@ -56,6 +56,7 @@ export class PaymentsListComponent implements OnInit {
           : {
               id: payment.id,
               name: payment.name,
+              username: payment.username,
               title: payment.title,
               date: new Date(),
               value: payment.value,
@@ -68,20 +69,29 @@ export class PaymentsListComponent implements OnInit {
 
   handleAfterClosed(result: Payment) {
     if (result !== undefined) {
-      console.log("✅ ~ result", result.id)
       const isEditPayment = this.payments.map((p: Payment) => p.id).includes(result.id)
 
       if (isEditPayment) {
-        console.log("✅ ~ editPayment")
-        this.paymentsApiService.editElement(result).subscribe((data: Payment) => {
-          const index = this.payments.findIndex((p: Payment) => p.id === data.id)
-          this.payments[index] = data
-        })
+        this.paymentsApiService.editElement(result).subscribe(
+          (data: Payment) => {
+            const index = this.payments.findIndex((p: Payment) => p.id === data.id)
+            this.payments[index] = data
+            this.toastService.success("Edição de pagamento feita com sucesso!")
+          },
+          () => {
+            this.toastService.error("Erro ao editar pagamento")
+          }
+        )
       } else {
-        console.log("✅ ~ createPayment")
-        this.paymentsApiService.createPayment(result).subscribe((data: Payment) => {
-          this.payments.push(data)
-        })
+        this.paymentsApiService.createPayment(result).subscribe(
+          (data: Payment) => {
+            this.payments.push(data)
+            this.toastService.success("Novo pagamento registrado com sucesso!")
+          },
+          () => {
+            this.toastService.error("Erro ao registrar novo pagamento")
+          }
+        )
       }
     }
   }

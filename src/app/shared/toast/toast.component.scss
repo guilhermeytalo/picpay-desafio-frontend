@@ -1,5 +1,5 @@
 .toast {
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,6 +7,5 @@
   right: 1rem;
   top: 1rem;
   font-size: 1.6rem;
-
   transition: all 200ms;
 }

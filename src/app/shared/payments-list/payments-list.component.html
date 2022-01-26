@@ -17,13 +17,6 @@
     </div>
 
     <div class="pagination-container">
-      <label for="quantity">Exibir</label>
-      <form>
-        <select id="quantity">
-          <option *ngFor="let items of itemsPerPageCombo" [value]="items">{{ items }}</option>
-        </select>
-      </form>
-
       <div class="pages-number">
         <pagination-controls
           (pageChange)="currentPage = $event"

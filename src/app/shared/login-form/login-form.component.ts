@@ -45,11 +45,8 @@ export class LoginFormComponent implements OnInit {
         .subscribe(
           () => {
             this.toastService.success("Autenticado com sucesso!")
-            setTimeout(() => {
-              this.toastService.clear()
-              this.router.navigate(["/"])
-              this.loading = false
-            }, 2000)
+            this.router.navigate(["/"])
+            this.loading = false
           },
           error => {
             this.toastService.error(error)

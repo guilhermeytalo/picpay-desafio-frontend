@@ -7,7 +7,6 @@ export class ToastService {
   private subject = new Subject<any>()
   private keepAfterRouteChange = false
 
-  // clear alert messages on route change unless 'keepAfterRouteChange' flag is true
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -27,14 +26,18 @@ export class ToastService {
   success(message: string, keepAfterRouteChange = false) {
     this.keepAfterRouteChange = keepAfterRouteChange
     this.subject.next({ type: "success", text: message })
+    this.clear()
   }
 
   error(message: string, keepAfterRouteChange = false) {
     this.keepAfterRouteChange = keepAfterRouteChange
     this.subject.next({ type: "error", text: message })
+    this.clear()
   }
 
   clear() {
-    this.subject.next()
+    setTimeout(() => {
+      this.subject.next()
+    }, 2000)
   }
 }

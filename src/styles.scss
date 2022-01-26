@@ -4,7 +4,6 @@
 @import "./config-scss/modal.scss";
 @import "./config-scss/form.scss";
 @import "./config-scss/alert.scss";
-@import "./config-scss/toast.scss";
 @import "@angular/cdk/overlay-prebuilt.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;700;900&display=swap");
@@ -84,8 +83,7 @@ main {
 .custom-modalbox {
   mat-dialog-container {
     min-width: 70rem;
-    min-height: 35rem;
-    padding: 24px;
+    padding: 3rem;
 
     display: flex;
     flex-direction: column;
@@ -117,6 +115,7 @@ main {
         mat-form-field {
           display: flex;
           width: 100%;
+          margin-top: 1.2rem;
 
           .mat-form-field-wrapper {
             position: static;
@@ -124,16 +123,32 @@ main {
 
             .mat-form-field-infix {
               display: flex;
-              position: relative;
+              flex-direction: column;
               flex: 1;
               min-width: 0;
               width: 100%;
             }
           }
+
+          .placeholder {
+            position: absolute;
+            margin: 1.8rem 0;
+            padding: 0 0.5rem;
+            color: #616161;
+            background: var(--white);
+
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            top: -24px;
+            left: 17px;
+          }
         }
       }
 
       input {
+        max-width: 90%;
+
         font-weight: 500;
         font-size: 1.6rem;
         color: var(--secondary-text);
@@ -157,6 +172,13 @@ main {
         align-items: center;
         justify-content: center;
       }
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 1rem;
+      justify-content: end;
+      margin-top: 2rem;
     }
   }
 }

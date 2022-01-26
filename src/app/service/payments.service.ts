@@ -16,7 +16,6 @@ export class PaymentsApiService {
   }
 
   createPayment(payment: Payment) {
-    console.log("✅ ~ payment", payment)
     return this.http.post<Payment>(this.url, payment)
   }
 

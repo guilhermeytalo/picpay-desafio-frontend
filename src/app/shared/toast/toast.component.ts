@@ -4,8 +4,9 @@ import { trigger, style, animate, transition } from "@angular/animations"
 import { ToastService } from "../../service/toast.service"
 
 @Component({
-  selector: "alert",
-  templateUrl: "alert.component.html",
+  selector: "toast",
+  templateUrl: "toast.component.html",
+  styleUrls: ["./toast.component.scss"],
   animations: [
     trigger("alert", [
       transition(":enter", [style({ top: -100 }), animate("200ms", style({ top: "1rem" }))]),

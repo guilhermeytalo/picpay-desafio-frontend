@@ -11,7 +11,7 @@ import { PagesModule } from "./pages/pages.module"
 /* Importando a configuração de algumas linguagens */
 import { registerLocaleData } from "@angular/common"
 import localePT from "@angular/common/locales/pt"
-import { ToastComponent } from "./shared/alert/alert.component"
+import { ToastComponent } from "./shared/toast/toast.component"
 
 registerLocaleData(localePT)
 
