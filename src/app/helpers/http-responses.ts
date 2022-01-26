@@ -1,5 +1,6 @@
 import { HttpResponse } from "@angular/common/http"
 import { of, throwError } from "rxjs"
+import { JWT_TOKEN, HEADER_AUTH } from "../constants/global"
 
 export function ok(body?) {
   return of(new HttpResponse({ status: 200, body }))
@@ -14,7 +15,7 @@ export function unauthorized() {
 }
 
 export function isLoggedIn(headers) {
-  return headers.get("Authorization") === "Bearer fake-jwt-token"
+  return headers.get(HEADER_AUTH) === `Bearer ${JWT_TOKEN}`
 }
 
 export function idFromUrl(url) {

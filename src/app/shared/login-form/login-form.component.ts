@@ -47,8 +47,9 @@ export class LoginFormComponent implements OnInit {
             this.alertService.success("Autenticado com sucesso!")
             setTimeout(() => {
               this.alertService.clear()
-            }, 5000)
-            this.router.navigate(["/"])
+              this.router.navigate(["/"])
+              this.loading = false
+            }, 2000)
           },
           error => {
             this.alertService.error(error)

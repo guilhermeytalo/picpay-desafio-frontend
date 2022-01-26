@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from "rxjs"
 import { map } from "rxjs/operators"
 import { User } from "../models/user"
 import { ToastService } from "./toast.service"
-import { AUTH_TOKEN, KEY_TOKEN, BASE_URL, AUTH_USER } from "src/app/constants/global"
+import { AUTH_JWT_TOKEN, JWT_TOKEN, BASE_URL, AUTH_USER } from "src/app/constants/global"
 @Injectable({
   providedIn: "root",
 })
@@ -24,8 +24,8 @@ export class AuthService {
   login({ email, password }) {
     return this.http.post<any>(`${BASE_URL}/users/authenticate`, { email, password }).pipe(
       map(user => {
-        window.localStorage.setItem(AUTH_USER, user)
-        window.localStorage.setItem(AUTH_TOKEN, KEY_TOKEN)
+        window.localStorage.setItem(AUTH_USER, JSON.stringify(user))
+        window.localStorage.setItem(AUTH_JWT_TOKEN, JWT_TOKEN)
         this.currentUserSubject.next(user)
         return user
       })
@@ -34,7 +34,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(AUTH_USER)
-    localStorage.removeItem(AUTH_TOKEN)
+    localStorage.removeItem(AUTH_JWT_TOKEN)
     this.currentUserSubject.next(null)
   }
 }
