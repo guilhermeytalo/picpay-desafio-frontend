@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core"
 import { HttpClient } from "@angular/common/http"
 import { Payment } from "../models/payment"
+import { BASE_URL } from "src/app/constants/global"
 
 //Observable
 import { Observable } from "rxjs"
@@ -10,12 +11,10 @@ import { map, tap } from "rxjs/operators"
   providedIn: "root",
 })
 export class PaymentsApiService {
-  private url: string = `http://localhost:3000`
-
   constructor(private http: HttpClient) {}
 
   getAllPayments(page: number): Observable<any> {
-    return this.http.get<any>(`${this.url}/tasks/?_page=${page}&_limit=200`).pipe(tap(payments => payments))
+    return this.http.get<any>(`${BASE_URL}/tasks/?_page=${page}&_limit=200`).pipe(tap(payments => payments))
   }
 
   savePayment(payment: Payment) {
@@ -27,17 +26,17 @@ export class PaymentsApiService {
     }
 
     if (payment.id) {
-      return this.http.put<Payment>(`${this.url}/tasks/${payment.id}`, paymentBody)
+      return this.http.put<Payment>(`${BASE_URL}/tasks/${payment.id}`, paymentBody)
     } else {
-      return this.http.post<Payment>(`${this.url}/tasks`, paymentBody)
+      return this.http.post<Payment>(`${BASE_URL}/tasks`, paymentBody)
     }
   }
 
   getPaymentById(id: number) {
-    return this.http.get<Payment>(`${this.url}/tasks/${id}`)
+    return this.http.get<Payment>(`${BASE_URL}/tasks/${id}`)
   }
 
   deletePayment(id: string) {
-    return this.http.delete(`${this.url}/tasks/${id}`)
+    return this.http.delete(`${BASE_URL}/tasks/${id}`)
   }
 }

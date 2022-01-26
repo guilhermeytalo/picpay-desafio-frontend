@@ -1,0 +1,6 @@
+export const REGISTERED_USERS = "registered-users"
+export const AUTH_USER = "auth-user"
+export const AUTH_TOKEN = "auth-token"
+export const KEY_TOKEN = "meu-token"
+export const BASE_URL = "http://localhost:3000"
+export const CURRENT_USER = "current-user"

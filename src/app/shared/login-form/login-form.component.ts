@@ -4,28 +4,24 @@ import { AlertService } from "../../service/alert.service"
 import { Component, OnInit } from "@angular/core"
 import { FormBuilder, Validators } from "@angular/forms"
 import { first } from "rxjs/operators"
-import { BaseFormComponent } from "../base-form/base-form.component"
-import { UserService } from "src/app/service/user.service"
-import { User } from "src/app/models/user"
-
+import { FormGroup } from "@angular/forms"
+import { verificaValidacoesForm } from "src/app/helpers/form-validations"
 @Component({
   selector: "login-form",
   templateUrl: "./login-form.component.html",
   styleUrls: ["./login-form.component.scss"],
 })
-export class LoginFormComponent extends BaseFormComponent implements OnInit {
+export class LoginFormComponent implements OnInit {
   loading = false
   users = []
+  loginForm: FormGroup
 
   constructor(
     private router: Router,
     private accountService: AccountService,
     private formBuilder: FormBuilder,
-    public alertService: AlertService,
-    private userService: UserService
+    public alertService: AlertService
   ) {
-    super()
-
     if (this.accountService.currentUserValue) {
       this.router.navigate(["/"])
     }
@@ -38,34 +34,29 @@ export class LoginFormComponent extends BaseFormComponent implements OnInit {
     })
   }
 
-  submit() {
-    this.alertService.clear()
-    this.loading = true
+  onSubmit() {
+    if (this.loginForm.valid) {
+      this.alertService.clear()
+      this.loading = true
 
-    this.userService
-      .getAll()
-      .pipe(first())
-      .subscribe(users => {
-        localStorage.setItem("users", JSON.stringify(users))
-        this.users = users
-      })
-
-    this.accountService
-      .login(this.loginForm.value)
-      .pipe(first())
-      .subscribe(
-        () => {
-          this.alertService.success("Autenticado com sucesso!")
-          setTimeout(() => {
-            this.alertService.clear()
-          }, 5000)
-          this.router.navigate(["/"])
-        },
-        error => {
-          console.log("vcaiu aqui")
-          this.alertService.error(error)
-          this.loading = false
-        }
-      )
+      this.accountService
+        .login(this.loginForm.value)
+        .pipe(first())
+        .subscribe(
+          () => {
+            this.alertService.success("Autenticado com sucesso!")
+            setTimeout(() => {
+              this.alertService.clear()
+            }, 5000)
+            this.router.navigate(["/"])
+          },
+          error => {
+            this.alertService.error(error)
+            this.loading = false
+          }
+        )
+    } else {
+      verificaValidacoesForm(this.loginForm)
+    }
   }
 }

@@ -1710,6 +1710,12 @@
       "name": "usuario",
       "email": "usuario@gmail.com",
       "password": "usuario"
+    },
+    {
+      "id": 0,
+      "name": "adriana",
+      "email": "adriana@gmail.com",
+      "password": "123"
     }
   ]
 }

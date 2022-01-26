@@ -1,66 +1,41 @@
-import { FormArray, FormControl, FormGroup } from "@angular/forms"
+import { FormGroup, FormArray } from "@angular/forms"
 
-export class FormValidations {
-  static requiredMinCheckbox(min = 1) {
-    const validator = (formArray: FormArray) => {
-      /* const values = formArray.controls;
-      let totalChecked = 0;
-      for (let i = 0; i < values.length; i++) {
-        if (values[i].value) {
-          totalChecked += 1;
-        }
-      } */
-      const totalChecked = formArray.controls
-        .map(v => v.value)
-        .reduce((total, current) => (current ? total + current : total), 0)
-      return totalChecked >= min ? null : { required: true }
+export function verificaValidacoesForm(formGroup: FormGroup | FormArray) {
+  Object.keys(formGroup.controls).forEach(campo => {
+    const controle = formGroup.get(campo)
+    controle.markAsDirty()
+    controle.markAsTouched()
+    if (controle instanceof FormGroup || controle instanceof FormArray) {
+      this.verificaValidacoesForm(controle)
     }
-    return validator
+  })
+}
+
+export function verificaValidTouched(campo: string) {
+  return !this.loginForm.get(campo).valid && (this.loginForm.get(campo).touched || this.loginForm.get(campo).dirty)
+}
+
+export function verificaRequired(campo: string) {
+  return (
+    this.loginForm.get(campo).hasError("required") &&
+    (this.loginForm.get(campo).touched || this.loginForm.get(campo).dirty)
+  )
+}
+
+export function verificaEmailInvalido() {
+  const campoEmail = this.loginForm.get("email")
+  if (campoEmail.errors) {
+    return campoEmail.errors["email"] && campoEmail.touched
   }
+}
 
-  static cepValidator(control: FormControl) {
-    const cep = control.value
-    if (cep && cep !== "") {
-      const validacep = /^[0-9]{8}$/
-      return validacep.test(cep) ? null : { cepInvalido: true }
-    }
-    return null
+export function aplicaCssErro(campo: string) {
+  return {
+    "has-error": this.verificaValidTouched(campo),
+    "has-feedback": this.verificaValidTouched(campo),
   }
+}
 
-  static equalsTo(otherField: string) {
-    const validator = (formControl: FormControl) => {
-      if (otherField == null) {
-        throw new Error("É necessário informar um campo.")
-      }
-
-      if (!formControl.root || !(<FormGroup>formControl.root).controls) {
-        return null
-      }
-
-      const field = (<FormGroup>formControl.root).get(otherField)
-
-      if (!field) {
-        throw new Error("É necessário informar um campo válido.")
-      }
-
-      if (field.value !== formControl.value) {
-        return { equalsTo: otherField }
-      }
-
-      return null
-    }
-    return validator
-  }
-
-  static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any) {
-    const config = {
-      required: `${fieldName} é obrigatório.`,
-      minlength: `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres.`,
-      maxlength: `${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres.`,
-      pattern: "Campo inválido",
-      email: `${fieldName} inválido`,
-    }
-
-    return config[validatorName]
-  }
+export function resetar() {
+  this.loginForm.reset()
 }
