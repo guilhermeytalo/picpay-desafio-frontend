@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core"
 import { BehaviorSubject, Observable } from "rxjs"
 import { map } from "rxjs/operators"
 import { User } from "../models/user"
-import { AlertService } from "./alert.service"
+import { ToastService } from "./toast.service"
 import { AUTH_TOKEN, KEY_TOKEN, BASE_URL, AUTH_USER } from "src/app/constants/global"
 @Injectable({
   providedIn: "root",
@@ -12,7 +12,7 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>
   public currentUser: Observable<User>
 
-  constructor(private http: HttpClient, public alertService: AlertService) {
+  constructor(private http: HttpClient, public alertService: ToastService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem(AUTH_USER)))
     this.currentUser = this.currentUserSubject.asObservable()
   }

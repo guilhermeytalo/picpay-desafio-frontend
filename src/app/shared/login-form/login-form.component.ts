@@ -1,6 +1,6 @@
 import { Router } from "@angular/router"
 import { AuthService } from "../../service/auth.service"
-import { AlertService } from "../../service/alert.service"
+import { ToastService } from "../../service/toast.service"
 import { Component, OnInit } from "@angular/core"
 import { FormBuilder, Validators } from "@angular/forms"
 import { first } from "rxjs/operators"
@@ -20,7 +20,7 @@ export class LoginFormComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    public alertService: AlertService
+    public alertService: ToastService
   ) {
     if (this.authService.currentUserValue) {
       this.router.navigate(["/"])

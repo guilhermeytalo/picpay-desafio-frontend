@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core"
 import { Subscription } from "rxjs"
 import { trigger, style, animate, transition } from "@angular/animations"
-import { AlertService } from "../../service/alert.service"
+import { ToastService } from "../../service/toast.service"
 
 @Component({
   selector: "alert",
@@ -17,7 +17,7 @@ export class ToastComponent implements OnInit, OnDestroy {
   private subscription: Subscription
   message: any
 
-  constructor(private alertService: AlertService) {}
+  constructor(private alertService: ToastService) {}
 
   ngOnInit() {
     this.subscription = this.alertService.getAlert().subscribe(message => {

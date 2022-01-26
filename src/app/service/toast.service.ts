@@ -3,19 +3,17 @@ import { Router, NavigationStart } from "@angular/router"
 import { Observable, Subject } from "rxjs"
 
 @Injectable({ providedIn: "root" })
-export class AlertService {
+export class ToastService {
   private subject = new Subject<any>()
   private keepAfterRouteChange = false
 
+  // clear alert messages on route change unless 'keepAfterRouteChange' flag is true
   constructor(private router: Router) {
-    // clear alert messages on route change unless 'keepAfterRouteChange' flag is true
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         if (this.keepAfterRouteChange) {
-          // only keep for a single route change
           this.keepAfterRouteChange = false
         } else {
-          // clear alert message
           this.clear()
         }
       }
@@ -37,7 +35,6 @@ export class AlertService {
   }
 
   clear() {
-    // clear by calling subject.next() without parameters
     this.subject.next()
   }
 }
