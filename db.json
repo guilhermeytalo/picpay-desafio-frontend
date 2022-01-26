@@ -1,35 +1,6 @@
 {
   "tasks": [
     {
-      "name": "Pennie edit 2",
-      "username": "teste edit",
-      "value": 19.96,
-      "date": "2020-07-21",
-      "title": "Dental Hygienist",
-      "image": "https://robohash.org/asperioresprovidentconsequuntur.png?size=150x150&set=set1",
-      "id": 1
-    },
-    {
-      "id": 2,
-      "name": "Foster Orthmann",
-      "username": "forthmann1",
-      "title": "Professor",
-      "value": 207.36,
-      "date": "2021-01-28T14:01:29Z",
-      "image": "https://robohash.org/quasetqui.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "id": 3,
-      "name": "Crissie Summerill",
-      "username": "csummerill2",
-      "title": "VP Product Management",
-      "value": 464.54,
-      "date": "2020-02-09T18:20:32Z",
-      "image": "https://robohash.org/natusinciduntsapiente.png?size=150x150&set=set1",
-      "isPayed": false
-    },
-    {
       "id": 4,
       "name": "Letitia Crolly",
       "username": "lcrolly3",
@@ -117,16 +88,6 @@
       "value": 458.73,
       "date": "2021-01-28T12:01:18Z",
       "image": "https://robohash.org/doloremconsecteturdelectus.png?size=150x150&set=set1",
-      "isPayed": true
-    },
-    {
-      "id": 13,
-      "name": "Deck Balaisot",
-      "username": "dbalaisotc",
-      "title": "Desktop Support Technician",
-      "value": 25.91,
-      "date": "2021-05-25T14:51:59Z",
-      "image": "https://robohash.org/cupiditatehicquaerat.png?size=150x150&set=set1",
       "isPayed": true
     },
     {

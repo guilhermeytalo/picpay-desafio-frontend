@@ -5,6 +5,7 @@ import { AddPaymentModel } from '@app/shared/forms-model/add-payment.model';
 import { FormHelper } from '@app/shared/helpers/form.helper';
 import { NotificationService } from '@app/shared/services/notification.service';
 import { AddPaymentModalComponent } from '../modals/add-payment/add-payment-modal.component';
+import { DeletePaymentComponent } from '../modals/delete-payment/delete-payment.component';
 
 @Component({
   selector: 'app-actions-table',
@@ -12,10 +13,7 @@ import { AddPaymentModalComponent } from '../modals/add-payment/add-payment-moda
 })
 export class ActionsTableComponent extends FormHelper implements OnInit {
   @Input() payment: PaymentModel;
-  constructor(
-    @SkipSelf() private readonly notification: NotificationService,
-    @SkipSelf() private readonly dialog: MatDialog
-  ) {
+  constructor(@SkipSelf() private readonly dialog: MatDialog) {
     super(new AddPaymentModel());
   }
 
@@ -26,5 +24,9 @@ export class ActionsTableComponent extends FormHelper implements OnInit {
       autoFocus: false
     }).componentInstance.payment = this.payment;
   }
-  public deletePayment() {}
+  public deletePayment() {
+    this.dialog.open(DeletePaymentComponent, {
+      autoFocus: false
+    }).componentInstance.id = this.payment.id;
+  }
 }

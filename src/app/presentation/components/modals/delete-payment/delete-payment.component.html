@@ -1,0 +1,18 @@
+<h2 mat-dialog-title transloco="payments.modal.delete_payment"></h2>
+<div mat-dialog-content></div>
+
+<div mat-dialog-actions>
+  <button
+    mat-button
+    mat-dialog-close
+    transloco="payments.modal.form.button.cancel"
+  ></button>
+  <button
+    [disabled]="this.loading"
+    (click)="this.delete()"
+    type="submit"
+    mat-raised-button
+    color="primary"
+    transloco="payments.modal.form.button.delete"
+  ></button>
+</div>

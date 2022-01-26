@@ -9,6 +9,7 @@ import { AddPaymentButtonComponent } from './add-payment/add-payment-button.comp
 import AngularMaterialModule from './angular-material/angular-material.module';
 import { FilterTableComponent } from './filter-table/filter-table.component';
 import { AddPaymentModalComponent } from './modals/add-payment/add-payment-modal.component';
+import { DeletePaymentComponent } from './modals/delete-payment/delete-payment.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SortTableComponent } from './sort-table/sort-table.component';
 import { TablePaymentsComponent } from './table-payments/table-payments.component';
@@ -38,7 +39,8 @@ import { SnackBarService } from './toast/snackbar';
     PaginationComponent,
     AddPaymentButtonComponent,
     TablePaymentsComponent,
-    AddPaymentModalComponent
+    AddPaymentModalComponent,
+    DeletePaymentComponent
   ],
   providers: [
     NotificationService,

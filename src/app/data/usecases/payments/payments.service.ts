@@ -10,14 +10,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class PaymentsService implements IPayment {
-  constructor(private readonly http: IHttpClient) {}
-  editPayment(id: number, params: PaymentsPostParams): Observable<void> {
-    return this.http.put(Routes.paymentPerId(id), params);
-  }
-
-  addPayment(params: PaymentsPostParams): Observable<void> {
-    return this.http.post(Routes.payment, params);
-  }
+  constructor(private readonly http: IHttpClient, private ihttp: HttpClient) {}
 
   get(
     params?: string
@@ -39,5 +32,14 @@ export class PaymentsService implements IPayment {
           };
         })
       );
+  }
+  addPayment(params: PaymentsPostParams): Observable<void> {
+    return this.http.post(Routes.payment, params);
+  }
+  editPayment(id: number, params: PaymentsPostParams): Observable<void> {
+    return this.http.put(Routes.paymentPerId(id), params);
+  }
+  deletePayment(id: number): Observable<void> {
+    return this.ihttp.delete<void>(Routes.paymentPerId(id));
   }
 }

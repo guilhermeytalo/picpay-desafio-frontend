@@ -41,11 +41,14 @@
       }
     },
     "message": {
-      "success": "Payment added with success"
+      "success": "Payment added with success",
+      "edit": "Payment Edited with success",
+      "delete": "Payment deleted with success"
     },
     "modal": {
       "add_payment": "Add payment",
       "edit_payment": "Edit payment",
+      "delete_payment": "Delete payment?",
 
       "form": {
         "placeholder": {
@@ -56,7 +59,8 @@
         },
         "button": {
           "cancel": "CANCEL",
-          "save": "SAVE"
+          "save": "SAVE",
+          "delete": "DELETE"
         }
       }
     }

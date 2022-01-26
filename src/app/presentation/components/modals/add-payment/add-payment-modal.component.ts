@@ -21,9 +21,9 @@ export class AddPaymentModalComponent
   private _loading = false;
   constructor(
     @SkipSelf() private readonly notification: NotificationService,
-    @SkipSelf() private dialogRef: MatDialog,
-    @SkipSelf() private toast: ISnackBar,
-    @SkipSelf() private paymentsService: IPayment
+    @SkipSelf() private readonly dialogRef: MatDialog,
+    @SkipSelf() private readonly toast: ISnackBar,
+    @SkipSelf() private readonly paymentsService: IPayment
   ) {
     super(new AddPaymentModel());
   }
@@ -71,7 +71,7 @@ export class AddPaymentModalComponent
       .subscribe(() => {
         this.dialogRef.closeAll();
         this.notification.notify();
-        this.toast.openSnackBar('payments.message.success', 'success');
+        this.toast.openSnackBar('payments.message.edit', 'success');
       });
   }
   ngOnDestroy(): void {

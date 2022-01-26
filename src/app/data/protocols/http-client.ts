@@ -83,4 +83,30 @@ export abstract class IHttpClient {
       withCredentials?: boolean;
     }
   ): Observable<void>;
+
+  abstract delete<T>(
+    url: string,
+    options?: {
+      headers?:
+        | HttpHeaders
+        | {
+            [header: string]: string | string[];
+          };
+      context?: HttpContext;
+      observe?: 'body';
+      params?:
+        | HttpParams
+        | {
+            [param: string]:
+              | string
+              | number
+              | boolean
+              | ReadonlyArray<string | number | boolean>;
+          };
+      reportProgress?: boolean;
+      responseType?: 'json';
+      withCredentials?: boolean;
+      body?: any | null;
+    }
+  ): Observable<T>;
 }

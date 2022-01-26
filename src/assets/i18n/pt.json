@@ -35,14 +35,18 @@
         "date": "Data",
         "value": "Valor",
         "payed": "Pago"
+      },
+      "message": {
+        "empty_data": "Nenhum dado correspondente ao filtro"
       }
     },
     "message": {
-      "empty_data": "Nenhum dado correspondente ao filtro"
+      "success": "Pagamento criado com sucesso!"
     },
     "modal": {
       "add_payment": "Adicionar pagamento",
       "edit_payment": "Editar pagamento",
+      "delete_payment": "Deletar pagamento?",
 
       "form": {
         "placeholder": {
@@ -53,8 +57,13 @@
         },
         "button": {
           "cancel": "CANCELAR",
-          "save": "SALVAR"
+          "save": "SALVAR",
+          "delete": "DELETAR"
         }
+      },
+      "message": {
+        "success_create_payment": "Payment ",
+        "success_delete_payment": "Payment delete with success"
       }
     }
   }

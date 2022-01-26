@@ -12,4 +12,5 @@ export abstract class IPayment {
     id: number,
     params: PaymentsPostParams
   ): Observable<void>;
+  abstract deletePayment(id: number): Observable<void>;
 }
