@@ -34,7 +34,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [],
@@ -111,7 +111,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatToolbarModule,
     MatTooltipModule,
     MatNativeDateModule,
-    MatStepperModule
+    MatStepperModule,
+    RouterModule
   ]
 })
 export class SharedModule { }
