@@ -27,14 +27,18 @@
     <div class="input-relative-container">
       <input
         class="form-control"
-        type="password"
+        [type]="hide ? 'password' : 'text'"
         formControlName="password"
         id="password"
         [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
         required
       />
-      <div class="password-eye">
-        <img src="assets/icons/eye.svg" alt="password eye" width="70%" />
+      <div *ngIf="!hide" class="password-eye" (click)="hidePassword()">
+        <img src="assets/icons/view.png" alt="password eye" width="35%" />
+      </div>
+
+      <div *ngIf="hide" class="password-eye" (click)="hidePassword()">
+        <img src="assets/icons/hidden.png" alt="password eye" width="35%" />
       </div>
       <span class="placeholder"> Senha </span>
 

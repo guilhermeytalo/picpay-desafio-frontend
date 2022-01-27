@@ -62,4 +62,10 @@ export class LoginFormComponent implements OnInit {
         }
       )
   }
+
+  hide: boolean = true
+
+  hidePassword() {
+    this.hide = !this.hide
+  }
 }

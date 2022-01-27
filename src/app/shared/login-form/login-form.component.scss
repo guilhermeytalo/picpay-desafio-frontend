@@ -14,9 +14,12 @@
     }
 
     .password-eye {
+      display: flex;
+      justify-content: flex-end;
+      width: 5rem;
       position: absolute;
       top: 1.8rem;
-      right: 1rem;
+      right: 2rem;
       cursor: pointer;
     }
 
