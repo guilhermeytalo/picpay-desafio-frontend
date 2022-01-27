@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { PagamentosService } from 'src/app/shared/service/pagamentos.service';
 
@@ -10,20 +10,73 @@ import { PagamentosService } from 'src/app/shared/service/pagamentos.service';
 })
 export class ListarPagamentosComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedColumns: string[] = ['name', 'title', 'date', 'value', 'isPayed'];
+  dataSource = new MatTableDataSource<any>();
+  linksPaginacao: any;
+  page=1;
+  limit=20
+
+  length = 100;
+  pageSize = 10;
+  pageEvent: PageEvent;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private pagamentosServivce: PagamentosService) { }
 
   ngOnInit(): void {
-    this.pagamentosServivce.listarPagamentos().subscribe(resp=>console.log(resp.headers.get('Link')), error=> console.log(error))
+    this.pagamentosServivce.listarPagamentos(this.page,this.limit).subscribe(resp=>{
+      //this.linksPaginacao = resp.headers.get('Link').split(',').map(x=>x.split(';').map(c=>c.replace(' rel="', '').replace(/"|_/g,'')));
+     
+      this.linksPaginacao = this.parseLinkHeader(resp.headers.get('Link'));
+      console.log(this.linksPaginacao)
+      console.log(resp.body);
+      const table = new MatTableDataSource<any>(resp.body)
+      this.dataSource = table
+    }, error=> console.log(error))
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  parseLinkHeader( linkHeader ) {
+    const linkHeadersArray = linkHeader.split( ", " ).map( header => header.split( "; " ) );
+    const linkHeadersMap = linkHeadersArray.map( header => {
+       const thisHeaderRel = header[1].replace( /"/g, "" ).replace( "rel=", "" );
+       const thisHeaderUrl = header[0].slice( 1, -1 );
+       return [ thisHeaderRel, thisHeaderUrl ]
+    } );
+   return this.toObject(linkHeadersMap);
+ }
+
+ toObject(pairs) {
+  return Array.from(pairs).reduce(
+    (acc, [key, value]) => Object.assign(acc, { [key]: value }),
+    {},
+  );
+}
+onPaginateChange(event){
+  console.log(event);
+}
+
+nextPage(){
+  this.page = this.page + 1;
+  this.pagamentosServivce.listarPagamentos(this.page, this.limit).subscribe(resp=> {
+    const table = new MatTableDataSource<any>(resp.body)
+    this.dataSource = table
+  })
+}
+
+
+previousPage(){
+  this.page = this.page - 1;
+  this.pagamentosServivce.listarPagamentos(this.page, this.limit).subscribe(resp=> {
+    const table = new MatTableDataSource<any>(resp.body)
+    this.dataSource = table
+  })
+}
+
 
 }
 

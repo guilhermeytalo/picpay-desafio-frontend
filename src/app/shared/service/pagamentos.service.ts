@@ -12,8 +12,8 @@ export class PagamentosService {
 
   constructor(private http: HttpClient) { }
 
-  listarPagamentos(): Observable<any>{
-    return this.http.get<any>(`${this.endpointApi}/tasks?_page=1&_limit=20`, {observe: 'response'});
+  listarPagamentos(page, limit): Observable<any>{
+    return this.http.get<any>(`${this.endpointApi}/tasks?_page=${page}&_limit=${limit}`, {observe: 'response'});
   }
 
   deletarPagamentos(){
