@@ -5,12 +5,9 @@ import { Pipe, PipeTransform } from "@angular/core"
 })
 export class SearchPipe implements PipeTransform {
   transform(value: Array<any>, search: string): any {
-    if (search) {
-      search = search.toUpperCase()
-      return value.filter(a => a.name.toUpperCase().indexOf(search) >= 0)
-    } else {
-      return value
-    }
+    if (!search) return value
+    search = search.toUpperCase()
+    return value.filter(word => word.name.toUpperCase().indexOf(search) >= 0)
   }
 
   constructor() {}

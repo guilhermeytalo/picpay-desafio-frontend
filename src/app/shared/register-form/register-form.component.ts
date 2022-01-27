@@ -62,7 +62,7 @@ export class RegisterFormComponent implements OnInit {
           users.push(data)
           console.log("✅ ~ users", users)
 
-          this.toastService.success("Cadastrado com sucesso!")
+          this.toastService.success("Conta criada com sucesso!")
           console.log("✅ ~ toastService")
 
           this.router.navigate([""])

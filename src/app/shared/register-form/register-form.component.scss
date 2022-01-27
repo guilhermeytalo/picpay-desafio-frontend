@@ -48,6 +48,12 @@
       left: 17px;
     }
 
+    .form-group__flex-columm {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
     .form-control {
       height: 54px;
       width: 326px;

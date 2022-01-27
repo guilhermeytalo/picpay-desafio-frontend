@@ -27,16 +27,11 @@ export class PaymentsListComponent implements OnInit {
 
   // search
   search: string = ""
-
   @ViewChild("campoBusca") campoBusca: ElementRef<HTMLInputElement>
 
+  // sort table
   key: string = "user"
   reverse: boolean = false
-
-  sort(key) {
-    this.key = key
-    this.reverse = !this.reverse
-  }
 
   constructor(
     private paymentsApiService: PaymentsApiService,
@@ -153,5 +148,10 @@ export class PaymentsListComponent implements OnInit {
         this.loading = false
       }
     )
+  }
+
+  sort(key) {
+    this.key = key
+    this.reverse = !this.reverse
   }
 }

@@ -3,8 +3,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px;
-  right: 1rem;
+
+  width: 40rem;
+  height: 6rem;
+
+  left: calc(50% - 20rem);
   top: 1rem;
   font-size: 1.6rem;
   transition: all 200ms;
