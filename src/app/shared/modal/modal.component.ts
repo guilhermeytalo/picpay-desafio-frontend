@@ -25,6 +25,8 @@ export class ModalComponent implements OnInit {
   payment!: Payment
   isEditModal!: boolean
   paymentsFormModal: FormGroup
+  submitted = false
+  loading = false
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
@@ -46,7 +48,32 @@ export class ModalComponent implements OnInit {
     })
   }
 
+  get f() {
+    return this.paymentsFormModal.controls
+  }
+
   onCancel(): void {
     this.dialogRef.close()
+  }
+
+  onSubmit() {
+    this.submitted = true
+    if (this.paymentsFormModal.invalid) return
+
+    // this.loading = true
+    // this.authService
+    //   .login(this.loginForm.value)
+    //   .pipe(first())
+    //   .subscribe(
+    //     () => {
+    //       this.toastService.success("Autenticado com sucesso!")
+    //       this.router.navigate(["/"])
+    //       this.loading = false
+    //     },
+    //     error => {
+    //       this.toastService.error(error)
+    //       this.loading = false
+    //     }
+    //   )
   }
 }

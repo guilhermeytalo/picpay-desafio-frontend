@@ -2,14 +2,16 @@
 <h1 *ngIf="isEditModal" mat-dialog-title>Editar Pagamento</h1>
 
 <div mat-dialog-content>
-  <form [formGroup]="paymentsFormModal">
+  <form (ngSubmit)="onSubmit()" [formGroup]="paymentsFormModal">
     <section>
       <div class="form-group">
         <mat-form-field>
           <input class="form-control" matInput [(ngModel)]="data.name" formControlName="name" required />
-
           <span class="placeholder">Nome de Usuário</span>
-          <app-error-msg [control]="paymentsFormModal.get('name')" label="name"></app-error-msg>
+
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Informe seu nome</div>
+          </div>
         </mat-form-field>
       </div>
 
@@ -18,7 +20,9 @@
           <input class="form-control" matInput [(ngModel)]="data.username" formControlName="username" required />
 
           <span class="placeholder">Username</span>
-          <app-error-msg [control]="paymentsFormModal.get('username')" label="username"></app-error-msg>
+          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Informe seu username</div>
+          </div>
         </mat-form-field>
       </div>
     </section>
@@ -28,8 +32,11 @@
         <mat-form-field>
           <input class="form-control" matInput [(ngModel)]="data.title" formControlName="title" required />
 
-          <span class="placeholder">Título</span>
-          <app-error-msg [control]="paymentsFormModal.get('title')" label="title"></app-error-msg>
+          <span class="placeholder">Profissão</span>
+
+          <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+            <div *ngIf="f.title.errors.required">Informe sua profissão</div>
+          </div>
         </mat-form-field>
       </div>
 
@@ -38,7 +45,9 @@
           <input class="form-control" matInput [(ngModel)]="data.value" formControlName="value" required />
 
           <span class="placeholder">Valor</span>
-          <app-error-msg [control]="paymentsFormModal.get('value')" label="value"></app-error-msg>
+          <div *ngIf="submitted && f.value.errors" class="invalid-feedback">
+            <div *ngIf="f.value.errors.required">Informe o valor</div>
+          </div>
         </mat-form-field>
       </div>
     </section>

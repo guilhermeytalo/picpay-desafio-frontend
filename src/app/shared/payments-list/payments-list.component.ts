@@ -117,6 +117,14 @@ export class PaymentsListComponent implements OnInit {
       } else {
         this.loading = true
 
+        const { name, title, username, value } = result
+
+        if (name == null || title == "" || username == "" || value == null) {
+          this.toastService.error("Erro ao registrar novo pagamento")
+          this.loading = false
+          return
+        }
+
         this.paymentsApiService.createPayment(result).subscribe(
           (data: Payment) => {
             this.payments.push(data)
