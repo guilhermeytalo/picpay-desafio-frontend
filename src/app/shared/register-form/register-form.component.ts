@@ -5,22 +5,28 @@ import { Component, OnInit } from "@angular/core"
 import { FormBuilder, Validators } from "@angular/forms"
 import { first } from "rxjs/operators"
 import { FormGroup } from "@angular/forms"
+import { UserService } from "src/app/service/user.service"
+import { REGISTERED_USERS } from "src/app/constants/global"
 // import { verificaValidacoesForm } from "src/app/helpers/form-validations"
+
 @Component({
-  selector: "login-form",
-  templateUrl: "./login-form.component.html",
-  styleUrls: ["./login-form.component.scss"],
+  selector: "register-form",
+  templateUrl: "./register-form.component.html",
+  styleUrls: ["./register-form.component.scss"],
 })
-export class LoginFormComponent implements OnInit {
+export class RegisterFormComponent implements OnInit {
   loading = false
-  loginForm: FormGroup
+  users = []
+  registerForm: FormGroup
   submitted = false
+  hide: boolean = true
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    public toastService: ToastService
+    public toastService: ToastService,
+    public userService: UserService
   ) {
     if (this.authService.currentUserValue) {
       this.router.navigate(["/"])
@@ -28,30 +34,40 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
+      nome: ["", [Validators.required]],
+      username: ["", [Validators.required]],
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required]],
     })
   }
 
   get f() {
-    return this.loginForm.controls
+    return this.registerForm.controls
   }
 
   onSubmit() {
     this.submitted = true
     this.toastService.clear()
 
-    if (this.loginForm.invalid) return
+    if (this.registerForm.invalid) return
 
     this.loading = true
-    this.authService
-      .login(this.loginForm.value)
+    this.userService
+      .register(this.registerForm.value)
       .pipe(first())
       .subscribe(
-        () => {
-          this.toastService.success("Autenticado com sucesso!")
-          this.router.navigate(["/"])
+        data => {
+          let users = JSON.parse(localStorage.getItem(REGISTERED_USERS)) || []
+          users.push(data)
+          console.log("✅ ~ users", users)
+
+          this.toastService.success("Cadastrado com sucesso!")
+          console.log("✅ ~ toastService")
+
+          this.router.navigate([""])
+          console.log("✅ ~ router")
+
           this.loading = false
         },
         error => {
@@ -60,8 +76,6 @@ export class LoginFormComponent implements OnInit {
         }
       )
   }
-
-  hide: boolean = true
 
   hidePassword() {
     this.hide = !this.hide

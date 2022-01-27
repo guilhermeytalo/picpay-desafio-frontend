@@ -1,9 +1,41 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+<form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
   <img class="img-logo" src="assets/logo.svg" alt="logo" width="100%" />
 
-  <h1>Bem vindo de volta</h1>
+  <h1>Crie sua conta</h1>
 
   <div class="form-group__flex-columm">
+    <div class="input-relative-container">
+      <input
+        class="form-control"
+        type="nome"
+        formControlName="nome"
+        id="nome"
+        [ngClass]="{ 'is-invalid': submitted && f.nome.errors }"
+        required
+      />
+      <span class="placeholder"> Nome </span>
+
+      <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
+        <div *ngIf="f.nome.errors.required">Informe seu nome</div>
+      </div>
+    </div>
+
+    <div class="input-relative-container">
+      <input
+        class="form-control"
+        type="username"
+        formControlName="username"
+        id="username"
+        [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+        required
+      />
+      <span class="placeholder"> Usuário </span>
+
+      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+        <div *ngIf="f.username.errors.required">Informe seu username</div>
+      </div>
+    </div>
+
     <div class="input-relative-container">
       <input
         class="form-control"
@@ -48,12 +80,10 @@
     </div>
   </div>
 
-  <button [disabled]="loading" type="submit" class="btn btn_submit">
-    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Entrar
+  <button [disabled]="loading" type="text" class="btn btn_submit">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    <a>Cadastrar</a>
   </button>
 
-  <button [disabled]="loading" type="text" class="btn btn_cancel">
-    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-    <a routerLink="/register">Criar conta</a>
-  </button>
+  <a routerLink="/" class="back">← Voltar para Login</a>
 </form>

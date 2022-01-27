@@ -11,9 +11,10 @@ import { SharedModule } from "../shared/shared.module"
 // Pages
 import { DashboardComponent } from "./dashboard/dashboard.component"
 import { LoginComponent } from "./login/login.component"
+import { RegisterComponent } from "./register/register.component"
 
 @NgModule({
-  declarations: [DashboardComponent, LoginComponent],
+  declarations: [DashboardComponent, LoginComponent, RegisterComponent],
   imports: [CommonModule, RoutingModule, SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class PagesModule {}

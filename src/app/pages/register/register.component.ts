@@ -6,15 +6,13 @@ import { UserService } from "src/app/service/user.service"
 import { REGISTERED_USERS } from "src/app/constants/global"
 
 @Component({
-  selector: "login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
+  selector: "register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.scss"],
 })
-export class LoginComponent implements OnInit {
-  loading = false
+export class RegisterComponent implements OnInit {
   currentUser: User
   registeredUsers = []
-  returnUrl: string
 
   constructor(private authService: AuthService, private userService: UserService) {
     this.currentUser = this.authService.currentUserValue

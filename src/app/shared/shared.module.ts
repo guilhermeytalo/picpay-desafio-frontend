@@ -12,22 +12,23 @@ import { MatDialogModule } from "@angular/material/dialog"
 import { MatFormFieldModule } from "@angular/material/form-field"
 import { MatInputModule } from "@angular/material/input"
 import { MatToolbarModule } from "@angular/material/toolbar"
-import { ModalComponent } from "./modal/modal.component"
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
-import { ErrorInterceptor } from "../helpers/error.interceptor"
-import { JwtInterceptor } from "../helpers/jwt.interceptor"
 
 //Components
 import { HeaderComponent } from "./header/main-header.component"
 import { PaymentsListComponent } from "./payments-list/payments-list.component"
 import { SearchPipe } from "../pipes/search.pipe"
 import { LoginFormComponent } from "./login-form/login-form.component"
+import { RegisterFormComponent } from "./register-form/register-form.component"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { ErrorMsgComponent } from "./error-msg/error-msg.component"
 import { fakeBackendProvider } from "../helpers/fake-backend"
 import { NgxPaginationModule } from "ngx-pagination"
 import { DialogComponent } from "./dialog/dialog.component"
+import { ModalComponent } from "./modal/modal.component"
+
+// Interceptors
+import { ErrorInterceptor } from "../helpers/error.interceptor"
 
 @NgModule({
   imports: [
@@ -52,14 +53,11 @@ import { DialogComponent } from "./dialog/dialog.component"
     PaymentsListComponent,
     ModalComponent,
     LoginFormComponent,
+    RegisterFormComponent,
     DialogComponent,
     ErrorMsgComponent,
   ],
   exports: [HeaderComponent, PaymentsListComponent, ModalComponent],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider,
-  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, fakeBackendProvider],
 })
 export class SharedModule {}

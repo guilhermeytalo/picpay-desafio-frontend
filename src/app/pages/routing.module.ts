@@ -5,10 +5,12 @@ import { AuthGuard } from "../helpers/auth/auth.guard"
 // Components
 import { LoginFormComponent } from "../shared/login-form/login-form.component"
 import { PaymentsListComponent } from "../shared/payments-list/payments-list.component"
+import { RegisterFormComponent } from "../shared/register-form/register-form.component"
 
 // Pages
 import { DashboardComponent } from "./dashboard/dashboard.component"
 import { LoginComponent } from "./login/login.component"
+import { RegisterComponent } from "./register/register.component"
 
 const routes: Routes = [
   {
@@ -24,6 +26,11 @@ const routes: Routes = [
       { path: "", redirectTo: "login", pathMatch: "full" },
       { path: "login", component: LoginFormComponent },
     ],
+  },
+  {
+    path: "register",
+    component: RegisterComponent,
+    children: [{ path: "", component: RegisterFormComponent }],
   },
   { path: "**", redirectTo: "" },
 ]

@@ -2,7 +2,9 @@
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from "@angular/common/http"
 import { Observable, of } from "rxjs"
 import { delay, mergeMap, materialize, dematerialize } from "rxjs/operators"
-import { authenticate, register } from "./fake-backend-routes"
+import { ok, error } from "./http-responses"
+import { JWT_TOKEN, REGISTERED_USERS } from "../constants/global"
+import { User } from "../models/user"
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -15,10 +17,28 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       switch (true) {
         case url.endsWith("/users/authenticate") && method === "POST":
           return authenticate(body)
-        case url.endsWith("/account") && method === "POST":
-          return register(body)
         default:
           return next.handle(request)
+      }
+    }
+
+    function authenticate(body: User) {
+      try {
+        let users = JSON.parse(localStorage.getItem(REGISTERED_USERS)) || []
+
+        const { email, password } = body
+
+        const registeredUser = users.find((u: User) => u.email === email && u.password === password)
+
+        if (!registeredUser) return error("Email ou senha incorretos.")
+
+        return ok({
+          id: registeredUser.id,
+          email: registeredUser.email,
+          token: JWT_TOKEN,
+        })
+      } catch (error) {
+        throw error
       }
     }
   }

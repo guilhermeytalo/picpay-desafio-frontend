@@ -2,19 +2,12 @@
   .container {
     height: 100vh;
     display: flex;
-    align-items: stretch;
-  }
-
-  .content {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
     background-color: #f2f2f2;
   }
 
-  .authentication {
+  .register {
     display: flex;
     flex-direction: column;
     align-items: center;
