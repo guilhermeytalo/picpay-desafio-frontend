@@ -80,10 +80,6 @@
     </div>
   </div>
 
-  <button [disabled]="loading" type="text" class="btn btn_submit">
-    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-    <a>Cadastrar</a>
-  </button>
-
-  <a routerLink="/" class="back">← Voltar para Login</a>
+  <button [disabled]="loading" type="text" class="btn btn_submit">Cadastrar</button>
+  <button routerLink="/" class="back">← Voltar para Login</button>
 </form>

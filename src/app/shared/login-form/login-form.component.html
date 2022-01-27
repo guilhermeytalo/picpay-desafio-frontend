@@ -48,12 +48,6 @@
     </div>
   </div>
 
-  <button [disabled]="loading" type="submit" class="btn btn_submit">
-    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Entrar
-  </button>
-
-  <button [disabled]="loading" type="text" class="btn btn_cancel">
-    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-    <a routerLink="/register">Criar conta</a>
-  </button>
+  <button [disabled]="loading" type="submit" class="btn btn_submit">Entrar</button>
+  <button routerLink="/register" [disabled]="loading" type="text" class="btn btn_cancel">Criar conta</button>
 </form>

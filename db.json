@@ -1783,12 +1783,14 @@
     {
       "id": 0,
       "name": "Usuario",
+      "username": "usuario",
       "email": "usuario@gmail.com",
       "password": "usuario"
     },
     {
       "id": 1,
       "name": "Adriana",
+      "username": "adrianashikasho",
       "email": "adriana@gmail.com",
       "password": "123"
     },
@@ -1798,34 +1800,6 @@
       "email": "henrique@gmail.com",
       "password": "123",
       "id": 2
-    },
-    {
-      "name": "asd",
-      "username": "asd",
-      "email": "usuario2@gmail.com",
-      "password": "asd",
-      "id": 3
-    },
-    {
-      "name": "123",
-      "username": "123",
-      "email": "345@345",
-      "password": "123",
-      "id": 4
-    },
-    {
-      "name": "ert",
-      "username": "ert",
-      "email": "ert@ert",
-      "password": "ert",
-      "id": 5
-    },
-    {
-      "name": "qwe",
-      "username": "qwe",
-      "email": "qwe@qwe",
-      "password": "qwe",
-      "id": 6
     }
   ]
 }

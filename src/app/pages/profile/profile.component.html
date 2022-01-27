@@ -1,10 +1,43 @@
 <div class="container">
   <div class="register">
-    <h1>{{ currentUser.name }}</h1>
-    <h2>{{ currentUser.email }}</h2>
+    <header>
+      <h1>Meus dados</h1>
+      <img routerLink="/profile" src="assets/avatar.png" alt="logo" width="100%" />
+    </header>
 
-    <ul>
-      <li></li>
-    </ul>
+    <section class="content">
+      <form>
+        <div class="form-group__flex-columm">
+          <div class="input-relative-container">
+            <input class="form-control" type="name" id="name" [value]="currentUser.name" />
+            <span class="placeholder">Nome</span>
+          </div>
+
+          <div class="input-relative-container">
+            <input class="form-control" type="username" id="username" [value]="currentUser.username" />
+            <span class="placeholder">Usuário</span>
+          </div>
+
+          <div class="input-relative-container">
+            <input class="form-control" type="email" id="email" [value]="currentUser.email" />
+            <span class="placeholder">Email</span>
+          </div>
+
+          <h2>Trocar senha</h2>
+
+          <div class="input-relative-container">
+            <input class="form-control" type="password" id="password" [value]="currentUser.password" />
+            <span class="placeholder">Senha Atual</span>
+          </div>
+
+          <div class="input-relative-container">
+            <input class="form-control" type="password" id="password" />
+            <span class="placeholder">Nova Senha</span>
+          </div>
+        </div>
+
+        <button type="text" class="btn btn_submit">Atualizar dados</button>
+      </form>
+    </section>
   </div>
 </div>
