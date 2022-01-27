@@ -1,45 +1,48 @@
-import { ok, error, unauthorized, isLoggedIn, idFromUrl } from "./http-responses"
+import { ok, error } from "./http-responses"
 import { JWT_TOKEN, REGISTERED_USERS } from "../constants/global"
+import { User } from "../models/user"
 
 let users = JSON.parse(localStorage.getItem(REGISTERED_USERS)) || []
 
-export function authenticate(body) {
-  const { email, password } = body
-
-  const registeredUser = users.find(x => x.email === email && x.password === password)
-
-  if (!registeredUser) return error("Email ou senha incorretos")
-
-  return ok({
-    id: registeredUser.id,
-    email: registeredUser.email,
-    token: JWT_TOKEN,
-  })
+type bodyType = {
+  id: number
+  email: string
+  password: string
+  token: string
 }
 
-export function register(body) {
-  const user = body
+export function authenticate(body: bodyType) {
+  try {
+    const { email, password } = body
 
-  if (users.find(x => x.email === user.email)) {
-    return error('Email "' + user.email + '" is already taken')
+    const registeredUser = users.find((u: User) => u.email === email && u.password === password)
+
+    if (!registeredUser) return error("Email ou senha incorretos.")
+
+    return ok({
+      id: registeredUser.id,
+      email: registeredUser.email,
+      token: JWT_TOKEN,
+    })
+  } catch (error) {
+    throw error
   }
-
-  user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1
-  users.push(user)
-  localStorage.setItem(REGISTERED_USERS, JSON.stringify(users))
-
-  return ok()
 }
 
-export function getUsers(headers) {
-  if (!isLoggedIn(headers)) return unauthorized()
-  return ok(users)
-}
+export function register(body: bodyType) {
+  try {
+    const user = body
 
-export function deleteUser(headers, url) {
-  if (!isLoggedIn(headers)) return unauthorized()
+    if (users.find((u: User) => u.email === user.email)) {
+      return error('Esse email "' + user.email + '" já possui cadastro')
+    }
 
-  users = users.filter(x => x.id !== idFromUrl(url))
-  localStorage.setItem(REGISTERED_USERS, JSON.stringify(users))
-  return ok()
+    user.id = users.length ? Math.max(...users.map((u: User) => u.id)) + 1 : 1
+    users.push(user)
+    localStorage.setItem(REGISTERED_USERS, JSON.stringify(users))
+
+    return ok()
+  } catch (error) {
+    throw error
+  }
 }
