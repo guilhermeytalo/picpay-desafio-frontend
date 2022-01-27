@@ -39,4 +39,17 @@ form {
     border: 1px solid var(--border);
     border-radius: 3.5px;
   }
+
+  .form-control.is-invalid ~ .invalid-feedback,
+  .was-validated .form-control:invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  .invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 1.2rem;
+    color: #dc3545;
+  }
 }

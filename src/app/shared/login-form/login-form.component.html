@@ -5,18 +5,42 @@
 
   <div class="form-group__flex-columm">
     <div class="input-relative-container">
-      <input class="form-control" type="email" formControlName="email" id="email" required />
+      <input
+        class="form-control"
+        type="email"
+        formControlName="email"
+        id="email"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        required
+      />
       <span class="placeholder"> Email </span>
-      <app-error-msg [control]="loginForm.get('email')" label="Email"></app-error-msg>
+
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Informe seu email</div>
+      </div>
+
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.email">Informe um email válido</div>
+      </div>
     </div>
 
     <div class="input-relative-container">
-      <input class="form-control" type="password" formControlName="password" id="password" required />
+      <input
+        class="form-control"
+        type="password"
+        formControlName="password"
+        id="password"
+        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+        required
+      />
       <div class="password-eye">
         <img src="assets/icons/eye.svg" alt="password eye" width="70%" />
       </div>
       <span class="placeholder"> Senha </span>
-      <app-error-msg [control]="loginForm.get('password')" label="Senha"></app-error-msg>
+
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Informe sua senha</div>
+      </div>
     </div>
   </div>
 
