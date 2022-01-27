@@ -10,13 +10,17 @@ import { RegisterFormComponent } from "../shared/register-form/register-form.com
 // Pages
 import { DashboardComponent } from "./dashboard/dashboard.component"
 import { LoginComponent } from "./login/login.component"
+import { ProfileComponent } from "./profile/profile.component"
 import { RegisterComponent } from "./register/register.component"
 
 const routes: Routes = [
   {
     path: "",
     component: DashboardComponent,
-    children: [{ path: "", component: PaymentsListComponent }],
+    children: [
+      { path: "", component: PaymentsListComponent },
+      { path: "profile", component: ProfileComponent },
+    ],
     canActivate: [AuthGuard],
   },
   {

@@ -7,16 +7,16 @@
     <div class="input-relative-container">
       <input
         class="form-control"
-        type="nome"
-        formControlName="nome"
-        id="nome"
-        [ngClass]="{ 'is-invalid': submitted && f.nome.errors }"
+        type="name"
+        formControlName="name"
+        id="name"
+        [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
         required
       />
       <span class="placeholder"> Nome </span>
 
-      <div *ngIf="submitted && f.nome.errors" class="invalid-feedback">
-        <div *ngIf="f.nome.errors.required">Informe seu nome</div>
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">Informe seu nome</div>
       </div>
     </div>
 
