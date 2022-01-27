@@ -19,7 +19,7 @@
       margin: 1rem 0 2rem;
     }
 
-    .table-header-container {
+    .filter-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -153,25 +153,9 @@
           display: flex;
           padding: 1rem 2.5rem;
 
-          a.header_sort {
-            position: relative;
-
-            &::after {
-              content: "⮟";
-              position: absolute;
-              right: -3rem;
-              font-size: 1.2rem;
-              top: 50%;
-              transform: translateY(-50%);
-            }
-
-            &.desc::after {
-              content: "(desc)";
-            }
-
-            &.asc::after {
-              content: "(asc)";
-            }
+          a,
+          span {
+            cursor: pointer;
           }
         }
       }
@@ -214,22 +198,6 @@
         justify-content: center;
         padding-top: 5rem;
       }
-    }
-  }
-
-  .add-payment-modal-form {
-    input {
-      width: 25rem;
-      font-size: 1.4rem;
-    }
-  }
-
-  .delete-payment-modal-form {
-    input {
-      width: 25rem;
-      font-size: 1.4rem;
-      border: none;
-      outline: none;
     }
   }
 }

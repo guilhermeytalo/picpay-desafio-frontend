@@ -5,7 +5,7 @@
     <button class="btn btn_submit" (click)="openDialog(null)">Adicionar Pagamento</button>
   </div>
 
-  <div class="table-header-container">
+  <div class="filter-container">
     <div class="search-container">
       <form class="search">
         <div class="form-group__flex-columm">
@@ -39,23 +39,38 @@
   <table class="payments-table-container">
     <tr class="table-header">
       <th class="th_item">
-        <a id="name" class="header_sort" href="#">Usuário</a>
+        <a class="header_sort" (click)="sort('user')">
+          Usuário
+          <span *ngIf="key == 'user'">{{ reverse ? "▲" : "▼" }}</span>
+        </a>
       </th>
 
       <th class="th_item">
-        <a class="header_sort" href="#">Título</a>
+        <a class="header_sort" (click)="sort('title')">
+          Título
+          <span *ngIf="key == 'title'">{{ reverse ? "▲" : "▼" }}</span>
+        </a>
       </th>
 
       <th class="th_item">
-        <a class="header_sort" href="#">Data</a>
+        <a class="header_sort" (click)="sort('date')">
+          Data
+          <span *ngIf="key == 'date'">{{ reverse ? "▲" : "▼" }}</span>
+        </a>
       </th>
 
       <th class="th_item">
-        <a class="header_sort" href="#">Valor</a>
+        <a class="header_sort" (click)="sort('value')">
+          Valor
+          <span *ngIf="key == 'value'">{{ reverse ? "▲" : "▼" }}</span>
+        </a>
       </th>
 
       <th class="th_item">
-        <a class="header_sort" href="#">Pago</a>
+        <a class="header_sort" (click)="sort('isPayed')">
+          Pago
+          <span *ngIf="key == 'isPayed'">{{ reverse ? "▲" : "▼" }}</span>
+        </a>
       </th>
 
       <th class="th_item"></th>
@@ -65,7 +80,12 @@
       *ngIf="!loading"
       ngFor
       let-payment
-      [ngForOf]="payments | searchPipe: search | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
+      [ngForOf]="
+        payments
+          | orderBy: key:reverse
+          | searchPipe: search
+          | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }
+      "
     >
       <tr class="table-row" *ngIf="payment.name">
         <td class="td_item">

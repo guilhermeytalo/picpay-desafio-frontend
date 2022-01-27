@@ -2,6 +2,7 @@
 import { NgModule } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { RouterModule } from "@angular/router"
+import { OrderModule } from "ngx-order-pipe"
 
 // Material Modules
 import { MatTableModule } from "@angular/material/table"
@@ -26,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { ErrorMsgComponent } from "./error-msg/error-msg.component"
 import { fakeBackendProvider } from "../helpers/fake-backend"
 import { NgxPaginationModule } from "ngx-pagination"
+import { DialogComponent } from "./dialog/dialog.component"
 
 @NgModule({
   imports: [
@@ -42,6 +44,7 @@ import { NgxPaginationModule } from "ngx-pagination"
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    OrderModule,
   ],
   declarations: [
     HeaderComponent,
@@ -49,6 +52,7 @@ import { NgxPaginationModule } from "ngx-pagination"
     PaymentsListComponent,
     ModalComponent,
     LoginFormComponent,
+    DialogComponent,
     ErrorMsgComponent,
   ],
   exports: [HeaderComponent, PaymentsListComponent, ModalComponent],

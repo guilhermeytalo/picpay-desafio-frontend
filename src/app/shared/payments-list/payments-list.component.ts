@@ -30,6 +30,14 @@ export class PaymentsListComponent implements OnInit {
 
   @ViewChild("campoBusca") campoBusca: ElementRef<HTMLInputElement>
 
+  key: string = "user"
+  reverse: boolean = false
+
+  sort(key) {
+    this.key = key
+    this.reverse = !this.reverse
+  }
+
   constructor(
     private paymentsApiService: PaymentsApiService,
     public toastService: ToastService,
