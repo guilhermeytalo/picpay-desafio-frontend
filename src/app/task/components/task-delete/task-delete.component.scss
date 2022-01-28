@@ -1,0 +1,12 @@
+.task-delete-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.task-delete-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}

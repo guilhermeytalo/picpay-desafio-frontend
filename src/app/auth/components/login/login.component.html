@@ -1,0 +1,43 @@
+<div class="login-container">
+  <div class="login-form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="login-header">
+        <img src="/assets/images/logo.svg" alt="Logo do site">
+        <h1>Bem vindo de volta</h1>
+      </div>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" required autocomplete="email" />
+        <mat-error> Email inválido </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input matInput [type]="hidePassword? 'password' : 'text'" formControlName="password" required
+          autocomplete="password" />
+        <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{
+          hidePassword ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        <mat-error> Senha inválida </mat-error>
+      </mat-form-field>
+      <hr aria-hidden="true" />
+      <div class="signup-content">
+        <p>
+          Ainda não tem cadastro?
+          <a mat-button routerLink="/auth/register">Crie uma conta</a>
+        </p>
+      </div>
+      <button *ngIf="!loading" mat-raised-button type="submit" color="primary" [disabled]="f.invalid || loading">
+        Entrar
+      </button>
+      <button *ngIf="loading" mat-raised-button color="primary">
+        <mat-icon>
+          <mat-spinner color="accent" diameter="20"> </mat-spinner>
+        </mat-icon>
+      </button>
+    </form>
+  </div>
+  <div class="login-img">
+    <img src="/assets/images/man-doing-online-payment.svg"
+      alt="Imagem com uma pessoa realizando pagamento em uma praça">
+  </div>
+</div>

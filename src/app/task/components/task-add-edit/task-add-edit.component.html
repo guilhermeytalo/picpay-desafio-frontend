@@ -1,0 +1,48 @@
+<button mat-button mat-dialog-close id="close-button" style="  float: right;
+right: -24px;">
+  <mat-icon aria-hidden="false" aria-label="fechar">close</mat-icon>
+</button>
+<div class="task-add-edit-container">
+  <h2>{{title}}</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width-input" appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput type="text" formControlName="name" required autocomplete="name" />
+      <mat-error> Usuário é obrigatório </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field class="full-width-input" appearance="outline">
+      <mat-label>Título</mat-label>
+      <input matInput type="text" formControlName="title" required autocomplete="title" />
+      <mat-error> Título é obrigatório </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width-input" appearance="outline">
+      <mat-label>Valor</mat-label>
+      <input matInput currencyMask formControlName="value"
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align:'left' }" />
+      <mat-error> Valor é obrigatório </mat-error>
+    </mat-form-field>
+
+    <div class="slide-toogle-content">
+      <mat-slide-toggle formControlName="isPayed" #slideToogle>{{textSlideToggle}}</mat-slide-toggle>
+    </div>
+
+    <button *ngIf="!loading" mat-raised-button color="primary" [disabled]="f.invalid || loading">
+      Salvar
+    </button>
+    <button *ngIf="loading" mat-raised-button color="primary">
+      <mat-icon>
+        <mat-spinner color="accent" diameter="20"> </mat-spinner>
+      </mat-icon>
+    </button>
+  </form>
+</div>

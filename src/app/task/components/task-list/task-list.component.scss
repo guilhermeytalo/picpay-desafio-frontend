@@ -1,0 +1,56 @@
+.tasks-list-container {
+  display: flex;
+  width: 100%;
+  margin-top: 2rem;
+  flex-direction: column;
+  background-color: #F2F2F2;
+  padding: 2rem;
+}
+
+.tasks-list-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  h1 {
+    margin: 0
+  }
+}
+
+.tasks-list-table {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+}
+
+::ng-deep {
+    .mat-card-header {
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-direction: column !important;
+    }
+  }
+
+@media screen and (max-width: 767px) {
+    mat-card {
+      width: 80%;
+    }
+  }
+  
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    mat-card {
+      width: 90%;
+    }
+  }
+  
+  @media screen and (min-width: 1024px) {
+    mat-card {
+      width: 100%;
+      padding: 2rem;
+    }
+  }

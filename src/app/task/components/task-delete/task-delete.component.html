@@ -1,0 +1,14 @@
+  <button mat-button mat-dialog-close id="close-button" style="  float: right;
+right: -24px;">
+    <mat-icon aria-hidden="false" aria-label="fechar">close</mat-icon>
+  </button>
+<div class="task-delete-container">
+  <h2 mat-dialog-title>Excluir Pagamento</h2>
+  <p>Tem certeza que deseja cancelar o pagamento de <strong>{{task.name}}</strong> no valor de <strong>{{task.value |
+      currency:'R$'}}</strong>?</p>
+  <hr />
+  <div class="task-delete-buttons">
+    <button mat-raised-button (click)="cancel()">Cancelar</button>
+    <button color="warn" mat-raised-button (click)="deleteTask()">Confirmar</button>
+  </div>
+</div>

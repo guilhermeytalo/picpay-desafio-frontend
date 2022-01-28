@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" *ngIf="isUserAuth">
+  <mat-toolbar-row>
+    <img src="/assets/images/logo-header.svg" style="cursor: pointer;" alt="Logo do site, clique para voltar para home"
+      (click)="redirectTasks()">
+    <button mat-button [matMenuTriggerFor]="belowMenu" style="color: #FFF;">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+      <button mat-menu-item (click)="redirectTasks()">Pagamentos</button>
+      <button mat-menu-item (click)="redirectMyProfile()">Meu Perfil</button>
+      <button mat-menu-item (click)="logout()">Sair</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>

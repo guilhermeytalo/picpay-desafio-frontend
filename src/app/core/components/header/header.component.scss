@@ -1,0 +1,33 @@
+mat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-toolbar-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+
+@media screen and (max-width: 767px) {
+  mat-toolbar-row {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  mat-toolbar-row {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  mat-toolbar-row {
+    width: 70%;
+  }
+}
