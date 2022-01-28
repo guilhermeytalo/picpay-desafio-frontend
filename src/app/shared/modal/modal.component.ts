@@ -8,7 +8,6 @@ import { FormGroup } from "@angular/forms"
 @Component({
   selector: "modal",
   templateUrl: "./modal.component.html",
-  styleUrls: ["./modal.component.scss"],
   animations: [
     trigger("overlay", [
       transition(":enter", [style({ opacity: 0 }), animate("250ms", style({ opacity: 0.5 }))]),

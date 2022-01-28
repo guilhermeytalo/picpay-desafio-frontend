@@ -4,7 +4,6 @@
 @import "./config-scss/modal.scss";
 @import "./config-scss/form.scss";
 @import "./config-scss/alert.scss";
-@import "./config-scss/mat.scss";
 @import "@angular/cdk/overlay-prebuilt.css";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&family=Roboto:wght@400;700;900&display=swap");
 
@@ -133,11 +132,12 @@ main {
             width: 100%;
 
             .mat-form-field-infix {
+              min-width: 0;
+              width: 100%;
+              height: 5rem;
               display: flex;
               flex-direction: column;
               flex: 1;
-              min-width: 0;
-              width: 100%;
             }
           }
 
@@ -164,7 +164,7 @@ main {
         font-size: 1.6rem;
         color: var(--secondary-text);
 
-        padding: 15px 15px;
+        padding: 1rem;
         background: transparent;
 
         border-radius: 0.6rem;

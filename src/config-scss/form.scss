@@ -44,19 +44,19 @@ form {
   }
 
   .form-control {
-    height: 54px;
-    width: 326px;
+    height: 5rem;
     padding: 1.5rem;
+    width: 100%;
   }
 
   .form-group {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 
     &__flex-columm {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 2rem;
     }
   }
 
