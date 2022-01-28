@@ -26,4 +26,13 @@ export class UserService {
     const message = 'Esse email "' + user.email + '" já possui cadastro'
     return throwError(message)
   }
+
+  update(user: User) {
+    try {
+      return this.http.put(`http://localhost:3000/account/${user.id}`, user)
+    } catch (error) {
+      const message = "Erro ao atualizar os dados."
+      return throwError(message)
+    }
+  }
 }

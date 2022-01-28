@@ -1,43 +1,63 @@
 <div class="container">
-  <div class="register">
+  <div class="register" *ngIf="!loading">
     <header>
       <h1>Meus dados</h1>
       <img routerLink="/profile" src="assets/avatar.png" alt="logo" width="100%" />
     </header>
 
     <section class="content">
-      <form>
+      <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
         <div class="form-group__flex-columm">
           <div class="input-relative-container">
-            <input class="form-control" type="name" id="name" [value]="currentUser.name" />
-            <span class="placeholder">Nome</span>
+            <input
+              class="form-control"
+              type="name"
+              formControlName="name"
+              id="name"
+              required
+              [value]="currentUser.name"
+            />
+            <span class="placeholder"> Nome </span>
           </div>
 
           <div class="input-relative-container">
-            <input class="form-control" type="username" id="username" [value]="currentUser.username" />
-            <span class="placeholder">Usuário</span>
+            <input class="form-control" type="username" formControlName="username" id="username" required />
+            <span class="placeholder"> Usuário </span>
           </div>
 
           <div class="input-relative-container">
-            <input class="form-control" type="email" id="email" [value]="currentUser.email" />
+            <input class="form-control" type="email" id="email" formControlName="email" />
             <span class="placeholder">Email</span>
           </div>
 
           <h2>Trocar senha</h2>
 
           <div class="input-relative-container">
-            <input class="form-control" type="password" id="password" [value]="currentUser.password" />
-            <span class="placeholder">Senha Atual</span>
+            <input
+              class="form-control"
+              [type]="hide ? 'password' : 'text'"
+              formControlName="password"
+              id="password"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+              required
+            />
+            <div *ngIf="!hide" class="password-eye" (click)="hidePassword()">
+              <img src="assets/icons/view.png" alt="password eye" width="35%" />
+            </div>
+
+            <div *ngIf="hide" class="password-eye" (click)="hidePassword()">
+              <img src="assets/icons/hidden.png" alt="password eye" width="35%" />
+            </div>
+            <span class="placeholder"> Senha </span>
           </div>
 
-          <div class="input-relative-container">
-            <input class="form-control" type="password" id="password" />
-            <span class="placeholder">Nova Senha</span>
-          </div>
+          <button *ngIf="currentUser.password" type="text" class="btn btn_submit">Atualizar dados</button>
         </div>
-
-        <button type="text" class="btn btn_submit">Atualizar dados</button>
       </form>
     </section>
+  </div>
+
+  <div *ngIf="loading" class="loading-spinner">
+    <img src="assets/spining.svg" alt="loading" />
   </div>
 </div>

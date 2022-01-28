@@ -24,11 +24,11 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { ErrorMsgComponent } from "./error-msg/error-msg.component"
 import { fakeBackendProvider } from "../helpers/fake-backend"
 import { NgxPaginationModule } from "ngx-pagination"
-import { DialogComponent } from "./dialog/dialog.component"
 import { ModalComponent } from "./modal/modal.component"
 
 // Interceptors
 import { ErrorInterceptor } from "../helpers/error.interceptor"
+import { DialogComponent } from "./dialog/dialog.component"
 
 @NgModule({
   imports: [
@@ -57,7 +57,7 @@ import { ErrorInterceptor } from "../helpers/error.interceptor"
     DialogComponent,
     ErrorMsgComponent,
   ],
-  exports: [HeaderComponent, PaymentsListComponent, ModalComponent],
+  exports: [HeaderComponent, PaymentsListComponent, ModalComponent, DialogComponent],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, fakeBackendProvider],
 })
 export class SharedModule {}

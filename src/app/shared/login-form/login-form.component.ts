@@ -15,6 +15,7 @@ export class LoginFormComponent implements OnInit {
   loading = false
   loginForm: FormGroup
   submitted = false
+  hide: boolean = true
 
   constructor(
     private formBuilder: FormBuilder,
@@ -60,8 +61,6 @@ export class LoginFormComponent implements OnInit {
         }
       )
   }
-
-  hide: boolean = true
 
   hidePassword() {
     this.hide = !this.hide

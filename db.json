@@ -5,10 +5,8 @@
       "name": "Lonna Bonney",
       "username": "lbonney6",
       "title": "Assistant Media Planner",
-      "value": 285.86,
-      "date": "2020-10-02T23:04:57Z",
-      "image": "https://robohash.org/estquisquamquaerat.png?size=150x150&set=set1",
-      "isPayed": false
+      "date": "2022-01-27T23:12:33.785Z",
+      "value": 285.86
     },
     {
       "id": 8,
@@ -1617,14 +1615,6 @@
       "date": "2021-05-05T10:22:13Z",
       "image": "https://robohash.org/illumexpeditadeleniti.png?size=150x150&set=set1",
       "isPayed": true
-    },
-    {
-      "name": "asd",
-      "title": "asd",
-      "date": "2022-01-27T22:30:33.161Z",
-      "value": "asd",
-      "username": "asd",
-      "id": 171
     }
   ],
   "account": [
@@ -1637,8 +1627,8 @@
     },
     {
       "id": 1,
-      "name": "Adriana",
       "username": "adrianashikasho",
+      "name": "Adriana Lima",
       "email": "adriana@gmail.com",
       "password": "123"
     },

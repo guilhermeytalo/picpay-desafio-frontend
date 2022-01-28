@@ -22,26 +22,6 @@
       width: 15rem;
       cursor: pointer;
     }
-
-    li {
-      font-size: 1.6rem;
-      color: var(--light-blue);
-      font-family: "Montserrat", sans-serif;
-      margin-left: 2rem;
-      cursor: pointer;
-
-      &::before {
-        content: "|";
-        color: var(--light-blue);
-        margin-right: 3rem;
-      }
-
-      span:hover {
-        text-decoration: underline;
-        filter: opacity(0.6);
-        cursor: pointer;
-      }
-    }
   }
 
   .avatar-content {
@@ -75,13 +55,14 @@
         font-family: "Montserrat", sans-serif;
         font-weight: 300;
 
-        li:first-child::after {
+        li:first-child::after,
+        li:nth-child(2)::after {
           content: "|";
           color: var(--light-blue);
-          margin-left: 2rem;
+          margin-left: 1rem;
         }
 
-        li:hover {
+        li > span:hover {
           text-decoration: underline;
           filter: opacity(0.6);
           cursor: pointer;
