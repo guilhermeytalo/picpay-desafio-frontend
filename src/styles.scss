@@ -1,3 +1,4 @@
+@import "variables";
 * {
   box-sizing: border-box;
 }
@@ -11,3 +12,10 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.primary-button {
+  background-color: $color_primary;
+  border-radius: 4px;
+  color: #fff;
+  width: 100%;
+}

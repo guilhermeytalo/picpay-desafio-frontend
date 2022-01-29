@@ -23,19 +23,14 @@
 
 .login {
   &::ng-deep .mat-form-field-wrapper {
-    width: 326px;
+    width: 25.5vw;
   }
 }
 
 .password {
   &::ng-deep .mat-form-field-wrapper {
-    width: 326px;
+    width: 25.5vw;
   };
 }
 
-.submit-button {
-  background-color: #007DFE;
-  color: #fff;
-  width: 328px;
-}
 
