@@ -1,0 +1,41 @@
+.logo {
+  color: #002d69;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 29.26px;
+
+  span {
+    color: #007dfe;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 29.26px;
+  }
+}
+.form-container {
+  //   margin-left: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login {
+  &::ng-deep .mat-form-field-wrapper {
+    width: 326px;
+  }
+}
+
+.password {
+  &::ng-deep .mat-form-field-wrapper {
+    width: 326px;
+  };
+}
+
+.submit-button {
+  background-color: #007DFE;
+  color: #fff;
+  width: 328px;
+}
+
