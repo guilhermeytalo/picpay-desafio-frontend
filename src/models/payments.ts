@@ -1,4 +1,4 @@
-export class Payments {
+export interface Payments {
     id: number;
     name: string;
     username: string;

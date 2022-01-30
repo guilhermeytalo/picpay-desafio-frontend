@@ -8,20 +8,24 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
   declarations: [
       DashboardComponent,
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    MatToolbarModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSortModule,
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSortModule,
+        MatCheckboxModule,
+        MatPaginatorModule,
+    ]
 })
 export class DashboardModule { }
