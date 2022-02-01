@@ -10,11 +10,16 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSortModule} from '@angular/material/sort';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatButtonModule} from '@angular/material/button';
+import {PaymentModalComponent} from '../../components/payment-modal/payment-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [
       DashboardComponent,
+      PaymentModalComponent,
   ],
     imports: [
         CommonModule,
@@ -26,6 +31,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         MatSortModule,
         MatCheckboxModule,
         MatPaginatorModule,
+        MatButtonModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+    ],
+    exports: [
+        PaymentModalComponent,
     ]
 })
 export class DashboardModule { }

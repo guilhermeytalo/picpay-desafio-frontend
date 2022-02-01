@@ -11,6 +11,9 @@ mat-toolbar {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    align-content: center;
+    align-items: center;
+    padding-top: 10px;
 
     .content1 {
       .logo-dashboard {
@@ -30,23 +33,34 @@ mat-toolbar {
     }
 
     .content2 {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background-color: red;
+      .img-content2 {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+      }
     }
 
   }
 }
 
 .my-payments-container {
-  p {
-    margin-left: 70px;
-    margin-top: 20px;
+  .my-payments {
     font-weight: 600;
     font-size: 36px;
     line-height: 44px;
     color: #333333;
+    margin: 30px 70px 30px 70px;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .my-payments-title {
+    padding-bottom: 15px;
+  }
+
+  .button-payment-div {
+    align-self: flex-end;
   }
 
   .table-container {

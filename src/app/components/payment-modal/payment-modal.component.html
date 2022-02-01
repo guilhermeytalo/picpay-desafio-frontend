@@ -1,0 +1,53 @@
+<div class="modal-container">
+    <div mat-dialog-content>
+        <h3 class="payment-modal-title">Adcionar Pagamento</h3>
+        <form [formGroup]="addPaymentForm" class="form-container">
+            <section class="form-section">
+                <mat-form-field class="username" appearance="outline">
+                    <mat-label class="control-label required">Usuário</mat-label>
+                    <input matInput
+                           type="text"
+                           formControlName="username">
+                    <mat-error *ngIf="addPaymentForm.get('username')">{{getErrorMessage('username')}}</mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field class="value" appearance="outline">
+                    <mat-label class="control-label required">Valor</mat-label>
+                    <input matInput
+                           type="number"
+                           formControlName="value">
+                    <mat-error *ngIf="addPaymentForm.get('value')">{{getErrorMessage('value')}}</mat-error>
+                </mat-form-field>
+            </section>
+
+            <section class="form-section">
+                <mat-form-field class="date" appearance="outline">
+                    <mat-label class="control-label required">Data</mat-label>
+                    <input matInput
+                           type="date"
+                           formControlName="date">
+                    <mat-error *ngIf="addPaymentForm.get('date')">{{getErrorMessage('date')}}</mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field class="title" appearance="outline">
+                    <mat-label class="control-label required">Título</mat-label>
+                    <input matInput
+                           type="text"
+                           formControlName="title">
+                    <mat-error *ngIf="addPaymentForm.get('title')">{{getErrorMessage('title')}}</mat-error>
+                </mat-form-field>
+            </section>
+        </form>
+    </div>
+
+    <div mat-dialog-actions class="actions-button-container">
+        <div class="cancel-btn">
+            <button mat-button>Cancelar</button>
+        </div>
+        <div>
+            <button mat-button cdkFocusInitial class="primary-button" (click)="onSubmit()">Salvar</button>
+        </div>
+    </div>
+</div>

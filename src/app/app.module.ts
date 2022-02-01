@@ -10,20 +10,22 @@ import { AppComponent } from './app.component';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    DashboardModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        DashboardModule,
+    ],
+    providers: [],
+    exports: [
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

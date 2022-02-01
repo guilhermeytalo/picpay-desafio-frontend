@@ -4,10 +4,11 @@ import {MatSort, Sort} from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {Payments} from '../../../models/payments';
 import {PaymentService} from '../../api/payment.service';
-import {merge, Observable, of as observableOf} from 'rxjs';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {MatPaginator} from '@angular/material/paginator';
-
+import {MatDialog} from '@angular/material/dialog';
+import {PaymentModalComponent} from '../../components/payment-modal/payment-modal.component';
+import {PaymentModalService} from '../../components/payment-modal/payment-modal.service';
+import {mergeMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +19,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   data: Payments[] = [];
   dataSource;
   booleanAsc = false;
+  profileImg = '../../../assets/img.png';
+
+  paymentForm: Payments;
 
   displayedColumns: string[] = [
     'name',
@@ -29,7 +33,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   constructor(
       private liveAnnouncer: LiveAnnouncer,
-      private paymentService: PaymentService
+      private paymentService: PaymentService,
+      public dialog: MatDialog,
+      private paymentModalService: PaymentModalService
   ) {}
 
   @ViewChild(MatSort) sort: MatSort;
@@ -38,15 +44,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   primaryColor = '#007DFE';
 
   ngOnInit() {
-
-
     this.getData();
   }
 
   ngAfterViewInit() {
     this.paginator._intl.itemsPerPageLabel = 'Exibir';
-    //
-    // console.log(this.dataSource.sort);
   }
 
   getData() {
@@ -54,6 +56,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         .getTasks()
         .subscribe((res: any) => {
       this.dataSource = new MatTableDataSource(res);
+      this.data = res;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     }, error => {
@@ -75,5 +78,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         return a === b ? 0 : isAsc ? (a ? -1 : 1) : a ? 1 : -1;
       }
     }
+  }
+
+  addPayment() {
+    const dialogRef = this.dialog.open(PaymentModalComponent, {
+      width: '772px',
+      height: '395px',
+      data: {payments: this.paymentForm},
+    });
+
+    dialogRef.afterClosed()
+        .pipe(
+            mergeMap(v => this.paymentModalService.subFormData()),
+            mergeMap((p: Payments) => this.paymentModalService.createPaymentData(p)))
+        .subscribe(result => {
+        console.log('The dialog was closed', result);
+    });
   }
 }

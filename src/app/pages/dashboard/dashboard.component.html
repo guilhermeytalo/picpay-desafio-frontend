@@ -6,14 +6,19 @@
             </div>
 
             <div class="content2">
-                <img src=""/>
+                <img  class="img-content2" [src]="profileImg"/>
             </div>
         </div>
     </mat-toolbar>
 
     <div class="my-payments-container">
-        <div>
-            <p class="my-payments">Meus pagamentos</p>
+        <div class="my-payments">
+            <div class="my-payments-title">
+                <p>Meus pagamentos</p>
+            </div>
+            <div class="button-payment-div">
+                <button class="primary-button" mat-flat-button (click)="addPayment()">Adcionar Pagamento</button>
+            </div>
         </div>
 
         <div class="table-container">
@@ -75,3 +80,4 @@
         </div>
     </div>
 </main>
+

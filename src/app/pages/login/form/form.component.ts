@@ -10,9 +10,6 @@ import {Router} from '@angular/router';
 })
 export class FormComponent implements OnInit{
   loginForm: FormGroup;
-  // login = new FormControl('login');
-  // password = new FormControl('password');
-
   hide = true;
 
   constructor(

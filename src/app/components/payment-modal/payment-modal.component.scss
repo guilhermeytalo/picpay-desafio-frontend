@@ -1,0 +1,34 @@
+@import "src/variables";
+
+.modal-container {
+  padding: 0 38px;
+
+  .payment-modal-title {
+    font-weight: 700;
+    margin-bottom: 50px;
+  }
+
+  .form-container {
+    .form-section {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .actions-button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    div {
+     width: 20%;
+
+    }
+    .cancel-btn {
+        background-color: $color_dark_grey;
+        text-align: center;
+        margin-right: 20px;
+        border-radius: 4px;
+    }
+  }
+}
