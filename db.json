@@ -1706,6 +1706,34 @@
       "date": "2022-01-31",
       "title": "sdads",
       "id": 171
+    },
+    {
+      "username": "ytalo2",
+      "value": 100.2,
+      "date": "2022-02-01",
+      "title": "Testing Software",
+      "id": 172
+    },
+    {
+      "username": "guilhermeytalo",
+      "value": 1111,
+      "date": "2022-02-22",
+      "title": "just testing",
+      "id": 173
+    },
+    {
+      "username": "ytalo1",
+      "value": 1010,
+      "date": "2022-02-01",
+      "title": "testing 2",
+      "id": 174
+    },
+    {
+      "username": "testingDB",
+      "value": 19199,
+      "date": "2022-02-01",
+      "title": "title2",
+      "id": 175
     }
   ],
   "account": [
@@ -1774,6 +1802,11 @@
       "email": "usuario@gmail.com",
       "password": "usuario",
       "id": 12
+    },
+    {
+      "email": "usuario@gmail.com",
+      "password": "usuario",
+      "id": 13
     }
   ]
 }

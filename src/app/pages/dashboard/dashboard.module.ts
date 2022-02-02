@@ -14,6 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {PaymentModalComponent} from '../../components/payment-modal/payment-modal.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {ReactiveFormsModule} from '@angular/forms';
         MatButtonModule,
         MatDialogModule,
         ReactiveFormsModule,
+        MatIconModule,
     ],
     exports: [
         PaymentModalComponent,

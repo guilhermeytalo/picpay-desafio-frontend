@@ -7,24 +7,29 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class PaymentModalService {
-  url = 'http://localhost:3000/tasks';
 
   constructor(
-      private http: HttpClient,
   ) { }
 
   paymentFormData$: BehaviorSubject<Payments | any> = new BehaviorSubject<Payments | any>({});
+  editPaymentFormData$: BehaviorSubject<{ payment: Payments, id: number } | any > = new BehaviorSubject<Payments | any>({});
 
   pubFormData(value: Payments) {
     this.paymentFormData$.next(value);
+  }
+
+  pubEditData(value: {payment: Payments, id: number}) {
+    this.editPaymentFormData$.next(value);
   }
 
   subFormData(): Observable<Payments> {
     return this.paymentFormData$;
   }
 
-  createPaymentData(data: Payments) {
-    return this.http.post(this.url, data);
+  subEditData() {
+    return this.editPaymentFormData$;
   }
+
+
 
 }

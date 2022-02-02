@@ -26,14 +26,14 @@ export class FormComponent implements OnInit{
     });
   }
 
-  private getErrorMessage(type: 'email' | 'password'): string {
+  public getErrorMessage(type: 'email' | 'password'): string {
     if (this.loginForm.get(type).hasError('required')) {
       return 'Você precisa digitar um valor!';
     }
     return `Campo invalido`;
   }
 
-   private onSubmit() {
+   public onSubmit() {
     console.log(this.loginForm.value);
     const {email, password} = this.loginForm.value;
 
