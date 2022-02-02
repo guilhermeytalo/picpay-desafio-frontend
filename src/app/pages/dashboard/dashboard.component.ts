@@ -159,7 +159,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     if (result) {
                         this.paymentService
                             .deleteTask(id)
-                            .subscribe(() => this.getData());
+                            .subscribe(() => {
+                                console.log('deletou')
+                                this.getData();
+                            });
                     }
                 });
         });

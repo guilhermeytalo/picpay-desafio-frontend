@@ -1,1 +1,20 @@
+<div class="modal-container">
+    <h1>Excluir pagamento</h1>
+    <div class="field-content">
+        <span>Usuário: {{ data.payments.name }}</span>
+        <span>Data: {{ data.payments.date | date: 'dd MMM yyyy' }}</span>
+        <span>Valor: {{ data.payments.value | currency: 'BRL' }}</span>
+    </div>
+
+    <div mat-dialog-actions class="actions-button-container">
+        <div class="cancel-btn">
+            <button mat-button (click)="onCancel()">Cancelar</button>
+        </div>
+
+        <div>
+            <button mat-button cdkFocusInitial class="primary-button" (click)="onSubmit()">Salvar</button>
+        </div>
+    </div>
+</div>
+
 

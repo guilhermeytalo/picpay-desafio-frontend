@@ -13,13 +13,17 @@ export class PaymentModalService {
 
   paymentFormData$: BehaviorSubject<Payments | any> = new BehaviorSubject<Payments | any>({});
   editPaymentFormData$: BehaviorSubject<{ payment: Payments, id: number } | any > = new BehaviorSubject<Payments | any>({});
-
+  deletePaymentFormData$: BehaviorSubject<{ payment: Payments, id: number } | any > = new BehaviorSubject<Payments | any>({});
   pubFormData(value: Payments) {
     this.paymentFormData$.next(value);
   }
 
   pubEditData(value: {payment: Payments, id: number}) {
     this.editPaymentFormData$.next(value);
+  }
+
+  pubDeleteData(value: {payment: Payments, id: number}) {
+    this.deletePaymentFormData$.next(value);
   }
 
   subFormData(): Observable<Payments> {
@@ -30,6 +34,9 @@ export class PaymentModalService {
     return this.editPaymentFormData$;
   }
 
+  subDeleteData() {
+    return this.deletePaymentFormData$;
+  }
 
 
 }

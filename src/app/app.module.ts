@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
     declarations: [
@@ -24,6 +26,8 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
         ReactiveFormsModule,
         HttpClientModule,
         DashboardModule,
+        MatDialogModule,
+        MatButtonModule,
     ],
     providers: [],
     exports: [

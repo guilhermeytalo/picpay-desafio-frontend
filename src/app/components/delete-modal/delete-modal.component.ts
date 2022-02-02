@@ -23,6 +23,7 @@ export class DeleteModalComponent implements OnInit {
     }
 
     onSubmit() {
+        this.paymentModalService.pubDeleteData({payment: this.data.payments, id: this.data.payments.id});
         this.data.deleteData = true;
         this.dialogRef.close();
     }
