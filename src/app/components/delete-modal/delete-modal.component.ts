@@ -1,9 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Payments} from '../../../models/payments';
-import {FormBuilder} from '@angular/forms';
-import {PaymentModalService} from '../payment-modal/payment-modal.service';
-import {PaymentModalComponent} from '../payment-modal/payment-modal.component';
 
 @Component({
     selector: 'app-delete-modal',
@@ -15,7 +12,6 @@ export class DeleteModalComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<DeleteModalComponent>,
         @Inject(MAT_DIALOG_DATA) public data: { payments: Payments, deleteData: boolean },
-        private paymentModalService: PaymentModalService
     ) {
     }
 
@@ -23,14 +19,12 @@ export class DeleteModalComponent implements OnInit {
     }
 
     onSubmit() {
-        this.paymentModalService.pubDeleteData({payment: this.data.payments, id: this.data.payments.id});
-        this.data.deleteData = true;
-        this.dialogRef.close();
+        this.dialogRef.close(true);
     }
 
     onCancel() {
         this.data.deleteData = false;
-        this.dialogRef.close();
+        this.dialogRef.close(false);
     }
 
 }

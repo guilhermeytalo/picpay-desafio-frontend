@@ -21,7 +21,6 @@ export class PaymentModalComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.data);
     this.addPaymentForm = this.formBuilder.group({
       username: [this.data.payments.username, [Validators.required]],
       value: [this.data.payments.value, [Validators.required]],
@@ -51,6 +50,5 @@ export class PaymentModalComponent implements OnInit {
     }
 
     this.dialogRef.close();
-    console.log('submit?', this.data);
   }
 }

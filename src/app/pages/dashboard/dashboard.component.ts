@@ -68,7 +68,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    primaryColor = '#007DFE';
 
     ngOnInit() {
         this.getData();
@@ -120,15 +119,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                 mergeMap(v => this.paymentModalService.subFormData()),
                 mergeMap((p: Payments) => this.paymentService.createPaymentData(p)))
             .subscribe(result => {
-                console.log('The dialog was closed', result);
                 this.getData();
             });
     }
 
     editData(id: number) {
-        console.log('edited');
         this.paymentService.getTaskById(id).subscribe((payment) => {
-            console.log(payment);
             const dialogRef = this.dialog.open(PaymentModalComponent, {
                 width: '772px',
                 height: '395px',
@@ -140,7 +136,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     mergeMap(v => this.paymentModalService.subEditData()),
                     mergeMap((p: { payment: Payments, id: number }) => this.paymentService.editTaskById(p.id, p.payment)))
                 .subscribe(result => {
-                    console.log('The dialog was closed', result);
                     this.getData();
                 });
         });
@@ -151,18 +146,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             const dialogRef = this.dialog.open(DeleteModalComponent, {
                 width: '405px',
                 height: '325px',
-                data: {payments: payment, deleteData: this.isDeleteData},
+                data: {payments: payment },
             });
-
             dialogRef.afterClosed()
-                .subscribe((result: boolean) => {
+                .subscribe((result: any) => {
                     if (result) {
-                        this.paymentService
-                            .deleteTask(id)
-                            .subscribe(() => {
-                                console.log('deletou')
-                                this.getData();
-                            });
+                        this.paymentService.deleteTask(id).subscribe(() => {
+                            this.getData();
+                        });
                     }
                 });
         });

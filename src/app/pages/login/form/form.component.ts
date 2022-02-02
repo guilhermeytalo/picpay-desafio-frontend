@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AccountService} from '../../../api/account.service';
 import {Router} from '@angular/router';
 
@@ -34,7 +34,6 @@ export class FormComponent implements OnInit{
   }
 
    public onSubmit() {
-    console.log(this.loginForm.value);
     const {email, password} = this.loginForm.value;
 
     if (this.loginForm.valid) {
@@ -49,7 +48,6 @@ export class FormComponent implements OnInit{
       this.accountService
           .submitLogin(email, password)
           .subscribe(async value =>  {
-            console.log(value);
             await this.router.navigateByUrl('/dashboard');
           }, error => {
             console.log(error);
