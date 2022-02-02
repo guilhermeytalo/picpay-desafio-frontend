@@ -1,3 +1,4 @@
+/* tslint:disable:no-string-literal */
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {MockProvider} from 'ng-mocks';
 
@@ -7,7 +8,7 @@ import {AccountService} from '../../../api/account.service';
 import {Router} from '@angular/router';
 import {RouterFakeMock} from '../mocks/routerFake.mock';
 
-describe('FormComponent', () => {
+fdescribe('FormComponent', () => {
     let component: FormComponent;
     let fixture: ComponentFixture<FormComponent>;
     let router: Router;
@@ -49,14 +50,7 @@ describe('FormComponent', () => {
         expect(password.valid).toBeFalsy();
     });
 
-    describe(('getErrorMessage'), () => {
-        it(`Testing getErrorMessage with valid field`, () => {
-            const getErrorMessage = 'getErrorMessage';
-            component[getErrorMessage]('email');
-        });
-    });
-
-    fdescribe(('onSubmit'), () => {
+    describe(('onSubmit'), () => {
         it('Testing form group element count', () => {
             const formElement = fixture.debugElement.nativeElement
                 .querySelector('#loginForm');
