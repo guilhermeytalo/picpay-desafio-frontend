@@ -19,26 +19,25 @@ export class FormComponent implements OnInit{
   )
   {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.nullValidator]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.nullValidator]],
     });
   }
 
-  getErrorMessage(type: 'email' | 'password') {
+  private getErrorMessage(type: 'email' | 'password'): string {
     if (this.loginForm.get(type).hasError('required')) {
       return 'Você precisa digitar um valor!';
     }
     return `Campo invalido`;
   }
 
-   onSubmit() {
+   private onSubmit() {
     console.log(this.loginForm.value);
     const {email, password} = this.loginForm.value;
 
     if (this.loginForm.valid) {
-      console.log('form submitted');
       if (email !== 'usuario@gmail.com') {
         return;
       }
